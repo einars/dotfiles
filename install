@@ -1,0 +1,7 @@
+#!/bin/sh
+
+ln vim ~/.vim -sf
+ln vim ~/vim -sf
+
+ln zsh ~/.zsh -sf
+ln ~/.zsh/zshrc ~/.zshrc -sf

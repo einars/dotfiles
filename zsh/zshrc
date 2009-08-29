@@ -1,0 +1,129 @@
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+bindkey -e
+
+setopt nohup
+
+setopt INC_APPEND_HISTORY 
+#setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+
+setopt autocd
+setopt extended_glob
+
+
+autoload -Uz compinit
+compinit
+
+
+
+bindkey '\eq' push-line-or-edit
+
+autoload -U promptinit 
+promptinit 
+
+# http://www.acm.uiuc.edu/workshops/zsh/prompt/escapes.html
+fg_red=%{$'\e[0;31m'%}
+fg_green=%{$'\e[0;32m'%}
+fg_bluish=%{$'\e[0;36m'%}
+reset_color=%{$'\e[0m'%}
+
+if [[ $TERM == screen-bce ]] {
+    # solaris screen messes up the colors
+    # stupid terminals, stupid.
+    fg_red=
+    fg_green=
+    fg_bluish=
+    reset_color=
+}
+
+prefix_git_branch() {
+    #(( $+SCHROOT_USER )) && echo -n ${fg_green}arch32 $reset_color
+    [ -z $BRANCH ] && [ -d .svn ] && BRANCH=`svn info 2>/dev/null| grep Revision | awk '{print "svn:"$2}'`
+    [ -z $BRANCH ] && [ -d .git -o -d ../.git -o -d ../../.git -o -d ../../../.git ] && BRANCH=`git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+    [ -z $BRANCH ] || echo $fg_bluish$BRANCH $reset_color
+}
+
+prefix_hostname() {
+    if [[ $HOST != 'sunshine' ]] {
+        echo "$HOST "
+    }
+}
+
+setopt PROMPT_SUBST
+export PROMPT="`prefix_hostname`%~ \`prefix_git_branch\`%(?,$fg_green,$fg_red)%#$reset_color "
+export RPROMPT="%(?,,$fg_red( %? %)$reset_color"
+
+
+eval "`dircolors -b`"
+
+
+# remove \0 from IFS
+export IFS=${IFS/$'\0'}
+#export IFS=$' \t\n'
+
+
+if [[ `uname` == 'SunOS' ]] {
+    export PATH=$PATH:~/bin:~/bin/solaris:/opt/clisp/bin:~/builds/ccl/
+    export PATH=$PATH:/usr/perl5/bin:/usr/local/wine/bin:/usr/local/bin:/usr/postgres/8.3/bin
+    export CDPATH=.:~:/services/web:~/queue
+    export CLASSPATH=/usr/jdk/instances/jdk1.6.0/lib
+    export JAVA_HOME=/usr/jdk/instances/jdk1.6.0
+    export JDK_HOME=/usr/jdk/instances/jdk1.6.0
+    #export JAVA_HOME=/java/
+} else {
+    export CDPATH=.:~:/srv/www:~/queue
+    export PATH=$PATH:~/bin:/opt/wine/bin:/opt/kde/bin/:
+    # java
+    #export CLASSPATH=~/bin/classpath/tinapoc.jar:~/bin/classpath/java_cup.jar:~/bin/classpath/bcel-5.1.jar
+    #export JAVA_HOME=/opt/java/jre/
+    export PATH=$PATH:/opt/java/jre/bin:/opt/java/bin
+}
+
+
+
+
+
+# stupid fucking terminals
+
+typeset -g -A key
+
+bindkey '\e[3~' delete-char
+bindkey ';5D' emacs-backward-word
+bindkey ';5C' emacs-forward-word
+
+
+bindkey '^?' backward-delete-char
+bindkey '^[[7~' beginning-of-line
+bindkey '^[[5~' up-line-or-history
+bindkey '^[[3~' delete-char
+bindkey '^[[8~' end-of-line
+bindkey '^[[6~' down-line-or-history
+#bindkey '^[[A' up-line-or-search
+#bindkey '^[[D' backward-char
+#bindkey '^[[B' down-line-or-search
+#bindkey '^[[C' forward-char 
+##bindkey '^[[2~' overwrite-mode
+
+export EDITOR=vim
+export OOO_FORCE_DESKTOP=gnome
+
+function do_ls()
+{
+    SKIPPED_DIRS=(/usr/bin /usr/lib)
+    DIR=`pwd`
+    if [[ -z ${(M)SKIPPED_DIRS:#$DIR} ]] {
+        ls -l --color=tty
+    }
+}
+
+chpwd_functions=('do_ls')
+
+
+if [[ $TERM != screen-bce ]] {
+    export TERM=xtermc
+}
+
+. ~/.zsh/aliases

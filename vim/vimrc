@@ -1,0 +1,358 @@
+set ttimeoutlen=100
+""" swap apos. ` has too fugly place on keyboard
+""" nnoremap ' `
+nnoremap ` '
+
+""" die die die slow and needless matching parens highlighting
+
+let g:loaded_matchparen=1
+
+set history=1000
+
+""" c-a, c-x won't treat 05 as octal
+set nrformats=hex
+
+
+""" indicate filename etc completion on <tab>
+
+set wildmenu
+set wildmode=full
+
+
+""" i REALLY don't like bold fonts in terminal
+set t_md=
+
+
+""" let the vim in console get some mouse fun
+set mouse=a
+
+set scrolloff=3
+
+set nostartofline
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+
+set expandtab
+set autoindent
+set wildchar=<Tab>
+
+
+""" I need a statusline
+set laststatus=2
+set statusline=%<%f\%h%m%r%=%-20.(%L\ %l:%c\ %)\ \ \%h%m%r%=\%P
+
+
+
+""" usable backspace
+
+set backspace=indent,eol,start
+
+set hlsearch
+set incsearch
+
+
+""" search ignores case while no uppercase is searched
+
+set ignorecase
+set smartcase
+
+
+set nowrap
+
+
+""" screw purists
+
+set textwidth=0
+
+
+""" buffers magically get usable
+
+set hidden
+
+""" do not tell about externally changed files, just reread them
+set autoread
+
+""" auto-detect filetypes
+
+filetype plugin indent on
+syntax on
+
+
+
+nnoremap ; :
+imap <c-tab> <c-v><tab>
+
+
+
+""" A little bit of S&M
+
+imap <c-up> <Nop>
+imap <c-down> <Nop>
+imap <c-left> <Nop>
+imap <c-right> <Nop>
+map <c-up> <Nop>
+map <c-down> <Nop>
+map <c-left> <Nop>
+map <c-right> <Nop>
+
+imap <up> <Nop>
+imap <down> <Nop>
+imap <left> <Nop>
+imap <right> <Nop>
+map <up> <Nop>
+map <down> <Nop>
+map <left> <Nop>
+map <right> <Nop>
+
+map <pageup> <nop>
+map <pagedown> <nop>
+map <home> <nop>
+map <end> <nop>
+imap <pageup> <nop>
+imap <pagedown> <nop>
+imap <home> <nop>
+imap <end> <nop>
+
+map <c-pageup> <nop>
+map <c-pagedown> <nop>
+imap <c-pageup> <nop>
+imap <c-pagedown> <nop>
+
+map <del> <nop>
+map <c-del> <nop>
+map <m-del> <nop>
+imap <del> <nop>
+imap <c-del> <nop>
+imap <m-del> <nop>
+
+
+
+
+""" switch to <+X+> with C-j in our micro-templates
+
+autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.tpl
+nnoremap <c-j> /<+.\{-1,}+><cr>c/+>/e<cr>
+"inoremap <c-j> <ESC>/<+.\{-1,}+><cr>c/+>/e<cr>
+
+
+
+"" k/j move by screen lines, not physical lines
+nnoremap k gk
+nnoremap j gj
+nnoremap gk k
+nnoremap gj j
+
+
+
+
+
+
+""" navigate tabs^Wbuffers. let's learn proper vim., ^z and ^c
+
+imap <c-z> <esc>:bp<cr>
+imap <c-c> <esc>:bn<cr>
+map <c-z> :bp<cr>
+map <c-c> :bn<cr>
+imap <m-z> <esc>:tabp<cr>
+imap <m-c> <esc>:tabn<cr>
+map <m-z> :tabp<cr>
+map <m-c> :tabn<cr>
+
+
+""" Sane tabbing — tab vs autocomplete
+function! InsertTabWrapper(direction)
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    elseif a:direction == "back"
+        return "\<c-p>"
+    else
+        return "\<c-n>"
+    endif
+endfunction
+
+inoremap <tab> <c-r>=InsertTabWrapper("fwd")<cr>
+inoremap <s-tab> <c-r>=InsertTabWrapper("back")<cr>
+
+
+
+
+""" Convenient command to see the difference between the current buffer and the
+""" file it was loaded from, thus the changes you made.
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+        \ | wincmd p | diffthis
+
+
+""" gvim has some page-down crap on shift-enter
+
+map <S-CR> <CR>
+imap <S-CR> <CR>
+
+
+if has('gui_running')
+
+    "set guifont=terminus\ 9
+    set guifont=Droid\ Sans\ Mono\ 12
+
+    """ console dialogs, not the gui
+    set guioptions+=c
+
+    """ Turn off toolbar and menu
+    set guioptions-=T
+    set guioptions-=m
+
+    """ and right scrollbar
+    set guioptions-=r
+
+    """ and left scrollbar
+    set guioptions-=r
+    set guioptions-=L
+
+
+    """ blank gvim doesn't want to work nice with x clipboard
+
+    map! <s-insert> <c-r>*
+
+
+    """ i hate blinking cursor
+
+    let &guicursor = &guicursor . ",a:blinkon0"
+
+
+    """ c-space as omnicompletion
+
+    inoremap <c-space> <c-x><c-o>
+
+
+    "colorscheme kellys
+    colorscheme xoria256
+
+
+else
+
+    """ c-space as omnicompletion
+
+    inoremap <nul> <c-x><c-o>
+
+
+    """ use slightly modified default colorscheme
+
+    """colorscheme spic-terminal
+    " colorscheme xoria256
+    colorscheme desert
+
+	"hi phpFunctionDef ctermfg=11
+
+end
+
+
+""" only underline on search
+
+hi clear Search
+hi Search cterm=underline gui=underline
+
+
+""" subtly tell when lines are too long
+
+au BufRead,BufNew *.js,*.php,*.c,*.cpp,*.h,*.htm,*.html let w:m1=matchadd('Error', '\%120v.', -1)
+au BufRead,BufNew *.js,*.php,*.c,*.cpp,*.h,*.htm,*.html let w:m3=matchadd('Todo', '<+\w\++>', -1)
+au BufRead,BufNew *.* call matchadd('Todo', '!!!.*', -1)
+
+""" translit
+
+let g:cursor_follows_alphabet = 1
+
+""" PHP stuff: rebuild folds on s-f5
+
+let g:searchEmptyLinesPostfixing = 3
+map <s-f5> <esc>:EnableFastPHPFolds<cr>
+
+
+""" resync colors on f5
+
+map <f5> <esc>:syn sync fromstart<cr>
+
+
+""" f3 = select all to X clipboard
+
+map <f3> <esc>mpgg"+yG`p
+map <c-.> <esc>mpgg"+yG`p
+
+set suffixes+=.class,.pyc
+set suffixes-=.h
+
+autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab " Python
+autocmd FileType make set tabstop=8|set shiftwidth=8|set noexpandtab " Makefile
+autocmd FileType php set keywordprg=~/bin/phpdoc
+
+""" javascript indentation is brain-dead for jquery
+autocmd FileType javascript set ai|set indentexpr=
+
+
+map <S-f7> :NERDTree<cr>
+map <f7> :NERDTreeToggle<cr>
+
+
+
+" my colors
+
+if has('gui_running')
+
+    hi phpString guifg=#d1c79e
+    hi phpRegion guifg=#7ca4c8
+    hi phpPrintfSpecifier guifg=#e3bb56
+    hi phpKeyword guifg=#7ca4c8
+    hi phpFunction guifg=#7ca4c8
+    "hi Type guifg = #7ca4c8
+    "hi Error guifg=white guibg=#cc3333
+
+    hi phpComment     guifg=#67686b
+    hi phpFunctionDef guifg=orange
+    hi pythonFunction guifg=orange
+    hi phpIdentifier guifg=#b8c0c8
+
+    " limp crap
+    hi Brackets      guibg=#444 guifg=white
+    hi BracketsBlock guibg=#444 guibg=lightgray
+    "hi StatusLine    guibg=white guifg=160
+    "hi StatusLineNC  guibg=black guifg=gray
+    "hi Pmenu         guibg=53 guifg=255
+    "hi PmenuSel      guibg=255 guifg=53
+
+endif
+
+""" make and set path for temp files
+
+function! l:SetDir(path)
+    if ! isdirectory(a:path) && exists('*mkdir')
+        exec mkdir(a:path, '', 0700)
+    endif
+    if isdirectory(a:path)
+        exec 'set dir=' . a:path
+        exec 'set backupdir=' . a:path
+    endif
+endfunction
+
+
+call l:SetDir($HOME . '/.vim-swap')
+
+function! ReloadKonqueror()
+    exec ':w'
+    silent exec '!/home/e/bin/reload-konqueror &' | redraw
+endfunction
+
+map <M-d> :call ReloadKonqueror()<cr>
+imap <M-d> <esc>:call ReloadKonqueror()<cr>
+
+
+" search/replace shortcuts
+"
+noremap ;; :%s:::g<Left><Left><Left>
+noremap ;' :%s:::cg<Left><Left><Left><Left>
+
+" scroll faster
+"
+nnoremap <c-e> 3<c-e>
+nnoremap <c-y> 3<c-y>
