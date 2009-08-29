@@ -1,7 +1,18 @@
 #!/bin/sh
 
-ln vim ~/.vim -sf
-ln vim ~/vim -sf
+[ -z $INSTALL_SOURCE ] && INSTALL_SOURCE=$1
+[ -z $INSTALL_SOURCE ] && INSTALL_SOURCE=`pwd`
 
-ln zsh ~/.zsh -sf
-ln ~/.zsh/zshrc ~/.zshrc -sf
+[ -f $INSTALL_SOURCE/install ] || {
+	echo No installation source.
+	exit -1
+}
+
+ln $INSTALL_SOURCE/vim ~/.vim -sfn
+ln $INSTALL_SOURCE/vim ~/vim -sfn
+ln ~/.vim/vimrc ~/.vimrc -sfn
+
+ln $INSTALL_SOURCE/zsh ~/.zsh -sfn
+ln ~/.zsh/zshrc ~/.zshrc -sfn
+
+ln $INSTALL_SOURCE/bin ~/bin -sfn

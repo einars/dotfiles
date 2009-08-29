@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+
+if [[ $# == 0 ]] {
+    echo `basename $0` delay [message]
+    exit
+}
+
+DELAY=$1
+shift
+MESSAGE=$@
+
+if [[ $MESSAGE == "" ]] {
+    MESSAGE="ding-ding-ding"
+}
+
+{
+    sleep $DELAY
+    notify $MESSAGE
+} &

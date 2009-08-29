@@ -1,0 +1,9 @@
+#!/bin/bash
+
+KONSOLE_CLASS=konsole
+{
+    sleep 0.1; wmctrl -x -a gvim
+} &
+/usr/bin/gvim -f --remote-wait-silent $@
+sleep 0.1;
+wmctrl -x -a "$KONSOLE_CLASS" || true

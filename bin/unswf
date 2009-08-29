@@ -1,0 +1,50 @@
+#!/usr/bin/php
+<?php
+
+define ('swf_tag_compressed', 		 chr(0x43).chr(0x57).chr(0x53));
+function phpAds_SWFDecompress($buffer)
+{
+    if (substr($buffer, 0, 3) == swf_tag_compressed && ord(substr($buffer, 3, 1)) >= 6) {
+
+        $output  = 'F';
+        $output .= substr ($buffer, 1, 7);
+        $output .= gzuncompress (substr ($buffer, 8));
+
+    } else {
+
+        printf("No decompression needed.\n");
+        $output = false;
+
+    }
+
+    return $output;
+}
+
+
+function unswf($file_name)
+{
+    $f = file_get_contents($file_name);
+    printf("processing %s\n", $file_name);
+    if (!$f) {
+        printf("nope.\n");
+        return;
+    }
+
+    $output = phpAds_SWFDecompress($f);
+    if ($output) {
+        $file_name = $file_name . '.deco';
+        printf("Writing $file_name\n");
+        file_put_contents($file_name, $output);
+    }
+
+}
+
+
+if (sizeof($argv) > 1) {
+    $file_name = $argv[1];
+    unswf($file_name);
+} else {
+    printf("Usage: %s file.swf\n", basename($argv[0]));
+}
+
+?>

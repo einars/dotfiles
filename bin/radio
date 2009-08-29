@@ -1,0 +1,43 @@
+#!/bin/zsh
+
+typeset -A STATIONS
+
+STATIONS_FILE=~/radio.txt
+KDIALOG_PARAM=
+
+cat $STATIONS_FILE | while read name url; do
+    if [[ -n $name ]] {
+        STATIONS[$name]=$url
+        KDIALOG_PARAM+=($name $name)
+    }
+done;
+
+STATION=$1
+
+if [[ $1 == '--ask' ]] {
+    STATION=`kdialog --title "Radio stations" --menu "Choose the station" off "Turn off the radio" ${=KDIALOG_PARAM}`
+}
+
+if [[ $STATION == 'off' ]] {
+
+    mpc stop
+    killall -q mplayer
+
+} elif [[ -n $STATIONS[$STATION] ]] {
+
+    mpc stop
+    killall -q mplayer
+
+    if [[ $1 == "--ask" ]] {
+        exec mplayer -playlist $STATIONS[$STATION]
+    } else {
+        mplayer -playlist $STATIONS[$STATION]
+    }
+
+} else {
+    echo "Usage: `basename $0` [station]"
+    echo "       `basename $0` off"
+    echo "       `basename $0` --ask"
+    echo Available stations:
+    echo ${(j:, :)${(ok)STATIONS}}
+}

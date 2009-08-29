@@ -1,0 +1,23 @@
+#!/bin/zsh
+
+SCRIPT=$0
+
+function usage()
+{
+    echo Usage: `basename $SCRIPT` win_class_to_focus [cmd_to_exec]
+    echo Example: `basename $SCRIPT` firefox /usr/bin/firefox
+    exit -1
+}
+
+CLASS=$1
+CMD=$2
+
+[[ -z $CLASS ]] && usage
+
+wmctrl -x -a $CLASS || { 
+    if [[ $CMD != "" ]] {
+        $CMD
+        sleep 0.3
+        wmctrl -x -a $CLASS
+    }
+}

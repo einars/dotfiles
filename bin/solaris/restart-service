@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+SERVICE=$1
+pfexec svcadm restart $SERVICE
+if [[ $? == 0 ]] {
+    notify-send -t 1500 -u normal -h int:x:10 -h int:y:0 "$SERVICE restarted"
+} else {
+    notify-send -t 1500 -u critical -h int:x:10 -h int:y:0 "$SERVICE failed to restart"
+}

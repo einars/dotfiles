@@ -1,0 +1,6 @@
+#!/usr/bin/zsh
+
+pfexec svcadm disable $1
+pfexec svcadm enable $1
+sleep 0.5
+pfexec svcs -x $1

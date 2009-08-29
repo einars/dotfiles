@@ -1,0 +1,3 @@
+#!/bin/sh
+
+pfexec growisofs -Z /dev/rdsk/c7t0d0s2=$1

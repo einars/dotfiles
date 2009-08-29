@@ -1,0 +1,4 @@
+#!/bin/sh
+
+find . -type f -name "*$1*" $2 $3 $4 $5 $6
+#| grep -v svn

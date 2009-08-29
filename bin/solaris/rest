@@ -1,0 +1,5 @@
+#!/usr/bin/zsh
+
+pfexec svcadm restart $1
+sleep 0.5
+pfexec svcs -x $1
