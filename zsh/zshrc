@@ -64,7 +64,7 @@ eval "`dircolors -b`"
 # remove \0 from IFS
 export IFS=${IFS/$'\0'}
 
-export PATH=$PATH:~/bin
+export PATH=$PATH:~/bin:~/bin/private
 
 if [[ `uname` == 'SunOS' ]] {
     export PATH=/usr/gnu/bin:$PATH:~/bin/solaris
@@ -117,7 +117,7 @@ function do_ls()
     SKIPPED_DIRS=(/usr/bin /usr/lib)
     DIR=`pwd`
     if [[ -z ${(M)SKIPPED_DIRS:#$DIR} ]] {
-        if [[ -e $GNU_SYSTEM ]] {
+        if [[ -n $GNU_SYSTEM ]] {
             ls -l --color=tty
         } else {
             ls -l
@@ -132,3 +132,4 @@ if [[ $TERM != screen-bce ]] {
 }
 
 . ~/.zsh/aliases
+. ~/.zsh/aliases.private

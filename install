@@ -16,3 +16,7 @@ ln -sfn $INSTALL_SOURCE/zsh ~/.zsh
 ln -sfn ~/.zsh/zshrc ~/.zshrc
 
 ln -sfn $INSTALL_SOURCE/bin ~/bin
+
+ln -sfn $INSTALL_SOURCE/dots/gitconfig ~/.gitconfig
+
+touch ~/.zsh/aliases.private
