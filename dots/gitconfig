@@ -1,0 +1,7 @@
+[user]
+	name = Einar Lielmanis
+	email = einars@gmail.com
+[alias]
+    stat = status
+    sup = svn rebase
+    co = checkout
