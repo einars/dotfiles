@@ -1,4 +1,3 @@
-
 #
 # !!! common aliases
 #
@@ -21,15 +20,10 @@ if [[ `uname` == "SunOS"  ]] {
     #
     # Solaris
     #
-    if [[ -f '/usr/bin/gnu/ls' ]] {
-        alias l='ls -lh --color=tty'
-        alias ll='ls -lAh --color=tty'
-        alias ls='ls --color=tty'
-    } else {
-        # it's sometimes bleak 1997 in stock solaris world
-        alias l='ls -lh'
-        alias ll='ls -lAh'
-    }
+    alias l='ls -lh --color=tty'
+    alias ll='ls -lAh --color=tty'
+    alias ls='ls --color=tty'
+
     alias psql='psql -U esports'
     alias rsql='rlwrap psql -U esports'
     alias ccl='rlwrap ccl'
@@ -47,6 +41,19 @@ if [[ `uname` == "SunOS"  ]] {
     alias ping='ping -s' 
 
     alias ckmail='ssh 10.10.10.2 offlineimap -q'
+
+    if [[ -z $GNU_SYSTEM ]] {
+        # lonely world of stock solaris
+        unalias ls
+        alias l='ls -lh'
+        alias ll='ls -lAh'
+    }
+    if [[ -f /usr/gnu/bin/grep ]] {
+        true
+    } else {
+        unalias grep
+    }
+
 
 } else {
     #
@@ -144,5 +151,7 @@ alias lsources='cd ~/.sbcl/sources/';
 alias lsystems='cd ~/.sbcl/systems/';
 
 alias iddqd='sudo -i'
+
+
 
 # vim: syn=zsh :

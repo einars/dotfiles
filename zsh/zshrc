@@ -27,6 +27,7 @@ promptinit
 # http://www.acm.uiuc.edu/workshops/zsh/prompt/escapes.html
 fg_red=%{$'\e[0;31m'%}
 fg_green=%{$'\e[0;32m'%}
+fg_brownish=%{$'\e[0;33m'%}
 fg_bluish=%{$'\e[0;36m'%}
 reset_color=%{$'\e[0m'%}
 
@@ -48,7 +49,7 @@ prefix_git_branch() {
 
 prefix_hostname() {
     if [[ $HOST != 'sunshine' ]] {
-        echo "$HOST "
+        echo "$fg_brownish$HOST$reset_color "
     }
 }
 
@@ -65,8 +66,12 @@ export IFS=${IFS/$'\0'}
 
 export PATH=$PATH:~/bin
 
+if [[ `uname` == 'SunOS' ]] {
+    export PATH=/usr/gnu/bin:$PATH:~/bin/solaris
+}
+
 if [[ $HOST == 'sunshine' ]] {
-    export PATH=$PATH:~/bin/solaris:/opt/clisp/bin:~/builds/ccl/
+    export PATH=$PATH:/opt/clisp/bin:~/builds/ccl/
     export PATH=$PATH:/usr/perl5/bin:/usr/local/wine/bin:/usr/local/bin:/usr/postgres/8.3/bin
     export CDPATH=.:~:/services/web:~/queue
     export CLASSPATH=/usr/jdk/instances/jdk1.6.0/lib
@@ -75,6 +80,11 @@ if [[ $HOST == 'sunshine' ]] {
 }
 
 
+
+ls --color=auto 2>/dev/null >/dev/null
+if [[ $? == 0 ]] {
+    export GNU_SYSTEM=true
+}
 
 
 
@@ -107,12 +117,15 @@ function do_ls()
     SKIPPED_DIRS=(/usr/bin /usr/lib)
     DIR=`pwd`
     if [[ -z ${(M)SKIPPED_DIRS:#$DIR} ]] {
-        ls -l --color=tty
+        if [[ -e $GNU_SYSTEM ]] {
+            ls -l --color=tty
+        } else {
+            ls -l
+        }
     }
 }
 
 chpwd_functions=('do_ls')
-
 
 if [[ $TERM != screen-bce ]] {
     export TERM=xtermc
