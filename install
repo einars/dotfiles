@@ -8,11 +8,11 @@
 	exit -1
 }
 
-ln $INSTALL_SOURCE/vim ~/.vim -sfn
-ln $INSTALL_SOURCE/vim ~/vim -sfn
-ln ~/.vim/vimrc ~/.vimrc -sfn
+ln -sfn $INSTALL_SOURCE/vim ~/.vim
+ln -sfn $INSTALL_SOURCE/vim ~/vim
+ln -sfn ~/.vim/vimrc ~/.vimrc
 
-ln $INSTALL_SOURCE/zsh ~/.zsh -sfn
-ln ~/.zsh/zshrc ~/.zshrc -sfn
+ln -sfn $INSTALL_SOURCE/zsh ~/.zsh
+ln -sfn ~/.zsh/zshrc ~/.zshrc
 
-ln $INSTALL_SOURCE/bin ~/bin -sfn
+ln -sfn $INSTALL_SOURCE/bin ~/bin
