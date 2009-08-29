@@ -68,6 +68,9 @@ export PATH=$PATH:~/bin:~/bin/private
 
 if [[ `uname` == 'SunOS' ]] {
     export PATH=/usr/gnu/bin:$PATH:~/bin/solaris
+
+    # buggy buggy bugs bugs for IPS
+    export PKG_CLIENT_TIMEOUT=900
 }
 
 if [[ $HOST == 'sunshine' ]] {
