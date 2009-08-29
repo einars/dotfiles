@@ -62,24 +62,16 @@ eval "`dircolors -b`"
 
 # remove \0 from IFS
 export IFS=${IFS/$'\0'}
-#export IFS=$' \t\n'
 
+export PATH=$PATH:~/bin
 
-if [[ `uname` == 'SunOS' ]] {
-    export PATH=$PATH:~/bin:~/bin/solaris:/opt/clisp/bin:~/builds/ccl/
+if [[ $HOST == 'sunshine' ]] {
+    export PATH=$PATH:~/bin/solaris:/opt/clisp/bin:~/builds/ccl/
     export PATH=$PATH:/usr/perl5/bin:/usr/local/wine/bin:/usr/local/bin:/usr/postgres/8.3/bin
     export CDPATH=.:~:/services/web:~/queue
     export CLASSPATH=/usr/jdk/instances/jdk1.6.0/lib
     export JAVA_HOME=/usr/jdk/instances/jdk1.6.0
     export JDK_HOME=/usr/jdk/instances/jdk1.6.0
-    #export JAVA_HOME=/java/
-} else {
-    export CDPATH=.:~:/srv/www:~/queue
-    export PATH=$PATH:~/bin:/opt/wine/bin:/opt/kde/bin/:
-    # java
-    #export CLASSPATH=~/bin/classpath/tinapoc.jar:~/bin/classpath/java_cup.jar:~/bin/classpath/bcel-5.1.jar
-    #export JAVA_HOME=/opt/java/jre/
-    export PATH=$PATH:/opt/java/jre/bin:/opt/java/bin
 }
 
 

@@ -7,7 +7,7 @@ alias ack='clear; ack'
 alias grep="grep --color=auto -d skip"
 alias ssh='TERM=xterm ssh -C'
 
-alias edzsh='vim ~/.zsh/.zshrc; . ~/.zsh/.zshrc'
+alias edzsh='vim ~/.zsh/zshrc; . ~/.zsh/zshrc'
 alias edalias='vim ~/.zsh/aliases; . ~/.zsh/aliases'
 
 alias edbash="vim ~/.bashrc && source ~/.bashrc"
@@ -21,9 +21,15 @@ if [[ `uname` == "SunOS"  ]] {
     #
     # Solaris
     #
-    alias l='ls -lh --color=tty'
-    alias ll='ls -lAh --color=tty'
-    alias ls='ls --color=tty'
+    if [[ -f '/usr/bin/gnu/ls' ]] {
+        alias l='ls -lh --color=tty'
+        alias ll='ls -lAh --color=tty'
+        alias ls='ls --color=tty'
+    } else {
+        # it's sometimes bleak 1997 in stock solaris world
+        alias l='ls -lh'
+        alias ll='ls -lAh'
+    }
     alias psql='psql -U esports'
     alias rsql='rlwrap psql -U esports'
     alias ccl='rlwrap ccl'
