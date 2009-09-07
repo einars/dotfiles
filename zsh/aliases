@@ -20,9 +20,21 @@ if [[ `uname` == "SunOS"  ]] {
     #
     # Solaris
     #
-    alias l='ls -lh --color=tty'
-    alias ll='ls -lAh --color=tty'
-    alias ls='ls --color=tty'
+
+    # use gnu ls if it is available, even if not in PATH
+    # (nice to have in jucr build environment)
+    if [[ -f '/usr/gnu/bin/ls' ]] {
+        LS=/usr/gnu/bin/ls
+        alias l="$LS -lh --color=tty"
+        alias ll="$LS -lAh --color=tty"
+        alias ls="$LS --color=tty"
+    } else {
+        # stock ls is oldskool unixey ls
+        unalias ls
+        alias l='ls -lh'
+        alias ll='ls -lAh'
+    }
+
 
     alias psql='psql -U esports'
     alias rsql='rlwrap psql -U esports'
@@ -42,12 +54,6 @@ if [[ `uname` == "SunOS"  ]] {
 
     alias ckmail='ssh 10.10.10.2 offlineimap -q'
 
-    if [[ -z $GNU_SYSTEM ]] {
-        # lonely world of stock solaris
-        unalias ls
-        alias l='ls -lh'
-        alias ll='ls -lAh'
-    }
     if [[ -f /usr/gnu/bin/grep ]] {
         true
     } else {

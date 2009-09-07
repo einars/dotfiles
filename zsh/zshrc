@@ -44,7 +44,14 @@ prefix_git_branch() {
     #(( $+SCHROOT_USER )) && echo -n ${fg_green}arch32 $reset_color
     [ -z $BRANCH ] && [ -d .svn ] && BRANCH=`svn info 2>/dev/null| grep Revision | awk '{print "svn:"$2}'`
     [ -z $BRANCH ] && [ -d .git -o -d ../.git -o -d ../../.git -o -d ../../../.git ] && BRANCH=`git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-    [ -z $BRANCH ] || echo $fg_bluish$BRANCH $reset_color
+    [ -z $BRANCH ] || echo "${fg_bluish}${BRANCH} ${reset_color}"
+}
+
+prefix_env() {
+    # solaris common build environment
+    if [[ $LD == '/opt/jdsbld/bin/ld-wrapper' ]] {
+        echo "${fg_brownish}[CBE]${reset_color} "
+    }
 }
 
 prefix_hostname() {
@@ -54,7 +61,7 @@ prefix_hostname() {
 }
 
 setopt PROMPT_SUBST
-export PROMPT="`prefix_hostname`%~ \`prefix_git_branch\`%(?,$fg_green,$fg_red)%#$reset_color "
+export PROMPT="`prefix_hostname``prefix_env`%~ \`prefix_git_branch\`%(?,$fg_green,$fg_red)%#$reset_color "
 export RPROMPT="%(?,,$fg_red( %? %)$reset_color"
 
 
