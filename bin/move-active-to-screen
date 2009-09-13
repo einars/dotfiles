@@ -1,0 +1,8 @@
+#!/usr/bin/zsh
+
+if [[ $1 == "left" ]] {
+    wmctrl -r :ACTIVE: -e 0,0,-1,-1,-1
+}
+if [[ $1 == "right" ]] {
+    wmctrl -r :ACTIVE: -e 0,1920,-1,-1,-1
+}
