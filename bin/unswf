@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/php/bin/php
 <?php
 
 define ('swf_tag_compressed', 		 chr(0x43).chr(0x57).chr(0x53));
