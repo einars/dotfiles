@@ -40,7 +40,7 @@ if [[ $TERM == screen-bce ]] {
     reset_color=
 }
 
-prefix_git_branch() {
+prefix_sc_branch() {
     #(( $+SCHROOT_USER )) && echo -n ${fg_green}arch32 $reset_color
     [ -z $BRANCH ] && [ -d .svn ] && BRANCH=`svn info 2>/dev/null| grep Revision | awk '{print "svn:"$2}'`
     [ -z $BRANCH ] && [ -d .git -o -d ../.git -o -d ../../.git -o -d ../../../.git ] && BRANCH=`git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
@@ -60,8 +60,15 @@ prefix_hostname() {
     }
 }
 
+prefix_pwd() {
+    if [[ `id -u` == "0" ]] {
+        echo -n $fg_red;
+    }
+    pwd
+}
+
 setopt PROMPT_SUBST
-export PROMPT="`prefix_hostname``prefix_env`%~ \`prefix_git_branch\`%(?,$fg_green,$fg_red)%#$reset_color "
+export PROMPT="`prefix_hostname`\`prefix_env\`\`prefix_pwd\` \`prefix_sc_branch\`%(?,$fg_green,$fg_red)%#$reset_color "
 export RPROMPT="%(?,,$fg_red( %? %)$reset_color"
 
 
