@@ -1,0 +1,6 @@
+#!/bin/sh
+
+clear
+FUNCTION=`echo $1 | sed 's/_/-/g' | sed 's/[()]//g'`
+#elinks http://127.0.0.1/phpdoc/function.$FUNCTION.html
+w3m -dump  /services/web/private/phpdoc/function.$FUNCTION.html | more
