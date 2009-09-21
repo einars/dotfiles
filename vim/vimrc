@@ -7,6 +7,10 @@ nnoremap ` '
 
 let g:loaded_matchparen=1
 
+set showmatch
+set matchtime=1
+set matchpairs=(:)
+
 set history=1000
 
 """ c-a, c-x won't treat 05 as octal
