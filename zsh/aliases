@@ -50,6 +50,9 @@ if [[ `uname` == "SunOS"  ]] {
     alias p='ps -ef'
     alias pss="ps -ef | grep -i"
 
+    alias iddqd='pfexec zsh'
+    alias pkg='pfexec pkg'
+
     # solaris ping is dumb
     alias ping='ping -s' 
 
@@ -80,6 +83,8 @@ if [[ `uname` == "SunOS"  ]] {
     alias whose='pacman -Qo'
     alias y='yaourt'
 
+    alias iddqd='sudo -i'
+
     alias relight='sudo /etc/rc.d/lighttpd restart'
 
     alias pss="ps -Adf | grep -i"
@@ -92,7 +97,7 @@ alias tree="ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^
 alias gitd="git diff"
 alias gits="git status"
 alias gitc="git commit -a"
-alias gitsc="git svn dcommit || { git stash; git svn rebase; git svn dcommit ; git stash apply }"
+alias gitsc="test -d .git/svn && { git svn dcommit || { git stash; git svn rebase; git svn dcommit ; git stash apply }}"
 alias master="git checkout master"
 
 # svn
@@ -156,7 +161,6 @@ alias slice='remind 30m enough!'
 alias lsources='cd ~/.sbcl/sources/';
 alias lsystems='cd ~/.sbcl/systems/';
 
-alias iddqd='sudo -i'
 
 
 
