@@ -85,6 +85,7 @@ syntax on
 
 
 
+
 nnoremap ; :
 imap <c-tab> <c-v><tab>
 
@@ -196,6 +197,11 @@ imap <S-CR> <CR>
 
 
 if has('gui_running')
+    
+    """ I automatically :wq main vim much more often than I need to.
+    """ So here I get rid of the wq command.
+    cnoreabbr wq w
+
 
     "set guifont=terminus\ 9
     set guifont=Droid\ Sans\ Mono\ 12
