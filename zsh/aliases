@@ -37,6 +37,14 @@ if [[ `uname` == "SunOS"  ]] {
     }
 
 
+    alias spause='pfexec svcadm disable -t'
+    alias sstop='pfexec svcadm disable'
+    alias sstart='pfexec svcadm enable'
+    alias srestart='pfexec svcadm restart'
+
+    alias pvim='pfexec vim'
+
+
     alias psql='psql -U esports'
     alias rsql='rlwrap psql -U esports'
     alias ccl='rlwrap ccl'
