@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 STYLES_DI=(exposurenyc trance vocaltrance electro chillout eurodance house soulfulhouse funkyhouse tribalhouse harddance minimal techno progressive goapsy hardstyle hardcore djmixes lounge drumandbass classictechno ambient breaks futuresynthpop gabber)
 STYLES_SKY=(christmas tophits classical datempolounge newage world guitar solopiano smoothjazz uptemposmoothjazz urbanjamz rootsreggae the80s hit70s classicrock altrock oldies classicrap pianojazz bossanova country lovemusic beatles indierock soundtracks christian jazz salsa)

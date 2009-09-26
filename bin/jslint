@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 exec java -cp ~/bin/java/rhino-latest/js.jar org.mozilla.javascript.tools.shell.Main ~/bin/jslint.js $@
 

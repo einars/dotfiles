@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 #
 # script to find show memory usage of PG buffers in OS cache
 # 2008 kcg

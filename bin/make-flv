@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 /usr/bin/ffmpeg -y -i "$1" -ab 56 -ar 22050 -b 500000 -s 400x300 "$1.flv"
 /usr/bin/ffmpeg -i "$1" -an -ss 00:00:05 -t 00:00:01 -r 1 -y -s 400x300 "$1.%d.jpg"

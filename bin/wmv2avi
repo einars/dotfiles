@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 VIDEO_IN=$1
 VIDEO_OUT=$2

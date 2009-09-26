@@ -1,6 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env zsh
+
+if [[ $1 == "" ]] {
+    echo Usage: `basename $0` file-to-edit
+    echo Open a script in focused gvim, wait for completion and return focus to terminal
+    return
+}
+
 
 KONSOLE_CLASS=konsole
+KONSOLE_CLASS=gnome-terminal
 {
     sleep 0.1; wmctrl -x -a gvim
 } &
