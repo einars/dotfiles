@@ -1,0 +1,23 @@
+#!/usr/bin/env zsh
+
+if [[ $1 == "" ]]; then
+    find . -type f -name "*.avi" -print0 | xargs --no-run-if-empty -0 -n 10 $0
+fi
+
+for VIDEO_FILE in $@
+do
+    THUMB_FILE=${VIDEO_FILE%.avi}.jpg
+    if [[ -e "$THUMB_FILE" ]]; then
+        echo skip: $VIDEO_FILE
+    else
+        ffmpeg -i "$VIDEO_FILE" -ss 00:00:15 -t 00:00:01 mkthumb.out.%d.jpg 2>/tmp/mkthumb.log
+        if [[ -e mkthumb.out.1.jpg ]]; then
+            mv mkthumb.out.1.jpg "$THUMB_FILE"
+            echo ok:   $VIDEO_FILE
+        else
+            echo FAIL: $VIDEO_FILE
+        fi
+    fi
+done
+
+find . -name 'mkthumb.out.*.jpg' | xargs --no-run-if-empty rm
