@@ -144,9 +144,11 @@ function do_ls()
 
 chpwd_functions=('do_ls')
 
-if [[ $TERM != screen-bce ]] {
-    export TERM=xtermc
-}
+if [[ `uname` == 'SunOS' ]]; then
+    if [[ $TERM != screen-bce ]] {
+        export TERM=xtermc
+    }
+fi
 
 . ~/.zsh/aliases
 . ~/.zsh/aliases.private
