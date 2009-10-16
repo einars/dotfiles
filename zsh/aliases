@@ -97,6 +97,7 @@ if [[ `uname` == "SunOS"  ]] {
 
     alias pss="ps -Adf | grep -i"
     alias p="/bin/ps axfwwh -eo '%p %U %a'"
+    alias S='sudo'
 
 }
 alias tree="ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
@@ -170,6 +171,7 @@ alias lsources='cd ~/.sbcl/sources/';
 alias lsystems='cd ~/.sbcl/systems/';
 
 
-
+# show sizes of subfolders in current direcory
+alias dirsizes='du --max-depth=1 | sort -nr | head -n 20'
 
 # vim: syn=zsh :
