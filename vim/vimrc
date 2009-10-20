@@ -290,7 +290,7 @@ map <f5> <esc>:syn sync fromstart<cr>
 map <f3> <esc>mpgg"+yG`p
 map <c-.> <esc>mpgg"+yG`p
 
-set wildignore+=*.cmi,*.cmx,*.class,*.pyc
+set wildignore+=*.cmi,*.cmx,*.cmo,*.class,*.pyc
 set suffixes-=.h
 
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab " Python
