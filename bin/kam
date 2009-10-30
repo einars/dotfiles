@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+
+folder=/store_00010001/DCIM/100CANON
+
+case $1 in
+load) # выкачать всё из фотоаппарата в текущую директорию, не удаляя
+        gphoto2 --get-all-raw-data
+        ;;
+del) # удалить всё, что в фотоаппарате
+        gphoto2 -f $folder -D
+        ;;
+get) # выкачать всё из фотоаппарата в текущую директорию, удалив
+        gphoto2 --get-all-raw-data -f $folder -D
+        ;;
+foto) # сделать снимок и выкачать всё из фотоаппарата, удалив
+        gphoto2 --capture-image --get-all-raw-data -f $folder -D
+        ;;
+esac
+
+exit 0
