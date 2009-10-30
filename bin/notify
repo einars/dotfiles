@@ -1,1 +1,1 @@
-notify-send -t 15000 -u normal -h int:x:10 -h int:y:0 "$@"
+notify-send -t 15000 -u critical -h int:x:1810 -h int:y:0 "$@"

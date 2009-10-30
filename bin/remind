@@ -16,5 +16,6 @@ if [[ $MESSAGE == "" ]] {
 
 {
     sleep $DELAY
-    notify $MESSAGE
+    #notify $MESSAGE
+    notify-send -t 150000 -u critical -h int:x:1810 -h int:y:0 "$MESSAGE"
 } &
