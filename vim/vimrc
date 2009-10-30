@@ -9,7 +9,9 @@ let g:loaded_matchparen=1
 
 set showmatch
 set matchtime=1
-set matchpairs=(:)
+
+""" sadly, autoindentations tend to go haywire without this
+""" set matchpairs=(:)
 
 set history=1000
 
