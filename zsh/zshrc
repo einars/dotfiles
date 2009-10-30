@@ -88,12 +88,14 @@ if [[ `uname` == 'SunOS' ]] {
 }
 
 if [[ $HOST == 'sunshine' ]] {
-    export PATH=$PATH:/opt/clisp/bin:~/builds/ccl/
+    export PATH=$PATH:/opt/clisp/bin:~/builds/ccl/:/usr/share/java/apache-ant/bin/
     export PATH=$PATH:/usr/perl5/bin:/usr/local/wine/bin:/usr/local/bin:/usr/postgres/8.3/bin
-    export CDPATH=.:~:/services/web:~/queue
-    export CLASSPATH=/usr/jdk/instances/jdk1.6.0/lib
-    export JAVA_HOME=/usr/jdk/instances/jdk1.6.0
-    export JDK_HOME=/usr/jdk/instances/jdk1.6.0
+    export CDPATH=.:~:/services/web/localhost:/services/web/dev.spicausis.lv:~/queue
+    export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
+    export CLASSPATH=/usr/lib/jvm/java-6-openjdk/lib:$CLASSPATH
+    #export CLASSPATH=/usr/jdk/instances/jdk1.6.0/lib
+    #export JAVA_HOME=/usr/jdk/instances/jdk1.6.0
+    #export JDK_HOME=/usr/jdk/instances/jdk1.6.0
 }
 
 
