@@ -4,20 +4,25 @@ SCRIPT=$0
 
 function usage()
 {
-    echo Usage: `basename $SCRIPT` win_class_to_focus [cmd_to_exec]
+    echo Usage: `basename $SCRIPT` window_class_or_title [cmd_to_exec]
     echo Example: `basename $SCRIPT` firefox /usr/bin/firefox
     exit -1
 }
 
-CLASS=$1
-CMD=$2
+function focus()
+{
+    wmctrl -a $1 || wmctrl -x -a $1
+}
 
-[[ -z $CLASS ]] && usage
+CLASS_OR_TITLE=$1
+COMMAND_TO_EXEC=$2
 
-wmctrl -x -a $CLASS || { 
-    if [[ $CMD != "" ]] {
-        $CMD
+[[ -z $CLASS_OR_TITLE ]] && usage
+
+focus $CLASS_OR_TITLE || { 
+    if [[ $COMMAND_TO_EXEC != "" ]] {
+        $COMMAND_TO_EXEC
         sleep 0.3
-        wmctrl -x -a $CLASS
+        focus $CLASS_OR_TITLE
     }
 }
