@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+DELAY=$1
+if [[ $DELAY == "" ]] {
+    DELAY=30
+}
+
+DELAY=${DELAY}m
+
+echo Will remind in $DELAY.
+
+remind $DELAY "Enough."
