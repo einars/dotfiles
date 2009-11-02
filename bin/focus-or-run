@@ -21,7 +21,7 @@ COMMAND_TO_EXEC=$2
 
 focus $CLASS_OR_TITLE || { 
     if [[ $COMMAND_TO_EXEC != "" ]] {
-        $COMMAND_TO_EXEC
+        $COMMAND_TO_EXEC &
         sleep 0.3
         focus $CLASS_OR_TITLE
     }
