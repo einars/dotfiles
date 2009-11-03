@@ -149,7 +149,7 @@ alias -g KILL9=" awk '{print \$2}' | xargs /bin/kill -9 "
 
 
 
-alias acka='ack -a -i -Q'
+alias acka='ack --follow -a -i -Q'
 alias ackj='ack --type=java -i -Q'
 alias wget='wget -U "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)"'
 
@@ -165,8 +165,6 @@ alias clojure='rlwrap java -cp $CLOJURE_HOME/clojure.jar clojure.lang.Repl'
 alias limp='/usr/local/limp/latest/bin/lisp.sh limp || /usr/local/limp/latest/bin/lisp.sh -b limp'
 alias limps='/usr/local/limp/latest/bin/lisp.sh -l'
 
-
-alias slice='remind 30m enough!'
 
 alias lsources='cd ~/.sbcl/sources/';
 alias lsystems='cd ~/.sbcl/systems/';
