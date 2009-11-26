@@ -50,13 +50,13 @@ prefix_sc_branch() {
 prefix_env() {
     # solaris common build environment
     if [[ $LD == '/opt/jdsbld/bin/ld-wrapper' ]] {
-        echo "${fg_brownish}[CBE] "
+        echo "${fg_brownish}[CBE]$reset_color "
     }
 }
 
 prefix_hostname() {
     if [[ $HOST != 'sunshine' ]] {
-        echo "$fg_brownish$HOST "
+        echo "$fg_brownish$HOST$reset_color "
     }
 }
 
