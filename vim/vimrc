@@ -1,36 +1,23 @@
 set ttimeoutlen=100
-""" swap apos. ` has too fugly place on keyboard
-""" nnoremap ' `
-nnoremap ` '
 
-""" die die die slow and needless matching parens highlighting
+let g:loaded_matchparen=1             " die, slow and needless matching paren highlighting
+let g:searchEmptyLinesPostfixing = 3  " php folding stuff
+let g:cursor_follows_alphabet = 1     " translit plugin
 
-let g:loaded_matchparen=1
-
-set showmatch
+set showmatch               " jump to matching paren quickly
 set matchtime=1
 
-""" sadly, autoindentations tend to go haywire without this
-""" set matchpairs=(:)
+" sadly, autoindentations tend to go haywire with this
+" set matchpairs=(:)
 
 set history=1000
 
-""" c-a, c-x won't treat 05 as octal
-set nrformats=hex
-
-
-""" indicate filename etc completion on <tab>
-
-set wildmenu
+set nrformats=hex               " c-a, c-x won't treat 05 as octal
+set wildmenu                    " filename etc completion on tab
 set wildmode=full
+set t_md=                       " no bold fonts in terminal
 
-
-""" i REALLY don't like bold fonts in terminal
-set t_md=
-
-
-""" let the vim in console get some mouse fun
-set mouse=a
+" set mouse=a                   " mouse support in console
 
 set scrolloff=3
 
@@ -44,131 +31,42 @@ set expandtab
 set autoindent
 set wildchar=<Tab>
 
-
-""" I need a statusline
-set laststatus=2
+set laststatus=2                " good statusline is good
 set statusline=%<%f\%h%m%r%=%-20.(%L\ %l:%c\ %)\ \ \%h%m%r%=\%P
 
 
+set wildignore+=*.cmi,*.cmx,*.cmo,*.class,*.pyc
+set suffixes-=.h
 
-""" usable backspace
 
-set backspace=indent,eol,start
+set backspace=indent,eol,start  " usable backspace
 
 set hlsearch
 set incsearch
-
-
-""" search ignores case while no uppercase is searched
-
-set ignorecase
+set ignorecase                  " search ignores case while no uppercase is searched
 set smartcase
+set nowrap                      " dont' wrap the text
 
 
-set nowrap
+set textwidth=120               " screw purists
 
 
-""" screw purists
+set hidden                      " suddenly, magically, buffers get usable
+set autoread                    " don't care about ext-modified files, just reload them
 
-set textwidth=0
-
-
-""" buffers magically get usable
-
-set hidden
-
-""" do not tell about externally changed files, just reread them
-set autoread
-
-""" auto-detect filetypes
-
-filetype plugin indent on
-syntax on
+filetype plugin indent on       " detect filetypes
+syntax on                       " colors
 
 
 
-
-nnoremap ; :
-imap <c-tab> <c-v><tab>
-
-
-
-""" A little bit of S&M
-
-imap <c-up> <Nop>
-imap <c-down> <Nop>
-imap <c-left> <Nop>
-imap <c-right> <Nop>
-map <c-up> <Nop>
-map <c-down> <Nop>
-map <c-left> <Nop>
-map <c-right> <Nop>
-
-imap <up> <Nop>
-imap <down> <Nop>
-imap <left> <Nop>
-imap <right> <Nop>
-map <up> <Nop>
-map <down> <Nop>
-map <left> <Nop>
-map <right> <Nop>
-
-map <pageup> <nop>
-map <pagedown> <nop>
-map <home> <nop>
-map <end> <nop>
-imap <pageup> <nop>
-imap <pagedown> <nop>
-imap <home> <nop>
-imap <end> <nop>
-
-map <c-pageup> <nop>
-map <c-pagedown> <nop>
-imap <c-pageup> <nop>
-imap <c-pagedown> <nop>
-
-map <del> <nop>
-map <c-del> <nop>
-map <m-del> <nop>
-imap <del> <nop>
-imap <c-del> <nop>
-imap <m-del> <nop>
-
-
-
-
-""" switch to <+X+> with C-j in our micro-templates
+" micro-templates: autoload template
 
 autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.tpl
-nnoremap <c-j> /<+.\{-1,}+><cr>c/+>/e<cr>
-"inoremap <c-j> <ESC>/<+.\{-1,}+><cr>c/+>/e<cr>
 
 
 
-"" k/j move by screen lines, not physical lines
-nnoremap k gk
-nnoremap j gj
-nnoremap gk k
-nnoremap gj j
+" Sane tabbing — tab vs autocomplete
 
-
-
-
-
-
-""" navigate tabs^Wbuffers. let's learn proper vim., ^z and ^c
-
-imap <c-z> <esc>:bp<cr>
-imap <c-c> <esc>:bn<cr>
-map <c-z> :bp<cr>
-map <c-c> :bn<cr>
-imap <m-z> <esc>:tabp<cr>
-imap <m-c> <esc>:tabn<cr>
-map <m-z> :tabp<cr>
-map <m-c> :tabn<cr>
-
-
-""" Sane tabbing — tab vs autocomplete
 function! InsertTabWrapper(direction)
     let col = col('.') - 1
     if !col || getline('.')[col - 1] !~ '\k'
@@ -180,22 +78,14 @@ function! InsertTabWrapper(direction)
     endif
 endfunction
 
-inoremap <tab> <c-r>=InsertTabWrapper("fwd")<cr>
-inoremap <s-tab> <c-r>=InsertTabWrapper("back")<cr>
-
 
 
 
 """ Convenient command to see the difference between the current buffer and the
 """ file it was loaded from, thus the changes you made.
-command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-        \ | wincmd p | diffthis
+"""
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
-
-""" gvim has some page-down crap on shift-enter
-
-map <S-CR> <CR>
-imap <S-CR> <CR>
 
 
 if has('gui_running')
@@ -205,58 +95,31 @@ if has('gui_running')
     cnoreabbr wq w
 
 
-    "set guifont=terminus\ 9
-    set guifont=Droid\ Sans\ Mono\ 12
+    set guifont=Droid\ Sans\ Mono\ 11
 
-    """ console dialogs, not the gui
-    set guioptions+=c
+    set guioptions+=c       """ use console dialogs, not the gui ones
+    set guioptions-=T       """ don't show the toolbar
+    set guioptions-=m       """ don't show the menu
+    set guioptions-=r       """ don't need right scrollbar
+    set guioptions-=L       """ don't show left scrollbar
 
-    """ Turn off toolbar and menu
-    set guioptions-=T
-    set guioptions-=m
+    """ gvim doesn't want to work nice with x clipboard
+    map! <s-insert> <c-r>* 
 
-    """ and right scrollbar
-    set guioptions-=r
+    """ gvim weirdnesses
+    map  <S-CR> <CR>
+    imap <S-CR> <CR>
 
-    """ and left scrollbar
-    set guioptions-=r
-    set guioptions-=L
-
-
-    """ blank gvim doesn't want to work nice with x clipboard
-
-    map! <s-insert> <c-r>*
 
 
     """ i hate blinking cursor
-
     let &guicursor = &guicursor . ",a:blinkon0"
 
-
-    """ c-space as omnicompletion
-
-    inoremap <c-space> <c-x><c-o>
-
-
-    "colorscheme kellys
     colorscheme xoria256
 
 
 else
-
-    """ c-space as omnicompletion
-
-    inoremap <nul> <c-x><c-o>
-
-
-    """ use slightly modified default colorscheme
-
-    """colorscheme spic-terminal
-    " colorscheme xoria256
     colorscheme desert
-
-	"hi phpFunctionDef ctermfg=11
-
 end
 
 
@@ -270,30 +133,10 @@ hi Search cterm=underline gui=underline
 
 au BufRead,BufNew *.js,*.php,*.c,*.cpp,*.h,*.htm,*.html let w:m1=matchadd('Error', '\%120v.', -1)
 au BufRead,BufNew *.js,*.php,*.c,*.cpp,*.h,*.htm,*.html let w:m3=matchadd('Todo', '<+\w\++>', -1)
-au BufRead,BufNew *.* call matchadd('Todo', '!!!.*', -1)
-
-""" translit
-
-let g:cursor_follows_alphabet = 1
-
-""" PHP stuff: rebuild folds on s-f5
-
-let g:searchEmptyLinesPostfixing = 3
-map <s-f5> <esc>:EnableFastPHPFolds<cr>
+au BufRead,BufNew *.* call matchadd('Todo', '\(!!!\|///\).*', -1)
 
 
-""" resync colors on f5
 
-map <f5> <esc>:syn sync fromstart<cr>
-
-
-""" f3 = select all to X clipboard
-
-map <f3> <esc>mpgg"+yG`p
-map <c-.> <esc>mpgg"+yG`p
-
-set wildignore+=*.cmi,*.cmx,*.cmo,*.class,*.pyc
-set suffixes-=.h
 
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab " Python
 autocmd FileType make set tabstop=8|set shiftwidth=8|set noexpandtab " Makefile
@@ -303,37 +146,32 @@ autocmd FileType php set keywordprg=~/bin/phpdoc
 autocmd FileType javascript set ai|set indentexpr=
 
 
-map <S-f7> :NERDTree<cr>
-map <f7> :NERDTreeToggle<cr>
 
 
-
-" my colors
+" my color customizations.
 
 if has('gui_running')
 
-    hi phpString guifg=#d1c79e
-    hi phpRegion guifg=#7ca4c8
+    hi phpString      guifg=#d1c79e
+    hi phpRegion      guifg=#7ca4c8
     hi phpPrintfSpecifier guifg=#e3bb56
-    hi phpKeyword guifg=#7ca4c8
-    hi phpFunction guifg=#7ca4c8
-    "hi Type guifg = #7ca4c8
-    "hi Error guifg=white guibg=#cc3333
+    hi phpKeyword     guifg=#7ca4c8
+    hi phpFunction    guifg=#7ca4c8
 
     hi phpComment     guifg=#67686b
     hi phpFunctionDef guifg=orange
     hi pythonFunction guifg=orange
-    hi phpIdentifier guifg=#b8c0c8
+    hi phpIdentifier  guifg=#b8c0c8
 
     " limp crap
-    hi Brackets      guibg=#444 guifg=white
-    hi BracketsBlock guibg=#444 guibg=lightgray
-    "hi StatusLine    guibg=white guifg=160
-    "hi StatusLineNC  guibg=black guifg=gray
-    "hi Pmenu         guibg=53 guifg=255
-    "hi PmenuSel      guibg=255 guifg=53
+    hi Brackets       guibg=#444 guifg=white
+    hi BracketsBlock  guibg=#444 guibg=lightgray
+
 
 endif
+
+hi link htmlTag htmlTagName
+hi link htmlEndTag htmlTagName
 
 """ make and set path for temp files
 
@@ -350,21 +188,143 @@ endfunction
 
 call l:SetDir($HOME . '/.vim-swap')
 
-function! ReloadKonqueror()
-    exec ':w'
-    silent exec '!/home/e/bin/reload-konqueror &' | redraw
-endfunction
-
-map <M-d> :call ReloadKonqueror()<cr>
-imap <M-d> <esc>:call ReloadKonqueror()<cr>
 
 
-" search/replace shortcuts
+"""
+"""
+""" /// here go keymaps
+""" 
+"""
+
+
+" don't care for the `, use it as '
+
+nnoremap ` '
+
+
+" scroll faster
+
+nnoremap <c-e> 3<c-e>
+nnoremap <c-y> 3<c-y>
+
+" S&M
+
+imap <c-up>     <Nop>
+imap <c-down>   <Nop>
+imap <c-left>   <Nop>
+imap <c-right>  <Nop>
+map  <c-up>     <Nop>
+map  <c-down>   <Nop>
+map  <c-left>   <Nop>
+map  <c-right>  <Nop>
+
+imap <up>       <Nop>
+imap <down>     <Nop>
+imap <left>     <Nop>
+imap <right>    <Nop>
+map  <up>       <Nop>
+map  <down>     <Nop>
+map   <left>    <Nop>
+map  <right>    <Nop>
+
+imap <pageup>   <nop>
+imap <pagedown> <nop>
+imap <home>     <nop>
+imap <end>      <nop>
+map  <pageup>   <nop>
+map  <pagedown> <nop>
+map  <home>     <nop>
+map  <end>      <nop>
+
+imap <del>      <nop>
+imap <c-del>    <nop>
+imap <m-del>    <nop>
+map  <del>      <nop>
+map  <c-del>    <nop>
+map  <m-del>    <nop>
+
+imap <c-pageup>     <nop>
+imap <c-pagedown>   <nop>
+map  <c-pageup>     <nop>
+map  <c-pagedown>   <nop>
+
+
+" k/j move by screen lines, not physical lines
+
+nnoremap k gk
+nnoremap j gj
+nnoremap gk k
+nnoremap gj j
+
+
+" navigate buffers with ^z and ^c
+
+imap <c-z> <esc>:bp<cr>
+imap <c-c> <esc>:bn<cr>
+map  <c-z> :bp<cr>
+map  <c-c> :bn<cr>
+
+
+
+"" navigate tabs with M-z and M-c
 "
+"imap <m-z> <esc>:tabp<cr>
+"imap <m-c> <esc>:tabn<cr>
+"map  <m-z> :tabp<cr>
+"map  <m-c> :tabn<cr>
+
+
+" search/replace on ;; and ;'
+
 noremap ;; :%s:::g<Left><Left><Left>
 noremap ;' :%s:::cg<Left><Left><Left><Left>
 
-" scroll faster
-"
-nnoremap <c-e> 3<c-e>
-nnoremap <c-y> 3<c-y>
+
+" no need for shift to enter command mode
+
+nnoremap ; :
+
+
+" use real tab on c-tab
+
+imap <c-tab> <c-v><tab>
+
+
+" microtemplates: C-j moves to next block marked by <+SOMETHING+>
+
+nnoremap <c-j> /<+.\{-1,}+><cr>c/+>/e<cr>
+
+
+
+" human tabs
+
+inoremap <tab>   <c-r>=InsertTabWrapper("fwd")<cr>
+inoremap <s-tab> <c-r>=InsertTabWrapper("back")<cr>
+
+
+" c-space is omnicompletion
+
+inoremap <nul> <c-x><c-o>
+
+
+" PHP stuff: rebuild folds on s-f5
+
+map <s-f5> <esc>:EnableFastPHPFolds<cr>
+
+
+" resync colors on f5
+
+map <f5> <esc>:syn sync fromstart<cr>
+
+
+" f3 = select all to X clipboard
+
+map <f3> <esc>mpgg"+yG`p
+map <c-.> <esc>mpgg"+yG`p
+
+
+" f7 / s-f7 nedtree
+
+map <S-f7> :NERDTree<cr>
+map <f7> :NERDTreeToggle<cr>
+
