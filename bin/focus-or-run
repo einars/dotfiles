@@ -11,13 +11,15 @@ function usage()
 
 function focus()
 {
-    wmctrl -a $1 || wmctrl -x -a $1
+    wmctrl -x -a $1 || wmctrl -a $1
 }
 
 CLASS_OR_TITLE=$1
 COMMAND_TO_EXEC=$@[2,$#]
 
+
 [[ -z $CLASS_OR_TITLE ]] && usage
+[[ -z $COMMAND_TO_EXEC ]] && COMMAND_TO_EXEC=$CLASS_OR_TITLE
 
 focus $CLASS_OR_TITLE || { 
     if [[ $COMMAND_TO_EXEC != "" ]] {
