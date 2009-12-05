@@ -31,27 +31,11 @@ fg_brownish=%{$'\e[0;33m'%}
 fg_bluish=%{$'\e[0;36m'%}
 reset_color=%{$'\e[0m'%}
 
-if [[ $TERM == screen-bce ]] {
-    # solaris screen messes up the colors
-    # stupid terminals, stupid.
-    fg_red=
-    fg_green=
-    fg_bluish=
-    reset_color=
-}
-
 prefix_sc_branch() {
     #(( $+SCHROOT_USER )) && echo -n ${fg_green}arch32 $reset_color
     [ -z $BRANCH ] && [ -d .svn ] && BRANCH=`svn info 2>/dev/null| grep Revision | awk '{print "svn:"$2}'`
     [ -z $BRANCH ] && [ -d .git -o -d ../.git -o -d ../../.git -o -d ../../../.git ] && BRANCH=`git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
     [ -z $BRANCH ] || echo "${fg_bluish}${BRANCH} "
-}
-
-prefix_env() {
-    # solaris common build environment
-    if [[ $LD == '/opt/jdsbld/bin/ld-wrapper' ]] {
-        echo "${fg_brownish}[CBE]$reset_color "
-    }
 }
 
 prefix_hostname() {
@@ -68,7 +52,7 @@ prefix_pwd() {
 }
 
 setopt PROMPT_SUBST
-export PROMPT="`prefix_hostname`\`prefix_env\`\`prefix_pwd\` \`prefix_sc_branch\`%(?,$fg_green,$fg_red)%#$reset_color "
+export PROMPT="`prefix_hostname`\`prefix_pwd\` \`prefix_sc_branch\`%(?,$fg_green,$fg_red)%#$reset_color "
 export RPROMPT="%(?,,$fg_red( %? %)$reset_color"
 
 
@@ -80,16 +64,10 @@ export IFS=${IFS/$'\0'}
 
 export PATH=$PATH:~/bin:~/bin/private
 
-if [[ `uname` == 'SunOS' ]] {
-    export PATH=/usr/gnu/bin:$PATH:~/bin/solaris
-
-    # buggy buggy bugs bugs for IPS
-    export PKG_CLIENT_TIMEOUT=900
-}
-
 if [[ $HOST == 'sunshine' ]] {
     export PATH=$PATH:/opt/clisp/bin:~/builds/ccl/:/usr/share/java/apache-ant/bin/
     export PATH=$PATH:/usr/perl5/bin:/usr/local/wine/bin:/usr/local/bin:/usr/postgres/8.3/bin
+    export PATH=$PATH:/opt/xfce/bin
     export CDPATH=.:~:/services/web/localhost:/services/web/dev.spicausis.lv:~/queue
     export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
     export CLASSPATH=/usr/lib/jvm/java-6-openjdk/lib:$CLASSPATH
@@ -146,11 +124,19 @@ function do_ls()
 
 chpwd_functions=('do_ls')
 
-if [[ `uname` == 'SunOS' ]]; then
-    if [[ $TERM != screen-bce ]] {
-        export TERM=xtermc
-    }
-fi
+
+KEEP_TERM=false
+
+# if need to keep the term, then add checks here and set KEEP_TERM
+# otherwise it will be forcefully set to xterm-256color
+#
+# ...
+#
+
+
+if [[ $KEEP_TERM == false ]]; then
+    export TERM=xterm-256color
+fi;
 
 . ~/.zsh/aliases
 . ~/.zsh/aliases.private

@@ -64,8 +64,6 @@ if [[ `uname` == "SunOS"  ]] {
     # solaris ping is dumb
     alias ping='ping -s' 
 
-    alias ckmail='ssh 10.10.10.2 offlineimap -q'
-
     if [[ -f /usr/gnu/bin/grep ]] {
         true
     } else {
