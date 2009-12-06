@@ -89,22 +89,30 @@ if [[ $? == 0 ]] {
 
 typeset -g -A key
 
-bindkey '\e[3~' delete-char
-bindkey ';5D' emacs-backward-word
-bindkey ';5C' emacs-forward-word
+bindkey '\e[3~' delete-char # delete key
 
+#bindkey ';5D' emacs-backward-word   # xterm-ish: alt + left arrow
+#bindkey ';5C' emacs-forward-word    # xterm-ish: alt + right arrow
 
-bindkey '^?' backward-delete-char
-bindkey '^[[7~' beginning-of-line
-bindkey '^[[5~' up-line-or-history
-bindkey '^[[3~' delete-char
-bindkey '^[[8~' end-of-line
-bindkey '^[[6~' down-line-or-history
+bindkey "^[^[[D" emacs-backward-word # urxvt: alt + left arrow
+bindkey "^[^[[C" emacs-forward-word  # urxvt: alt + right arrow
+
+bindkey '^[[7~' beginning-of-line    # home
+bindkey '^[[8~' end-of-line          # end
+
+#bindkey '^?' backward-delete-char
+#bindkey '^[[5~' up-line-or-history
+#bindkey '^[[6~' down-line-or-history
+#
 #bindkey '^[[A' up-line-or-search
 #bindkey '^[[D' backward-char
 #bindkey '^[[B' down-line-or-search
 #bindkey '^[[C' forward-char 
 ##bindkey '^[[2~' overwrite-mode
+
+if [[ $TERM == xterm ]]; then
+    export TERM=xterm-256color
+fi
 
 export EDITOR=vim
 export OOO_FORCE_DESKTOP=gnome
@@ -123,20 +131,6 @@ function do_ls()
 }
 
 chpwd_functions=('do_ls')
-
-
-KEEP_TERM=false
-
-# if need to keep the term, then add checks here and set KEEP_TERM
-# otherwise it will be forcefully set to xterm-256color
-#
-# ...
-#
-
-
-if [[ $KEEP_TERM == false ]]; then
-    export TERM=xterm-256color
-fi;
 
 . ~/.zsh/aliases
 . ~/.zsh/aliases.private
