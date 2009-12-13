@@ -5,6 +5,9 @@ bindkey -e
 
 setopt nohup
 
+autoload -Uz compinit
+compinit
+
 setopt INC_APPEND_HISTORY 
 #setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
@@ -12,10 +15,11 @@ setopt HIST_IGNORE_SPACE
 
 setopt autocd
 setopt extended_glob
+setopt nopromptsp
 
-
-autoload -Uz compinit
-compinit
+setopt completeinword # global completion, not just end of word
+setopt alwaystoend    # when completed from inside of word, move to an end
+setopt histverify     # confirm "!" commands
 
 
 
@@ -32,7 +36,7 @@ fg_bluish=%{$'\e[0;36m'%}
 reset_color=%{$'\e[0m'%}
 
 prefix_sc_branch() {
-    #(( $+SCHROOT_USER )) && echo -n ${fg_green}arch32 $reset_color
+    (( $+SCHROOT_USER )) && echo -n ${fg_green}arch32 $reset_color
     [ -z $BRANCH ] && [ -d .svn ] && BRANCH=`svn info 2>/dev/null| grep Revision | awk '{print "svn:"$2}'`
     [ -z $BRANCH ] && [ -d .git -o -d ../.git -o -d ../../.git -o -d ../../../.git ] && BRANCH=`git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
     [ -z $BRANCH ] || echo "${fg_bluish}${BRANCH} "
@@ -67,18 +71,14 @@ export PATH=$PATH:~/bin:~/bin/private
 if [[ $HOST == 'sunshine' ]] {
     export PATH=$PATH:/opt/clisp/bin:~/builds/ccl/:/usr/share/java/apache-ant/bin/
     export PATH=$PATH:/usr/perl5/bin:/usr/local/wine/bin:/usr/local/bin:/usr/postgres/8.3/bin
-    export PATH=$PATH:/opt/xfce/bin
     export CDPATH=.:~:/services/web/localhost:/services/web/dev.spicausis.lv:~/queue
     export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
     export CLASSPATH=/usr/lib/jvm/java-6-openjdk/lib:$CLASSPATH
-    #export CLASSPATH=/usr/jdk/instances/jdk1.6.0/lib
-    #export JAVA_HOME=/usr/jdk/instances/jdk1.6.0
-    #export JDK_HOME=/usr/jdk/instances/jdk1.6.0
 }
 
 
 
-ls --color=auto 2>/dev/null >/dev/null
+ls --color=auto &>/dev/null
 if [[ $? == 0 ]] {
     export GNU_SYSTEM=true
 }
@@ -116,6 +116,11 @@ fi
 
 export EDITOR=vim
 export OOO_FORCE_DESKTOP=gnome
+
+stty stop  '^-' # drop ^S flow control
+stty start '^-' # drop ^Q flow control
+stty susp undef # don't suspend on ctrl-Z
+
 
 function do_ls()
 {
