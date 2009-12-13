@@ -93,6 +93,7 @@ if [[ `uname` == "SunOS"  ]] {
 
     alias relight='sudo /etc/rc.d/lighttpd restart'
 
+    alias pacman32="sudo pacman --root /opt/arch32 --cachedir /opt/arch32/var/cache/pacman/pkg --config /opt/arch32/pacman.conf"
     alias pss="ps -Adf | grep -i"
     alias p="/bin/ps axfwwh -eo '%p %U %a'"
     alias S='sudo'
