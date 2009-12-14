@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+DECAY=/services/web/localhost/decay
+
+find $DECAY -type f -mtime +2 -delete
+cp -t /services/web/localhost/decay $@
