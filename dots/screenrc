@@ -1,0 +1,17 @@
+startup_message off  # i know who you are anyway
+deflogin off         # don't care about utmp
+
+escape ^xx
+
+silencewait 10       # 10 seconds is silent
+shell zsh            # no-brainer
+
+term screen-256color
+
+vbell off
+altscreen on
+defscrollback 10000
+hardstatus on
+hardstatus alwayslastline
+#hardstatus string "%{wk}%?%-Lw%?%{=b kR} (%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}] %{=b C}[ %m/%d %c ]%{W}"
+hardstatus string "%{wk}%?%-Lw%?%{=b kR} (%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%?%?%= %{g}] %{=b C}%{W}"
