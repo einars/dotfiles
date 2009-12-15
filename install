@@ -20,4 +20,6 @@ ln -sfn $INSTALL_SOURCE/bin ~/bin
 ln -sfn $INSTALL_SOURCE/dots/gitconfig ~/.gitconfig
 ln -sfn $INSTALL_SOURCE/dots/screenrc ~/.screenrc
 
+ln -sfn $INSTALL_SOURCE/dots/xresources ~/.Xresources
+
 touch ~/.zsh/aliases.private

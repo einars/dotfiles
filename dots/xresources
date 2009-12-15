@@ -1,0 +1,42 @@
+URxvt*font: xft:Terminus:pixelsize=12
+URxvt*background: #242424
+URxvt*cutchars: BACKSLASH '"'&()*,;<=>?@[]{|}
+URxvt*colorUL: #86a2be
+URxvt*foreground: #eeeeee
+URxvt*geometry: 140x35
+URxvt.cursorColor: #86a2be
+URxvt*internalBorder: 0
+URxvt*loginShell: false
+URxvt*perl-ext-common: default,matcher,searchable-scrollback
+URxvt*pointerBlank: false
+URxvt*saveLines: 10000
+URxvt*secondaryScroll: true
+URxvt*jumpScroll: true
+URxvt*skipScroll: true
+URxvt*scrollBar: false
+URxvt*scrollTtyKeypress: true
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: false
+
+URxvt*termName: rxvt-256color
+URxvt*underlineColor: #86a2be
+URxvt*color0: #242424
+URxvt*color1: #bf7979
+URxvt*color2: #97b26b
+URxvt*color3: #cdcda1
+URxvt*color4: #86a2be
+URxvt*color5: #d9b798
+URxvt*color6: #a1b5cd
+URxvt*color7: #f4f4f4
+URxvt*color8: #cdb5cd
+URxvt*color9: #f4a45f
+URxvt*color10: #c5f779
+URxvt*color11: #ffffaf
+URxvt*color12: #98afd9
+URxvt*color13: #d7d998
+URxvt*color14: #a1b5cd
+URxvt*color15: #dedede
+
+URxvt*matcher.pattern.1: \\b(mailto|http|https|sftp|ftp|file):[/]*[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt*matcher.pattern.2: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt*urlLauncher: opera
