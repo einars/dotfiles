@@ -96,6 +96,7 @@ if has('gui_running')
 
 
     set guifont=Droid\ Sans\ Mono\ 11
+    set guifont=Terminus\ 10
 
     set guioptions+=c       """ use console dialogs, not the gui ones
     set guioptions-=T       """ don't show the toolbar
@@ -138,12 +139,12 @@ au BufRead,BufNew *.* call matchadd('Todo', '\(!!!\|///\).*', -1)
 
 
 
-autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab " Python
-autocmd FileType make set tabstop=8|set shiftwidth=8|set noexpandtab " Makefile
-autocmd FileType php set keywordprg=~/bin/phpdoc
+autocmd FileType python setlocal tabstop=4|setlocal shiftwidth=4|setlocal expandtab " Python
+autocmd FileType make setlocal tabstop=8|setlocal shiftwidth=8|setlocal noexpandtab " Makefile
+autocmd FileType php setlocal keywordprg=~/bin/phpdoc
 
 """ javascript indentation is brain-dead for jquery
-autocmd FileType javascript set ai|set indentexpr=
+autocmd FileType javascript setlocal ai|setlocal indentexpr=
 
 
 
