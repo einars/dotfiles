@@ -10,7 +10,7 @@ term screen-256color
 
 vbell off
 altscreen on
-defscrollback 10000
+defscrollback 1000
 hardstatus on
 hardstatus alwayslastline
 #hardstatus string "%{wk}%?%-Lw%?%{=b kR} (%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}] %{=b C}[ %m/%d %c ]%{W}"
