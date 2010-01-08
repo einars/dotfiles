@@ -1,8 +1,6 @@
 URxvt*font: xft:Terminus:pixelsize=12
-URxvt*background: #242424
 URxvt*cutchars: BACKSLASH '"'&()*,;<=>?@[]{|}
 URxvt*colorUL: #86a2be
-URxvt*foreground: #eeeeee
 URxvt*geometry: 140x35
 URxvt.cursorColor: #86a2be
 URxvt*internalBorder: 0
@@ -16,10 +14,18 @@ URxvt*skipScroll: true
 URxvt*scrollBar: false
 URxvt*scrollTtyKeypress: true
 URxvt*scrollTtyOutput: false
-URxvt*scrollWithBuffer: false
+URxvt*scrollWithBuffer: true
 
 URxvt*termName: rxvt-256color
 URxvt*underlineColor: #86a2be
+
+URxvt*matcher.pattern.1: \\b(mailto|http|https|sftp|ftp|file):[/]*[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt*matcher.pattern.2: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt*urlLauncher: opera
+
+!! good white-on-black colors
+URxvt*foreground: #eeeeee
+URxvt*background: #242424
 URxvt*color0: #242424
 URxvt*color1: #bf7979
 URxvt*color2: #97b26b
@@ -37,6 +43,22 @@ URxvt*color13: #d7d998
 URxvt*color14: #a1b5cd
 URxvt*color15: #dedede
 
-URxvt*matcher.pattern.1: \\b(mailto|http|https|sftp|ftp|file):[/]*[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-URxvt*matcher.pattern.2: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-URxvt*urlLauncher: opera
+!! gnome-ish colors
+! URxvt*foreground:     rgb:22/22/22
+! URxvt*background:     rgb:fa/fa/fa
+! URxvt*color0:         rgb:4f/4f/4f
+! URxvt*color8:         rgb:25/25/25
+! URxvt*color1:         rgb:85/0d/0d
+! URxvt*color9:         rgb:98/2b/2b
+! URxvt*color2:         rgb:88/be/32
+! URxvt*color10:        rgb:af/f7/3e
+! URxvt*color3:         rgb:ff/7e/00
+! URxvt*color11:        rgb:fa/d4/3d
+! URxvt*color4:         rgb:32/4c/80
+! URxvt*color12:        rgb:2b/4f/98
+! URxvt*color5:         rgb:70/6c/9a
+! URxvt*color13:        rgb:82/6a/b1
+! URxvt*color6:         rgb:92/b1/9e
+! URxvt*color14:        rgb:a1/cd/cd
+! URxvt*color7:         rgb:00/00/00
+! URxvt*color15:        rgb:00/00/00
