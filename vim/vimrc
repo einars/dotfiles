@@ -17,7 +17,7 @@ set wildmenu                    " filename etc completion on tab
 set wildmode=full
 set t_md=                       " no bold fonts in terminal
 
-" set mouse=a                   " mouse support in console
+set mouse=a                   " mouse support in console
 
 set scrolloff=3
 
