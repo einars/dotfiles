@@ -43,5 +43,5 @@ if (( $opt_link == 1 )); then
         ln -t $DECAY -s `pwd`/$@
     fi
 else
-    cp -t $DECAY $@
+    cp -r -t $DECAY $@
 fi
