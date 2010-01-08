@@ -4,10 +4,11 @@
 "              Markus Mottl        <markus.mottl@gmail.com>
 "              Stefano Zacchiroli  <zack@bononia.it>
 " URL:         http://www.ocaml.info/vim/ftplugin/ocaml.vim
-" Last Change: 2009 Sep 10 - Fixed .annot support for OCaml 3.11
+" Last Change: 2009 Nov 10 - Added support for looking up definitions
+"                            (MM for <ygrek@autistici.org>)
+"              2009 Sep 10 - Fixed .annot support for OCaml 3.11
 "                            (MM for <ygrek@autistici.org>)
 "              2006 May 01 - Added .annot support for file.whateverext (SZ)
-"	       2006 Apr 11 - Fixed an initialization bug; fixed ASS abbrev (MM)
 "
 if exists("b:did_ftplugin")
   finish
@@ -189,13 +190,24 @@ endfunction
 " .annot files are parsed lazily the first time OCamlPrintType is invoked; is
 " also possible to force the parsing using the OCamlParseAnnot() function.
 "
-" Typing ',3' will cause OCamlPrintType function to be invoked with
-" the right argument depending on the current mode (visual or not).
+" Typing '<LocalLeader>t' (usually ',t') will cause OCamlPrintType function 
+" to be invoked with the right argument depending on the current mode (visual 
+" or not).
 "
 " Copyright (C) <2003-2004> Stefano Zacchiroli <zack@bononia.it>
 "
 " Created:        Wed, 01 Oct 2003 18:16:22 +0200 zack
 " LastModified:   Wed, 25 Aug 2004 18:28:39 +0200 zack
+
+" '<LocalLeader>d' will find the definition of the name under the cursor
+" and position cursor on it (only for current file) or print fully qualified name
+" (for external definitions). (ocaml >= 3.11)
+"
+" Additionally '<LocalLeader>t' will show whether function call is tail call
+" or not. Current implementation requires selecting the whole function call
+" expression (in visual mode) to work. (ocaml >= 3.11)
+"
+" Copyright (C) 2009 <ygrek@autistici.org>
 
 if !has("python")
   finish
@@ -216,8 +228,9 @@ class AnnExc(Exception):
     def __init__(self, reason):
         self.reason = reason
 
-no_annotations = AnnExc("No type annotations (.annot) file found")
+no_annotations = AnnExc("No annotations (.annot) file found")
 annotation_not_found = AnnExc("No type annotation found for the given text")
+definition_not_found = AnnExc("No definition found for the given text")
 def malformed_annotations(lineno, reason):
     return AnnExc("Malformed .annot file (line = %d, reason = %s)" % (lineno,reason))
 
@@ -249,8 +262,7 @@ class Annotations:
       - the char number within the line is the difference between the third
         and second nums.
 
-      For the moment, possible keywords are \"type\" and \"ident\", and
-      we process only \"type\"."
+      Possible keywords are \"type\", \"ident\" and \"call\".
     """
 
     def __init__(self):
@@ -258,13 +270,23 @@ class Annotations:
         self.__ml_filename = None # as above but s/.annot/.ml/
         self.__timestamp = None # last parse action timestamp
         self.__annot = {}
+        self.__refs = {}
+        self.__calls = {}
         self.__re = re.compile(
           '^"[^"]*"\s+(\d+)\s+(\d+)\s+(\d+)\s+"[^"]*"\s+(\d+)\s+(\d+)\s+(\d+)$')
+        self.__re_int_ref = re.compile('^int_ref\s+(\w+)\s"[^"]*"\s+(\d+)\s+(\d+)\s+(\d+)')
+        self.__re_def_full = re.compile(
+          '^def\s+(\w+)\s+"[^"]*"\s+(\d+)\s+(\d+)\s+(\d+)\s+"[^"]*"\s+(\d+)\s+(\d+)\s+(\d+)$')
+        self.__re_def = re.compile('^def\s+(\w+)\s"[^"]*"\s+(\d+)\s+(\d+)\s+(\d+)\s+')
+        self.__re_ext_ref = re.compile('^ext_ref\s+(\S+)')
         self.__re_kw = re.compile('^(\w+)\($')
 
     def __parse(self, fname):
         try:
             f = open(fname)
+            self.__annot = {} # erase internal mappings when file is reparsed
+            self.__refs = {}
+            self.__calls = {}
             line = f.readline() # position line
             lineno = 1
             while (line != ""):
@@ -295,6 +317,27 @@ class Annotations:
                     if (m.group(1) == "type"):
                         if not self.__annot.has_key(key):
                             self.__annot[key] = desc
+                    if (m.group(1) == "call"): # region, accessible only in visual mode
+                        if not self.__calls.has_key(key):
+                            self.__calls[key] = desc
+                    if (m.group(1) == "ident"):
+                        m = self.__re_int_ref.search(desc)
+                        if m:
+                          line = int(m.group(2))
+                          col = int(m.group(4)) - int(m.group(3))
+                          name = m.group(1)
+                        else:
+                          line = -1
+                          col = -1
+                          m = self.__re_ext_ref.search(desc)
+                          if m:
+                            name = m.group(1)
+                          else:
+                            line = -2
+                            col = -2
+                            name = desc
+                        if not self.__refs.has_key(key):
+                          self.__refs[key] = (line,col,name)
             f.close()
             self.__filename = fname
             self.__ml_filename = vim.current.buffer.name
@@ -311,18 +354,62 @@ class Annotations:
             annot_file = os.path.join(head, "_build/", tail)
             self.__parse(annot_file)
 
-    def get_type(self, (line1, col1), (line2, col2)):
-        if debug:
-            print line1, col1, line2, col2
+    def check_file(self):
         if vim.current.buffer.name == None:
             raise no_annotations
         if vim.current.buffer.name != self.__ml_filename or  \
           os.stat(self.__filename).st_mtime > self.__timestamp:
             self.parse()
+
+    def get_type(self, (line1, col1), (line2, col2)):
+        if debug:
+            print line1, col1, line2, col2
+        self.check_file()
         try:
-            return self.__annot[(line1, col1), (line2, col2)]
+            try:
+              extra = self.__calls[(line1, col1), (line2, col2)]
+              if extra == "tail":
+                extra = " (* tail call *)"
+              else:
+                extra = " (* function call *)"
+            except KeyError:
+              extra = ""
+            return self.__annot[(line1, col1), (line2, col2)] + extra
         except KeyError:
             raise annotation_not_found
+
+    def get_ident(self, (line1, col1), (line2, col2)):
+        if debug:
+            print line1, col1, line2, col2
+        self.check_file()
+        try:
+            (line,col,name) = self.__refs[(line1, col1), (line2, col2)]
+            if line >= 0 and col >= 0:
+              vim.command("normal "+str(line)+"gg"+str(col+1)+"|")
+              #current.window.cursor = (line,col)
+            if line == -2:
+              m = self.__re_def_full.search(name)
+              if m:
+                l2 = int(m.group(5))
+                c2 = int(m.group(7)) - int(m.group(6))
+                name = m.group(1)
+              else:
+                m = self.__re_def.search(name)
+                if m:
+                  l2 = int(m.group(2))
+                  c2 = int(m.group(4)) - int(m.group(3))
+                  name = m.group(1)
+                else:
+                  l2 = -1
+              if False and l2 >= 0:
+                # select region
+                if c2 == 0 and l2 > 0:
+                  vim.command("normal v"+str(l2-1)+"gg"+"$")
+                else:
+                  vim.command("normal v"+str(l2)+"gg"+str(c2)+"|")
+            return name
+        except KeyError:
+            raise definition_not_found
 
 word_char_RE = re.compile("^[\w.]$")
 
@@ -350,18 +437,29 @@ def findBoundaries(line, col):
 
 annot = Annotations() # global annotation object
 
+def get_marks(mode):
+    if mode == "visual":  # visual mode: lookup highlighted text
+        (line1, col1) = vim.current.buffer.mark("<")
+        (line2, col2) = vim.current.buffer.mark(">")
+    else: # any other mode: lookup word at cursor position
+        (line, col) = vim.current.window.cursor
+        (col1, col2) = findBoundaries(line, col)
+        (line1, line2) = (line, line)
+    begin_mark = (line1, col1)
+    end_mark = (line2, col2 + 1)
+    return (begin_mark,end_mark)
+
 def printOCamlType(mode):
     try:
-        if mode == "visual":  # visual mode: lookup highlighted text
-            (line1, col1) = vim.current.buffer.mark("<")
-            (line2, col2) = vim.current.buffer.mark(">")
-        else: # any other mode: lookup word at cursor position
-            (line, col) = vim.current.window.cursor
-            (col1, col2) = findBoundaries(line, col)
-            (line1, line2) = (line, line)
-        begin_mark = (line1, col1)
-        end_mark = (line2, col2 + 1)
+        (begin_mark,end_mark) = get_marks(mode)
         print annot.get_type(begin_mark, end_mark)
+    except AnnExc, exc:
+        print exc.reason
+
+def gotoOCamlDefinition(mode):
+    try:
+        (begin_mark,end_mark) = get_marks(mode)
+        print annot.get_ident(begin_mark, end_mark)
     except AnnExc, exc:
         print exc.reason
 
@@ -381,12 +479,22 @@ fun! OCamlPrintType(current_mode)
   endif
 endfun
 
+fun! OCamlGotoDefinition(current_mode)
+  if (a:current_mode == "visual")
+    python gotoOCamlDefinition("visual")
+  else
+    python gotoOCamlDefinition("normal")
+  endif
+endfun
+
 fun! OCamlParseAnnot()
   python parseOCamlAnnot()
 endfun
 
 map <LocalLeader>t :call OCamlPrintType("normal")<RETURN>
 vmap <LocalLeader>t :call OCamlPrintType("visual")<RETURN>
+map <LocalLeader>d :call OCamlGotoDefinition("normal")<RETURN>
+vmap <LocalLeader>d :call OCamlGotoDefinition("visual")<RETURN>
 
 let &cpoptions=s:cposet
 unlet s:cposet
