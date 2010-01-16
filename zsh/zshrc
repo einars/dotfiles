@@ -15,8 +15,7 @@ setopt HIST_IGNORE_SPACE
 
 setopt autocd
 setopt extended_glob
-setopt nopromptsp
-
+:
 setopt completeinword # global completion, not just end of word
 setopt alwaystoend    # when completed from inside of word, move to an end
 setopt histverify     # confirm "!" commands
