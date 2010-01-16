@@ -80,7 +80,7 @@ if [[ `uname` == "SunOS"  ]] {
     alias ls='ls --color=tty'
 
     # http://www.reddit.com/r/linux/comments/8pmss/alias_iddqdsudo_su/
-    alias canhaz='sudo pacman -S'
+    alias canhaz='sudo pacman -S --needed'
     alias drop='sudo pacman -R'
     alias isthere='sudo pacman -Ss'
     alias current='pacman -Q | grep '
@@ -169,6 +169,7 @@ alias limps='/usr/local/limp/latest/bin/lisp.sh -l'
 alias lsources='cd ~/.sbcl/sources/';
 alias lsystems='cd ~/.sbcl/systems/';
 
+alias cflagged='CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe" CXXFLAGS="-march=x86-64 -mtune=generic -O2 -pipe" LDFLAGS="-Wl,--hash-style=gnu -Wl,--as-needed"'
 
 # show sizes of subfolders in current direcory
 alias dirsizes='du --max-depth=1 | sort -nr | head -n 20'
