@@ -22,4 +22,6 @@ ln -sfn $INSTALL_SOURCE/dots/screenrc ~/.screenrc
 
 ln -sfn $INSTALL_SOURCE/dots/xresources ~/.Xresources
 
+ln -sfn $INSTALL_SOURCE/dots/ncmpc ~/.ncmpc
+
 touch ~/.zsh/aliases.private
