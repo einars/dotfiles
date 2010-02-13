@@ -135,9 +135,9 @@ alias phptags="find . -name '*.php' | grep -v deployment | xargs ctags"
 
 alias py=ipython
 
-alias suy='S pacman -Suy'
-alias syu='S pacman -Suy'
-alias sup='S pacman -Suy'
+alias suy='clear; S pacman -Suy'
+alias syu='clear; S pacman -Suy'
+alias sup='clear; S pacman -Suy'
 
 
 # pss virtualbox | KILL
@@ -175,5 +175,9 @@ alias cflagged='CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe" CXXFLAGS="-march
 alias dirsizes='du --max-depth=1 | sort -nr | head -n 20'
 
 alias m='clear; make -s'
+
+alias mult='TARGET=Multenes push-passport'
+
+
 
 # vim: syn=zsh :
