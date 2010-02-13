@@ -96,7 +96,10 @@ if has('gui_running')
 
 
     set guifont=Droid\ Sans\ Mono\ 11
-    set guifont=Terminus\ 10
+    set guifont=Consolas\ 12          " too blurry for me
+    set guifont=Inconsolata\ 12       " very nice, but leaves terrible artefacts with national (mostly russian) characters
+    set guifont=Terminus\ 10          " wonderful, yet smallish, and sucks at larger sizes
+     
 
     set guioptions+=c       """ use console dialogs, not the gui ones
     set guioptions-=T       """ don't show the toolbar
