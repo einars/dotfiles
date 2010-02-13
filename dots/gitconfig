@@ -5,3 +5,5 @@
     stat = status
     sup = svn rebase
     co = checkout
+[core]
+	autocrlf = input
