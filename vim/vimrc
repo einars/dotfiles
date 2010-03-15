@@ -145,6 +145,7 @@ au BufRead,BufNew *.* call matchadd('Todo', '\(!!!\|///\).*', -1)
 autocmd FileType python setlocal tabstop=4|setlocal shiftwidth=4|setlocal expandtab " Python
 autocmd FileType make setlocal tabstop=8|setlocal shiftwidth=8|setlocal noexpandtab " Makefile
 autocmd FileType php setlocal keywordprg=~/bin/phpdoc
+autocmd FileType inc setlocal syn=php
 
 """ javascript indentation is brain-dead for jquery
 autocmd FileType javascript setlocal ai|setlocal indentexpr=
