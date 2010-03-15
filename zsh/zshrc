@@ -83,6 +83,8 @@ export RPROMPT="%(?,,$fg_red( %? %)$reset_color"
 
 eval "`dircolors -b`" 2>/dev/null
 
+export LS_COLORS="ow=4" # all-writable folders are unreadable, so remove the formatting, leaving just underline
+
 
 # remove \0 from IFS
 export IFS=${IFS/$'\0'}
@@ -92,7 +94,7 @@ export PATH=$PATH:~/bin:~/bin/private
 if [[ $HOST == 'sunshine' ]] {
     export PATH=$PATH:/opt/clisp/bin:~/builds/ccl/:/usr/share/java/apache-ant/bin/
     export PATH=$PATH:/usr/perl5/bin:/usr/local/wine/bin:/usr/local/bin:/usr/postgres/8.3/bin
-    export CDPATH=.:~:/services/web/localhost:/services/web/dev.spicausis.lv:~/queue
+    export CDPATH=.:~:/services/web/localhost:/services/web/dev.spicausis.lv:/services/web:~/queue
     export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
     export CLASSPATH=/usr/lib/jvm/java-6-openjdk/lib:$CLASSPATH
 
