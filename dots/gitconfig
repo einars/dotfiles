@@ -5,5 +5,6 @@
     stat = status
     sup = svn rebase
     co = checkout
+    la = log --pretty=\"format:%ad %h (%an): %s\" --date=short
 [core]
 	autocrlf = input
