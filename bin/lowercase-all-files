@@ -1,0 +1,11 @@
+#!/usr/bin/perl -w
+use strict;
+
+# Open 'find' process to list files recursively with paths
+open(FIND, "find |");
+while(<FIND>) {
+        chomp;
+        next if $_ eq $0;        # Don't rename ourself
+        rename($_, lc($_));
+        }
+close(FIND);
