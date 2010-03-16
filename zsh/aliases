@@ -140,6 +140,7 @@ alias syu='clear; S pacman -Suy'
 alias sup='clear; S pacman -Suy'
 
 alias du='du --si'
+alias df='df --si'
 
 # pss virtualbox | KILL
 alias -g KILL=" awk '{print \$2}' | xargs /bin/kill "
