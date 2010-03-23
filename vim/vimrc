@@ -333,3 +333,26 @@ map <c-.> <esc>mpgg"+yG`p
 map <S-f7> :NERDTree<cr>
 map <f7> :NERDTreeToggle<cr>
 
+
+
+
+function! CleanDeleteBuffer()
+    """ based on CleanClose function, found somewhere
+    " just do not save the buffer under no circumstances
+    let todelbufNr = bufnr("%")
+    let newbufNr = bufnr("#")
+    if ((newbufNr != -1) && (newbufNr != todelbufNr) && buflisted(newbufNr))
+        exe "b".newbufNr
+    else
+        bnext
+    endif
+
+    if (bufnr("%") == todelbufNr)
+        new
+    endif
+    exe "bd!".todelbufNr
+endfunction
+
+" close buffer leaving splits intact
+
+map <leader>d <esc>:call CleanDeleteBuffer()<cr>
