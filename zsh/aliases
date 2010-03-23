@@ -121,7 +121,7 @@ alias c="cd ~/.wine/drive_c/"
 alias ppp="cd ~/.wine/drive_c/Program\ Files/"
 
 alias offlineimap='offlineimap -q -u Noninteractive.Basic'
-alias oi="offlineimap -q -u Noninteractive.Basic 2>/dev/null | grep 'message\|account'"
+alias oi="offlineimap -q -u Noninteractive.Basic 2>/dev/null | grep 'message\|account'| grep -v 'Adding flags'"
 
 alias xsel='xsel -b'
 
@@ -174,7 +174,7 @@ alias lsystems='cd ~/.sbcl/systems/';
 alias cflagged='CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe" CXXFLAGS="-march=x86-64 -mtune=generic -O2 -pipe" LDFLAGS="-Wl,--hash-style=gnu -Wl,--as-needed"'
 
 # show sizes of subfolders in current direcory
-alias dirsizes='du --max-depth=1 | sort -nr | head -n 20'
+alias dirsizes='\du --max-depth=1 | sort -nr | head -n 20'
 
 alias m='clear; make -s'
 
