@@ -173,13 +173,16 @@ alias lsystems='cd ~/.sbcl/systems/';
 
 alias cflagged='CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe" CXXFLAGS="-march=x86-64 -mtune=generic -O2 -pipe" LDFLAGS="-Wl,--hash-style=gnu -Wl,--as-needed"'
 
-# show sizes of subfolders in current direcory
-alias dirsizes='\du --max-depth=1 | sort -nr | head -n 20'
 
 alias m='clear; make -s'
 
 alias mult='TARGET=Multenes push-passport'
 
 
+# show sizes of subfolders in current direcory
+#alias dirsizes='\du --max-depth=1 | sort -nr | head -n 20'
+function dirsizes {
+    \du --max-depth=1 | sort -nr | head -n 30 | sed 's/^.*\t//' | xargs --delimiter=\\n -n 1 \du -sh
+}
 
 # vim: syn=zsh :
