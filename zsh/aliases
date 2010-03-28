@@ -178,6 +178,9 @@ alias m='clear; make -s'
 
 alias mult='TARGET=Multenes push-passport'
 
+# space as a delimiter for xargs is too idiotic
+# also add -n 1 as a default, we're in no hurry
+alias xargs="xargs --delimiter '\n' -n 1"
 
 # show sizes of subfolders in current direcory
 #alias dirsizes='\du --max-depth=1 | sort -nr | head -n 20'
