@@ -77,9 +77,9 @@ if [[ `uname` == "SunOS"  ]] {
     #
     # Mostly archlinux-specific
     #
-    alias l='ls -lh --color=tty'
-    alias ll='ls -lAh --color=tty'
-    alias ls='ls --color=tty'
+    alias l='ls -lh --color=tty --si'
+    alias ll='ls -lAh --color=tty --si'
+    alias ls='ls --color=tty --si'
 
     # http://www.reddit.com/r/linux/comments/8pmss/alias_iddqdsudo_su/
     alias canhaz='sudo pacman -S --needed'
