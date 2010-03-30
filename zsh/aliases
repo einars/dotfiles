@@ -166,6 +166,7 @@ alias clojure='rlwrap java -cp $CLOJURE_HOME/clojure.jar clojure.lang.Repl'
 
 alias cflagged='CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe" CXXFLAGS="-march=x86-64 -mtune=generic -O2 -pipe" LDFLAGS="-Wl,--hash-style=gnu -Wl,--as-needed"'
 
+alias mc='test $TERM = screen-256color -o $TERM = screen && TERM=xterm mc || mc'
 
 alias m='clear; make -s'
 
