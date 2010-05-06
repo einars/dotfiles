@@ -8,3 +8,14 @@
     la = log --pretty=\"format:%ad %h (%an): %s\" --date=short
 [core]
     #autocrlf = input
+    #
+[color]
+    ui = auto
+[color "diff"]
+    meta = yellow
+    frag = magenta
+    new = green
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
