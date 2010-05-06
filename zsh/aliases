@@ -86,7 +86,12 @@ if [[ `uname` == "SunOS"  ]] {
     alias drop='sudo pacman -R'
     alias isthere='sudo pacman -Ss'
     alias current='pacman -Q | grep '
-    alias inside='pacman -Ql'
+
+    #alias inside='pacman -Ql'
+
+    function inside { pacman -Ql $1 | grep -v '/$' }
+    function binside { pacman -Ql $1 | grep -v '/$' | grep --color=never bin }
+
     alias whohas='pacman -Qo'
     alias whose='pacman -Qo'
     alias y='yaourt'
@@ -105,9 +110,10 @@ alias tree="ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^
 
 # git
 alias gitd="git diff"
+alias gitdc="git diff --cached"
 alias gits="git status"
 alias gitc="git commit -a"
-alias gitsc="test -d .git/svn && { git svn dcommit || { git stash; git svn rebase; git svn dcommit ; git stash apply }}"
+alias gitsc="test -d .git/svn && git svn dcommit"
 alias master="git checkout master"
 
 # svn
@@ -121,9 +127,10 @@ alias suu="svn update --ignore-externals"
 
 alias c="cd ~/.wine/drive_c/"
 alias ppp="cd ~/.wine/drive_c/Program\ Files/"
+alias pppp="cd ~/.wine/drive_c/Program\ Files/Games"
 
 alias offlineimap='offlineimap -q -u Noninteractive.Basic'
-alias oi="offlineimap -q -u Noninteractive.Basic 2>/dev/null | grep 'message\|account'| grep -v 'Adding flags'"
+alias oi="offlineimap -q -u Noninteractive.Basic 2>/dev/null | grep --line-buffered 'message\|account'| grep --line-buffered -v 'Adding flags'"
 
 alias xsel='xsel -b'
 
@@ -137,7 +144,6 @@ alias py=ipython
 
 alias suy='clear; S pacman -Suy'
 alias syu='clear; S pacman -Suy'
-alias sup='clear; S pacman -Suy'
 
 alias du='du --si'
 alias df='df --si'
@@ -169,6 +175,11 @@ alias cflagged='CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe" CXXFLAGS="-march
 alias mc='test $TERM = screen-256color -o $TERM = screen && TERM=xterm mc || mc'
 
 alias m='clear; make -s'
+
+alias clip='xclip -o -selection clipboard'
+alias clipp='xclip -o -selection primary'
+
+alias temps='sudo hddtemp /dev/sda; sudo hddtemp /dev/sdb; sudo hddtemp /dev/sdc'
 
 # space as a delimiter for xargs is too idiotic
 # also add -n 1 as a default, we're in no hurry
