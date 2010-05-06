@@ -493,8 +493,10 @@ endfun
 
 map <LocalLeader>t :call OCamlPrintType("normal")<RETURN>
 vmap <LocalLeader>t :call OCamlPrintType("visual")<RETURN>
-map <LocalLeader>d :call OCamlGotoDefinition("normal")<RETURN>
-vmap <LocalLeader>d :call OCamlGotoDefinition("visual")<RETURN>
+" map <LocalLeader>d :call OCamlGotoDefinition("normal")<RETURN>
+" vmap <LocalLeader>d :call OCamlGotoDefinition("visual")<RETURN>
+ map <LocalLeader>f :call OCamlGotoDefinition("normal")<RETURN>
+ vmap <LocalLeader>f :call OCamlGotoDefinition("visual")<RETURN>
 
 let &cpoptions=s:cposet
 unlet s:cposet
