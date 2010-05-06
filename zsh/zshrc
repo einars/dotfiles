@@ -100,7 +100,7 @@ if [[ $HOST == 'sunshine' ]] {
     export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
     export CLASSPATH=/usr/lib/jvm/java-6-openjdk/lib:$CLASSPATH
 
-    export SDL_VIDEO_FULLSCREEN_HEAD=1
+    export SDL_VIDEO_FULLSCREEN_HEAD=0
 }
 
 
