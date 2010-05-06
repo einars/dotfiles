@@ -1,4 +1,4 @@
-URxvt*font: xft:Terminus:pixelsize=12
+URxvt*font: xft:Terminus:pixelsize=12:antialias=false
 URxvt*cutchars: BACKSLASH '"'&()*,;<=>?@[]{|}
 URxvt*colorUL: #86a2be
 URxvt*geometry: 140x35
