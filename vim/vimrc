@@ -32,7 +32,7 @@ set autoindent
 set wildchar=<Tab>
 
 set laststatus=2                " good statusline is good
-set statusline=%<%f\%h%m%r%=%-20.(%L\ %l:%c\ %)\ \ \%h%m%r%=\%P
+set statusline=%<%f\%h%m%r%=%-20.(%L\ %l:%v\ %)\ \ \%h%m%r%=\%P
 
 
 set wildignore+=*.cmi,*.cmx,*.cmo,*.class,*.pyc
