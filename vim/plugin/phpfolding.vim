@@ -49,6 +49,14 @@
 "    at the "Script configuration" part.
 "
 "  This script is tested with Vim version >= 6.3 on windows and linux.
+"
+" Avoid reloading {{{1
+if exists('loaded_phpfolding')
+    finish
+endif
+
+let loaded_phpfolding = 1
+" }}}
 
 command! EnableFastPHPFolds call <SID>EnableFastPHPFolds()
 command! -nargs=* EnablePHPFolds call <SID>EnablePHPFolds(<f-args>)
