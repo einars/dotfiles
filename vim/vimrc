@@ -119,7 +119,7 @@ if has('gui_running')
     """ i hate blinking cursor
     let &guicursor = &guicursor . ",a:blinkon0"
 
-    colorscheme xoria256
+    colorscheme xoria256-mine
 
 
 else
@@ -156,21 +156,6 @@ autocmd FileType javascript setlocal ai|setlocal indentexpr=
 " my color customizations.
 
 if has('gui_running')
-
-    hi phpString      guifg=#d1c79e
-    hi phpRegion      guifg=#7ca4c8
-    hi phpPrintfSpecifier guifg=#e3bb56
-    hi phpKeyword     guifg=#7ca4c8
-    hi phpFunction    guifg=#7ca4c8
-
-    hi phpComment     guifg=#67686b
-    hi phpFunctionDef guifg=orange
-    hi pythonFunction guifg=orange
-    hi phpIdentifier  guifg=#b8c0c8
-
-    " limp crap
-    hi Brackets       guibg=#444 guifg=white
-    hi BracketsBlock  guibg=#444 guibg=lightgray
 
 
 endif
@@ -332,7 +317,6 @@ map <c-.> <esc>mpgg"+yG`p
 
 map <S-f7> :NERDTree<cr>
 map <f7> :NERDTreeToggle<cr>
-
 
 
 
