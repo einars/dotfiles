@@ -6,4 +6,4 @@ let main () =
 
 let _ = main ()
 
-(* vim: set tw=0 *)
+(* vim: set tw=0 : *)
