@@ -1,31 +1,20 @@
 ! other asciitilde top left keyboard
 ! still messy with global shortcuts
-keycode 94 = grave asciitilde dead_tilde asciitilde
+! keycode 94 = grave asciitilde dead_tilde asciitilde
+keycode 94 = grave asciitilde grave asciitilde asciitilde
 
 ! apple keyboard swap alt and cmd
 
-keycode 37 = Control_L
-keycode 64 = Super_L
-keycode 133 = Alt_L
+! keycode 37 = Control_L
+! keycode 64 = Super_L
+! keycode 133 = Alt_L
 
-keycode 134 = ISO_Level3_Shift Multi_key
+! keycode 134 = ISO_Level3_Shift Multi_key
+! keycode 108 = Super_R
+! keycode 105 = Control_R
+
 keycode 108 = Super_R
-keycode 105 = Control_R
+keycode 134 = ISO_Level3_Shift ISO_Level3_Shift ISO_Level3_Shift ISO_Level3_Shift
 
-clear Shift
-clear Lock
-clear Control
-clear Mod1
-clear Mod2
-clear Mod3
-clear Mod4
-clear Mod5
-add    Shift   = Shift_L Shift_R
-add    Lock    = Caps_Lock
-add    Control = Control_L Control_R
-add    Mod1    = Alt_L
-add    Mod2    = Num_Lock
-add    Mod4    = Super_L Super_R
-add    Mod5    = Mode_switch ISO_Level3_Shift ISO_Level3_Shift ISO_Level3_Shift
-
-
+!keycode 51 = backslash
+keycode 51 = Return bar Return Return backslash
