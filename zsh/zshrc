@@ -50,7 +50,8 @@ prefix_user_host() {
     HOST_PART=$HOST
     USER_PART=$USER
 
-    if [[ $HOST = 'sunshine' ]] {
+    if [[ $SSH_CONNECTION = '' ]] {
+        # print host only on localhost
         HOST_PART=
     }
     if [[ $USER = 'e' || $USER = 'root' ]] {
