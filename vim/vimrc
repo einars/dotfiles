@@ -61,6 +61,7 @@ syntax on                       " colors
 
 " micro-templates: autoload template
 
+set cpoptions-=a " do not leave the template file open
 autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.tpl
 
 
@@ -95,10 +96,14 @@ if has('gui_running')
     cnoreabbr wq w
 
 
-    set guifont=Droid\ Sans\ Mono\ 11
+    """ laptop shift
+    cnoreabbr Wq w
+
     set guifont=Consolas\ 12          " too blurry for me
     set guifont=Inconsolata\ 12       " very nice, but leaves terrible artefacts with national (mostly russian) characters
     set guifont=Terminus\ 10          " wonderful, yet smallish, and sucks at larger sizes
+    set guifont=Droid\ Sans\ Mono\ 11
+    set guifont=DejaVu\ Sans\ Mono\ 8
      
 
     set guioptions+=c       """ use console dialogs, not the gui ones
@@ -123,6 +128,7 @@ if has('gui_running')
 
 
 else
+    cnoreabbr Wq wq
     colorscheme desert
 end
 
@@ -245,7 +251,6 @@ nnoremap k gk
 nnoremap j gj
 nnoremap gk k
 nnoremap gj j
-
 
 " navigate buffers with ^z and ^c
 
