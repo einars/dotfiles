@@ -104,6 +104,9 @@ if [[ $HOST == 'sunshine' ]] {
     export SDL_VIDEO_FULLSCREEN_HEAD=0
 }
 
+if [[ $HOST == 'livna' ]] {
+    export CDPATH=.:~:/services/web/localhost:/services/web/livna:/services/web
+}
 
 
 ls --color=auto &>/dev/null
