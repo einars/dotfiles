@@ -1,3 +1,7 @@
+# Bind F11 and F12 (NOT F1 and F2) to previous and next screen window
+bindkey -k F1 prev
+bindkey -k F2 next
+
 startup_message off  # i know who you are anyway
 deflogin off         # don't care about utmp
 
@@ -6,12 +10,14 @@ escape ^xx
 silencewait 10       # 10 seconds is silent
 shell zsh            # no-brainer
 
+autodetach on
+
+nonblock on           # don't block cmd output if terminal stops responding
+
 term screen-256color
 
 vbell off
 altscreen on
 defscrollback 1000
-hardstatus on
 hardstatus alwayslastline
-#hardstatus string "%{wk}%?%-Lw%?%{=b kR} (%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}] %{=b C}[ %m/%d %c ]%{W}"
 hardstatus string "%{wk}%?%-Lw%?%{=b kR} (%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%?%?%= %{g}] %{=b C}%{W}"
