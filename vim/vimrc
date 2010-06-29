@@ -26,6 +26,10 @@ set nostartofline
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set shiftround                  " shift in mod 4
+
+set nojoinspaces " with joinspaces, two spaces are entered after . / ? / !
+
 
 set expandtab
 set autoindent
@@ -35,7 +39,7 @@ set laststatus=2                " good statusline is good
 set statusline=%<%f\%h%m%r%=%-20.(%L\ %l:%v\ %)\ \ \%h%m%r%=\%P
 
 
-set wildignore+=*.cmi,*.cmx,*.cmo,*.class,*.pyc
+set wildignore=*.cmi,*.cmx,*.cmo,*.class,*.pyc,.svn,.git,*.o,*.a,*.so,*.jpg,*.gif,*.png
 set suffixes-=.h
 
 
@@ -98,12 +102,14 @@ if has('gui_running')
 
     """ laptop shift
     cnoreabbr Wq w
+    cnoreabbr W w
 
-    set guifont=Consolas\ 12          " too blurry for me
-    set guifont=Inconsolata\ 12       " very nice, but leaves terrible artefacts with national (mostly russian) characters
+    " et guifont=Consolas\ 12          " too blurry for me
+    " et guifont=Inconsolata\ 12       " very nice, but leaves terrible artefacts with national (mostly russian) characters
     set guifont=Terminus\ 10          " wonderful, yet smallish, and sucks at larger sizes
-    set guifont=Droid\ Sans\ Mono\ 11
-    set guifont=DejaVu\ Sans\ Mono\ 8
+    " set guifont=Droid\ Sans\ Mono\ 11
+    " et guifont=DejaVu\ Sans\ Mono\ 8
+    set guifont=Terminus\ 10          " wonderful, yet smallish, and sucks at larger sizes
      
 
     set guioptions+=c       """ use console dialogs, not the gui ones
@@ -126,10 +132,10 @@ if has('gui_running')
 
     colorscheme xoria256-mine
 
-
 else
+    cnoreabbr W w
     cnoreabbr Wq wq
-    colorscheme desert
+    "colorscheme desert
 end
 
 
@@ -157,14 +163,10 @@ autocmd FileType inc setlocal syn=php
 autocmd FileType javascript setlocal ai|setlocal indentexpr=
 
 
+highlight RedundantSpaces term=standout ctermbg=red guibg=red
+match RedundantSpaces /\s\+$\| \+\ze\t/ "\ze sets end of match so only spaces highlighted
 
 
-" my color customizations.
-
-if has('gui_running')
-
-
-endif
 
 hi link htmlTag htmlTagName
 hi link htmlEndTag htmlTagName
@@ -196,6 +198,10 @@ call l:SetDir($HOME . '/.vim-swap')
 " don't care for the `, use it as '
 
 nnoremap ` '
+
+" allow deleting selection without updating the yank buffer
+vnoremap x "_x
+vnoremap X "_X
 
 
 " scroll faster
@@ -345,3 +351,15 @@ endfunction
 " close buffer leaving splits intact
 
 map <leader>d <esc>:call CleanDeleteBuffer()<cr>
+
+
+
+augroup Python
+    au!
+    au FileType python set nosmartindent autoindent
+augroup END
+
+augroup javascript
+    au!
+    au FileType javascript set nosmartindent autoindent
+augroup END
