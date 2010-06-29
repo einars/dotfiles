@@ -186,6 +186,12 @@ alias temps='sudo hddtemp /dev/sda; sudo hddtemp /dev/sdb; sudo hddtemp /dev/sdc
 # also add -n 1 as a default, we're in no hurry
 alias xargs="xargs --delimiter '\n' -n 1"
 
+alias hexdump='od -Ax -tx1z -v'
+
+# head/tail as many lines as possible w/o scroll
+alias head='head -n $[$LINES-1]'
+alias tail='tail -n $[$LINES-1]'
+
 # show sizes of subfolders in current direcory
 #alias dirsizes='\du --max-depth=1 | sort -nr | head -n 20'
 function dirsizes {
