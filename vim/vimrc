@@ -353,6 +353,7 @@ endfunction
 map <leader>d <esc>:call CleanDeleteBuffer()<cr>
 
 
+autocmd FileType c,cpp,java,php,py autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
 augroup Python
     au!
