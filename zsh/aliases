@@ -129,8 +129,8 @@ alias c="cd ~/.wine/drive_c/"
 alias ppp="cd ~/.wine/drive_c/Program\ Files/"
 alias pppp="cd ~/.wine/drive_c/Program\ Files/Games"
 
-alias offlineimap='offlineimap -q -u Noninteractive.Basic'
-alias oi="offlineimap -q -u Noninteractive.Basic 2>/dev/null | grep --line-buffered 'message\|account'| grep --line-buffered -v 'Adding flags'"
+alias offlineimap='offlineimap -u Noninteractive.Basic'
+alias oi="offlineimap -u Noninteractive.Basic 2>/dev/null | grep --line-buffered 'message\|account'| grep --line-buffered -v 'Adding flags'"
 
 alias xsel='xsel -b'
 
