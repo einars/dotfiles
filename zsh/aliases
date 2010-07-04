@@ -112,7 +112,7 @@ alias tree="ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^
 alias gitd="git diff"
 alias gitdc="git diff --cached"
 alias gits="git status"
-alias gitc="git commit -a"
+alias gitc="git commit"
 alias gitsc="test -d .git/svn && git svn dcommit"
 alias master="git checkout master"
 
