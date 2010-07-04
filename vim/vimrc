@@ -4,6 +4,8 @@ let g:loaded_matchparen=1             " die, slow and needless matching paren hi
 let g:searchEmptyLinesPostfixing = 3  " php folding stuff
 let g:cursor_follows_alphabet = 1     " translit plugin
 
+let mapleader=","
+
 set showmatch               " jump to matching paren quickly
 set matchtime=1
 
@@ -110,7 +112,6 @@ if has('gui_running')
     " set guifont=Droid\ Sans\ Mono\ 11
     " et guifont=DejaVu\ Sans\ Mono\ 8
     set guifont=Terminus\ 10          " wonderful, yet smallish, and sucks at larger sizes
-     
 
     set guioptions+=c       """ use console dialogs, not the gui ones
     set guioptions-=T       """ don't show the toolbar
@@ -135,7 +136,7 @@ if has('gui_running')
 else
     cnoreabbr W w
     cnoreabbr Wq wq
-    "colorscheme desert
+    colorscheme desert
 end
 
 
@@ -353,7 +354,7 @@ endfunction
 map <leader>d <esc>:call CleanDeleteBuffer()<cr>
 
 
-autocmd FileType c,cpp,java,php,py autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+autocmd FileType c,cpp,java,php,py,txt autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
 augroup Python
     au!
