@@ -349,7 +349,7 @@ endfunction
 map <leader>d <esc>:call CleanDeleteBuffer()<cr>
 
 
-autocmd FileType c,cpp,java,php,py,txt autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+autocmd FileType c,cpp,java,php,python,markdown,javascript,css autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
 " let's try this magic
 imap jj <Esc>
@@ -362,4 +362,8 @@ augroup END
 augroup javascript
     au!
     au FileType javascript set nosmartindent autoindent
+augroup END
+
+augroup Markdown
+    au BufNewFile,BufRead *.txt setf markdown
 augroup END
