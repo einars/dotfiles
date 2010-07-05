@@ -276,11 +276,6 @@ map  <c-c> :bn<cr>
 "map  <m-c> :tabn<cr>
 
 
-" search/replace on ;; and ;'
-
-noremap ;; :%s:::g<Left><Left><Left>
-noremap ;' :%s:::cg<Left><Left><Left><Left>
-
 
 " no need for shift to enter command mode
 
