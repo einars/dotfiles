@@ -92,10 +92,10 @@ export LS_COLORS="ow=4" # all-writable folders are unreadable, so remove the for
 # remove \0 from IFS
 export IFS=${IFS/$'\0'}
 
-export PATH=$PATH:~/bin:~/bin/private
+export PATH=~/bin:~/bin/private:$PATH
 
 if [[ $HOST == 'sunshine' ]] {
-    export PATH=$PATH:/opt/clisp/bin:~/builds/ccl/:/usr/share/java/apache-ant/bin/
+    export PATH=$PATH:/opt/clisp/bin:/usr/share/java/apache-ant/bin/
     export PATH=$PATH:/usr/perl5/bin:/usr/local/wine/bin:/usr/local/bin:/usr/postgres/8.3/bin
     export CDPATH=.:~:/services/web/localhost:/services/web/dev.spicausis.lv:/services/web:~/queue
     export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
@@ -111,7 +111,7 @@ if [[ $HOST == 'livna' ]] {
 
 ls --color=auto &>/dev/null
 if [[ $? == 0 ]] {
-    export GNU_SYSTEM=true
+    export LS_HAS_COLORS=true
 }
 
 
@@ -122,24 +122,11 @@ typeset -g -A key
 
 bindkey '\e[3~' delete-char # delete key
 
-#bindkey ';5D' emacs-backward-word   # xterm-ish: alt + left arrow
-#bindkey ';5C' emacs-forward-word    # xterm-ish: alt + right arrow
-
 bindkey "^[^[[D" emacs-backward-word # urxvt: alt + left arrow
 bindkey "^[^[[C" emacs-forward-word  # urxvt: alt + right arrow
 
 bindkey '^[[7~' beginning-of-line    # home
 bindkey '^[[8~' end-of-line          # end
-
-#bindkey '^?' backward-delete-char
-#bindkey '^[[5~' up-line-or-history
-#bindkey '^[[6~' down-line-or-history
-#
-#bindkey '^[[A' up-line-or-search
-#bindkey '^[[D' backward-char
-#bindkey '^[[B' down-line-or-search
-#bindkey '^[[C' forward-char
-##bindkey '^[[2~' overwrite-mode
 
 if [[ $TERM == xterm ]]; then
     export TERM=xterm-256color
@@ -159,7 +146,7 @@ function do_ls()
     SKIPPED_DIRS=(/usr/bin /usr/lib)
     DIR=`pwd`
     if [[ -z ${(M)SKIPPED_DIRS:#$DIR} ]] {
-        if [[ -n $GNU_SYSTEM ]] {
+        if [[ -n $LS_HAS_COLORS ]] {
             ls -l --color=tty
         } else {
             ls -l

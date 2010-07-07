@@ -1,4 +1,0 @@
-#!/bin/sh
-
-#exec /usr/local/wine/bin/wine ~/bin/solaris/keepass.wine/KeePass
-exec wine ~/bin/solaris/keepass.wine/KeePass
