@@ -10,7 +10,7 @@ setopt nohup
 autoload -Uz compinit
 compinit
 
-setopt INC_APPEND_HISTORY 
+setopt INC_APPEND_HISTORY
 #setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
@@ -26,8 +26,8 @@ setopt histverify     # confirm "!" commands
 
 bindkey '\eq' push-line-or-edit
 
-autoload -U promptinit 
-promptinit 
+autoload -U promptinit
+promptinit
 
 # http://www.acm.uiuc.edu/workshops/zsh/prompt/escapes.html
 fg_red=%{$'\e[0;31m'%}
@@ -138,7 +138,7 @@ bindkey '^[[8~' end-of-line          # end
 #bindkey '^[[A' up-line-or-search
 #bindkey '^[[D' backward-char
 #bindkey '^[[B' down-line-or-search
-#bindkey '^[[C' forward-char 
+#bindkey '^[[C' forward-char
 ##bindkey '^[[2~' overwrite-mode
 
 if [[ $TERM == xterm ]]; then

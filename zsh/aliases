@@ -64,7 +64,7 @@ if [[ `uname` == "SunOS"  ]] {
     alias pkg='pfexec pkg'
 
     # solaris ping is dumb
-    alias ping='ping -s' 
+    alias ping='ping -s'
 
     if [[ -f /usr/gnu/bin/grep ]] {
         true

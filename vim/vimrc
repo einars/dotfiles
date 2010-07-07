@@ -348,8 +348,17 @@ endfunction
 
 map <leader>d <esc>:call CleanDeleteBuffer()<cr>
 
+" automatically remove trailing whitespace before write
+function! StripTrailingWhitespace()
+  normal mZ
+  %s/\s\+$//e
+  if line("'Z") != line(".")
+    echo "Stripped whitespace\n"
+  endif
+  normal `Z
+endfunction
 
-autocmd FileType c,cpp,java,php,python,markdown,javascript,css autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+autocmd FileType c,cpp,java,php,python,markdown,javascript,css autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
 
 " let's try this magic
 imap jj <Esc>
