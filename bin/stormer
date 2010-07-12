@@ -1,7 +1,0 @@
-#!/usr/bin/env zsh
-
-
-#boodler.py com.eblong.ow.storm/OneStorm &
-#boodler.py com.eblong.zarf.fire/Bonfire &
-
-boodler.py lv.spicausis.natured/Natured
