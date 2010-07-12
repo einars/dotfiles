@@ -82,25 +82,24 @@ if [[ `uname` == "SunOS"  ]] {
     alias ls='ls --color=tty --si'
 
     # http://www.reddit.com/r/linux/comments/8pmss/alias_iddqdsudo_su/
-    alias canhaz='sudo pacman -S --needed'
-    alias drop='sudo pacman -R'
-    alias isthere='sudo pacman -Ss'
-    alias current='pacman -Q | grep '
+    alias canhaz='sudo $PACMAN_CMD -S --needed'
+    alias drop='sudo $PACMAN_CMD -R'
+    alias isthere='sudo $PACMAN_CMD -Ss'
+    alias current='$PACMAN_CMD -Q | grep '
 
     #alias inside='pacman -Ql'
 
-    function inside { pacman -Ql $1 | grep -v '/$' }
-    function binside { pacman -Ql $1 | grep -v '/$' | grep --color=never bin }
+    function inside { $PACMAN_CMD -Ql $1 | grep -v '/$' }
+    function binside { $PACMAN_CMD -Ql $1 | grep -v '/$' | grep --color=never bin }
 
-    alias whohas='pacman -Qo'
-    alias whose='pacman -Qo'
+    alias whohas='$PACMAN_CMD -Qo'
+    alias whose='$PACMAN_CMD -Qo'
     alias y='yaourt'
 
     alias iddqd='sudo -i'
 
     alias relight='sudo /etc/rc.d/lighttpd restart'
 
-    alias pacman32="sudo pacman --root /opt/arch32 --cachedir /opt/arch32/var/cache/pacman/pkg --config /opt/arch32/pacman.conf"
     alias pss="ps -Adf | grep -i"
     alias p="/bin/ps axfwwh -eo '%p %U %a'"
     alias S='sudo'
@@ -143,8 +142,8 @@ alias phptags="ctags **/*.php"
 
 alias py=ipython
 
-alias suy='clear; S pacman -Suy'
-alias syu='clear; S pacman -Suy'
+alias suy='clear; S $PACMAN_CMD -Suy'
+alias syu='clear; S $PACMAN_CMD -Suy'
 
 alias du='du --si'
 alias df='df --si'
@@ -158,7 +157,7 @@ alias -g KILL9=" awk '{print \$2}' | xargs /bin/kill -9 "
 
 alias acka='ack --follow -a -i -Q'
 alias ackj='ack --type=java -i -Q'
-alias wget='wget -U "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)"'
+alias wget='wget -U "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)" --load-cookies=/tmp/wget.cookies.txt --save-cookies=/tmp/wget.cookies.txt --keep-session-cookies'
 
 # rlwraps
 
@@ -197,5 +196,6 @@ alias tail='tail -n $[$LINES-2]'
 function dirsizes {
     \du --max-depth=1 | sort -nr | head -n 30 | sed 's/^.*\t//' | xargs --delimiter=\\n -n 1 \du -sh
 }
+
 
 # vim: syn=zsh :
