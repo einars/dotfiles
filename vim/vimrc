@@ -4,6 +4,8 @@ let g:loaded_matchparen=1             " die, slow and needless matching paren hi
 let g:searchEmptyLinesPostfixing = 3  " php folding stuff
 let g:cursor_follows_alphabet = 1     " translit plugin
 
+let g:tex_flavor = 'latex'            " don't know what exactly changes
+
 let mapleader=","
 
 set showmatch               " jump to matching paren quickly
@@ -146,26 +148,6 @@ hi clear Search
 hi Search cterm=underline gui=underline
 
 
-""" subtly tell when lines are too long
-
-au BufRead,BufNew *.js,*.php,*.c,*.cpp,*.h,*.htm,*.html let w:m1=matchadd('Error', '\%120v.', -1)
-au BufRead,BufNew *.js,*.php,*.c,*.cpp,*.h,*.htm,*.html let w:m3=matchadd('Todo', '<+\w\++>', -1)
-au BufRead,BufNew *.* call matchadd('Todo', '\(!!!\|///\).*', -1)
-
-
-
-
-autocmd FileType python setlocal tabstop=4|setlocal shiftwidth=4|setlocal expandtab " Python
-autocmd FileType make setlocal tabstop=8|setlocal shiftwidth=8|setlocal noexpandtab " Makefile
-autocmd FileType php setlocal keywordprg=~/bin/phpdoc
-autocmd FileType inc setlocal syn=php
-
-""" javascript indentation is brain-dead for jquery
-autocmd FileType javascript setlocal ai|setlocal indentexpr=
-
-
-highlight RedundantSpaces term=standout ctermbg=red guibg=red
-match RedundantSpaces /\s\+$\| \+\ze\t/ "\ze sets end of match so only spaces highlighted
 
 
 
@@ -192,13 +174,9 @@ call l:SetDir($HOME . '/.vim-swap')
 """
 """
 """ /// here go keymaps
-""" 
+"""
 """
 
-
-" don't care for the `, use it as '
-
-nnoremap ` '
 
 " allow deleting selection without updating the yank buffer
 vnoremap x "_x
@@ -358,21 +336,50 @@ function! StripTrailingWhitespace()
   normal `Z
 endfunction
 
-autocmd FileType c,cpp,java,php,python,markdown,javascript,css autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
+
+
+
+
 
 " let's try this magic
 imap jj <Esc>
 
+
+
+
+
 augroup Python
-    au!
     au FileType python set nosmartindent autoindent
 augroup END
 
 augroup javascript
-    au!
     au FileType javascript set nosmartindent autoindent
 augroup END
 
 augroup Markdown
     au BufNewFile,BufRead *.txt setf markdown
 augroup END
+
+""" subtly tell when lines are too long
+
+highlight RedundantSpaces term=standout ctermbg=red guibg=red
+
+au BufRead,BufNew *.js,*.php,*.c,*.cpp,*.h,*.htm,*.html let w:m1=matchadd('Error', '\%120v.')
+au BufRead,BufNew *.ml,*.js,*.php,*.c,*.cpp,*.h,*.htm,*.html let w:m3=matchadd('Todo', '<+\w\++>')
+au BufRead,BufNew *.* let w:m4=matchadd('RedundantSpaces', '\s\+$\| \+\ze\t') "\ze sets end of match so only spaces highlighted
+au BufRead,BufNew *.* call matchadd('Todo', '\(!!!\|///\).*', -1)
+autocmd FileType c,cpp,java,php,python,markdown,javascript,css,ocaml autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
+
+
+
+
+
+autocmd FileType ocaml setlocal tabstop=2|setlocal shiftwidth=2|setlocal expandtab " Python
+autocmd FileType python setlocal tabstop=4|setlocal shiftwidth=4|setlocal expandtab " Python
+autocmd FileType make setlocal tabstop=8|setlocal shiftwidth=8|setlocal noexpandtab " Makefile
+autocmd FileType php setlocal keywordprg=~/bin/phpdoc
+autocmd FileType inc setlocal syn=php
+
+""" javascript indentation is brain-dead for jquery
+""" autocmd FileType javascript setlocal ai|setlocal indentexpr=
+
