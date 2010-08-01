@@ -5,9 +5,9 @@
 "               Karl-Heinz Sylla  <Karl-Heinz.Sylla@gmd.de>
 "               Issac Trotts      <ijtrotts@ucdavis.edu>
 " URL:          http://www.ocaml.info/vim/syntax/ocaml.vim
-" Last Change:  2009 May 08 - Added highlighting of method calls (MM)
+" Last Change:  2010 May 18 - Added support for OCaml 3.12 (MM)
+"               2009 May 08 - Added highlighting of method calls (MM)
 "               2008 Mar 09 - Added highlighting of #camlp4o in toplevels (MM)
-"               2007 Apr 13 - Added highlighting of nativeints (MM)
 
 " A minor patch was applied to the official version so that object/end
 " can be distinguished from begin/end, which is used for indentation,
@@ -69,7 +69,7 @@ syn cluster  ocamlAllErrs contains=ocamlBraceErr,ocamlBrackErr,ocamlParenErr,oca
 
 syn cluster  ocamlAENoParen contains=ocamlBraceErr,ocamlBrackErr,ocamlCommentErr,ocamlCountErr,ocamlDoErr,ocamlDoneErr,ocamlEndErr,ocamlThenErr
 
-syn cluster  ocamlContained contains=ocamlTodo,ocamlPreDef,ocamlModParam,ocamlModParam1,ocamlPreMPRestr,ocamlMPRestr,ocamlMPRestr1,ocamlMPRestr2,ocamlMPRestr3,ocamlModRHS,ocamlFuncWith,ocamlFuncStruct,ocamlModTypeRestr,ocamlModTRWith,ocamlWith,ocamlWithRest,ocamlModType,ocamlFullMod
+syn cluster  ocamlContained contains=ocamlTodo,ocamlPreDef,ocamlModParam,ocamlModParam1,ocamlPreMPRestr,ocamlMPRestr,ocamlMPRestr1,ocamlMPRestr2,ocamlMPRestr3,ocamlModRHS,ocamlFuncWith,ocamlFuncStruct,ocamlModTypeRestr,ocamlModTRWith,ocamlWith,ocamlWithRest,ocamlModType,ocamlFullMod,ocamlVal
 
 
 " Enclosing delimiters
@@ -124,8 +124,8 @@ syn match    ocamlKeyword "\<include\>" skipwhite skipempty nextgroup=ocamlModPa
 
 " "module" - somewhat complicated stuff ;-)
 syn region   ocamlModule matchgroup=ocamlKeyword start="\<module\>" matchgroup=ocamlModule end="\<\u\(\w\|'\)*\>" contains=@ocamlAllErrs,ocamlComment skipwhite skipempty nextgroup=ocamlPreDef
-syn region   ocamlPreDef start="."me=e-1 matchgroup=ocamlKeyword end="\l\|="me=e-1 contained contains=@ocamlAllErrs,ocamlComment,ocamlModParam,ocamlModTypeRestr,ocamlModTRWith nextgroup=ocamlModPreRHS
-syn region   ocamlModParam start="([^*]" end=")" contained contains=@ocamlAENoParen,ocamlModParam1
+syn region   ocamlPreDef start="."me=e-1 matchgroup=ocamlKeyword end="\l\|=\|)"me=e-1 contained contains=@ocamlAllErrs,ocamlComment,ocamlModParam,ocamlModTypeRestr,ocamlModTRWith nextgroup=ocamlModPreRHS
+syn region   ocamlModParam start="([^*]" end=")" contained contains=@ocamlAENoParen,ocamlModParam1,ocamlVal
 syn match    ocamlModParam1 "\<\u\(\w\|'\)*\>" contained skipwhite skipempty nextgroup=ocamlPreMPRestr
 
 syn region   ocamlPreMPRestr start="."me=e-1 end=")"me=e-1 contained contains=@ocamlAllErrs,ocamlComment,ocamlMPRestr,ocamlModTypeRestr
@@ -135,6 +135,8 @@ syn region   ocamlMPRestr1 matchgroup=ocamlModule start="\ssig\s\=" matchgroup=o
 syn region   ocamlMPRestr2 start="\sfunctor\(\s\|(\)\="me=e-1 matchgroup=ocamlKeyword end="->" contained contains=@ocamlAllErrs,ocamlComment,ocamlModParam skipwhite skipempty nextgroup=ocamlFuncWith,ocamlMPRestr2
 syn match    ocamlMPRestr3 "\w\(\w\|'\)*\(\.\w\(\w\|'\)*\)*" contained
 syn match    ocamlModPreRHS "=" contained skipwhite skipempty nextgroup=ocamlModParam,ocamlFullMod
+syn keyword  ocamlKeyword val
+syn region   ocamlVal matchgroup=ocamlKeyword start="\<val\>" matchgroup=ocamlLCIdentifier end="\<\l\(\w\|'\)*\>" contains=@ocamlAllErrs,ocamlComment skipwhite skipempty nextgroup=ocamlMPRestr
 syn region   ocamlModRHS start="." end=".\w\|([^*]"me=e-2 contained contains=ocamlComment skipwhite skipempty nextgroup=ocamlModParam,ocamlFullMod
 syn match    ocamlFullMod "\<\u\(\w\|'\)*\(\.\u\(\w\|'\)*\)*" contained skipwhite skipempty nextgroup=ocamlFuncWith
 
@@ -147,7 +149,7 @@ syn match    ocamlWith "\<\(\u\(\w\|'\)*\.\)*\w\(\w\|'\)*\>" contained skipwhite
 syn region   ocamlWithRest start="[^)]" end=")"me=e-1 contained contains=ALLBUT,@ocamlContained
 
 " "module type"
-syn region   ocamlKeyword start="\<module\>\s*\<type\>" matchgroup=ocamlModule end="\<\w\(\w\|'\)*\>" contains=ocamlComment skipwhite skipempty nextgroup=ocamlMTDef
+syn region   ocamlKeyword start="\<module\>\s*\<type\>\s*\<of\>*" matchgroup=ocamlModule end="\<\w\(\w\|'\)*\>" contains=ocamlComment skipwhite skipempty nextgroup=ocamlMTDef
 syn match    ocamlMTDef "=\s*\w\(\w\|'\)*\>"hs=s+1,me=s
 
 syn keyword  ocamlKeyword  and as assert class
@@ -159,7 +161,7 @@ syn keyword  ocamlKeyword  land lazy let match
 syn keyword  ocamlKeyword  method mutable new of
 syn keyword  ocamlKeyword  parser private raise rec
 syn keyword  ocamlKeyword  try type
-syn keyword  ocamlKeyword  val virtual when while with
+syn keyword  ocamlKeyword  virtual when while with
 
 if exists("ocaml_revised")
   syn keyword  ocamlKeyword  do value
@@ -294,6 +296,7 @@ if version >= 508 || !exists("did_ocaml_syntax_inits")
 
   HiLink ocamlConstructor  Constant
 
+  HiLink ocamlVal          Keyword
   HiLink ocamlModPreRHS    Keyword
   HiLink ocamlMPRestr2	   Keyword
   HiLink ocamlKeyword	   Keyword
