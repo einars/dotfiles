@@ -9,6 +9,8 @@ export QT_PLUGIN_PATH=/opt/lib32/usr/lib/qt/plugins
 # for custom xfce builds
 #export PATH=$PATH:/opt/xfce/bin
 
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+
 # sdl apps freak out fullscreen
 export SDL_VIDEO_FULLSCREEN_HEAD=0
 
@@ -23,6 +25,7 @@ nvidia-settings --load-config-only
 setxkbmap lv -option ctrl:nocaps -option altwin:swap_lalt_lwin
 
 stjerm -k f1 -p right -fn 'Terminus 10' &
+#yakuake &>/dev/null
 
 xscreensaver -no-splash &
 ck-launch-session startxfce4
