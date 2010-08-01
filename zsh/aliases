@@ -5,7 +5,7 @@
 #
 
 alias ack='clear; ack'
-alias grep="grep --color=auto -d skip"
+alias grep="grep --color=auto -d skip -i --line-buffered"
 alias ssh='TERM=xterm ssh -C'
 
 alias edzsh='vim ~/.zsh/zshrc; . ~/.zsh/zshrc'
@@ -191,11 +191,14 @@ alias hexdump='od -Ax -tx1z -v'
 alias head='head -n $[$LINES-2]'
 alias tail='tail -n $[$LINES-2]'
 
+alias listen='sudo netstat -ltnup'
+
 # show sizes of subfolders in current direcory
 #alias dirsizes='\du --max-depth=1 | sort -nr | head -n 20'
 function dirsizes {
     \du --max-depth=1 | sort -nr | head -n 30 | sed 's/^.*\t//' | xargs --delimiter=\\n -n 1 \du -sh
 }
+
 
 
 # vim: syn=zsh :
