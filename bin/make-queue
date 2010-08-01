@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+dirname=~/`date +%Y/%m`
+cd
+ln -sfT $dirname queue
