@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+
+# http://www.reddit.com/r/linux/comments/8pmss/alias_iddqdsudo_su/
+alias canhaz='sudo $PACMAN_CMD -S --needed'
+alias drop='sudo $PACMAN_CMD -R'
+alias isthere='sudo $PACMAN_CMD -Ss'
+alias current='$PACMAN_CMD -Q | grep '
+
+#alias inside='pacman -Ql'
+
+function inside { $PACMAN_CMD -Ql $1 | grep -v '/$' }
+function binside { $PACMAN_CMD -Ql $1 | grep -v '/$' | grep --color=never bin }
+
+alias whohas='$PACMAN_CMD -Qo'
+alias whose='$PACMAN_CMD -Qo'
+alias y='yaourt'
+
+alias suy='clear; S $PACMAN_CMD -Suy'
+alias syu='clear; S $PACMAN_CMD -Suy'
+
+
+# vim: syn=zsh :
