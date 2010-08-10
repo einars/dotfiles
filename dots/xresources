@@ -42,6 +42,8 @@ URxvt*color12: #98afd9
 URxvt*color13: #d7d998
 URxvt*color14: #a1b5cd
 URxvt*color15: #dedede
+URxvt*fading: 30
+URxvt*fadeColor: #242424
 
 !! gnome-ish colors
 ! URxvt*foreground:     rgb:22/22/22

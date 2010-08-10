@@ -9,6 +9,7 @@ alias grep="grep --color=auto -d skip -i --line-buffered"
 alias ssh='TERM=xterm ssh -C'
 
 alias edzsh='vim ~/.zsh/zshrc; . ~/.zsh/zshrc'
+alias edalias='vim ~/.zsh/aliases.linux; . ~/.zsh/aliases.linux'
 alias edalias.priv='vim ~/.zsh/aliases.private; . ~/.zsh/aliases.private'
 
 alias mj="make -j3 -s"
@@ -80,6 +81,8 @@ alias wget='wget -U "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)" --load-
 # rlwraps
 
 alias mzscheme='rlwrap mzscheme'
+alias mit='rlwrap mit-scheme'
+alias mit-scheme='rlwrap mit-scheme'
 alias scheme='rlwrap mzscheme'
 alias ocaml='rlwrap ocaml'
 alias ocamldebug='rlwrap ocamldebug'

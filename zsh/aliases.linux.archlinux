@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+alias edalias.arch='vim ~/.zsh/aliases.linux.archlinux; source ~/.zsh/aliases.linux.archlinux'
+
 # http://www.reddit.com/r/linux/comments/8pmss/alias_iddqdsudo_su/
 alias canhaz='sudo $PACMAN_CMD -S --needed'
 alias drop='sudo $PACMAN_CMD -R'
@@ -10,6 +12,15 @@ alias current='$PACMAN_CMD -Q | grep '
 
 function inside { $PACMAN_CMD -Ql $1 | grep -v '/$' }
 function binside { $PACMAN_CMD -Ql $1 | grep -v '/$' | grep --color=never bin }
+function aurget {
+  if [[ $1 != "" ]]; then
+    package=$1
+    mkdir -p ~/aurbuild/$package
+    cd ~/aurbuild/$package
+    yaourt -G $package
+    cat PKGBUILD
+  fi
+}
 
 alias whohas='$PACMAN_CMD -Qo'
 alias whose='$PACMAN_CMD -Qo'
