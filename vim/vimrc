@@ -1,5 +1,7 @@
 set ttimeoutlen=100
 
+" shortcuts available for a good mapping: c-h, c-l, c-t, Q, T F 
+
 let g:loaded_matchparen=1             " die, slow and needless matching paren highlighting
 let g:searchEmptyLinesPostfixing = 3  " php folding stuff
 let g:cursor_follows_alphabet = 1     " translit plugin
@@ -368,8 +370,10 @@ au BufRead,BufNew *.js,*.php,*.c,*.cpp,*.h,*.htm,*.html let w:m1=matchadd('Error
 au BufRead,BufNew *.ml,*.js,*.php,*.c,*.cpp,*.h,*.htm,*.html let w:m3=matchadd('Todo', '<+\w\++>')
 au BufRead,BufNew *.* let w:m4=matchadd('RedundantSpaces', '\s\+$\| \+\ze\t') "\ze sets end of match so only spaces highlighted
 au BufRead,BufNew *.* call matchadd('Todo', '\(!!!\|///\).*', -1)
+autocmd FileType c,cpp,java,php,python,markdown,javascript,css,ocaml autocmd BufWritePre <buffer> :retab
 autocmd FileType c,cpp,java,php,python,markdown,javascript,css,ocaml autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
 
+autocmd FileType lisp,scheme setlocal equalprg=~/.vim/indent/lispindent.lisp
 
 
 
