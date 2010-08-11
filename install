@@ -24,4 +24,8 @@ ln -sfn $INSTALL_SOURCE/dots/xresources ~/.Xresources
 
 ln -sfn $INSTALL_SOURCE/dots/ncmpc ~/.ncmpc
 
+mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml
+ln -sfn $INSTALL_SOURCE/xfce4/xfce4-keyboard-shortcuts.xml /.gitconfig ~/.config/xfce4/xfconf/xfce-perchannel-xml/
+
+
 touch ~/.zsh/aliases.private
