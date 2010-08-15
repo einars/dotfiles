@@ -80,10 +80,9 @@ alias wget='wget -U "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)" --load-
 
 # rlwraps
 
+alias racket='rlwrap racket'
 alias mzscheme='rlwrap mzscheme'
-alias mit='rlwrap mit-scheme'
 alias mit-scheme='rlwrap mit-scheme'
-alias scheme='rlwrap mzscheme'
 alias ocaml='rlwrap ocaml'
 alias ocamldebug='rlwrap ocamldebug'
 alias sbcl='rlwrap sbcl'
