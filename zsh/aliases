@@ -17,12 +17,6 @@ case `uname` in
 
         ;;
 
-    SunOS)
-
-        source ~/.zsh/aliases.solaris
-
-        ;;
-
 esac
 
 
