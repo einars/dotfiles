@@ -4,7 +4,8 @@ folder=/store_00010001/DCIM/100CANON
 
 case $1 in
 load) # выкачать всё из фотоаппарата в текущую директорию, не удаляя
-        gphoto2 --get-all-raw-data
+        #gphoto2 --get-all-raw-data
+        gphoto2 --get-all-files
         ;;
 del) # удалить всё, что в фотоаппарате
         gphoto2 -f $folder -D
