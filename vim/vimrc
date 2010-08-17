@@ -366,14 +366,14 @@ augroup END
 
 highlight RedundantSpaces term=standout ctermbg=red guibg=red
 
-au BufRead,BufNew *.js,*.php,*.c,*.cpp,*.h,*.htm,*.html let w:m1=matchadd('Error', '\%120v.')
-au BufRead,BufNew *.ml,*.js,*.php,*.c,*.cpp,*.h,*.htm,*.html let w:m3=matchadd('Todo', '<+\w\++>')
+au BufRead,BufNew *.* let w:m1=matchadd('Error', '\%120v.')
+au BufRead,BufNew *.* let w:m3=matchadd('Todo', '<+\w\++>')
 au BufRead,BufNew *.* let w:m4=matchadd('RedundantSpaces', '\s\+$\| \+\ze\t') "\ze sets end of match so only spaces highlighted
 au BufRead,BufNew *.* call matchadd('Todo', '\(!!!\|///\).*', -1)
-autocmd FileType c,cpp,java,php,python,markdown,javascript,css,ocaml autocmd BufWritePre <buffer> :retab
-autocmd FileType c,cpp,java,php,python,markdown,javascript,css,ocaml autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
+autocmd FileType c,cpp,java,php,python,markdown,javascript,css,ocaml,scheme,lisp autocmd BufWritePre <buffer> :retab
+autocmd FileType c,cpp,java,php,python,markdown,javascript,css,ocaml,scheme,lisp autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
 
-autocmd FileType lisp,scheme setlocal equalprg=~/.vim/indent/lispindent.lisp
+" autocmd FileType lisp,scheme setlocal equalprg=~/.vim/indent/lispindent.lisp
 
 
 
