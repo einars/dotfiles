@@ -51,7 +51,8 @@ prefix_user_host() {
     USER_PART=$USER
 
     if [[ $SSH_CONNECTION = '' ]] {
-        # print host only on localhost
+        # don't print host when on localhost
+        # (i.e print host for remotely connected systems, etc)
         HOST_PART=
     }
     if [[ $USER = 'e' || $USER = 'root' ]] {
@@ -93,39 +94,6 @@ export LS_COLORS="ow=4" # all-writable folders are unreadable, so remove the for
 export IFS=${IFS/$'\0'}
 
 export PATH=~/bin:~/bin/private:$PATH
-
-if [[ $HOST == 'sunshine' ]] {
-    export PATH=$PATH:/opt/clisp/bin:/usr/share/java/apache-ant/bin/
-    export PATH=$PATH:/usr/perl5/bin:/usr/local/wine/bin:/usr/local/bin:/usr/postgres/8.3/bin
-    export CDPATH=.:~:/services/web/localhost:/services/web/dev.spicausis.lv:/services/web:~/queue
-    export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
-    export CLASSPATH=/usr/lib/jvm/java-6-openjdk/lib:$CLASSPATH
-
-    export SDL_VIDEO_FULLSCREEN_HEAD=0
-}
-
-if [[ $HOST == 'livna' ]] {
-    export CDPATH=.:~:/services/web/localhost:/services/web/livna:/services/web
-}
-
-
-ls --color=auto &>/dev/null
-if [[ $? == 0 ]] {
-    export LS_HAS_COLORS=true
-}
-
-
-export PACMAN_CMD='echo pacman'
-
-which pacman &>/dev/null
-if [[ $? == 0 ]] {
-    export PACMAN_CMD=pacman
-}
-
-which pacman-color &>/dev/null
-if [[ $? == 0 ]] {
-    export PACMAN_CMD=pacman-color
-}
 
 # stupid fucking terminals
 
@@ -169,3 +137,13 @@ chpwd_functions=('do_ls')
 
 . ~/.zsh/aliases
 . ~/.zsh/aliases.private
+
+
+# load host-specific customizations
+customized=~/.zsh/zshrc.$HOST
+if [[ -f $customized ]]; then
+    source $customized
+fi
+
+
+

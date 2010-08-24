@@ -1,5 +1,18 @@
 #!/usr/bin/env zsh
 
+PACMAN_CMD=(echo pacman)
+
+which pacman &>/dev/null
+if [[ $? == 0 ]] {
+    PACMAN_CMD=pacman
+}
+
+which pacman-color &>/dev/null
+if [[ $? == 0 ]] {
+    PACMAN_CMD=pacman-color
+}
+
+
 alias edalias.arch='vim ~/.zsh/aliases.linux.archlinux; source ~/.zsh/aliases.linux.archlinux'
 
 # http://www.reddit.com/r/linux/comments/8pmss/alias_iddqdsudo_su/
