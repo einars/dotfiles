@@ -125,11 +125,7 @@ function do_ls()
     SKIPPED_DIRS=(/usr/bin /usr/lib)
     DIR=`pwd`
     if [[ -z ${(M)SKIPPED_DIRS:#$DIR} ]] {
-        if [[ -n $LS_HAS_COLORS ]] {
-            ls -l --color=tty
-        } else {
-            ls -l
-        }
+        ls -l --color=tty
     }
 }
 
