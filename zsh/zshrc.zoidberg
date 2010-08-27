@@ -1,1 +1,1 @@
-export CDPATH=.:~
+export CDPATH=.:~:/services/web/localhost
