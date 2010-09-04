@@ -11,10 +11,10 @@ del) # удалить всё, что в фотоаппарате
         gphoto2 -f $folder -D
         ;;
 get) # выкачать всё из фотоаппарата в текущую директорию, удалив
-        gphoto2 --get-all-raw-data -f $folder -D
+        gphoto2 --get-all-files -f $folder -D
         ;;
-foto) # сделать снимок и выкачать всё из фотоаппарата, удалив
-        gphoto2 --capture-image --get-all-raw-data -f $folder -D
+photo) # сделать снимок и выкачать всё из фотоаппарата, удалив
+        gphoto2 --capture-image --get-all-files -f $folder -D
         ;;
 esac
 
