@@ -358,10 +358,6 @@ augroup javascript
     au FileType javascript set nosmartindent autoindent
 augroup END
 
-augroup Markdown
-    au BufNewFile,BufRead *.txt setf markdown
-augroup END
-
 """ subtly tell when lines are too long
 
 highlight RedundantSpaces term=standout ctermbg=red guibg=red
