@@ -3,7 +3,6 @@
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
-bindkey -e
 
 setopt nohup
 
@@ -17,14 +16,13 @@ setopt HIST_IGNORE_SPACE
 
 setopt autocd
 setopt extended_glob
-:
+
 setopt completeinword # global completion, not just end of word
 setopt alwaystoend    # when completed from inside of word, move to an end
 setopt histverify     # confirm "!" commands
 
 
 
-bindkey '\eq' push-line-or-edit
 
 autoload -U promptinit
 promptinit
@@ -95,29 +93,38 @@ export IFS=${IFS/$'\0'}
 
 export PATH=~/bin:~/bin/private:$PATH
 
+export EDITOR=vim
+export VISUAL=vim
+export OOO_FORCE_DESKTOP=gnome
+
 # stupid fucking terminals
 
+stty stop  '^-' # drop ^S flow control
+stty start '^-' # drop ^Q flow control
+stty susp undef # don't suspend on ctrl-Z
+
+
+bindkey -e
+
 typeset -g -A key
+
+bindkey '\eq' push-line-or-edit
+
+bindkey "^J" self-insert # sweet multiline input
 
 bindkey '\e[3~' delete-char # delete key
 
 bindkey "^[^[[D" emacs-backward-word # urxvt: alt + left arrow
 bindkey "^[^[[C" emacs-forward-word  # urxvt: alt + right arrow
 
-bindkey '^[[7~' beginning-of-line    # home
-bindkey '^[[8~' end-of-line          # end
+
+bindkey $(echotc kh) beginning-of-line # cursor home
+bindkey $(echotc @7) end-of-line       # cursor end
+
 
 if [[ $TERM == xterm ]]; then
     export TERM=xterm-256color
 fi
-
-export EDITOR=vim
-export VISUAL=vim
-export OOO_FORCE_DESKTOP=gnome
-
-stty stop  '^-' # drop ^S flow control
-stty start '^-' # drop ^Q flow control
-stty susp undef # don't suspend on ctrl-Z
 
 
 function do_ls()
