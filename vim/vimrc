@@ -187,8 +187,15 @@ vnoremap X "_X
 
 " scroll faster
 
-nnoremap <c-e> 3<c-e>
-nnoremap <c-y> 3<c-y>
+" let's try this omnicompletion thing
+inoremap <C-Space> <C-X><C-O>
+
+"
+" Enable spellchecking conditionally
+"
+map <Leader>se :setlocal spell spelllang=en_us<CR>
+map <Leader>sl :setlocal spell spelllang=lv_lv<CR>
+map <Leader>sn :setlocal nospell<CR>
 
 " S&M
 
