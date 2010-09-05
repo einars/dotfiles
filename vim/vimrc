@@ -36,6 +36,7 @@ set shiftround                  " shift in mod 4
 
 set nojoinspaces " with joinspaces, two spaces are entered after . / ? / !
 
+set splitright " split on the correct side
 
 set expandtab
 set autoindent
@@ -48,6 +49,8 @@ set statusline=%<%f\%h%m%r%=%-20.(%L\ %l:%v\ %)\ \ \%h%m%r%=\%P
 set wildignore=*.cmi,*.cmx,*.cmo,*.class,*.pyc,.svn,.git,*.o,*.a,*.so,*.jpg,*.gif,*.png
 set suffixes-=.h
 
+" allow moving past end of lines when selecting vertical blocks with ^V
+set virtualedit=block
 
 set backspace=indent,eol,start  " usable backspace
 
@@ -185,7 +188,9 @@ vnoremap x "_x
 vnoremap X "_X
 
 
-" scroll faster
+"  too frequent misclick on the thinkpad
+map! <f1> <esc>
+
 
 " let's try this omnicompletion thing
 inoremap <C-Space> <C-X><C-O>
