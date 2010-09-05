@@ -15,10 +15,14 @@ if [[ $? == 0 ]] {
 
 alias edalias.arch='vim ~/.zsh/aliases.linux.archlinux; source ~/.zsh/aliases.linux.archlinux'
 
+function run-pacman {
+    S $PACMAN_CMD $@ && rehash
+}
+
 # http://www.reddit.com/r/linux/comments/8pmss/alias_iddqdsudo_su/
-alias canhaz='sudo $PACMAN_CMD -S --needed'
-alias drop='sudo $PACMAN_CMD -R'
-alias isthere='sudo $PACMAN_CMD -Ss'
+alias canhaz='run-pacman -S --needed'
+alias drop='run-pacman -R'
+alias isthere='run-pacman -Ss'
 alias current='$PACMAN_CMD -Q | grep '
 
 #alias inside='pacman -Ql'
