@@ -6,8 +6,6 @@ let g:loaded_matchparen=1             " die, slow and needless matching paren hi
 let g:searchEmptyLinesPostfixing = 3  " php folding stuff
 let g:cursor_follows_alphabet = 1     " translit plugin
 
-let g:tex_flavor = 'latex'            " don't know what exactly changes
-
 let mapleader=","
 
 set showmatch               " jump to matching paren quickly
@@ -59,6 +57,10 @@ set incsearch
 set ignorecase                  " search ignores case while no uppercase is searched
 set smartcase
 set nowrap                      " dont' wrap the text
+
+set nobackup                    " this is a default, but let's say it explicitly (who knows what's in /etc/vimrc)
+set writebackup                 " backup while saving is good. this is a default as well.
+set noswapfile                  " can't remember a single time this would have been useful
 
 
 set textwidth=120               " screw purists
@@ -118,7 +120,7 @@ if has('gui_running')
     set guifont=Terminus\ 10          " wonderful, yet smallish, and sucks at larger sizes
     " set guifont=Droid\ Sans\ Mono\ 11
     " et guifont=DejaVu\ Sans\ Mono\ 8
-    set guifont=Terminus\ 10          " wonderful, yet smallish, and sucks at larger sizes
+    set guifont=Terminus\ 9          " wonderful, yet smallish, and sucks at larger sizes
 
     set guioptions+=c       """ use console dialogs, not the gui ones
     set guioptions-=T       """ don't show the toolbar
@@ -312,11 +314,13 @@ map <f3> <esc>mpgg"+yG`p
 map <c-.> <esc>mpgg"+yG`p
 
 
-" f7 / s-f7 nedtree
+" nedtree
 
-map <S-f7> :NERDTree<cr>
-map <f7> :NERDTreeToggle<cr>
-
+nmap <Leader>no :NERDTree<CR>
+nmap <Leader>nt :NERDTreeToggle<CR>
+nmap <Leader>nf :NERDTreeFind<CR>
+nmap <Leader>nm :NERDTreeMirror<CR>
+nmap <Leader>nc :NERDTreeClose<CR>
 
 
 function! CleanDeleteBuffer()
@@ -370,6 +374,32 @@ augroup javascript
     au FileType javascript set nosmartindent autoindent
 augroup END
 
+augroup latex
+    autocmd!
+    autocmd FileType tex set shiftwidth=2 softtabstop=2
+    let g:tex_flavor = 'latex'
+augroup END
+
+augroup Make
+    autocmd!
+    autocmd FileType make set noexpandtab shiftwidth=8 tabstop=8
+augroup END
+
+augroup OCaml
+    autocmd!
+    autocmd FileType ocaml set tabstop=2 shiftwidth=2 expandtab
+augroup END
+
+augroup Python
+    autocmd!
+    autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
+augroup END
+
+augroup Javascript
+    autocmd!
+    autocmd FileType javascript set tabstop=4 shiftwidth=4 expandtab nocindent smartindent
+augroup END
+
 """ subtly tell when lines are too long
 
 highlight RedundantSpaces term=standout ctermbg=red guibg=red
@@ -378,20 +408,12 @@ au BufRead,BufNew *.* let w:m1=matchadd('Error', '\%120v.')
 au BufRead,BufNew *.* let w:m3=matchadd('Todo', '<+\w\++>')
 au BufRead,BufNew *.* let w:m4=matchadd('RedundantSpaces', '\s\+$\| \+\ze\t') "\ze sets end of match so only spaces highlighted
 au BufRead,BufNew *.* call matchadd('Todo', '\(!!!\|///\).*', -1)
+
 autocmd FileType c,cpp,java,php,python,markdown,javascript,css,ocaml,scheme,lisp autocmd BufWritePre <buffer> :retab
 autocmd FileType c,cpp,java,php,python,markdown,javascript,css,ocaml,scheme,lisp autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
 
-" autocmd FileType lisp,scheme setlocal equalprg=~/.vim/indent/lispindent.lisp
-
-
-
-
-autocmd FileType ocaml setlocal tabstop=2|setlocal shiftwidth=2|setlocal expandtab " Python
-autocmd FileType python setlocal tabstop=4|setlocal shiftwidth=4|setlocal expandtab " Python
-autocmd FileType make setlocal tabstop=8|setlocal shiftwidth=8|setlocal noexpandtab " Makefile
 autocmd FileType php setlocal keywordprg=~/bin/phpdoc
 autocmd FileType inc setlocal syn=php
 
-""" javascript indentation is brain-dead for jquery
-""" autocmd FileType javascript setlocal ai|setlocal indentexpr=
 
+source ~/.vim/jeetworks-arrows.vim
