@@ -29,7 +29,7 @@ syn region phpFunctionDef matchgroup=phpKeyword start=/function\s/ end=/(/me=s-1
 
 " far from the comprehensive list. still, most of what I need
 
-syn keyword phpKeyword if else while for switch elseif return die exit echo print static global private public class list each array break continue
+syn keyword phpKeyword if else while for switch elseif return die exit echo print static global private protected public class list each array break continue
 
 
 
