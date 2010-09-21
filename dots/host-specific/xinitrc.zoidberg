@@ -1,7 +1,8 @@
-#!/bin/sh
+#!/bin/env zsh
+
+cd ~
 
 export PATH=/home/e/bin:/home/e/bin/private:$PATH
-#export LC_TIME="en_LV.UTF-8"
 
 # skype bug
 export QT_PLUGIN_PATH=/opt/lib32/usr/lib/qt/plugins
@@ -11,22 +12,23 @@ export QT_PLUGIN_PATH=/opt/lib32/usr/lib/qt/plugins
 
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
-# sdl apps freak out fullscreen
-export SDL_VIDEO_FULLSCREEN_HEAD=0
-
-
 xrdb -merge /home/e/.Xresources
 
-# now done through inittab
-# eval `/usr/bin/ssh-agent`
-
-nvidia-settings --load-config-only
-
-setxkbmap lv -option "terminate:ctrl_alt_bksp"
-#-option ctrl:nocaps -option altwin:swap_lalt_lwin
+if [[ `lsusb | grep Apple` != "" ]]; then
+    # have the apple keyboard
+    # load the proper mappings
+    ln ~/dotfiles/dots/host-specific/xmodmap-apple.zoidberg .Xmodmap -sf
+    # swap the alt/win keys
+    setxkbmap lv -option "" \
+        -option ctrl:nocaps \
+        -option altwin:swap_lalt_lwin \
+        -option "terminate:ctrl_alt_bksp"
+else
+    ln ~/dotfiles/dots/host-specific/xmodmap.zoidberg .Xmodmap -sf
+    setxkbmap lv -option "" \
+        -option "terminate:ctrl_alt_bksp"
+fi
 
 #stjerm -k f1 -p right -fn 'Terminus 10' &
-#yakuake &>/dev/null
 
-#xscreensaver -no-splash &
 ck-launch-session startxfce4
