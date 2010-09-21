@@ -1,7 +1,5 @@
 set ttimeoutlen=100
 
-" shortcuts available for a good mapping: c-h, c-l, c-t, Q, T F 
-
 let g:loaded_matchparen=1             " die, slow and needless matching paren highlighting
 let g:searchEmptyLinesPostfixing = 3  " php folding stuff
 let g:cursor_follows_alphabet = 1     " translit plugin
@@ -69,9 +67,14 @@ set textwidth=120               " screw purists
 set hidden                      " suddenly, magically, buffers get usable
 set autoread                    " don't care about ext-modified files, just reload them
 
+
+set list
+set listchars=tab:··
+"set listchars=tab:▸\           " listchars
+
+
 filetype plugin indent on       " detect filetypes
 syntax on                       " colors
-
 
 
 " micro-templates: autoload template
@@ -105,7 +108,7 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | d
 
 
 if has('gui_running')
-    
+
     """ I automatically :wq main vim much more often than I need to.
     """ So here I get rid of the wq command.
     cnoreabbr wq w
@@ -129,7 +132,7 @@ if has('gui_running')
     set guioptions-=L       """ don't show left scrollbar
 
     """ gvim doesn't want to work nice with x clipboard
-    map! <s-insert> <c-r>* 
+    map! <s-insert> <c-r>*
 
     """ gvim weirdnesses
     map  <S-CR> <CR>
@@ -246,6 +249,10 @@ map  <c-pageup>     <nop>
 map  <c-pagedown>   <nop>
 
 
+inoremap <f1> <esc>
+nnoremap <f1> <esc>
+vnoremap <f1> <esc>
+
 " k/j move by screen lines, not physical lines
 
 nnoremap k gk
@@ -281,9 +288,8 @@ nnoremap ; :
 imap <c-tab> <c-v><tab>
 
 
-" microtemplates: C-j moves to next block marked by <+SOMETHING+>
-
-nnoremap <c-j> /<+.\{-1,}+><cr>c/+>/e<cr>
+" microtemplates: ,j moves to next block marked by <+SOMETHING+>
+nnoremap <leader>j /<+.\{-1,}+><cr>c/+>/e<cr>
 
 
 
@@ -322,7 +328,6 @@ nmap <Leader>nf :NERDTreeFind<CR>
 nmap <Leader>nm :NERDTreeMirror<CR>
 nmap <Leader>nc :NERDTreeClose<CR>
 
-
 function! CleanDeleteBuffer()
     """ based on CleanClose function, found somewhere
     " just do not save the buffer under no circumstances
@@ -357,47 +362,65 @@ endfunction
 
 
 
-
-
 " let's try this magic
 imap jj <Esc>
 
+" get rid of search highlighting with leader-space
+nnoremap <leader><space> :noh<cr>
+nnoremap <leader>s :call StripTrailingWhitespace()<cr>
+nnoremap <leader>S :retab<cr>:call StripTrailingWhitespace()<cr>
 
+" select previous paste
+nnoremap <leader>v V`]
+
+" ,e - various common editors
+nnoremap <leader>ev :e ~/.vimrc<cr>
+nnoremap <leader>ez :e ~/.zshrc<cr>
+nnoremap <leader>ex :e ~/.xmonad/xmonad.hs<cr>
+nnoremap <leader>ec :e ~/commands<cr>
+
+" sort css properties
+nnoremap <leader>C ?{<CR> V/}$<CR>k:sort<CR>:noh<CR>
 
 
 
 augroup Python
-    au FileType python set nosmartindent autoindent
+    au FileType python setlocal nosmartindent autoindent
 augroup END
 
 augroup javascript
-    au FileType javascript set nosmartindent autoindent
+    au FileType javascript setlocal nosmartindent autoindent
 augroup END
 
 augroup latex
     autocmd!
-    autocmd FileType tex set shiftwidth=2 softtabstop=2
+    autocmd FileType tex setlocal shiftwidth=2 softtabstop=2
     let g:tex_flavor = 'latex'
 augroup END
 
 augroup Make
     autocmd!
-    autocmd FileType make set noexpandtab shiftwidth=8 tabstop=8
+    autocmd FileType make setlocal noexpandtab shiftwidth=8 tabstop=8
+augroup END
+
+augroup Haskell
+    autocmd!
+    autocmd FileType haskell setlocal expandtab shiftwidth=8 tabstop=8
 augroup END
 
 augroup OCaml
     autocmd!
-    autocmd FileType ocaml set tabstop=2 shiftwidth=2 expandtab
+    autocmd FileType ocaml setlocal tabstop=2 shiftwidth=2 expandtab
 augroup END
 
 augroup Python
     autocmd!
-    autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
+    autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
 augroup END
 
 augroup Javascript
     autocmd!
-    autocmd FileType javascript set tabstop=4 shiftwidth=4 expandtab nocindent smartindent
+    autocmd FileType javascript setlocal tabstop=4 shiftwidth=4 expandtab nocindent smartindent
 augroup END
 
 """ subtly tell when lines are too long
