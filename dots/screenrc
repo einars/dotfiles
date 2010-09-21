@@ -5,7 +5,7 @@ bindkey -k F2 next
 startup_message off  # i know who you are anyway
 deflogin off         # don't care about utmp
 
-escape ^xx
+escape ^tt
 
 silencewait 10       # 10 seconds is silent
 shell /bin/zsh            # no-brainer
