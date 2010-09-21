@@ -1,21 +1,16 @@
 #!/usr/bin/env zsh
 
-COMMAND_ID=$1
-TIMEOUT=2000
+timeout=2000
 
-if [[ $COMMAND == "" ]]; then
-    COMMAND=undefined
-fi
-
-OUTPUT=`~/commands $COMMAND_ID 2>&1`
+output=`~/commands $@ 2>&1`
 
 if [[ $? != 0 ]]; then
     # longer timeout for unsuccessful output
-    TIMEOUT=6000
+    timeout=6000
 fi
 
-if [[ $OUTPUT == "" ]] {
-    OUTPUT=OK
+if [[ $output == "" ]] {
+    output=Ok
 }
 
-notify-send -t $TIMEOUT -u normal -h int:x:10 -h int:y:0 $OUTPUT
+notify-send -t $timeout -u normal -h int:x:10 -h int:y:0 $output
