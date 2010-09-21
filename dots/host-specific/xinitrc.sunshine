@@ -6,26 +6,29 @@ export PATH=/home/e/bin:/home/e/bin/private:$PATH
 # skype bug
 export QT_PLUGIN_PATH=/opt/lib32/usr/lib/qt/plugins
 
-# for custom xfce builds
-#export PATH=$PATH:/opt/xfce/bin
-
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
 # sdl apps freak out fullscreen
 export SDL_VIDEO_FULLSCREEN_HEAD=0
+export WINEARCH=win32
 
 
 xrdb -merge /home/e/.Xresources
-
-# now done through inittab
-# eval `/usr/bin/ssh-agent`
 
 nvidia-settings --load-config-only
 
 setxkbmap lv -option ctrl:nocaps -option altwin:swap_lalt_lwin
 
-stjerm -k f1 -p right -fn 'Terminus 10' &
-#yakuake &>/dev/null
 
-xscreensaver -no-splash &
-ck-launch-session startxfce4
+#xscreensaver -no-splash &
+
+## xfce
+#stjerm -k f1 -p right -fn 'Terminus 10' &
+#ck-launch-session startxfce4
+
+## xmonad
+export PATH=/home/e/.xmonad/bin:$PATH
+( sleep 2s && trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 4 --height 12 --transparent true --tint 0x000000) &
+xsetroot -cursor_name left_ptr
+xmodmap ~/.Xmodmap
+exec ck-launch-session xmonad
