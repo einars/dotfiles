@@ -1,0 +1,5 @@
+xdotool mousemove 10 100
+sleep 0.1
+xdotool key F5
+xdotool mousemove 1290 100
+

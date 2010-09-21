@@ -1,0 +1,15 @@
+Config 
+    { position     = Top
+    , font         = "xft:Terminus:pixelsize=12:antialias=false"
+    , bgColor      = "#000000"
+    , fgColor      = "#ddddff"
+    , lowerOnStart = True
+    , commands     = [ Run Date "%a, %b %_d" "date" 60
+                     , Run Date "%H:%M" "time" 60
+                     , Run Weather "EVRA" ["-t","<tempC>°C"] 1800
+                     , Run StdinReader
+                     ]
+    , sepChar      = "%"
+    , alignSep     = "}{"
+    , template     = "<fc=#999>%time%</fc> <fc=#555>%date%, %EVRA%</fc>     %StdinReader% }{"
+    }
