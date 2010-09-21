@@ -64,3 +64,10 @@ URxvt*fadeColor: #242424
 ! URxvt*color14:        rgb:a1/cd/cd
 ! URxvt*color7:         rgb:00/00/00
 ! URxvt*color15:        rgb:00/00/00
+
+Xcursor.size: 16
+!Xcursor.theme: Jimmac
+!Xcursor.theme: Chameleon-Anthracite-Small
+!Xcursor.theme: FlatbedCursors.Orange.Small
+Xcursor.theme: Polar
+
