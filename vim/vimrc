@@ -19,6 +19,7 @@ set wildmenu                    " filename etc completion on tab
 set wildmode=full
 set t_md=                       " no bold fonts in terminal
 
+ 
 set mouse=a                   " mouse support in console
 
 set scrolloff=3
@@ -69,7 +70,7 @@ set autoread                    " don't care about ext-modified files, just relo
 
 
 set list
-set listchars=tab:··
+set listchars=tab:∟·
 "set listchars=tab:▸\           " listchars
 
 
@@ -384,10 +385,6 @@ nnoremap <leader>C ?{<CR> V/}$<CR>k:sort<CR>:noh<CR>
 
 
 
-augroup Python
-    au FileType python setlocal nosmartindent autoindent
-augroup END
-
 augroup javascript
     au FileType javascript setlocal nosmartindent autoindent
 augroup END
@@ -415,7 +412,8 @@ augroup END
 
 augroup Python
     autocmd!
-    autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
+    autocmd FileType python setlocal expandtab ts=8 sw=4 sts=4 formatoptions+=croq smartindent
+        \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
 
 augroup Javascript
@@ -438,5 +436,7 @@ autocmd FileType c,cpp,java,php,python,markdown,javascript,css,ocaml,scheme,lisp
 autocmd FileType php setlocal keywordprg=~/bin/phpdoc
 autocmd FileType inc setlocal syn=php
 
+""" let's try the autosave on focus lost magic
+au FocusLost * :update 
 
 source ~/.vim/jeetworks-arrows.vim
