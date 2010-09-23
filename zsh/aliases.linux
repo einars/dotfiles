@@ -21,7 +21,7 @@ alias l='ls -lh --color=tty --si'
 alias ll='ls -lAh --color=tty --si'
 alias ls='ls --color=tty --si'
 
-alias iddqd='sudo -i'
+alias iddqd='sudo -s'
 
 alias relight='sudo /etc/rc.d/lighttpd restart'
 
