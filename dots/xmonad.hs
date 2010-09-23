@@ -10,6 +10,7 @@ import XMonad.Actions.GridSelect
 
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.WindowProperties
+import XMonad.Util.NamedScratchpad
 
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.DynamicLog
@@ -77,7 +78,7 @@ customManageHook = (composeAll . concat $
     [ [ isFullscreen                    --> doFullFloat
     , className =? "OpenOffice.org 3.1" --> doShift "4:manual"
     , className =? "Evince"             --> doShift "4:manual"
-    , className =? "Okular"             --> doShift "4:manual"
+    --, className =? "Okular"             --> doShift "4:manual"
     , className =? "Xmessage"           --> doCenterFloat
     , className =? "Gimp"               --> doShift "6:gimp"
     , className =? "Pidgin"             --> doShift "3:chat"
@@ -89,7 +90,7 @@ customManageHook = (composeAll . concat $
     ]
     , [title    =? t                    --> doFloat | t <- titleFloats ]
     , [title    =? t                    --> doCenterFloat | t <- centerFloats ]]
-    ) <+> manageDocks
+    ) <+> manageDocks <+> namedScratchpadManageHook scratchpads
     where titleFloats = [ "Downloads", "Send file", "Open", "File Transfers", "XChat: Network List", "Save screenshot as..."]
           centerFloats = [ "Caml graphics" ]
 
@@ -97,6 +98,7 @@ customManageHook = (composeAll . concat $
 customLayoutHook
     = onWorkspace "3:chat" imLayout
     $ onWorkspace "1:web" webL
+    $ onWorkspace "2:code" codeL
     $ onWorkspace "6:gimp" gimpL
     $ onWorkspace "5:fullscreen" fullL
     $ standardLayouts
@@ -105,16 +107,22 @@ customLayoutHook
         tiled           = smartBorders (ResizableTall 1 (2/100) (1/2) [])
         reflectTiled    = (reflectHoriz tiled)
         tabLayout       = (tabbed shrinkText defaultTheme)
-        full            = noBorders Full
+        full            = smartBorders Full
 
         --imLayout        = tiled
         imLayout        = avoidStruts $ withIM (0.22) isSkype (Mirror tiled ||| Full)
                         where isSkype = (Title "einars.lielmanis - Skype™ (Beta)")
 
         gimpL = avoidStruts $ smartBorders $ withIM (0.11) (Role "gimp-toolbox") $ reflectHoriz $ withIM (0.15) (Role "gimp-dock") Full
-        webL  = avoidStruts $ tabLayout  ||| tiled ||| reflectHoriz tiled |||  full
+        codeL = avoidStruts $ Full ||| reflectTiled
+        webL  = avoidStruts $ Mirror reflectTiled |||  Full ||| tabLayout
         fullL = avoidStruts $ full
 
+scratchpads = 
+        [ NS "urxvt" "urxvt --title scratch" (title =? "scratch") xfloating
+        , NS "python" "xterm -e python" (title =? "python") xfloating
+        ]
+        where xfloating = (customFloating $ W.RationalRect (1/3) (1/3) (1/3) (1/3))
 
 customKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     [ ((modMask,               xK_Return), spawn $ XMonad.terminal conf)
@@ -129,7 +137,7 @@ customKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. shiftMask, xK_b ),     sendMessage ToggleStruts)
 
     -- floating layer stuff
-    , ((modMask,               xK_t ),     withFocused $ windows . W.sink)
+    , ((modMask .|. shiftMask, xK_t ),     withFocused $ windows . W.sink)
 
     , ((modMask,               xK_n ),     refresh)
 
@@ -140,7 +148,7 @@ customKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
  -- , ((modMask,               xK_m ),     windows W.focusMaster)
 
  -- , ((modMask .|. shiftMask, xK_Return), windows W.swapMaster)
-    , ((modMask .|. shiftMask, xK_Return), spawn "gvim")
+    , ((modMask .|. shiftMask, xK_Return), spawn "urxvt-tmux")
     , ((modMask .|. shiftMask, xK_j ),     windows W.swapDown )
     , ((modMask .|. shiftMask, xK_k ),     windows W.swapUp )
 
@@ -164,6 +172,14 @@ customKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     -- xdotool script to help refresh opera after vim save, :w
     , ((modMask,               xK_w     ), spawn "xmonad-refresh-opera")
+    --, ((modMask,               xK_grave ), scratchpadSpawnAction defaultConfig { terminal = "urxvt" } )
+    --, ((modMask .|. shiftMask, xK_grave ), scratchpadSpawnAction defaultConfig { terminal = "xterm python" } )
+    --, ((modMask,               xK_z ),     scratchpadSpawnAction defaultConfig { terminal = "urxvt" } )
+    --, ((modMask .|. shiftMask, xK_z ),     scratchpadSpawnAction defaultConfig { terminal = "xterm python" } )
+    , ((modMask,               xK_grave ), namedScratchpadAction scratchpads "urxvt" )
+    , ((modMask,               xK_z ),     namedScratchpadAction scratchpads "urxvt" )
+    , ((modMask .|. shiftMask, xK_grave ), namedScratchpadAction scratchpads "python" )
+    , ((modMask .|. shiftMask, xK_z ),     namedScratchpadAction scratchpads "python" )
 
     ]
     ++

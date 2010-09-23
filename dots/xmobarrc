@@ -1,6 +1,6 @@
 Config 
     { position     = Top
-    , font         = "xft:Terminus:pixelsize=12:antialias=false"
+    , font         = "xft:Terminus-12:italic"
     , bgColor      = "#000000"
     , fgColor      = "#ddddff"
     , lowerOnStart = True
@@ -11,5 +11,5 @@ Config
                      ]
     , sepChar      = "%"
     , alignSep     = "}{"
-    , template     = "<fc=#999>%time%</fc> <fc=#555>%date%, %EVRA%</fc>     %StdinReader% }{"
+    , template     = " <fc=#999>%time%</fc> <fc=#555>%date%, %EVRA%</fc> %StdinReader%"
     }
