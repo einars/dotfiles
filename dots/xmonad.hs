@@ -25,8 +25,15 @@ import XMonad.Layout.PerWorkspace (onWorkspace)
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Reflect
 import XMonad.Layout.IM
+import XMonad.Layout.Grid
 import XMonad.Layout.Tabbed
+import XMonad.Layout.ComboP
+import XMonad.Layout.TwoPane
 
+ws_gimp = "4:gimp"
+ws_chat = "8:chat"
+ws_web  = "1:web"
+ws_code = "2:code"
 
 main = do
         xmproc <- spawnPipe "xmobar"
@@ -42,7 +49,7 @@ main = do
                 , borderWidth        = 1
                 , normalBorderColor  = "#444444"
                 , focusedBorderColor = "#ff3333"
-                , workspaces         = ["1:web", "2:code", "3:chat", "4:manual", "5:fullscreen", "6:gimp", "7", "8", "9"]
+                , workspaces         = ["1:web", "2:code", "3", "4:gimp", "5:fullscreen", "6", "7", "8:chat", "9"]
                 , focusFollowsMouse  = True
                 , terminal           = "urxvt"
                 , logHook            = customLogHook xmproc
@@ -75,31 +82,32 @@ customXPConfig = defaultXPConfig
     }
 
 customManageHook = (composeAll . concat $
-    [ [ isFullscreen                    --> doFullFloat
-    , className =? "OpenOffice.org 3.1" --> doShift "4:manual"
-    , className =? "Evince"             --> doShift "4:manual"
-    --, className =? "Okular"             --> doShift "4:manual"
+    [
+    [ isFullscreen                    --> doFullFloat
+    , isDialog                          --> doCenterFloat
     , className =? "Xmessage"           --> doCenterFloat
-    , className =? "Gimp"               --> doShift "6:gimp"
-    , className =? "Pidgin"             --> doShift "3:chat"
-    , className =? "Skype"              --> doShift "3:chat"
- -- , className =? "Skype"              --> doFloat
---, title     =? "einars.lielmanis - Skype™ (Beta)" --> doCenterFloat
+    , className =? "Gimp"               --> doShift ws_gimp
+    , className =? "Pidgin"             --> doShift ws_chat
+    , className =? "Skype"              --> doShift ws_chat
     , className =? "MPlayer"            --> doShift "5:fullscreen"
     , className =? "Smplayer"           --> doShift "5:fullscreen"
+    --, className =? "xfce4-notifyd"      --> doIgnore
+    , title =? "xfce4-notifyd"          --> doIgnore
+    , title =? "kruler"                 --> doIgnore
     ]
     , [title    =? t                    --> doFloat | t <- titleFloats ]
-    , [title    =? t                    --> doCenterFloat | t <- centerFloats ]]
+    , [title    =? t                    --> doCenterFloat | t <- centerFloats ]
+    ]
     ) <+> manageDocks <+> namedScratchpadManageHook scratchpads
     where titleFloats = [ "Downloads", "Send file", "Open", "File Transfers", "XChat: Network List", "Save screenshot as..."]
           centerFloats = [ "Caml graphics" ]
 
 
 customLayoutHook
-    = onWorkspace "3:chat" imLayout
-    $ onWorkspace "1:web" webL
-    $ onWorkspace "2:code" codeL
-    $ onWorkspace "6:gimp" gimpL
+    = onWorkspace ws_chat imLayout
+    $ onWorkspace ws_web webL
+    $ onWorkspace ws_code codeL
+    $ onWorkspace ws_gimp gimpL
     $ onWorkspace "5:fullscreen" fullL
     $ standardLayouts
    where
@@ -110,15 +118,22 @@ customLayoutHook
         full            = smartBorders Full
 
         --imLayout        = tiled
-        imLayout        = avoidStruts $ withIM (0.22) isSkype (Mirror tiled ||| Full)
-                        where isSkype = (Title "einars.lielmanis - Skype™ (Beta)")
+        imLayout        = avoidStruts $
+                            (withIM (0.2) isSkype (Mirror tiled))
+        --imLayoutBork    = avoidStruts $
+                            -- (withIM (0.2) isSkype (Mirror tiled))
+                            -- *//*
+                            -- (withIM (0.2) isPidgin (Mirror tiled))
+        isSkype         = (Title "einars.lielmanis - Skype™ (Beta)")
+        --isPidgin        = And (ClassName "Pidgin") (Role "buddy_list")
 
-        gimpL = avoidStruts $ smartBorders $ withIM (0.11) (Role "gimp-toolbox") $ reflectHoriz $ withIM (0.15) (Role "gimp-dock") Full
+        -- gimpL = avoidStruts $ withIM (0.11) (Role "gimp-toolbox") $ reflectHoriz $ withIM (0.15) (Role "gimp-dock") Full
+        gimpL = combineTwoP (TwoPane 0.03 0.15) (tabLayout) (reflectHoriz $ combineTwoP (TwoPane 0.03 0.2) tabLayout (tabLayout ||| Grid) (Role "gimp-dock")) (Role "gimp-toolbox")
         codeL = avoidStruts $ Full ||| reflectTiled
         webL  = avoidStruts $ Mirror reflectTiled |||  Full ||| tabLayout
         fullL = avoidStruts $ full
 
-scratchpads = 
+scratchpads =
         [ NS "urxvt" "urxvt --title scratch" (title =? "scratch") xfloating
         , NS "python" "xterm -e python" (title =? "python") xfloating
         ]
