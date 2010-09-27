@@ -43,7 +43,7 @@ set laststatus=2                " good statusline is good
 set statusline=%<%f\%h%m%r%=%-20.(%L\ %l:%v\ %)\ \ \%h%m%r%=\%P
 
 
-set wildignore=*.cmi,*.cmx,*.cmo,*.class,*.pyc,.svn,.git,*.o,*.a,*.so,*.jpg,*.gif,*.png
+set wildignore=*.cmi,*.cmx,*.cmo,*.class,*.pyc,.svn,.git,*.o,*.a,*.so
 set suffixes-=.h
 
 " allow moving past end of lines when selecting vertical blocks with ^V
