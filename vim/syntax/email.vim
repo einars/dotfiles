@@ -3,7 +3,7 @@
 "
 " Scratching teh itches. Yes, I'm aware of mail.vim.
 "
-" Einars Lielmanis, einars@gmail.com, 2009
+" Einar Lielmanis, einars@gmail.com, 2009
 "
 
 "if exists("b:current_syntax")
@@ -19,9 +19,9 @@ syn region emailTo matchgroup=emailHeaderName start=/^\(To\|Cc\|Bcc\):/ end="$" 
 syn region emailHeader start="\%^" end="\n\n" contains=emailHeaderName,emailSubject,emailFrom,emailTo,emailCc contained
 syn region emailText start=/\%^/ end=/\%$/ contains=emailHeader,emailQuote,emailEmail
 
-"syn match  emailEmail	"<.\{-}>" contained
-syn match  emailEmail	/[a-z0-9.+\-]\+@[a-z0-9.+\-]\+/ contained
-syn match  emailQuote	/^>.\{-}$/ contained
+"syn match  emailEmail  "<.\{-}>" contained
+syn match  emailEmail   /[a-z0-9.+\-]\+@[a-z0-9.+\-]\+/ contained
+syn match  emailQuote   /^>.\{-}$/ contained
 
 hi def link emailHeader Normal
 hi def link emailHeaderName Statement

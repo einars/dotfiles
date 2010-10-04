@@ -73,6 +73,8 @@ set list
 set listchars=tab:∟·
 "set listchars=tab:▸\           " listchars
 
+call pathogen#runtime_append_all_bundles()
+
 
 filetype plugin indent on       " detect filetypes
 syntax on                       " colors
@@ -368,8 +370,8 @@ imap jj <Esc>
 
 " get rid of search highlighting with leader-space
 nnoremap <leader><space> :noh<cr>
-nnoremap <leader>s :call StripTrailingWhitespace()<cr>
-nnoremap <leader>S :retab<cr>:call StripTrailingWhitespace()<cr>
+nnoremap <leader>R :call StripTrailingWhitespace()<cr>
+nnoremap <leader>r :retab<cr>:call StripTrailingWhitespace()<cr>
 
 " select previous paste
 nnoremap <leader>v V`]
@@ -416,6 +418,11 @@ augroup Python
         \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
 
+augroup C
+    autocmd!
+    autocmd FileType c,cpp setlocal tabstop=8 shiftwidth=4 expandtab
+augroup END
+
 augroup Javascript
     autocmd!
     autocmd FileType javascript setlocal tabstop=4 shiftwidth=4 expandtab nocindent smartindent
@@ -434,6 +441,7 @@ autocmd FileType c,cpp,java,php,python,markdown,javascript,css,ocaml,scheme,lisp
 autocmd FileType c,cpp,java,php,python,markdown,javascript,css,ocaml,scheme,lisp autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
 
 autocmd FileType php setlocal keywordprg=~/bin/phpdoc
+autocmd FileType python setlocal keywordprg=pydoc
 autocmd FileType inc setlocal syn=php
 
 """ let's try the autosave on focus lost magic
