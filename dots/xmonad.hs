@@ -86,6 +86,7 @@ customManageHook = (composeAll . concat $
     [ isFullscreen                    --> doFullFloat
     , isDialog                          --> doCenterFloat
     , className =? "Xmessage"           --> doCenterFloat
+    , className =? "Wine"               --> doCenterFloat
     , className =? "Gimp"               --> doShift ws_gimp
     , className =? "Pidgin"             --> doShift ws_chat
     , className =? "Skype"              --> doShift ws_chat
@@ -130,7 +131,7 @@ customLayoutHook
         -- gimpL = avoidStruts $ withIM (0.11) (Role "gimp-toolbox") $ reflectHoriz $ withIM (0.15) (Role "gimp-dock") Full
         gimpL = combineTwoP (TwoPane 0.03 0.15) (tabLayout) (reflectHoriz $ combineTwoP (TwoPane 0.03 0.2) tabLayout (tabLayout ||| Grid) (Role "gimp-dock")) (Role "gimp-toolbox")
         codeL = avoidStruts $ Full ||| reflectTiled
-        webL  = avoidStruts $ Mirror reflectTiled |||  Full ||| tabLayout
+        webL  = avoidStruts $ Mirror reflectTiled |||  Full
         fullL = avoidStruts $ full
 
 scratchpads =
@@ -208,6 +209,6 @@ customKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- mod-[a,s] %! switch to twinview screen 1/2
     -- mod-shift-[a,s] %! move window to screen 1/2
     [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_s, xK_a] [0..]
+        | (key, sc) <- zip [xK_a, xK_s] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 

@@ -1,8 +1,11 @@
 Config 
-    { position     = Top
-    , font         = "xft:Terminus-12:italic"
-    , bgColor      = "#000000"
+    { bgColor      = "#000000"
     , fgColor      = "#ddddff"
+ -- nouveau rotated monitor setup:
+ -- , position     = Static { xpos = 1024 , ypos = 0 , width = 1800 , height = 15 }
+ -- twinview:
+    , position     = Static { xpos = 1280 , ypos = 0 , width = 1800 , height = 15 }
+    , font         = "xft:Terminus-12:italic"
     , lowerOnStart = True
     , commands     = [ Run Date "%a, %b %_d" "date" 60
                      , Run Date "%H:%M" "time" 60
