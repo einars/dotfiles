@@ -1,6 +1,0 @@
-# don't store binaries in github
-*.wine
-darcs*
-rlwrap
-unrar
-optipng
