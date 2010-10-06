@@ -131,7 +131,7 @@ customLayoutHook
         -- gimpL = avoidStruts $ withIM (0.11) (Role "gimp-toolbox") $ reflectHoriz $ withIM (0.15) (Role "gimp-dock") Full
         gimpL = combineTwoP (TwoPane 0.03 0.15) (tabLayout) (reflectHoriz $ combineTwoP (TwoPane 0.03 0.2) tabLayout (tabLayout ||| Grid) (Role "gimp-dock")) (Role "gimp-toolbox")
         codeL = avoidStruts $ Full ||| reflectTiled
-        webL  = avoidStruts $ Mirror reflectTiled |||  Full
+        webL  = avoidStruts $ Mirror reflectTiled |||  Full ||| reflectTiled
         fullL = avoidStruts $ full
 
 scratchpads =
