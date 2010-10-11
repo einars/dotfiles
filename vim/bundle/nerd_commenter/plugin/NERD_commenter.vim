@@ -476,7 +476,7 @@ function s:SetUpForNewFiletype(filetype, forceReset)
     elseif a:filetype ==? "objj"
         call s:MapDelimitersWithAlternative('//','', '/*','*/')
     elseif a:filetype ==? "ocaml"
-        call s:MapDelimiters('(*','*)')
+        call s:MapDelimiters('(* ',' *)')
     elseif a:filetype ==? "occam"
         call s:MapDelimiters('--','')
     elseif a:filetype ==? "omlet"
