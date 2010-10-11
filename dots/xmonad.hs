@@ -107,12 +107,11 @@ customManageHook = (composeAll . concat $
 customLayoutHook
     = onWorkspace ws_chat imLayout
     $ onWorkspace ws_web webL
-    $ onWorkspace ws_code codeL
     $ onWorkspace ws_gimp gimpL
     $ onWorkspace "5:fullscreen" fullL
     $ standardLayouts
    where
-        standardLayouts = avoidStruts  $ (tabLayout ||| tiled |||  reflectTiled ||| Mirror tiled ||| Full)
+        standardLayouts = avoidStruts  $ (tabLayout ||| tiled |||  reflectTiled ||| Mirror tiled ||| Mirror reflectTiled ||| Full)
         tiled           = smartBorders (ResizableTall 1 (2/100) (1/2) [])
         reflectTiled    = (reflectHoriz tiled)
         tabLayout       = (tabbed shrinkText defaultTheme)
@@ -130,7 +129,6 @@ customLayoutHook
 
         -- gimpL = avoidStruts $ withIM (0.11) (Role "gimp-toolbox") $ reflectHoriz $ withIM (0.15) (Role "gimp-dock") Full
         gimpL = combineTwoP (TwoPane 0.03 0.15) (tabLayout) (reflectHoriz $ combineTwoP (TwoPane 0.03 0.2) tabLayout (tabLayout ||| Grid) (Role "gimp-dock")) (Role "gimp-toolbox")
-        codeL = avoidStruts $ Full ||| reflectTiled
         webL  = avoidStruts $ Mirror reflectTiled |||  Full ||| reflectTiled
         fullL = avoidStruts $ full
 
@@ -170,6 +168,8 @@ customKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     , ((modMask,               xK_comma),  sendMessage (IncMasterN 1))
     , ((modMask,               xK_period), sendMessage (IncMasterN (-1)))
+    , ((modMask .|. shiftMask, xK_comma),  sendMessage (IncMasterN 1))
+    , ((modMask .|. shiftMask, xK_period), sendMessage (IncMasterN (-1)))
 
     , ((modMask,               xK_h ),     sendMessage Shrink)
     , ((modMask,               xK_l ),     sendMessage Expand)
