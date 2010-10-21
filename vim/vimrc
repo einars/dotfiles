@@ -381,6 +381,10 @@ nnoremap <leader>ev :e ~/.vimrc<cr>
 nnoremap <leader>ez :e ~/.zshrc<cr>
 nnoremap <leader>ex :e ~/.xmonad/xmonad.hs<cr>
 nnoremap <leader>ec :e ~/commands<cr>
+nnoremap <leader>eg :e ~/Documents/gtd.txt<cr>
+nnoremap <leader>eq :e ~/Documents/quotes.txt<cr>
+nnoremap <leader>en :e ~/Documents/notes.txt<cr>
+nnoremap <leader>eb :e ~/Documents/backlog.txt<cr>
 
 " sort css properties
 nnoremap <leader>C ?{<CR> V/}$<CR>k:sort<CR>:noh<CR>
