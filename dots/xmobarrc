@@ -1,20 +1,24 @@
-Config 
+Config
     { bgColor      = "#000000"
     , fgColor      = "#ddddff"
  -- nouveau rotated monitor setup:
  -- , position     = Static { xpos = 1024 , ypos = 0 , width = 1800 , height = 15 }
  -- twinview:
- -- , position     = Static { xpos = 1280 , ypos = 0 , width = 1800 , height = 15 }
+    , position     = Static { xpos = 1280 , ypos = 0 , width = 1800 , height = 15 }
  -- single 1920:
-    , position     = Static { xpos = 0 , ypos = 0 , width = 1800 , height = 15 }
+ -- , position     = Static { xpos = 0 , ypos = 0 , width = 1800 , height = 15 }
+
     , font         = "xft:Terminus-12:italic"
     , lowerOnStart = True
-    , commands     = [ Run Date "%a, %b %_d" "date" 60
+    , commands     = [ Run Date "%_d %b (%a)" "date" 60
                      , Run Date "%H:%M" "time" 60
                      , Run Weather "EVRA" ["-t","<tempC>°C"] 1800
+                     , Run Com "mpc" ["current", "--format", "'%title%'"] "" 3
                      , Run StdinReader
                      ]
     , sepChar      = "%"
     , alignSep     = "}{"
-    , template     = " <fc=#999>%time%</fc> <fc=#555>%date%, %EVRA%</fc> %StdinReader%"
+    , template     = " <fc=#ccc>%time%</fc>  <fc=#999>%date%,  %EVRA%</fc>    %StdinReader%}{<fc=#999>%mpc%</fc>            "
+
+
     }

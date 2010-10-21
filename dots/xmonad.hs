@@ -129,11 +129,12 @@ customLayoutHook
 
         -- gimpL = avoidStruts $ withIM (0.11) (Role "gimp-toolbox") $ reflectHoriz $ withIM (0.15) (Role "gimp-dock") Full
         gimpL = combineTwoP (TwoPane 0.03 0.15) (tabLayout) (reflectHoriz $ combineTwoP (TwoPane 0.03 0.2) tabLayout (tabLayout ||| Grid) (Role "gimp-dock")) (Role "gimp-toolbox")
-        webL  = avoidStruts $ Mirror reflectTiled |||  Full ||| reflectTiled
+        webL  = avoidStruts $ Mirror reflectTiled |||  Full 
         fullL = avoidStruts $ full
 
 scratchpads =
-        [ NS "urxvt" "urxvt --title scratch" (title =? "scratch") xfloating
+        [ NS "urxvt1" "urxvt --title scratch-1" (title =? "scratch-1") xfloating
+        , NS "urxvt2" "urxvt --title scratch-2" (title =? "scratch-2") xfloating
         , NS "python" "xterm -e python" (title =? "python") xfloating
         ]
         where xfloating = (customFloating $ W.RationalRect (1/3) (1/3) (1/3) (1/3))
@@ -159,9 +160,7 @@ customKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. shiftMask, xK_Tab ),   windows W.focusUp)
     , ((modMask,               xK_j ),     windows W.focusDown)
     , ((modMask,               xK_k ),     windows W.focusUp)
- -- , ((modMask,               xK_m ),     windows W.focusMaster)
 
- -- , ((modMask .|. shiftMask, xK_Return), windows W.swapMaster)
     , ((modMask .|. shiftMask, xK_Return), spawn "urxvt-tmux")
     , ((modMask .|. shiftMask, xK_j ),     windows W.swapDown )
     , ((modMask .|. shiftMask, xK_k ),     windows W.swapUp )
@@ -186,14 +185,12 @@ customKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask,               xK_b     ), spawn "thunar /storage/books")
     , ((modMask,               xK_d     ), spawn "thunar Documents")
 
+    , ((modMask,               xK_i     ), (dynamicLogString defaultPP >> spawn "xmessage FOO"))
+
     -- xdotool script to help refresh opera after vim save, :w
     , ((modMask,               xK_w     ), spawn "xmonad-refresh-opera")
-    --, ((modMask,               xK_grave ), scratchpadSpawnAction defaultConfig { terminal = "urxvt" } )
-    --, ((modMask .|. shiftMask, xK_grave ), scratchpadSpawnAction defaultConfig { terminal = "xterm python" } )
-    --, ((modMask,               xK_z ),     scratchpadSpawnAction defaultConfig { terminal = "urxvt" } )
-    --, ((modMask .|. shiftMask, xK_z ),     scratchpadSpawnAction defaultConfig { terminal = "xterm python" } )
-    , ((modMask,               xK_grave ), namedScratchpadAction scratchpads "urxvt" )
-    , ((modMask,               xK_z ),     namedScratchpadAction scratchpads "urxvt" )
+    , ((modMask,               xK_grave ), namedScratchpadAction scratchpads "urxvt1" )
+    , ((modMask,               xK_z ),     namedScratchpadAction scratchpads "urxvt2" )
     , ((modMask .|. shiftMask, xK_grave ), namedScratchpadAction scratchpads "python" )
     , ((modMask .|. shiftMask, xK_z ),     namedScratchpadAction scratchpads "python" )
 
