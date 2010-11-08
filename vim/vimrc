@@ -381,7 +381,7 @@ nnoremap <leader>ev :e ~/.vimrc<cr>
 nnoremap <leader>ez :e ~/.zshrc<cr>
 nnoremap <leader>ex :e ~/.xmonad/xmonad.hs<cr>
 nnoremap <leader>ec :e ~/commands<cr>
-nnoremap <leader>eg :e ~/Documents/gtd.txt<cr>
+nnoremap <leader>eg :e ~/Documents/gtd/tasks.txt<cr>
 nnoremap <leader>eq :e ~/Documents/quotes.txt<cr>
 nnoremap <leader>en :e ~/Documents/notes.txt<cr>
 nnoremap <leader>eb :e ~/Documents/backlog.txt<cr>
@@ -459,5 +459,12 @@ autocmd FileType inc setlocal syn=php
 
 """ let's try the autosave on focus lost magic
 au FocusLost * :update
+
+
+
+
+let g:space_no_character_movements = 1
+let g:space_no_brace = 1
+let g:space_no_folds = 1
 
 source ~/.vim/jeetworks-arrows.vim
