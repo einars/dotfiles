@@ -31,4 +31,5 @@ export PATH=/home/e/.xmonad/bin:$PATH
 ( sleep 2s && trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 6 --height 12 --transparent true --tint 0x000000) &
 xsetroot -cursor_name left_ptr
 xmodmap ~/.Xmodmap
+~/bin/redsift.sh &
 exec ck-launch-session xmonad
