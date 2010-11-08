@@ -10,15 +10,15 @@ Config
 
     , font         = "xft:Terminus-12:italic"
     , lowerOnStart = True
-    , commands     = [ Run Date "%_d %b (%a)" "date" 60
+    , commands     = [ Run Date "%_d %b  %A" "date" 60
                      , Run Date "%H:%M" "time" 60
                      , Run Weather "EVRA" ["-t","<tempC>°C"] 1800
-                     , Run Com "mpc" ["current", "--format", "'%title%'"] "" 3
+                     , Run Com "mpc" ["current", "--format", "'%artist% -- %title%'"] "" 3
                      , Run StdinReader
                      ]
     , sepChar      = "%"
     , alignSep     = "}{"
-    , template     = " <fc=#ccc>%time%</fc>  <fc=#999>%date%,  %EVRA%</fc>    %StdinReader%}{<fc=#999>%mpc%</fc>            "
+    , template     = " <fc=#ccc>%time%</fc>  <fc=#999>%date%  %EVRA%</fc>   %StdinReader%}{<fc=#999>%mpc%</fc>            "
 
 
     }
