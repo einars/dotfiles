@@ -7,6 +7,7 @@ import System.IO
 import Data.List
 
 import XMonad.Actions.GridSelect
+import XMonad.Actions.CycleWS
 
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.WindowProperties
@@ -29,6 +30,7 @@ import XMonad.Layout.Grid
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ComboP
 import XMonad.Layout.TwoPane
+import XMonad.Layout.TrackFloating
 
 ws_gimp = "4:gimp"
 ws_chat = "8:chat"
@@ -114,7 +116,7 @@ customLayoutHook
         standardLayouts = avoidStruts  $ (tabLayout ||| tiled |||  reflectTiled ||| Mirror tiled ||| Mirror reflectTiled ||| Full)
         tiled           = smartBorders (ResizableTall 1 (2/100) (1/2) [])
         reflectTiled    = (reflectHoriz tiled)
-        tabLayout       = (tabbed shrinkText defaultTheme)
+        tabLayout       = (trackFloating $ tabbed shrinkText defaultTheme)
         full            = smartBorders Full
 
         --imLayout        = tiled
@@ -186,6 +188,7 @@ customKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask,               xK_d     ), spawn "thunar Documents")
 
     , ((modMask,               xK_i     ), (dynamicLogString defaultPP >> spawn "xmessage FOO"))
+    , ((modMask,               xK_backslash ), swapNextScreen)
 
     -- xdotool script to help refresh opera after vim save, :w
     , ((modMask,               xK_w     ), spawn "xmonad-refresh-opera")
