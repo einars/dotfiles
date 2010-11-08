@@ -16,8 +16,9 @@ syntax case ignore
 syn region gtdTitle start="^|" end="---$"
 
 syn region gtdDone start="^x[ :]" end="$"
-syn region gtdProject start="^p:" end="\s"
+syn region gtdProject start="^p:" end="\s\|$"
 syn region gtdContext start="@" end="\s\|$" contains=gtdContextClassifier
+
 syn match gtdContextClassifier contained /:\S\+/hs=s+1
 syn match gtdCreateTimestamp /\[\d\{8}\]$/
 
