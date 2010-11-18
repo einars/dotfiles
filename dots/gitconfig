@@ -19,3 +19,7 @@
     added = yellow
     changed = green
     untracked = cyan
+[diff]
+	renamelimit = 0
+[pack]
+	threads = 0
