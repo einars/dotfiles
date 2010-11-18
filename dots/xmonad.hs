@@ -102,7 +102,7 @@ customManageHook = (composeAll . concat $
     , [title    =? t                    --> doCenterFloat | t <- centerFloats ]
     ]
     ) <+> manageDocks <+> namedScratchpadManageHook scratchpads
-    where titleFloats = [ "Downloads", "Send file", "Open", "File Transfers", "XChat: Network List", "Save screenshot as..."]
+    where titleFloats = [ "Downloads", "Send file", "Open", "File Transfers", "XChat: Network List", "Save screenshot as...", "Screen Ruler"]
           centerFloats = [ "Caml graphics" ]
 
 
