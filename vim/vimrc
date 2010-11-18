@@ -463,7 +463,7 @@ au FocusLost * :update
 
 
 
-let g:space_no_character_movements = 1
+" let g:space_no_character_movements = 1
 let g:space_no_brace = 1
 let g:space_no_folds = 1
 
