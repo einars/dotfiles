@@ -5,4 +5,5 @@ awk '{sub(/#127/, "127")};{print}' /etc/hosts > $temp_file
 if [[ -f $temp_file ]]; then
     echo Starting work, have fun.
     sudo mv $temp_file /etc/hosts
+    sudo /etc/rc.d/nscd restart
 fi
