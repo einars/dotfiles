@@ -1,0 +1,3 @@
+[submodule "vim/bundle/vimorganizer-git"]
+	path = vim/bundle/vimorganizer-git
+	url = git://github.com/hsitz/VimOrganizer

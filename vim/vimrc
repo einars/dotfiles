@@ -73,6 +73,8 @@ set list
 set listchars=tab:∟·
 "set listchars=tab:▸\           " listchars
 
+set conceallevel=2              " 7.3, if supported
+
 call pathogen#runtime_append_all_bundles()
 
 
@@ -166,6 +168,9 @@ hi Search cterm=underline gui=underline
 
 hi link htmlTag htmlTagName
 hi link htmlEndTag htmlTagName
+
+hi clear Conceal
+hi link Conceal Statement
 
 """ make and set path for temp files
 
@@ -385,6 +390,7 @@ nnoremap <leader>eg :e ~/Documents/gtd/tasks.txt<cr>
 nnoremap <leader>eq :e ~/Documents/quotes.txt<cr>
 nnoremap <leader>en :e ~/Documents/notes.txt<cr>
 nnoremap <leader>eb :e ~/Documents/backlog.txt<cr>
+nnoremap <leader>ed :e ~/Documents/drawing.txt<cr>
 
 " sort css properties
 nnoremap <leader>C ?{<CR> V/}$<CR>k:sort<CR>:noh<CR>
