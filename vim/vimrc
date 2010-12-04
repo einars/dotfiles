@@ -457,6 +457,7 @@ au BufRead,BufNew *.* let w:m1=matchadd('Error', '\%120v.')
 au BufRead,BufNew *.* let w:m3=matchadd('Todo', '<+\w\++>')
 au BufRead,BufNew *.* let w:m4=matchadd('RedundantSpaces', '\s\+$\| \+\ze\t') "\ze sets end of match so only spaces highlighted
 au BufRead,BufNew *.* call matchadd('Todo', '\(!!!\|///\).*', -1)
+au BufRead,BufNew *.czz set syn=sass
 
 autocmd FileType c,cpp,java,php,python,markdown,javascript,css,ocaml,scheme,lisp autocmd BufWritePre <buffer> :retab
 autocmd FileType c,cpp,java,php,python,markdown,javascript,css,ocaml,scheme,lisp autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
