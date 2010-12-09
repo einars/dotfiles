@@ -31,6 +31,7 @@ import XMonad.Layout.Tabbed
 import XMonad.Layout.ComboP
 import XMonad.Layout.TwoPane
 import XMonad.Layout.TrackFloating
+import XMonad.Hooks.SetWMName
 
 ws_gimp = "4:gimp"
 ws_chat = "8:chat"
@@ -55,6 +56,7 @@ main = do
                 , focusFollowsMouse  = True
                 , terminal           = "urxvt"
                 , logHook            = customLogHook xmproc
+                , startupHook        = setWMName "LG3D"
                 , keys               = customKeys
                 }
 
