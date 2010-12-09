@@ -4,11 +4,14 @@ export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
 export CLASSPATH=/usr/lib/jvm/java-6-openjdk/lib:$CLASSPATH
 export SDL_VIDEO_FULLSCREEN_HEAD=0
 
-function cdd {
-    CDPATH=.:~:/services/web/localhost:/services/web/dev.spicausis.lv:/services/web:~/queue \
-    cd $1
+
+
+cdpath=(. ~ /services/web/localhost /services/web/dev.spicausis.lv /services/web ~/queue /storage)
+
+function c() {
+    CDPATH= cd $1
 }
-alias ccd=cdd
+
 alias ppp="cd ~/.wine/drive_c/Program\ Files/"
 alias pppp="cd ~/.wine/drive_c/Program\ Files/Games"
 
