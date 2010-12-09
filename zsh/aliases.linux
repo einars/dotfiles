@@ -36,6 +36,7 @@ alias gitd="git diff"
 alias gitdc="git diff --cached"
 alias gits="git status"
 alias gitc="git commit"
+alias amend="git commit --amend"
 alias gitsc="test -d .git/svn && git svn dcommit"
 alias master="git checkout master"
 
