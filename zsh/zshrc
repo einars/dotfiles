@@ -117,9 +117,13 @@ bindkey '\e[3~' delete-char # delete key
 bindkey "^[^[[D" emacs-backward-word # urxvt: alt + left arrow
 bindkey "^[^[[C" emacs-forward-word  # urxvt: alt + right arrow
 
-
 bindkey $(echotc kh) beginning-of-line # cursor home
 bindkey $(echotc @7) end-of-line       # cursor end
+
+# ubermagic on up/down
+# http://codeinthehole.com/archives/17-The-most-important-command-line-tip-incremental-history-searching-with-.inputrc.html
+bindkey "\e[A" history-beginning-search-backward
+bindkey "\e[B" history-beginning-search-forward
 
 
 if [[ $TERM == xterm ]]; then
