@@ -1,6 +1,0 @@
-export PATH=$PATH:/opt/clisp/bin:/usr/share/java/apache-ant/bin/
-export PATH=$PATH:/usr/perl5/bin:/usr/local/wine/bin:/usr/local/bin:/usr/postgres/8.3/bin
-export CDPATH=.:~:/services/web/localhost:/services/web/dev.spicausis.lv:/services/web:~/queue
-export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
-export CLASSPATH=/usr/lib/jvm/java-6-openjdk/lib:$CLASSPATH
-export SDL_VIDEO_FULLSCREEN_HEAD=0

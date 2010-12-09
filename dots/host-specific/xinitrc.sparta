@@ -7,6 +7,7 @@ export PATH=/home/e/bin:/home/e/bin/private:$PATH
 export QT_PLUGIN_PATH=/opt/lib32/usr/lib/qt/plugins
 
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 # sdl apps freak out fullscreen
 export SDL_VIDEO_FULLSCREEN_HEAD=0
