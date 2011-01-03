@@ -153,7 +153,9 @@ if has('gui_running')
 else
     cnoreabbr W w
     cnoreabbr Wq wq
-    colorscheme desert
+    if &t_Co > 120
+        colorscheme desert
+    end
 end
 
 
