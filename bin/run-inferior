@@ -14,3 +14,4 @@ if [[ $output == "" ]] {
 }
 
 notify-send -t $timeout -u normal -h int:x:10 -h int:y:0 $output
+echo $output

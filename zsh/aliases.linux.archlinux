@@ -32,10 +32,8 @@ function binside { $PACMAN_CMD -Ql $1 | grep -v '/$' | grep --color=never bin }
 function aurget {
   if [[ $1 != "" ]]; then
     package=$1
-    mkdir -p ~/aurbuild/$package
-    cd ~/aurbuild/$package
-    yaourt -G $package
-    cat PKGBUILD
+    chpwd_functions= cd ~/aurbuild/
+    yaourt -Gf $package && cd $package && cat PKGBUILD
   fi
 }
 

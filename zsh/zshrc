@@ -131,16 +131,18 @@ if [[ $TERM == xterm ]]; then
 fi
 
 
-function do_ls()
+function cd_hook()
 {
     SKIPPED_DIRS=(/usr/bin /usr/lib)
     DIR=`pwd`
+    test -f .description && cat .description
+    test -f  description && cat  description
     if [[ -z ${(M)SKIPPED_DIRS:#$DIR} ]] {
         ls -l --color=tty
     }
 }
 
-chpwd_functions=('do_ls')
+chpwd_functions=('cd_hook')
 
 . ~/.zsh/aliases
 . ~/.zsh/aliases.private

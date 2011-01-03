@@ -15,3 +15,4 @@ function c() {
 alias ppp="cd ~/.wine/drive_c/Program\ Files/"
 alias pppp="cd ~/.wine/drive_c/Program\ Files/Games"
 
+. ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

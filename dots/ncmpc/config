@@ -55,7 +55,6 @@ color background = none
 color title = white
 color title-bold = brightcyan
 color line = brightred
-color line-flags = brightblue
 color list = white
 color list-bold = brightyellow
 color progressbar = brightred

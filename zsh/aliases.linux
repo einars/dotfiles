@@ -39,6 +39,7 @@ alias gitc="git commit"
 alias amend="git commit --amend"
 alias gitsc="test -d .git/svn && git svn dcommit"
 alias master="git checkout master"
+alias develop="git checkout development"
 
 # svn
 
