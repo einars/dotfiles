@@ -1,4 +1,3 @@
-set ttimeoutlen=100
 
 let g:loaded_matchparen=1             " die, slow and needless matching paren highlighting
 let g:searchEmptyLinesPostfixing = 3  " php folding stuff
@@ -6,86 +5,66 @@ let g:cursor_follows_alphabet = 1     " translit plugin
 
 let mapleader=","
 
-set showmatch               " jump to matching paren quickly
-set matchtime=1
-
 " sadly, autoindentations tend to go haywire with this
 " set matchpairs=(:)
 
+set ttimeoutlen=100
 set history=1000
-
-set nrformats=hex               " c-a, c-x won't treat 05 as octal
-set wildmenu                    " filename etc completion on tab
+set showmatch           " jump to matching paren quickly
+set matchtime=1
+set nrformats=hex       " c-a, c-x won't treat 05 as octal
+set wildmenu            " filename etc completion on tab
 set wildmode=full
-set t_md=                       " no bold fonts in terminal
-
- 
-set mouse=a                   " mouse support in console
-
+set t_md=               " no bold fonts in terminal
+set mouse=a             " mouse support in console
 set scrolloff=3
-
 set nostartofline
-
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set shiftround                  " shift in mod 4
-
-set nojoinspaces " with joinspaces, two spaces are entered after . / ? / !
-
-set splitright " split on the correct side
-
+set shiftround          " shift in mod 4
+set nojoinspaces        " with joinspaces, two spaces are entered after . / ? / !
+set splitright          " split on the correct side
 set expandtab
 set autoindent
 set wildchar=<Tab>
-
-set laststatus=2                " good statusline is good
+set laststatus=2        " good statusline is good
 set statusline=%<%f\%h%m%r%=%-20.(%L\ %l:%v\ %)\ \ \%h%m%r%=\%P
-
-
 set wildignore=*.cmi,*.cmx,*.cmo,*.class,*.pyc,.svn,.git,*.o,*.a,*.so
 set suffixes-=.h
-
-" allow moving past end of lines when selecting vertical blocks with ^V
 set virtualedit=block
-
-set backspace=indent,eol,start  " usable backspace
-
+                        " allow moving past end of lines when selecting
+                        "    vertical blocks with ^V
+set bs=indent,start     " usable backspace
 set hlsearch
 set incsearch
-set ignorecase                  " search ignores case while no uppercase is searched
+set ignorecase          " search ignores case while no uppercase is searched
 set smartcase
-set nowrap                      " dont' wrap the text
-
-set nobackup                    " this is a default, but let's say it explicitly (who knows what's in /etc/vimrc)
-set writebackup                 " backup while saving is good. this is a default as well.
-set noswapfile                  " can't remember a single time this would have been useful
-
-
-set textwidth=120               " screw purists
+set nowrap              " dont' wrap the text
+set nobackup            " this is a default, but let's say it explicitly
+                        "    (who knows what's in /etc/vimrc)
+set nowritebackup       " don't care about vim's backups at all
+set noswapfile          " can't remember a single time this would have been useful
 
 
-set hidden                      " suddenly, magically, buffers get usable
-set autoread                    " don't care about ext-modified files, just reload them
-
-
+set textwidth=120       " screw purists
+set hidden              " suddenly, magically, buffers get usable
+set autoread            " don't care about ext-modified files, just reload them
 set list
-set listchars=tab:∟·
-"set listchars=tab:▸\           " listchars
-
-set conceallevel=2              " 7.3, if supported
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set conceallevel=2      " 7.3, if supported
 
 call pathogen#runtime_append_all_bundles()
 
 
-filetype plugin indent on       " detect filetypes
-syntax on                       " colors
+filet plugin indent on  " detect filetypes
+syn on                  " colors
 
 
 " micro-templates: autoload template
 
-set cpoptions-=a " do not leave the template file open
-autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.tpl
+set cpoptions-=a        " do not leave the template file open
+au BufNewFile * silent! 0r ~/.vim/templates/%:e.tpl
 
 
 
@@ -288,10 +267,6 @@ map  <c-c> :bn<cr>
 
 
 
-" no need for shift to enter command mode
-
-nnoremap ; :
-
 
 " use real tab on c-tab
 
@@ -310,8 +285,7 @@ inoremap <s-tab> <c-r>=InsertTabWrapper("back")<cr>
 
 
 " c-space is omnicompletion
-
-inoremap <nul> <c-x><c-o>
+" inoremap <nul> <c-x><c-o>
 
 
 " PHP stuff: rebuild folds on s-f5
@@ -324,13 +298,7 @@ map <s-f5> <esc>:EnableFastPHPFolds<cr>
 map <f5> <esc>:syn sync fromstart<cr>
 
 
-" f3 = select all to X clipboard
-
-map <f3> <esc>mpgg"+yG`p
-map <c-.> <esc>mpgg"+yG`p
-
-
-" nedtree
+" nerdtree
 
 nmap <Leader>no :NERDTree<CR>
 nmap <Leader>nt :NERDTreeToggle<CR>
@@ -363,9 +331,6 @@ map <leader>d <esc>:call CleanDeleteBuffer()<cr>
 function! StripTrailingWhitespace()
   normal mZ
   %s/\s\+$//e
-  if line("'Z") != line(".")
-    echo "Stripped whitespace\n"
-  endif
   normal `Z
 endfunction
 
@@ -388,15 +353,10 @@ nnoremap <leader>ev :e ~/.vimrc<cr>
 nnoremap <leader>ez :e ~/.zshrc<cr>
 nnoremap <leader>ex :e ~/.xmonad/xmonad.hs<cr>
 nnoremap <leader>ec :e ~/commands<cr>
-nnoremap <leader>eg :e ~/Documents/gtd/tasks.txt<cr>
 nnoremap <leader>eq :e ~/Documents/quotes.txt<cr>
 nnoremap <leader>en :e ~/Documents/notes.txt<cr>
 nnoremap <leader>eb :e ~/Documents/backlog.txt<cr>
 nnoremap <leader>ed :e ~/Documents/drawing.txt<cr>
-
-" sort css properties
-nnoremap <leader>C ?{<CR> V/}$<CR>k:sort<CR>:noh<CR>
-
 
 
 augroup javascript
@@ -407,6 +367,7 @@ augroup latex
     autocmd!
     autocmd FileType tex setlocal shiftwidth=2 softtabstop=2
     let g:tex_flavor = 'latex'
+    let g:tex_fold_enable=1
 augroup END
 
 augroup Make
@@ -476,3 +437,7 @@ let g:space_no_brace = 1
 let g:space_no_folds = 1
 
 source ~/.vim/jeetworks-arrows.vim
+
+" no need for shift to enter command mode
+nnoremap ; :
+
