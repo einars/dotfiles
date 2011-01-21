@@ -33,10 +33,10 @@ import XMonad.Layout.TwoPane
 import XMonad.Layout.TrackFloating
 import XMonad.Hooks.SetWMName
 
-ws_gimp = "4:gimp"
-ws_chat = "8:chat"
-ws_web  = "1:web"
-ws_code = "2:code"
+ws_gimp = "4"
+ws_chat = "8"
+ws_web  = "1"
+ws_code = "2"
 
 main = do
         xmproc <- spawnPipe "xmobar"
@@ -52,7 +52,7 @@ main = do
                 , borderWidth        = 2
                 , normalBorderColor  = "#444444"
                 , focusedBorderColor = "#ff3333"
-                , workspaces         = ["1:web", "2:code", "3", "4:gimp", "5:fullscreen", "6", "7", "8:chat", "9"]
+                , workspaces         = ["1", "1´", "2", "2´", "3", "3´", "4", "4´", "5", "5´", "6", "6´", "7", "7´", "8", "8´", "9", "9´"]
                 , focusFollowsMouse  = True
                 , terminal           = "urxvt"
                 , logHook            = customLogHook xmproc
@@ -66,8 +66,8 @@ customLogHook h = dynamicLogWithPP $ customPP { ppOutput = hPutStrLn h }
 
 
 customPP = defaultPP
-    { ppHidden  = xmobarColor "#999" "" . wrap "" " "
-    , ppVisible = xmobarColor "#999" "" . wrap "" "·"
+    { ppHidden  = xmobarColor "#555" "" . wrap "" " "
+    , ppVisible = xmobarColor "#999" "" . wrap "" " "
     , ppCurrent = xmobarColor "#6c6" "" . wrap "" " "
     , ppUrgent  = xmobarColor "#F00" "" . wrap "" "!"
     , ppLayout  = xmobarColor "#333" ""
@@ -94,8 +94,8 @@ customManageHook = (composeAll . concat $
     , className =? "Gimp"               --> doShift ws_gimp
     , className =? "Pidgin"             --> doShift ws_chat
     , className =? "Skype"              --> doShift ws_chat
-    , className =? "MPlayer"            --> doShift "5:fullscreen"
-    , className =? "Smplayer"           --> doShift "5:fullscreen"
+    , className =? "MPlayer"            --> doShift "5"
+    , className =? "Smplayer"           --> doShift "5"
     --, className =? "xfce4-notifyd"      --> doIgnore
     , title =? "xfce4-notifyd"          --> doIgnore
     , title =? "kruler"                 --> doIgnore
@@ -112,7 +112,7 @@ customLayoutHook
     = onWorkspace ws_chat imLayout
     $ onWorkspace ws_web webL
     $ onWorkspace ws_gimp gimpL
-    $ onWorkspace "5:fullscreen" fullL
+    $ onWorkspace "5" fullL
     $ standardLayouts
    where
         standardLayouts = avoidStruts  $ (tabLayout ||| tiled |||  reflectTiled ||| Mirror tiled ||| Mirror reflectTiled ||| Full)
@@ -199,13 +199,48 @@ customKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. shiftMask, xK_grave ), namedScratchpadAction scratchpads "python" )
     , ((modMask .|. shiftMask, xK_z ),     namedScratchpadAction scratchpads "python" )
 
+    , ((modMask,               xK_1), windows $ W.view "1")
+    , ((modMask,               xK_2), windows $ W.view "2")
+    , ((modMask,               xK_3), windows $ W.view "3")
+    , ((modMask,               xK_4), windows $ W.view "4")
+    , ((modMask,               xK_5), windows $ W.view "5")
+    , ((modMask,               xK_6), windows $ W.view "6")
+    , ((modMask,               xK_7), windows $ W.view "7")
+    , ((modMask,               xK_8), windows $ W.view "8")
+    , ((modMask,               xK_9), windows $ W.view "9")
+
+    , ((modMask .|. shiftMask, xK_1), windows $ W.shift "1")
+    , ((modMask .|. shiftMask, xK_2), windows $ W.shift "2")
+    , ((modMask .|. shiftMask, xK_3), windows $ W.shift "3")
+    , ((modMask .|. shiftMask, xK_4), windows $ W.shift "4")
+    , ((modMask .|. shiftMask, xK_5), windows $ W.shift "5")
+    , ((modMask .|. shiftMask, xK_6), windows $ W.shift "6")
+    , ((modMask .|. shiftMask, xK_7), windows $ W.shift "7")
+    , ((modMask .|. shiftMask, xK_8), windows $ W.shift "8")
+    , ((modMask .|. shiftMask, xK_9), windows $ W.shift "9")
+
+    , ((modMask .|. controlMask, xK_1), windows $ W.view "1´")
+    , ((modMask .|. controlMask, xK_2), windows $ W.view "2´")
+    , ((modMask .|. controlMask, xK_3), windows $ W.view "3´")
+    , ((modMask .|. controlMask, xK_4), windows $ W.view "4´")
+    , ((modMask .|. controlMask, xK_5), windows $ W.view "5´")
+    , ((modMask .|. controlMask, xK_6), windows $ W.view "6´")
+    , ((modMask .|. controlMask, xK_7), windows $ W.view "7´")
+    , ((modMask .|. controlMask, xK_8), windows $ W.view "8´")
+    , ((modMask .|. controlMask, xK_9), windows $ W.view "9´")
+
+    , ((modMask .|. controlMask .|. shiftMask, xK_1), windows $ W.shift "1´")
+    , ((modMask .|. controlMask .|. shiftMask, xK_2), windows $ W.shift "2´")
+    , ((modMask .|. controlMask .|. shiftMask, xK_3), windows $ W.shift "3´")
+    , ((modMask .|. controlMask .|. shiftMask, xK_4), windows $ W.shift "4´")
+    , ((modMask .|. controlMask .|. shiftMask, xK_5), windows $ W.shift "5´")
+    , ((modMask .|. controlMask .|. shiftMask, xK_6), windows $ W.shift "6´")
+    , ((modMask .|. controlMask .|. shiftMask, xK_7), windows $ W.shift "7´")
+    , ((modMask .|. controlMask .|. shiftMask, xK_8), windows $ W.shift "8´")
+    , ((modMask .|. controlMask .|. shiftMask, xK_9), windows $ W.shift "9´")
+
     ]
-    ++
-    -- mod-[1..9] %! Switch to workspace N
-    -- mod-shift-[1..9] %! Move client to workspace N
-    [((m .|. modMask, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+
     ++
 
     -- mod-[a,s] %! switch to twinview screen 1/2
