@@ -2,6 +2,8 @@
 let g:loaded_matchparen=1             " die, slow and needless matching paren highlighting
 let g:searchEmptyLinesPostfixing = 3  " php folding stuff
 let g:cursor_follows_alphabet = 1     " translit plugin
+"let g:translit_map = 'translit.ru'
+let g:translit_map = 'greek'
 
 let mapleader=","
 
@@ -35,7 +37,7 @@ set suffixes-=.h
 set virtualedit=block
                         " allow moving past end of lines when selecting
                         "    vertical blocks with ^V
-set bs=indent,start     " usable backspace
+set bs=indent,eol,start " usable backspace
 set hlsearch
 set incsearch
 set ignorecase          " search ignores case while no uppercase is searched

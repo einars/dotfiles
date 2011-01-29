@@ -61,8 +61,8 @@ alias xc='xcalib ~/Samsung*.icm'
 
 alias rsynx='rsync -vax --no-owner --no-group --no-perms'
 
-#alias phptags="find . -name '*.php' | grep -v deployment | xargs ctags"
-alias phptags="ctags **/*.php"
+alias phptags="find . -name '*.php' | grep -v deployment | grep -v release | \\xargs ctags"
+#alias phptags="ctags **/*.php"
 
 alias py=ipython
 

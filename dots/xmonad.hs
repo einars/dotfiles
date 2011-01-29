@@ -33,6 +33,8 @@ import XMonad.Layout.TwoPane
 import XMonad.Layout.TrackFloating
 import XMonad.Hooks.SetWMName
 
+import XMonad.Layout.LayoutCombinators hiding ((|||))
+
 ws_gimp = "4"
 ws_chat = "8"
 ws_web  = "1"
@@ -88,7 +90,7 @@ customXPConfig = defaultXPConfig
 customManageHook = (composeAll . concat $
     [
     [ isFullscreen                    --> doFullFloat
-    , isDialog                          --> doCenterFloat
+    , isDialog                          --> doRectFloat (W.RationalRect (1/6) (1/6) (2/3) (2/3))
     , className =? "Xmessage"           --> doCenterFloat
     , className =? "Wine"               --> doCenterFloat
     , className =? "Gimp"               --> doShift ws_gimp
@@ -104,7 +106,7 @@ customManageHook = (composeAll . concat $
     , [title    =? t                    --> doCenterFloat | t <- centerFloats ]
     ]
     ) <+> manageDocks <+> namedScratchpadManageHook scratchpads
-    where titleFloats = [ "Downloads", "Send file", "Open", "File Transfers", "XChat: Network List", "Save screenshot as...", "Screen Ruler"]
+    where titleFloats = [ "XChat: Network List", "Save screenshot as...", "Screen Ruler"]
           centerFloats = [ "Caml graphics" ]
 
 
@@ -121,19 +123,14 @@ customLayoutHook
         tabLayout       = (trackFloating $ tabbed shrinkText defaultTheme)
         full            = smartBorders Full
 
-        --imLayout        = tiled
         imLayout        = avoidStruts $
                             (withIM (0.2) isSkype (Mirror tiled))
-        --imLayoutBork    = avoidStruts $
-                            -- (withIM (0.2) isSkype (Mirror tiled))
-                            -- *//*
-                            -- (withIM (0.2) isPidgin (Mirror tiled))
         isSkype         = (Title "einars.lielmanis - Skype™ (Beta)")
-        --isPidgin        = And (ClassName "Pidgin") (Role "buddy_list")
 
-        -- gimpL = avoidStruts $ withIM (0.11) (Role "gimp-toolbox") $ reflectHoriz $ withIM (0.15) (Role "gimp-dock") Full
         gimpL = combineTwoP (TwoPane 0.03 0.15) (tabLayout) (reflectHoriz $ combineTwoP (TwoPane 0.03 0.2) tabLayout (tabLayout ||| Grid) (Role "gimp-dock")) (Role "gimp-toolbox")
-        webL  = avoidStruts $ Mirror reflectTiled |||  Full 
+        -- tabbedLayout = tabbedBottomAlways shrinkText defaultTheme
+        -- gimpL2 = tabbedLayout ****||* Full
+        webL  = avoidStruts $ Mirror reflectTiled |||  Full
         fullL = avoidStruts $ full
 
 scratchpads =

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export PATH=/home/e/bin:/home/e/bin/private:$PATH
+export PATH=$HOME/bin:$HOME/bin/private:$PATH
 #export LC_TIME="en_LV.UTF-8"
 
 # skype bug
@@ -14,25 +14,26 @@ export SDL_VIDEO_FULLSCREEN_HEAD=0
 export WINEARCH=win32
 
 
-xrdb -merge /home/e/.Xresources
+xrdb -merge $HOME/.Xresources
 
 nvidia-settings --load-config-only
 
 setxkbmap lv -option ctrl:nocaps -option altwin:swap_lalt_lwin
 
-
-#xscreensaver -no-splash &
-
-## xfce
-#stjerm -k f1 -p right -fn 'Terminus 10' &
-#ck-launch-session startxfce4
-
 ## xmonad
-export PATH=/home/e/.xmonad/bin:$PATH
+export PATH=$HOME/.xmonad/bin:$PATH
 ( sleep 2s && trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 6 --height 12 --transparent true --tint 0x000000) &
 xsetroot -cursor_name left_ptr
+numlockx
 xmodmap ~/.Xmodmap
 xset s off # screensaver
 xset dpms 0 0 0
+
+( sleep 2s && skype ) &
+( sleep 3s && pidgin ) &
+( sleep 4s && parcellite ) &
+( sleep 4s && keepassx -min -lock ) &
+( sleep 5s && opera ) &
+
 exec ck-launch-session xmonad
 #exec ck-launch-session openbox
