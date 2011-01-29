@@ -33,5 +33,8 @@ mkdir -p ~/.xmonad
 ln -sfn $INSTALL_SOURCE/dots/xmonad.hs ~/.xmonad/xmonad.hs
 ln -sfn $INSTALL_SOURCE/dots/xmobarrc ~/.xmobarrc
 
+cd $INSTALL_SOURCE/zsh
+git clone git://github.com/nicoulaj/zsh-syntax-highlighting
+
 
 touch ~/.zsh/aliases.private
