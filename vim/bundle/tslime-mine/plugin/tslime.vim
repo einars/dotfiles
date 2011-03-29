@@ -1,8 +1,8 @@
 function! Send_to_Tmux(text)
-  let escaped_text = substitute(a:text, "'", "'\\\\''", 'g')
-  let trimmed_text = substitute(escaped_text, '[\r\n ]\+$', '', 'g')
-  call system("tmux set-buffer -t 0 '" . trimmed_text . "\n'" )
-  call system("tmux paste-buffer -t 0:0.1")
+    let enterized = substitute(a:text, '[\r\n]\+', '\r', 'g')
+    call writefile([enterized], "/tmp/tslime.tmp")
+    call system("tmux load-buffer -t 0 /tmp/tslime.tmp" )
+    call system("tmux paste-buffer -t 0:0.1")
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
