@@ -443,3 +443,5 @@ source ~/.vim/jeetworks-arrows.vim
 " no need for shift to enter command mode
 nnoremap ; :
 
+
+au BufEnter *.ml,*.c,*.h,*.cpp,*.php :Rooter
