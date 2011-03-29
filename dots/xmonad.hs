@@ -58,7 +58,7 @@ main = do
                 , focusFollowsMouse  = True
                 , terminal           = "urxvt"
                 , logHook            = customLogHook xmproc
-                , startupHook        = setWMName "LG3D"
+                -- , startupHook        = setWMName "LG3D"
                 , keys               = customKeys
                 }
 
@@ -90,7 +90,7 @@ customXPConfig = defaultXPConfig
 customManageHook = (composeAll . concat $
     [
     [ isFullscreen                    --> doFullFloat
-    , isDialog                          --> doRectFloat (W.RationalRect (1/6) (1/6) (2/3) (2/3))
+    , isDialog                          --> doRectFloat (W.RationalRect (1/6) (1/6) (1/2) (1/2))
     , className =? "Xmessage"           --> doCenterFloat
     , className =? "Wine"               --> doCenterFloat
     , className =? "Gimp"               --> doShift ws_gimp
@@ -155,7 +155,7 @@ customKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- floating layer stuff
     , ((modMask .|. shiftMask, xK_t ),     withFocused $ windows . W.sink)
 
-    , ((modMask,               xK_n ),     refresh)
+    , ((modMask .|. shiftMask, xK_r ),     refresh)
 
     , ((modMask,               xK_Tab ),   windows W.focusDown)
     , ((modMask .|. shiftMask, xK_Tab ),   windows W.focusUp)
@@ -181,6 +181,8 @@ customKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     , ((modMask,               xK_m     ), spawn "run-inferior super-m")
     , ((modMask .|. shiftMask, xK_m     ), spawn "run-inferior super-M")
+    , ((modMask,               xK_n     ), spawn "run-inferior super-n")
+    , ((modMask .|. shiftMask, xK_n     ), spawn "run-inferior super-N")
     , ((modMask,               xK_t     ), spawn "thunar torrents")
     , ((modMask,               xK_q     ), spawn "thunar stuff")
     , ((modMask,               xK_b     ), spawn "thunar /storage/books")
