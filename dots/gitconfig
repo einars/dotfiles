@@ -6,6 +6,7 @@
     sup = svn rebase
     co = checkout
     la = log --pretty=\"format:%ad %h (%an): %s\" --date=short
+    last = log -n 1
 [core]
     #autocrlf = input
     #
