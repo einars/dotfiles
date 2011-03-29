@@ -4,6 +4,7 @@
 # !!! common aliases
 #
 
+alias jad='jad -b -ff -s java'
 alias ack='clear; ack'
 alias grep="grep --color=auto -d skip -i --line-buffered"
 alias ssh='TERM=xterm ssh -C'
@@ -42,6 +43,8 @@ alias amend="git commit --amend"
 alias gitsc="test -d .git/svn && git svn dcommit"
 alias master="git checkout master"
 alias develop="git checkout development"
+alias testing="git checkout testing"
+alias b="git checkout "
 
 # svn
 
@@ -53,7 +56,7 @@ alias sa="svn add"
 alias suu="svn update --ignore-externals"
 
 alias offlineimap='offlineimap -u Noninteractive.Basic'
-alias o="offlineimap -u Noninteractive.Basic 2>/dev/null | grep --line-buffered 'message\|account'| grep --line-buffered -v 'Delet\|Adding flags'"
+alias o="offlineimap -u Noninteractive.Basic 2>/dev/null | grep --line-buffered 'message\|account'| grep --line-buffered -v 'Copy message -\|Delet\|Adding flags'"
 
 alias xsel='xsel -b'
 
@@ -76,7 +79,7 @@ alias -g KILL9=" awk '{print \$2}' | xargs /bin/kill -9 "
 
 alias acka='ack --follow -a -i -Q'
 alias ackj='ack --type=java -i -Q'
-alias wget='wget -U "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)" --load-cookies=/tmp/wget.cookies.txt --save-cookies=/tmp/wget.cookies.txt --keep-session-cookies'
+alias wget="wget -U 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)' --load-cookies=/tmp/wget.$EUID.cookies.txt --save-cookies=/tmp/wget.$EUID.cookies.txt --keep-session-cookies"
 
 # rlwraps
 
