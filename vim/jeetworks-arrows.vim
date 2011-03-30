@@ -56,8 +56,10 @@ function! SetArrowKeysAsTextShifters()
     nnoremap <silent> <C-Down> <Esc>:call AddEmptyLineBelow()<CR>
 
     " visual mode
-    vmap <silent> <Left> <
-    vmap <silent> <Right> >
+    vmap <silent> <Left> <gv
+    vmap <silent> <Right> >gv
+    vmap <silent> < <gv
+    vmap <silent> > >gv
     vnoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>gv
     vnoremap <silent> <Down>  <Esc>:call AddEmptyLineAbove()<CR>gv
     vnoremap <silent> <C-Up> <Esc>:call DelEmptyLineBelow()<CR>gv
