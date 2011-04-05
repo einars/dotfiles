@@ -7,7 +7,7 @@ URxvt*internalBorder: 0
 URxvt*loginShell: false
 URxvt*perl-ext-common: default,matcher,searchable-scrollback
 URxvt*pointerBlank: false
-URxvt*saveLines: 10000
+URxvt*saveLines: 300
 URxvt*secondaryScroll: true
 URxvt*jumpScroll: true
 URxvt*skipScroll: true
