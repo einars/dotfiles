@@ -126,9 +126,9 @@ bindkey "\e[A" history-beginning-search-backward
 bindkey "\e[B" history-beginning-search-forward
 
 
-if [[ $TERM == xterm ]]; then
-    export TERM=xterm-256color
-fi
+#if [[ $TERM == xterm ]]; then
+#    export TERM=xterm-256color
+#fi
 
 
 function cd_hook()
