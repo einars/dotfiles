@@ -359,6 +359,7 @@ nnoremap <leader>eq :e ~/Documents/quotes.txt<cr>
 nnoremap <leader>en :e ~/Documents/notes.txt<cr>
 nnoremap <leader>eb :e ~/Documents/backlog.txt<cr>
 nnoremap <leader>ed :e ~/Documents/drawing.txt<cr>
+nnoremap <leader>eo :e ~/opera/js/blockeds.js<cr>
 
 
 augroup javascript
