@@ -26,7 +26,9 @@ alias ls='ls --color=tty --si'
 
 alias iddqd='sudo -s'
 
-alias relight='sudo /etc/rc.d/lighttpd restart'
+#alias relight='sudo /etc/rc.d/lighttpd restart'
+alias reh='sudo /etc/rc.d/httpd restart'
+alias relight='sudo /etc/rc.d/httpd restart'
 
 alias pss="ps -Adf | grep -i"
 alias p="/bin/ps axfwwh -eo '%p %U %a'"
