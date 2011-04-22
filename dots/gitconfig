@@ -24,3 +24,5 @@
 	renamelimit = 0
 [pack]
 	threads = 0
+[push]
+	default = current

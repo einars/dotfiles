@@ -13,5 +13,5 @@ if [[ $output == "" ]] {
     output=Ok
 }
 
-notify-send -t $timeout -u normal -h int:x:10 -h int:y:0 $output[0,700]
+notify-send -t $timeout -u normal -h int:x:1080 -h int:y:0 $output[0,700]
 echo $output

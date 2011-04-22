@@ -121,7 +121,7 @@ customLayoutHook
         tiled           = smartBorders (ResizableTall 1 (2/100) (1/2) [])
         reflectTiled    = (reflectHoriz tiled)
         tabLayout       = (trackFloating $ tabbed shrinkText defaultTheme)
-        full            = smartBorders Full
+        full            = noBorders Full
 
         imLayout        = avoidStruts $
                             (withIM (0.2) isSkype (Mirror tiled))

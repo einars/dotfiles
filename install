@@ -8,6 +8,9 @@
 	exit -1
 }
 
+git submodule init
+git submodule update
+
 ln -sfn $INSTALL_SOURCE/vim ~/.vim
 ln -sfn $INSTALL_SOURCE/vim ~/vim
 ln -sfn ~/.vim/vimrc ~/.vimrc
@@ -32,9 +35,5 @@ ln -sfn $INSTALL_SOURCE/xfce4/xfce4-keyboard-shortcuts.xml /.gitconfig ~/.config
 mkdir -p ~/.xmonad
 ln -sfn $INSTALL_SOURCE/dots/xmonad.hs ~/.xmonad/xmonad.hs
 ln -sfn $INSTALL_SOURCE/dots/xmobarrc ~/.xmobarrc
-
-cd $INSTALL_SOURCE/zsh
-git clone git://github.com/nicoulaj/zsh-syntax-highlighting
-
 
 touch ~/.zsh/aliases.private

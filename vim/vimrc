@@ -49,7 +49,9 @@ set nowritebackup       " don't care about vim's backups at all
 set noswapfile          " can't remember a single time this would have been useful
 
 
-set textwidth=120       " screw purists
+"set textwidth=120       " screw purists
+set textwidth=75         " meh
+
 set hidden              " suddenly, magically, buffers get usable
 set autoread            " don't care about ext-modified files, just reload them
 set list
