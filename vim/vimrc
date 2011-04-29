@@ -108,19 +108,16 @@ if has('gui_running')
 
     " et guifont=Consolas\ 12          " too blurry for me
     " et guifont=Inconsolata\ 12       " very nice, but leaves terrible artefacts with national (mostly russian) characters
-    set guifont=Terminus\ 10          " wonderful, yet smallish, and sucks at larger sizes
+     set guifont=Terminus\ 11          " wonderful, yet smallish, and sucks at larger sizes
     " set guifont=Droid\ Sans\ Mono\ 11
     " et guifont=DejaVu\ Sans\ Mono\ 8
-    set guifont=Terminus\ 9          " wonderful, yet smallish, and sucks at larger sizes
+    " set guifont=Terminus\ 9          " wonderful, yet smallish, and sucks at larger sizes
 
     set guioptions+=c       """ use console dialogs, not the gui ones
     set guioptions-=T       """ don't show the toolbar
     set guioptions-=m       """ don't show the menu
     set guioptions-=r       """ don't need right scrollbar
     set guioptions-=L       """ don't show left scrollbar
-
-    """ gvim doesn't want to work nice with x clipboard
-    map! <s-insert> <c-r>*
 
     """ gvim weirdnesses
     map  <S-CR> <CR>
@@ -131,7 +128,9 @@ if has('gui_running')
     """ i hate blinking cursor
     let &guicursor = &guicursor . ",a:blinkon0"
 
-    colorscheme xoria256-mine
+    """ colorscheme xoria256-mine
+    colorscheme zenburn
+    source ~/.vim/phpcolors-zenburn.vim
 
 else
     cnoreabbr W w
@@ -448,3 +447,4 @@ nnoremap ; :
 
 
 au BufEnter *.ml,*.c,*.h,*.cpp,*.php :Rooter
+

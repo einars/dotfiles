@@ -1,12 +1,12 @@
 Config
-    { bgColor      = "#000000"
+    { bgColor      = "#111111"
     , fgColor      = "#ddddff"
  -- nouveau rotated monitor setup:
  -- , position     = Static { xpos = 1024 , ypos = 0 , width = 1800 , height = 15 }
  -- twinview:
-  , position     = Static { xpos = 1280 , ypos = 0 , width = 1800 , height = 15 }
+ -- , position     = Static { xpos = 1280 , ypos = 0 , width = 1800 , height = 15 }
  -- crazy twin:
- -- , position     = Static { xpos = 1024 , ypos = 0 , width = 1100 , height = 15 }
+ , position     = Static { xpos = 1024 , ypos = 0 , width = 1100 , height = 15 }
  -- single 1920:
  -- , position     = Static { xpos = 0 , ypos = 0 , width = 1800 , height = 15 }
  -- single 1280:

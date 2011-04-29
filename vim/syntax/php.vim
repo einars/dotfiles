@@ -22,19 +22,21 @@ syn sync clear
 runtime! syntax/html.vim
 
 syn region phpComment  start="/\*" end="\*/" contained extend
-syn match phpComment  /#.\{-}\(?>\|$\)\@=/  contained
-syn match phpComment  "//.\{-}\(?>\|$\)\@=" contained
+syn region phpComment  start=/\/\// end=/$/ contained oneline extend
+syn region phpComment  start=/#/ end=/$/ contained oneline extend
+" syn match phpComment  /#.\{-}\(?>\|$\)\@=/  contained
+" syn match phpComment  "//.\{-}\(?>\|$\)\@=" contained
 
-syn region phpFunctionDef matchgroup=phpKeyword start=/function\s/ end=/(/me=s-1 extend oneline contained
+syn region phpFunctionDef matchgroup=phpKeyword start=/\vfunction\s/ end=/(/me=s-1 extend oneline contained
+syn region phpFunctionDef matchgroup=phpKeyword start=/\vclass\s/ end=/ / contained oneline
+syn region phpFunctionDef matchgroup=phpKeyword start=/\vextends / end=/\v$|\{/ contained oneline
+
 
 " far from the comprehensive list. still, most of what I need
 
-syn keyword phpKeyword if else while for switch elseif return die exit echo print static global private protected public class list each array break continue
-
-
+syn keyword phpKeyword if else while for switch elseif return die exit echo print static global private protected public list each array break continue and or not new null as true false
 
 syn match phpFunction /\(\h\w*::\)\?\h\w*\s*(/me=e-1 contained display
-
 
 syn match phpIdentifier /$\h\w*/ contained display
 syn match phpIdentifierInString /$\h\w*/ contained display
@@ -49,12 +51,16 @@ syn region phpString matchgroup=phpString start=/"/ skip=/\\./ end=/"/ contains=
 syn region phpString matchgroup=phpString start=/`/ skip=/\\./ end=/`/ contains=@phpDQStringInside contained extend keepend
 syn region phpString matchgroup=phpString start=/'/ skip=/\\./ end=/'/ contains=@phpSQStringInside contained extend keepend
 syn region phpString matchgroup=phpString start=/<<<\z(\I\i*\)/ end=/^\z1\(;\=$\)\@=/ contains=@phpDQStringInside contained extend keepend
-
+"
 " indenting needs this
-syn match phpParent "[({[\]})]" contained transparent display
+syn match phpParent "[({[\]})]" contained display
+
+
+syn match phpCrapsticle /\v[;:]/ contained display
+" syn match phpGoodsticle /\v[\-+*/<>=\.]/ contained display
 
 syn region phpRegion  matchgroup=phpTag start=/<?\(php\)\=/ end=/?>/
-    \ contains=phpComment,phpParent,phpKeyword,phpFunction,phpString,phpFunctionDef,phpIdentifier keepend
+    \ contains=phpComment,phpParent,phpKeyword,phpFunction,phpString,phpFunctionDef,phpIdentifier,phpCrapsticle,phpGoodsticle keepend
 
 
 " region sync is sometimes messy with html.vim
@@ -81,6 +87,10 @@ hi def link phpIdentifierInString Identifier
 hi def link phpConstIdentifier    Identifier
 hi def link phpSpecialChar        Special
 hi def link phpPrintfSpecifier    Special
+
+hi def link phpGoodsticle         phpFunction
+hi def link phpRegion         phpKeyword
+hi def link phpParent         phpCrapsticle
 
 let b:current_syntax = "php"
 

@@ -31,6 +31,7 @@ import XMonad.Layout.Tabbed
 import XMonad.Layout.ComboP
 import XMonad.Layout.TwoPane
 import XMonad.Layout.TrackFloating
+import XMonad.Layout.StackTile
 import XMonad.Hooks.SetWMName
 
 import XMonad.Layout.LayoutCombinators hiding ((|||))
@@ -81,8 +82,8 @@ customPP = defaultPP
 customXPConfig = defaultXPConfig
     { font     = "-*-terminus-*-*-*-*-12-*-*-*-*-*-*-u"
     , fgColor  = "#ddddff"
-    , bgColor  = "#000000"
-    , bgHLight = "#000000"
+    , bgColor  = "#111111"
+    , bgHLight = "#222222"
     , fgHLight = "#FF0000"
     , position = Top
     }
@@ -90,15 +91,14 @@ customXPConfig = defaultXPConfig
 customManageHook = (composeAll . concat $
     [
     [ isFullscreen                    --> doFullFloat
-    , isDialog                          --> doRectFloat (W.RationalRect (1/6) (1/6) (1/2) (1/2))
+    , isDialog                          --> doRectFloat (W.RationalRect (1/6) (1/6) (2/3) (2/5))
     , className =? "Xmessage"           --> doCenterFloat
     , className =? "Wine"               --> doCenterFloat
     , className =? "Gimp"               --> doShift ws_gimp
     , className =? "Pidgin"             --> doShift ws_chat
     , className =? "Skype"              --> doShift ws_chat
-    , className =? "MPlayer"            --> doShift "5"
-    , className =? "Smplayer"           --> doShift "5"
-    --, className =? "xfce4-notifyd"      --> doIgnore
+    -- , className =? "MPlayer"            --> doShift "5"
+    -- , className =? "Smplayer"           --> doShift "5"
     , title =? "xfce4-notifyd"          --> doIgnore
     , title =? "kruler"                 --> doIgnore
     ]
@@ -117,28 +117,25 @@ customLayoutHook
     $ onWorkspace "5" fullL
     $ standardLayouts
    where
-        standardLayouts = avoidStruts  $ (tabLayout ||| tiled |||  reflectTiled ||| Mirror tiled ||| Mirror reflectTiled ||| Full)
+        standardLayouts = avoidStruts  $ (stacktiled ||| tabLayout |||  Full)
+        stacktiled      = smartBorders (StackTile 1 (3/100) (1/2))
         tiled           = smartBorders (ResizableTall 1 (2/100) (1/2) [])
-        reflectTiled    = (reflectHoriz tiled)
-        tabLayout       = (trackFloating $ tabbed shrinkText defaultTheme)
+        tabLayout       = (tabbed shrinkText defaultTheme)
         full            = noBorders Full
 
         imLayout        = avoidStruts $
-                            (withIM (0.2) isSkype (Mirror tiled))
+                            (withIM (0.2) isSkype (stacktiled))
         isSkype         = (Title "einars.lielmanis - Skype™ (Beta)")
 
         gimpL = combineTwoP (TwoPane 0.03 0.15) (tabLayout) (reflectHoriz $ combineTwoP (TwoPane 0.03 0.2) tabLayout (tabLayout ||| Grid) (Role "gimp-dock")) (Role "gimp-toolbox")
-        -- tabbedLayout = tabbedBottomAlways shrinkText defaultTheme
-        -- gimpL2 = tabbedLayout ****||* Full
-        webL  = avoidStruts $ Mirror reflectTiled |||  Full
+        webL  = avoidStruts $ stacktiled |||  Full
         fullL = avoidStruts $ full
 
 scratchpads =
         [ NS "urxvt1" "urxvt --title scratch-1" (title =? "scratch-1") xfloating
         , NS "urxvt2" "urxvt --title scratch-2" (title =? "scratch-2") xfloating
-        , NS "python" "xterm -e python" (title =? "python") xfloating
         ]
-        where xfloating = (customFloating $ W.RationalRect (1/3) (1/3) (1/3) (1/3))
+        where xfloating = (customFloating $ W.RationalRect (1/6) (2/5) (2/3) (1/3))
 
 customKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     [ ((modMask,               xK_Return), spawn $ XMonad.terminal conf)
@@ -159,22 +156,13 @@ customKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     , ((modMask,               xK_Tab ),   windows W.focusDown)
     , ((modMask .|. shiftMask, xK_Tab ),   windows W.focusUp)
-    , ((modMask,               xK_j ),     windows W.focusDown)
-    , ((modMask,               xK_k ),     windows W.focusUp)
 
     , ((modMask .|. shiftMask, xK_Return), spawn "urxvt-tmux")
     , ((modMask .|. shiftMask, xK_j ),     windows W.swapDown )
     , ((modMask .|. shiftMask, xK_k ),     windows W.swapUp )
 
-    , ((modMask,               xK_comma),  sendMessage (IncMasterN 1))
-    , ((modMask,               xK_period), sendMessage (IncMasterN (-1)))
-    , ((modMask .|. shiftMask, xK_comma),  sendMessage (IncMasterN 1))
-    , ((modMask .|. shiftMask, xK_period), sendMessage (IncMasterN (-1)))
-
-    , ((modMask,               xK_h ),     sendMessage Shrink)
-    , ((modMask,               xK_l ),     sendMessage Expand)
-    , ((modMask .|. shiftMask, xK_h ),     sendMessage MirrorShrink)
-    , ((modMask .|. shiftMask, xK_l ),     sendMessage MirrorExpand)
+    , ((modMask,               xK_j ),     sendMessage Shrink)
+    , ((modMask,               xK_k ),     sendMessage Expand)
 
     , ((modMask .|. shiftMask, xK_p ),     io (exitWith ExitSuccess))
     , ((modMask,               xK_p ),     restart "xmonad" True)
@@ -195,8 +183,6 @@ customKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask,               xK_w     ), spawn "xmonad-refresh-opera")
     , ((modMask,               xK_grave ), namedScratchpadAction scratchpads "urxvt1" )
     , ((modMask,               xK_z ),     namedScratchpadAction scratchpads "urxvt2" )
-    , ((modMask .|. shiftMask, xK_grave ), namedScratchpadAction scratchpads "python" )
-    , ((modMask .|. shiftMask, xK_z ),     namedScratchpadAction scratchpads "python" )
 
     , ((modMask,               xK_1), windows $ W.view "1")
     , ((modMask,               xK_2), windows $ W.view "2")

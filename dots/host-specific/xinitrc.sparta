@@ -25,18 +25,24 @@ setxkbmap lv -option ctrl:nocaps -option altwin:swap_lalt_lwin
 
 ## xmonad
 export PATH=$HOME/.xmonad/bin:$PATH
-( sleep 2s && trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 6 --height 12 --transparent true --tint 0x000000) &
+( sleep 2s && trayer --edge top --align right --transparent true --SetDockType true --SetPartialStrut true --expand true --width 6 --height 12 --transparent true --tint 0x000000) &
 xsetroot -cursor_name left_ptr
 numlockx
 xmodmap ~/.Xmodmap
 xset s off # screensaver
 xset dpms 0 0 0
 
-(             parcellite ) &
-(             keepassx -min -lock ) &
-(             skype ) &
-( sleep 3s && pidgin ) &
-( sleep 3s && opera ) &
+xrandr -o left
+
+
+parcellite &
+keepassx -min -lock &
+skype &
+( sleep 2s && pidgin ) &
+( sleep 2s && xcompmgr -c -r14 -l-20 -t-20 -o.6 ) &
+( sleep 4s && opera ) &
+
+hsetroot -solid '#111111'
 
 exec ck-launch-session xmonad
 #exec ck-launch-session openbox

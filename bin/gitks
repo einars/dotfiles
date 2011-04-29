@@ -1,0 +1,4 @@
+#!/bin/sh
+
+gitk $(git for-each-ref --format='%(refname)' 'refs/heads/')
+

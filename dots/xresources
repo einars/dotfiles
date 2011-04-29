@@ -3,11 +3,11 @@ URxvt*cutchars: BACKSLASH '"'&()*,;<=>?@[]{|}
 URxvt*colorUL: #86a2be
 URxvt*geometry: 140x35
 URxvt.cursorColor: #86a2be
-URxvt*internalBorder: 0
+URxvt*internalBorder: 1
 URxvt*loginShell: false
 URxvt*perl-ext-common: default,matcher,searchable-scrollback
 URxvt*pointerBlank: false
-URxvt*saveLines: 300
+URxvt*saveLines: 500
 URxvt*secondaryScroll: true
 URxvt*jumpScroll: true
 URxvt*skipScroll: true
@@ -19,7 +19,7 @@ URxvt*scrollWithBuffer: true
 URxvt*termName: rxvt-256color
 URxvt*underlineColor: #86a2be
 
-URxvt*matcher.pattern.1: \\b(mailto|http|https|sftp|ftp|file):[/]*[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt*matcher.pattern.1: \\b(mailto|https?|s?ftp|file):[/]*[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 URxvt*matcher.pattern.2: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 URxvt*urlLauncher: opera
 

@@ -144,6 +144,12 @@ function cd_hook()
 
 chpwd_functions=('cd_hook')
 
+touch ~/.z
+. ~/.zsh/z/z.sh
+function precmd() {
+    z --add "$(pwd -P)"
+}
+
 . ~/.zsh/aliases
 . ~/.zsh/aliases.private
 
