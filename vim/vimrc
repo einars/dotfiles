@@ -108,7 +108,8 @@ if has('gui_running')
 
     " et guifont=Consolas\ 12          " too blurry for me
     " et guifont=Inconsolata\ 12       " very nice, but leaves terrible artefacts with national (mostly russian) characters
-     set guifont=Terminus\ 11          " wonderful, yet smallish, and sucks at larger sizes
+    " set guifont=Terminus\ 11          " wonderful, yet smallish, and sucks at larger sizes
+     set guifont=Monaco\ 11          " wonderful, yet smallish, and sucks at larger sizes
     " set guifont=Droid\ Sans\ Mono\ 11
     " et guifont=DejaVu\ Sans\ Mono\ 8
     " set guifont=Terminus\ 9          " wonderful, yet smallish, and sucks at larger sizes
@@ -129,7 +130,8 @@ if has('gui_running')
     let &guicursor = &guicursor . ",a:blinkon0"
 
     """ colorscheme xoria256-mine
-    colorscheme zenburn
+    """ colorscheme zenburn
+    colorscheme zenburn-mine
     source ~/.vim/phpcolors-zenburn.vim
 
 else
@@ -447,4 +449,7 @@ nnoremap ; :
 
 
 au BufEnter *.ml,*.c,*.h,*.cpp,*.php :Rooter
+
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 

@@ -2,7 +2,7 @@ function! Send_to_Tmux(text)
     let enterized = substitute(a:text, '[\r\n]\+', '\r', 'g')
     call writefile([enterized], "/tmp/tslime.tmp")
     call system("tmux load-buffer -t 0 /tmp/tslime.tmp" )
-    call system("tmux paste-buffer -t 0:0.1")
+    call system("tmux paste-buffer -t 0:0.0")
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
