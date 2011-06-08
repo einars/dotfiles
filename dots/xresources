@@ -1,11 +1,13 @@
 URxvt*font: xft:Terminus:pixelsize=12:antialias=false
+
+URxvt*depth: 32
+
 URxvt*cutchars: BACKSLASH '"'&()*,;<=>?@[]{|}
 URxvt*colorUL: #86a2be
 URxvt*geometry: 140x35
 URxvt.cursorColor: #86a2be
 URxvt*internalBorder: 1
 URxvt*loginShell: false
-URxvt*perl-ext-common: default,matcher,searchable-scrollback
 URxvt*pointerBlank: false
 URxvt*saveLines: 500
 URxvt*secondaryScroll: true
@@ -19,13 +21,17 @@ URxvt*scrollWithBuffer: true
 URxvt*termName: rxvt-256color
 URxvt*underlineColor: #86a2be
 
-URxvt*matcher.pattern.1: \\b(mailto|https?|s?ftp|file):[/]*[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-URxvt*matcher.pattern.2: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-URxvt*urlLauncher: opera
+URxvt.perl-ext-common: default,url-select
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.urlLauncher: opera
+URxvt.underlineURLs: true
 
 !! good white-on-black colors
 URxvt*foreground: #eeeeee
 URxvt*background: #242424
+
+!! true transparency:
+!! URxvt*background: rgba:1111/1111/1111/dddd
 URxvt*color0: #242424
 URxvt*color1: #bf7979
 URxvt*color2: #97b26b

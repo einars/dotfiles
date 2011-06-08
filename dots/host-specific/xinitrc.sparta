@@ -6,7 +6,7 @@ export PATH=$HOME/bin:$HOME/bin/private:$PATH
 # skype bug
 export QT_PLUGIN_PATH=/opt/lib32/usr/lib/qt/plugins
 
-#export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # sdl apps freak out fullscreen
@@ -25,21 +25,23 @@ setxkbmap lv -option ctrl:nocaps -option altwin:swap_lalt_lwin
 
 ## xmonad
 export PATH=$HOME/.xmonad/bin:$PATH
-( sleep 2s && trayer --edge top --align right --transparent true --SetDockType true --SetPartialStrut true --expand true --width 6 --height 12 --transparent true --tint 0x000000) &
+xrandr -o left
 xsetroot -cursor_name left_ptr
 numlockx
 xmodmap ~/.Xmodmap
 xset s off # screensaver
 xset dpms 0 0 0
 
-xrandr -o left
+trayer --edge top --align right --transparent true --SetDockType true --SetPartialStrut true --expand true --width 6 --height 12 --transparent true --tint 0x000000 &
+#trayer --transparent true --edge top --align left --margin 900 --SetPartialStrut true --widthtype request --height 12 --tint 0x000000 &
 
 
 parcellite &
 keepassx -min -lock &
 skype &
 ( sleep 2s && pidgin ) &
-( sleep 2s && xcompmgr -c -r14 -l-20 -t-20 -o.6 ) &
+#( sleep 2s && xcompmgr -c -r14 -l-20 -t-20 -o.6 ) &
+#( sleep 2s && xcompmgr -c -r14 -l-20 -t-20 -o.6 -f -D 2) &
 ( sleep 4s && opera ) &
 
 hsetroot -solid '#111111'

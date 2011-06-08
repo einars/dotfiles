@@ -26,3 +26,5 @@
 	threads = 0
 [push]
 	default = current
+[gui]
+	spellingdictionary = none

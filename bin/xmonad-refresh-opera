@@ -1,6 +1,18 @@
-xdotool mousemove 200 200
+#!/bin/sh
+
+set -e
+setup=opera-right
+
+mousedata=$(xdotool getmouselocation --shell)
+eval $mousedata
+
+if [[ $setup = "opera-left" ]]; then
+    xdotool mousemove 200 200
+else
+    xdotool mousemove 1250 200
+fi
+
 sleep 0.1
 xdotool key F5
 sleep 0.1
-xdotool mousemove 1990 500
-
+xdotool mousemove $X $Y

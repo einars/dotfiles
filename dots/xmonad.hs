@@ -59,7 +59,7 @@ main = do
                 , focusFollowsMouse  = True
                 , terminal           = "urxvt"
                 , logHook            = customLogHook xmproc
-                -- , startupHook        = setWMName "LG3D"
+                , startupHook        = setWMName "LG3D"
                 , keys               = customKeys
                 }
 
@@ -114,14 +114,14 @@ customLayoutHook
     = onWorkspace ws_chat imLayout
     $ onWorkspace ws_web webL
     $ onWorkspace ws_gimp gimpL
-    $ onWorkspace "5" fullL
+    $ onWorkspace "5" full
     $ standardLayouts
    where
         standardLayouts = avoidStruts  $ (stacktiled ||| tabLayout |||  Full)
         stacktiled      = smartBorders (StackTile 1 (3/100) (1/2))
         tiled           = smartBorders (ResizableTall 1 (2/100) (1/2) [])
         tabLayout       = (tabbed shrinkText defaultTheme)
-        full            = noBorders Full
+        full            = smartBorders Full
 
         imLayout        = avoidStruts $
                             (withIM (0.2) isSkype (stacktiled))
@@ -129,7 +129,6 @@ customLayoutHook
 
         gimpL = combineTwoP (TwoPane 0.03 0.15) (tabLayout) (reflectHoriz $ combineTwoP (TwoPane 0.03 0.2) tabLayout (tabLayout ||| Grid) (Role "gimp-dock")) (Role "gimp-toolbox")
         webL  = avoidStruts $ stacktiled |||  Full
-        fullL = avoidStruts $ full
 
 scratchpads =
         [ NS "urxvt1" "urxvt --title scratch-1" (title =? "scratch-1") xfloating
@@ -231,6 +230,6 @@ customKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- mod-[a,s] %! switch to twinview screen 1/2
     -- mod-shift-[a,s] %! move window to screen 1/2
     [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_a, xK_s] [0..]
+        | (key, sc) <- zip [xK_s, xK_a] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
