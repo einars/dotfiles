@@ -156,7 +156,7 @@ customKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask,               xK_Tab ),   windows W.focusDown)
     , ((modMask .|. shiftMask, xK_Tab ),   windows W.focusUp)
 
-    , ((modMask .|. shiftMask, xK_Return), spawn "urxvt-tmux")
+    , ((modMask .|. shiftMask, xK_Return), spawn "gvim ~/Documents/passwords.txt")
     , ((modMask .|. shiftMask, xK_j ),     windows W.swapDown )
     , ((modMask .|. shiftMask, xK_k ),     windows W.swapUp )
 

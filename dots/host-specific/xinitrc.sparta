@@ -32,12 +32,12 @@ xmodmap ~/.Xmodmap
 xset s off # screensaver
 xset dpms 0 0 0
 
-trayer --edge top --align right --transparent true --SetDockType true --SetPartialStrut true --expand true --width 6 --height 12 --transparent true --tint 0x000000 &
+trayer --edge top --align right --transparent true --SetDockType true --SetPartialStrut true --width 16 --height 11 --transparent true --tint 0x000000 &
 #trayer --transparent true --edge top --align left --margin 900 --SetPartialStrut true --widthtype request --height 12 --tint 0x000000 &
 
 
 parcellite &
-keepassx -min -lock &
+# keepassx -min -lock &
 skype &
 ( sleep 2s && pidgin ) &
 #( sleep 2s && xcompmgr -c -r14 -l-20 -t-20 -o.6 ) &

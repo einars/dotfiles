@@ -10,6 +10,7 @@ let mapleader=","
 " sadly, autoindentations tend to go haywire with this
 " set matchpairs=(:)
 
+set cryptmethod=blowfish
 set ttimeoutlen=100
 set history=1000
 set showmatch           " jump to matching paren quickly
@@ -56,19 +57,21 @@ set hidden              " suddenly, magically, buffers get usable
 set autoread            " don't care about ext-modified files, just reload them
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
-set conceallevel=2      " 7.3, if supported
+if has('conceal')
+    set conceallevel=2      " 7.3, if supported
+endif
 
 call pathogen#runtime_append_all_bundles()
 
 
-filet plugin indent on  " detect filetypes
-syn on                  " colors
+filetype plugin indent on  " detect filetypes
+syntax on                  " colors
 
 
 " micro-templates: autoload template
 
 set cpoptions-=a        " do not leave the template file open
-au BufNewFile * silent! 0r ~/.vim/templates/%:e.tpl
+autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.tpl
 
 
 
@@ -99,12 +102,8 @@ if has('gui_running')
 
     """ I automatically :wq main vim much more often than I need to.
     """ So here I get rid of the wq command.
-    cnoreabbr wq w
+    cmap wq w
 
-
-    """ laptop shift
-    cnoreabbr Wq w
-    cnoreabbr W w
 
     " et guifont=Consolas\ 12          " too blurry for me
     " et guifont=Inconsolata\ 12       " very nice, but leaves terrible artefacts with national (mostly russian) characters
@@ -362,6 +361,7 @@ nnoremap <leader>eq :e ~/Documents/quotes.txt<cr>
 nnoremap <leader>en :e ~/Documents/notes.txt<cr>
 nnoremap <leader>eb :e ~/Documents/backlog.txt<cr>
 nnoremap <leader>ed :e ~/Documents/drawing.txt<cr>
+nnoremap <leader>ep :e ~/Documents/passwords.txt<cr>
 nnoremap <leader>eo :e ~/opera/js/blockeds.js<cr>
 
 
@@ -418,17 +418,24 @@ augroup Latex
     autocmd FileType tex setlocal keywordprg=:help
 augroup END
 
+augroup MyPasswords
+    autocmd!
+    highlight Password ctermfg=252 ctermbg=252 guibg=orange guifg=orange
+    " highlight Visual ctermfg=252 ctermbg=252 guibg=orange guifg=orange
+    " highlight VisualNOS ctermfg=252 ctermbg=252 guibg=orange guifg=orange
+    " do not want persistence
+    " au BufRead passwords.txt call matchadd('Password', '\v  \zs([^ ]+)\ze$')
+    au BufRead passwords.txt syn match Password /\v  \zs([^ ]+)\ze$/
+augroup END
+
 """ subtly tell when lines are too long
 
 highlight RedundantSpaces term=standout ctermbg=red guibg=red
 
-au BufRead,BufNew *.* let w:m1=matchadd('Error', '\%120v.')
-au BufRead,BufNew *.* let w:m3=matchadd('Todo', '<+\w\++>')
-au BufRead,BufNew *.* let w:m4=matchadd('RedundantSpaces', '\s\+$\| \+\ze\t') "\ze sets end of match so only spaces highlighted
-au BufRead,BufNew *.* call matchadd('Todo', '\(!!!\|///\).*', -1)
-
-"autocmd FileType c,cpp,java,php,python,markdown,javascript,css,ocaml,scheme,lisp autocmd BufWritePre <buffer> :retab
-"autocmd FileType c,cpp,java,php,python,markdown,javascript,css,ocaml,scheme,lisp autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
+au BufRead,BufNew *.* call matchadd('Error', '\%120v.')
+au BufRead,BufNew *.* call matchadd('Todo', '\v<\+\w+\+>')
+au BufRead,BufNew *.* call matchadd('RedundantSpaces', '\s\+$\| \+\ze\t') "\ze sets end of match so only spaces highlighted
+au BufRead,BufNew *.* call matchadd('Todo', '\v(!!!|///).*')
 
 autocmd FileType inc setlocal syn=php
 
@@ -450,6 +457,12 @@ nnoremap ; :
 
 au BufEnter *.ml,*.c,*.h,*.cpp,*.php :Rooter
 
+" Don't screw up folds when inserting text that might affect them
+" http://stackoverflow.com/questions/5521408/my-vim-and-gvim-are-far-too-slow
+" http://vim.wikia.com/wiki/Keep_folds_closed_while_inserting_text
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 
+
+" ,l highlights - and leaves highlighted - current line (:match removes)
+:nnoremap <silent> <Leader>l ml:execute 'match RedundantSpaces /\%'.line('.').'l/'<CR>

@@ -7,7 +7,7 @@ Config
  -- , position     = Static { xpos = 1280 , ypos = 0 , width = 1800 , height = 15 }
  -- crazy twin:
  -- , position     = Static { xpos = 1024 , ypos = 0 , width = 1100 , height = 15 }
- , position     = Static { xpos = 1200 , ypos = 0 , width = 900 , height = 15 }
+ , position     = Static { xpos = 1200 , ypos = 0 , width = 850 , height = 15 }
  -- single 1920:
  -- , position     = Static { xpos = 0 , ypos = 0 , width = 1800 , height = 15 }
  -- single 1280:
@@ -18,7 +18,7 @@ Config
     , commands     = [ Run Date "%_d %b  %A" "date" 60
                      , Run Date "%H:%M" "time" 60
                      , Run Weather "EVRA" ["-t","<tempC>°C"] 1800
-                     , Run Com "mpc" ["current", "--format", "'%artist% -- %title%'"] "" 3
+                     , Run Com "mpc" ["current", "--format", "'%artist% -- %title%'"] "" 10
                      , Run StdinReader
                      ]
     , sepChar      = "%"
