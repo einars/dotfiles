@@ -51,7 +51,7 @@ set noswapfile          " can't remember a single time this would have been usef
 
 
 "set textwidth=120       " screw purists
-set textwidth=75         " meh
+" set textwidth=75         " meh
 
 set hidden              " suddenly, magically, buffers get usable
 set autoread            " don't care about ext-modified files, just reload them
@@ -361,8 +361,8 @@ nnoremap <leader>eq :e ~/Documents/quotes.txt<cr>
 nnoremap <leader>en :e ~/Documents/notes.txt<cr>
 nnoremap <leader>eb :e ~/Documents/backlog.txt<cr>
 nnoremap <leader>ed :e ~/Documents/drawing.txt<cr>
-nnoremap <leader>ep :e ~/Documents/passwords.txt<cr>
 nnoremap <leader>eo :e ~/opera/js/blockeds.js<cr>
+nnoremap <leader>ea :e ~/.config/awesome/rc.lua<cr>
 
 
 augroup javascript
@@ -421,11 +421,10 @@ augroup END
 augroup MyPasswords
     autocmd!
     highlight Password ctermfg=252 ctermbg=252 guibg=orange guifg=orange
-    " highlight Visual ctermfg=252 ctermbg=252 guibg=orange guifg=orange
-    " highlight VisualNOS ctermfg=252 ctermbg=252 guibg=orange guifg=orange
-    " do not want persistence
-    " au BufRead passwords.txt call matchadd('Password', '\v  \zs([^ ]+)\ze$')
-    au BufRead passwords.txt syn match Password /\v  \zs([^ ]+)\ze$/
+    highlight Visual ctermfg=252 ctermbg=252 guibg=orange guifg=orange
+    highlight VisualNOS ctermfg=252 ctermbg=252 guibg=orange guifg=orange
+    au BufRead passwords.txt call matchadd('Password', '\v  \zs([^ ]+)\ze$')
+    " au BufRead passwords.txt syn match Password /\v  \zs([^ ]+)\ze$/
 augroup END
 
 """ subtly tell when lines are too long

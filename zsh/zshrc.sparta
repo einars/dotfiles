@@ -1,6 +1,4 @@
-export PATH=$PATH:/opt/clisp/bin
-export PATH=$PATH:/usr/perl5/bin:/usr/local/wine/bin:/usr/local/bin
-export SDL_VIDEO_FULLSCREEN_HEAD=0
+#export SDL_VIDEO_FULLSCREEN_HEAD=0
 
 
 
