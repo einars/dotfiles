@@ -19,4 +19,4 @@ keycode 108 = Super_R
 keycode 134 = ISO_Level3_Shift ISO_Level3_Shift ISO_Level3_Shift ISO_Level3_Shift
 
 !keycode 51 = backslash
-keycode 51 = Return bar Return Return backslash
+!keycode 51 = Return bar Return Return backslash
