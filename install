@@ -1,8 +1,8 @@
 #!/bin/sh
 
-[ -z $INSTALL_SOURCE ] && INSTALL_SOURCE=`pwd`
+[ -z $install_source ] && install_source=$(pwd)
 
-[ -f $INSTALL_SOURCE/install ] || {
+[ -f $install_source/install ] || {
     echo No installation source.
     exit -1
 }
@@ -10,16 +10,16 @@
 git submodule init
 git submodule update
 
-ln -sfn $INSTALL_SOURCE/vim ~/.vim
-ln -sfn ~/.vim/vimrc ~/.vimrc
+ln -sfn $install_source/vim ~/.vim
+ln -sfn $install_source/vim/vimrc ~/.vimrc
 
-ln -sfn $INSTALL_SOURCE/zsh ~/.zsh
-ln -sfn $INSTALL_SOURCE/zsh/zshrc ~/.zshrc
-ln -sfn $INSTALL_SOURCE/bin ~/bin
+ln -sfn $install_source/zsh ~/.zsh
+ln -sfn $install_source/zsh/zshrc ~/.zshrc
+ln -sfn $install_source/bin ~/bin
 
-ln -sfn $INSTALL_SOURCE/gitconfig ~/.gitconfig
+ln -sfn $install_source/gitconfig ~/.gitconfig
 
-mkdir -p ~/.ncmpcp
-ln -sfn $INSTALL_SOURCE/ncmpc_config ~/.ncmpc/config
+test -d ~/.ncmpc || mkdir ~/.ncmpc
+ln -sfn $install_source/ncmpc_config ~/.ncmpc/config
 
-ln -sfn $INSTALL_SOURCE/tmux.conf ~/.tmux.conf
+ln -sfn $install_source/tmux.conf ~/.tmux.conf
