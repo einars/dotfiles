@@ -1,41 +1,25 @@
 #!/bin/sh
 
-[ -z $INSTALL_SOURCE ] && INSTALL_SOURCE=$1
 [ -z $INSTALL_SOURCE ] && INSTALL_SOURCE=`pwd`
 
 [ -f $INSTALL_SOURCE/install ] || {
-	echo No installation source.
-	exit -1
+    echo No installation source.
+    exit -1
 }
 
 git submodule init
 git submodule update
 
 ln -sfn $INSTALL_SOURCE/vim ~/.vim
-ln -sfn $INSTALL_SOURCE/vim ~/vim
 ln -sfn ~/.vim/vimrc ~/.vimrc
 
 ln -sfn $INSTALL_SOURCE/zsh ~/.zsh
-ln -sfn ~/.zsh/zshrc ~/.zshrc
-
+ln -sfn $INSTALL_SOURCE/zsh/zshrc ~/.zshrc
 ln -sfn $INSTALL_SOURCE/bin ~/bin
 
-ln -sfn $INSTALL_SOURCE/dots/gitconfig ~/.gitconfig
-ln -sfn $INSTALL_SOURCE/dots/screenrc ~/.screenrc
+ln -sfn $INSTALL_SOURCE/gitconfig ~/.gitconfig
 
-ln -sfn $INSTALL_SOURCE/dots/xresources ~/.Xresources
+mkdir -p ~/.ncmpcp
+ln -sfn $INSTALL_SOURCE/ncmpc_config ~/.ncmpc/config
 
-ln -sfn $INSTALL_SOURCE/dots/ncmpc ~/.ncmpc
-
-ln -sfn $INSTALL_SOURCE/dots/tmux.conf ~/.tmux.conf
-
-# xfce shortcuts
-#mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml
-#ln -sfn $INSTALL_SOURCE/xfce4/xfce4-keyboard-shortcuts.xml /.gitconfig ~/.config/xfce4/xfconf/xfce-perchannel-xml/
-
-# xmonad stuff
-#mkdir -p ~/.xmonad
-#ln -sfn $INSTALL_SOURCE/dots/xmonad.hs ~/.xmonad/xmonad.hs
-#ln -sfn $INSTALL_SOURCE/dots/xmobarrc ~/.xmobarrc
-
-touch ~/.zsh/aliases.private
+ln -sfn $INSTALL_SOURCE/tmux.conf ~/.tmux.conf

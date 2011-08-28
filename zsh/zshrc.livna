@@ -1,2 +1,0 @@
-export CDPATH=.:~:/services/web/localhost:/services/web/livna:/services/web
-. ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

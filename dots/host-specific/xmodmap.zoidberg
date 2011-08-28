@@ -1,4 +1,0 @@
-! Use right control as a win key
-! Many of my shortcuts use that, but the T42 keyboard doesn't have it
-remove Control = Control_R
-add Mod4 = Control_R

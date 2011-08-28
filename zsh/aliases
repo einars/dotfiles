@@ -1,18 +1,18 @@
 #!/usr/bin/env zsh
 
-case `uname` in
+case $(uname) in
     Linux)
 
-        source ~/.zsh/aliases.linux
+        maybe_source ~/.zsh/aliases.linux
 
         cat /etc/issue | grep Arch >/dev/null
         if [[ $? == 0 ]]; then
-            source ~/.zsh/aliases.linux.archlinux
+            maybe_source ~/.zsh/aliases.linux.archlinux
         fi
 
         cat /etc/issue | grep Ubuntu >/dev/null
         if [[ $? == 0 ]]; then
-            source ~/.zsh/aliases.linux.ubuntu
+            maybe_source ~/.zsh/aliases.linux.ubuntu
         fi
 
         ;;
@@ -20,9 +20,5 @@ case `uname` in
 esac
 
 
-if [[ -f ~/.zsh/aliases.private ]]; then
-
-    source ~/.zsh/aliases.private
-
-fi
+maybe_source ~/.zsh/aliases.private
 

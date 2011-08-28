@@ -1,3 +1,0 @@
-#!/bin/sh
-
-exec urxvt -e ~/bin/tmux-run-or-attach

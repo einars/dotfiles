@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-
-exec java -cp /usr/share/java/js.jar org.mozilla.javascript.tools.shell.Main $@
-

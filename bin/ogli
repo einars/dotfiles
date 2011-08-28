@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-exec rlwrap ocaml -I "+lablgl" lablgl.cma lablglut.cma unix.cma $*

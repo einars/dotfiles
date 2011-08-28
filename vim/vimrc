@@ -354,12 +354,11 @@ nnoremap <leader>v V`]
 " ,e - various common editors
 nnoremap <leader>ev :e ~/.vimrc<cr>
 nnoremap <leader>ez :e ~/.zshrc<cr>
-nnoremap <leader>ex :e ~/.xmonad/xmonad.hs<cr>
 nnoremap <leader>ec :e ~/commands<cr>
-nnoremap <leader>eq :e ~/Documents/quotes.txt<cr>
-nnoremap <leader>en :e ~/Documents/notes.txt<cr>
-nnoremap <leader>eb :e ~/Documents/backlog.txt<cr>
-nnoremap <leader>ed :e ~/Documents/drawing.txt<cr>
+nnoremap <leader>eq :e ~/dokumenti/quotes.txt<cr>
+nnoremap <leader>en :e ~/dokumenti/notes.txt<cr>
+nnoremap <leader>eb :e ~/dokumenti/backlog.txt<cr>
+nnoremap <leader>ed :e ~/dokumenti/drawing.txt<cr>
 nnoremap <leader>eo :e ~/opera/js/blockeds.js<cr>
 nnoremap <leader>ea :e ~/.config/awesome/rc.lua<cr>
 

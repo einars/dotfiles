@@ -1,3 +1,0 @@
-#!/usr/bin/env zsh
-
-for f in ~/.mozilla/**/*.sqlite; do sqlite3 $f 'VACUUM;'; done
