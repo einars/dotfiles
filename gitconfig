@@ -1,0 +1,30 @@
+[user]
+	name = Einar Lielmanis
+	email = einars@gmail.com
+[alias]
+    stat = status
+    sup = svn rebase
+    co = checkout
+    la = log --pretty=\"format:%ad %h (%an): %s\" --date=short
+    last = log -n 1
+[core]
+    #autocrlf = input
+    #
+[color]
+    ui = auto
+[color "diff"]
+    meta = yellow
+    frag = magenta
+    new = green
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[diff]
+	renamelimit = 0
+[pack]
+	threads = 0
+[push]
+	default = current
+[gui]
+	spellingdictionary = none
