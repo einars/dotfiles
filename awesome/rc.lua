@@ -181,16 +181,17 @@ end
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey, "Shift"   }, "Return", function () awful.util.spawn("gvim /home/e/Documents/passwords.txt") end),
+    awful.key({ modkey, "Shift"   }, "Return", function () awful.util.spawn("gvim /storage/dokumenti/passwords.txt") end),
     awful.key({ modkey,           }, "m",      function () awful.util.spawn("run-inferior super-m") end),
     awful.key({ modkey, "Shift"   }, "m",      function () awful.util.spawn("run-inferior super-M") end),
     awful.key({ modkey,           }, "n",      function () awful.util.spawn("run-inferior super-n") end),
     awful.key({ modkey, "Shift"   }, "n",      function () awful.util.spawn("run-inferior super-N") end),
-    awful.key({ modkey,           }, "w",      function () awful.util.spawn("/home/e/bin/xmonad-refresh-opera") end),
-    awful.key({ modkey,           }, "q",      function () awful.util.spawn("thunar /home/e/stuff") end),
-    awful.key({ modkey,           }, "t",      function () awful.util.spawn("thunar /home/e/torrents") end),
-    awful.key({ modkey,           }, "b",      function () awful.util.spawn("thunar /storage/books") end),
-    awful.key({ modkey,           }, "d",      function () awful.util.spawn("thunar /home/e/Documents") end),
+    awful.key({ modkey,           }, "w",      function () awful.util.spawn("xmonad-refresh-opera") end),
+    awful.key({ "",           }, "XF86Eject", function () awful.util.spawn("sudo chvt 3") end),
+    awful.key({ modkey,           }, "q",      function () awful.util.spawn("thunar") end),
+    awful.key({ modkey,           }, "t",      function () awful.util.spawn("thunar /storage/torenti") end),
+    awful.key({ modkey,           }, "b",      function () awful.util.spawn("thunar /storage/studijas") end),
+    awful.key({ modkey,           }, "d",      function () awful.util.spawn("thunar /storage/dokumenti") end),
     awful.key({ modkey, "Shift"   }, "t",      awful.client.floating.toggle                     ),
 
     awful.key({ modkey,           }, "x",      function () awful.util.spawn("xsetroot -cursor_name left_ptr") end),
