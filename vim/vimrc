@@ -419,8 +419,6 @@ augroup END
 augroup MyPasswords
     autocmd!
     highlight Password ctermfg=252 ctermbg=252 guibg=orange guifg=orange
-    highlight Visual ctermfg=252 ctermbg=252 guibg=orange guifg=orange
-    highlight VisualNOS ctermfg=252 ctermbg=252 guibg=orange guifg=orange
     au BufRead passwords.txt call matchadd('Password', '\v  \zs([^ ]+)\ze$')
     " au BufRead passwords.txt syn match Password /\v  \zs([^ ]+)\ze$/
 augroup END
