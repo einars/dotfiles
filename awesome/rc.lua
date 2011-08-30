@@ -172,11 +172,11 @@ end
 -- }}}
 
 -- {{{ Mouse bindings
---root.buttons(awful.util.table.join(
-    --awful.button({ }, 3, function () mymainmenu:toggle() end),
+root.buttons(awful.util.table.join(
     --awful.button({ }, 4, awful.tag.viewnext),
-    --awful.button({ }, 5, awful.tag.viewprev)
---))
+    --awful.button({ }, 5, awful.tag.viewprev),
+    awful.button({ }, 3, function () mymainmenu:toggle() end)
+))
 -- }}}
 
 -- {{{ Key bindings
@@ -187,7 +187,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "n",      function () awful.util.spawn("run-inferior super-n") end),
     awful.key({ modkey, "Shift"   }, "n",      function () awful.util.spawn("run-inferior super-N") end),
     awful.key({ modkey,           }, "w",      function () awful.util.spawn("xmonad-refresh-opera") end),
-    awful.key({ "",           }, "XF86Eject", function () awful.util.spawn("sudo chvt 3") end),
+    awful.key({ "",               }, "XF86Eject", function () awful.util.spawn("sudo chvt 3") end),
+    awful.key({ "",     "Control" }, "XF86Eject", function () awful.util.spawn("sudo chvt 3") end),
     awful.key({ modkey,           }, "q",      function () awful.util.spawn("thunar") end),
     awful.key({ modkey,           }, "t",      function () awful.util.spawn("thunar /storage/torenti") end),
     awful.key({ modkey,           }, "b",      function () awful.util.spawn("thunar /storage/studijas") end),
