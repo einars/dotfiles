@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-DECAY=/services/web/localhost/decay
+DECAY=/services/web/decay.spicausis.lv
 
 mkdir -p $DECAY
 find $DECAY -type f -mtime +2 -delete
