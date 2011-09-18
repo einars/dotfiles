@@ -4,8 +4,10 @@ function setup_apple_keyboard()
 {
     echo '
 keycode 94 = grave asciitilde grave asciitilde asciitilde
-keycode 108 = Super_R
-keycode 134 = ISO_Level3_Shift ISO_Level3_Shift ISO_Level3_Shift ISO_Level3_Shift' \
+remove mod4 = Super_R
+add mod5 = Super_R
+! keycode 108 = Super_R
+! keycode 134 = ISO_Level3_Shift ISO_Level3_Shift ISO_Level3_Shift' \
         | xmodmap -
 }
 
@@ -13,6 +15,7 @@ keycode 134 = ISO_Level3_Shift ISO_Level3_Shift ISO_Level3_Shift ISO_Level3_Shif
 function init_common()
 {
     export PATH=$HOME/bin:$HOME/bin/private:$PATH
+    export WINEDLLOVERRIDES=winemenubuilder.exe=d
 
     setxkbmap lv -option ctrl:nocaps
 
@@ -32,6 +35,7 @@ function init_sparta()
 {
     export QT_PLUGIN_PATH=/opt/lib32/usr/lib/qt/plugins
     export WINEARCH=win32
+    export BROWSER=`which opera`
 
     # swap scrollwheel direction
     #xmodmap -e "pointer = 1 2 3 5 4"
