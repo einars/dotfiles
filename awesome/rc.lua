@@ -189,6 +189,13 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "w",      function () awful.util.spawn("xmonad-refresh-opera") end),
     awful.key({ "",               }, "XF86Eject", function () awful.util.spawn("sudo chvt 3") end),
     awful.key({ "",     "Control" }, "XF86Eject", function () awful.util.spawn("sudo chvt 3") end),
+    awful.key({ "",               }, "F8",     function () awful.util.spawn("mpc toggle") end),
+    awful.key({ "",     "Control" }, "F8",     function () awful.util.spawn("mpc stop") end),
+    awful.key({ "",     "Control" }, "XF86AudioMute",           function () awful.util.spawn("sound 0") end),
+    awful.key({ "",               }, "XF86AudioMute",           function () awful.util.spawn("sound 69") end),
+    awful.key({ "",               }, "XF86AudioLowerVolume",    function () awful.util.spawn("sound 75") end),
+    awful.key({ "",               }, "XF86AudioRaiseVolume",    function () awful.util.spawn("sound 100") end),
+    awful.key({ modkey, "Shift"   }, "/",      function () awful.util.spawn("notify-mpd-song") end), -- win-? pops up mpc song
     awful.key({ modkey,           }, "q",      function () awful.util.spawn("thunar") end),
     awful.key({ modkey,           }, "t",      function () awful.util.spawn("thunar /storage/torenti") end),
     awful.key({ modkey,           }, "b",      function () awful.util.spawn("thunar /storage/studijas") end),
