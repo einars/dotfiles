@@ -4,6 +4,8 @@
 # !!! common aliases
 #
 
+alias wine='WINEDLLOVERRIDES=winemenubuilder.exe=d wine'
+
 alias jad='jad -b -ff -s java'
 alias ack='clear; ack'
 alias grep="grep --color=auto -d skip -i --line-buffered"
@@ -119,6 +121,8 @@ alias tail='tail -n $[$LINES-2]'
 alias listen='sudo netstat -ltnup'
 
 alias here='cp -r -t .'
+
+alias sensors='sensors | \grep -E "CPU FAN|CPU Tem|MB Tem|Core"'
 
 # show sizes of subfolders in current direcory
 #alias dirsizes='\du --max-depth=1 | sort -nr | head -n 20'
