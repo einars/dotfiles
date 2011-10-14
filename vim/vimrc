@@ -10,6 +10,7 @@ let mapleader=","
 " sadly, autoindentations tend to go haywire with this
 " set matchpairs=(:)
 
+set lsp=5
 set cryptmethod=blowfish
 set ttimeoutlen=100
 set history=1000
@@ -48,6 +49,20 @@ set nobackup            " this is a default, but let's say it explicitly
                         "    (who knows what's in /etc/vimrc)
 set nowritebackup       " don't care about vim's backups at all
 set noswapfile          " can't remember a single time this would have been useful
+
+"   viminfo
+"       'N  - keep the registeres for N files
+"       "N  - how many lines to save per register
+"       fN  - keep global regs? yes: N==1; no N==0
+"       :N  - keep N :commands
+"       /N  - keep N search patterns
+"       @N  - keep N items of input-line history
+"             see ':help input()'
+"       h   - no hlsearch when starting up
+set viminfo='250,\"250,f1,:500,/500,@500
+
+set display=lastline,uhex
+set lazyredraw
 
 
 "set textwidth=120       " screw purists
@@ -103,14 +118,13 @@ if has('gui_running')
     """ So here I get rid of the wq command.
     cmap wq w
 
+    """ don't need mouse
+    set mouse=
 
-    " et guifont=Consolas\ 12          " too blurry for me
-    " et guifont=Inconsolata\ 12       " very nice, but leaves terrible artefacts with national (mostly russian) characters
-    " set guifont=Terminus\ 11          " wonderful, yet smallish, and sucks at larger sizes
-     set guifont=Monaco\ 11          " wonderful, yet smallish, and sucks at larger sizes
-    " set guifont=Droid\ Sans\ Mono\ 11
-    " et guifont=DejaVu\ Sans\ Mono\ 8
-    " set guifont=Terminus\ 9          " wonderful, yet smallish, and sucks at larger sizes
+    """ cursorline is quite nice actually
+    set cursorline
+
+     set guifont=Monaco\ 11
 
     set guioptions+=c       """ use console dialogs, not the gui ones
     set guioptions-=T       """ don't show the toolbar
@@ -129,7 +143,11 @@ if has('gui_running')
 
     """ colorscheme xoria256-mine
     """ colorscheme zenburn
-    colorscheme zenburn-mine
+    let g:zenburn_high_Contrast=1
+    colorscheme zenburn-mine " zenburn w/o bolds
+
+    "let g:lucius_style = "dark"
+    "colorscheme lucius
     source ~/.vim/phpcolors-zenburn.vim
 
 else
@@ -179,6 +197,8 @@ call l:SetDir($HOME . '/.vim-swap')
 """
 """
 
+" {{{ KEYMAPS
+
 
 " allow deleting selection without updating the yank buffer
 vnoremap x "_x
@@ -187,6 +207,11 @@ vnoremap X "_X
 
 "  too frequent misclick on the thinkpad
 map! <f1> <esc>
+
+inoremap <f1> <esc>
+nnoremap <f1> <esc>
+vnoremap <f1> <esc>
+
 
 
 " let's try this omnicompletion thing
@@ -199,7 +224,7 @@ map <Leader>se :setlocal spell spelllang=en_us<CR>
 map <Leader>sl :setlocal spell spelllang=lv_lv<CR>
 map <Leader>sn :setlocal nospell<CR>
 
-" S&M
+" S&M {{{
 
 imap <c-up>     <Nop>
 imap <c-down>   <Nop>
@@ -240,10 +265,9 @@ imap <c-pagedown>   <nop>
 map  <c-pageup>     <nop>
 map  <c-pagedown>   <nop>
 
+" }}}
 
-inoremap <f1> <esc>
-nnoremap <f1> <esc>
-vnoremap <f1> <esc>
+
 
 " k/j move by screen lines, not physical lines
 
@@ -308,6 +332,8 @@ nmap <Leader>nt :NERDTreeToggle<CR>
 nmap <Leader>nf :NERDTreeFind<CR>
 nmap <Leader>nm :NERDTreeMirror<CR>
 nmap <Leader>nc :NERDTreeClose<CR>
+
+" }}}
 
 function! CleanDeleteBuffer()
     """ based on CleanClose function, found somewhere
@@ -461,3 +487,5 @@ autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:las
 
 " ,l highlights - and leaves highlighted - current line (:match removes)
 :nnoremap <silent> <Leader>l ml:execute 'match RedundantSpaces /\%'.line('.').'l/'<CR>
+
+" vim: set fdm=marker :
