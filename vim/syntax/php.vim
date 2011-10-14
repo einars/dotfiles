@@ -39,7 +39,8 @@ syn keyword phpKeyword if else while for switch elseif return die exit echo prin
 syn match phpFunction /\(\h\w*::\)\?\h\w*\s*(/me=e-1 contained display
 
 syn match phpIdentifier /$\h\w*/ contained display
-syn match phpIdentifierInString /$\h\w*/ contained display
+"syn match phpIdentifierInString /$\h\w*/ contained display
+syn match phpIdentifierInString /\v\$\h\w*(\-\>\w+)*/ contained display
 
 syn match phpSpecialChar  /\\[abcfnrtyv\\"$]/ contained display
 syn match phpSpecialChar  /\\x\x\{2}/ contained display
