@@ -130,6 +130,8 @@ function dirsizes {
     \du --max-depth=1 | sort -nr | head -n 30 | sed 's/^.*\t//' | xargs --delimiter=\\n -n 1 \du -sh
 }
 
+alias psql='PAGER="less -RSX" psql -P pager=always'
+
 # mkdir + cd
 function mkd {
     mkdir -p $1 && cd $1
