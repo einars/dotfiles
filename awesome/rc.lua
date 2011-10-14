@@ -183,6 +183,7 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "Return", function () awful.util.spawn("gvim /storage/dokumenti/passwords.txt") end),
     awful.key({ modkey,           }, "m",      function () awful.util.spawn("run-inferior super-m") end),
+    awful.key({ "Mod1", "Control" }, "Delete", function () awful.util.spawn("/my-lock") end),
     awful.key({ modkey, "Shift"   }, "m",      function () awful.util.spawn("run-inferior super-M") end),
     awful.key({ modkey,           }, "n",      function () awful.util.spawn("run-inferior super-n") end),
     awful.key({ modkey, "Shift"   }, "n",      function () awful.util.spawn("run-inferior super-N") end),
@@ -225,10 +226,11 @@ globalkeys = awful.util.table.join(
     -- Prompt
     -- awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
     awful.key({ modkey },            "r",     function ()
-        awful.util.spawn("dmenu_run -i -p 'Run command:' -nb '" ..
+        awful.util.spawn("dmenu_run -f -b -i -p Run: -nb '" ..
             beautiful.bg_normal .. "' -nf '" .. beautiful.fg_normal ..
             "' -sb '" .. beautiful.bg_focus ..
-            "' -sf '" .. beautiful.fg_focus .. "'")
+            --"' -sf '" .. beautiful.fg_focus .. "'")
+            "' -sf '#ff9933'")
         end),
 
     awful.key({ modkey,           }, "j",
