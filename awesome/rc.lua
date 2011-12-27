@@ -41,7 +41,7 @@ layouts =
     --awful.layout.suit.tile,
     awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
-    -- awful.layout.suit.tile.top,
+    awful.layout.suit.tile.top,
     -- awful.layout.suit.fair,
     -- awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.spiral,
@@ -188,16 +188,16 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "n",      function () awful.util.spawn("run-inferior super-n") end),
     awful.key({ modkey, "Shift"   }, "n",      function () awful.util.spawn("run-inferior super-N") end),
     awful.key({ modkey,           }, "w",      function () awful.util.spawn("xmonad-refresh-opera") end),
-    awful.key({ "",               }, "XF86Eject", function () awful.util.spawn("sudo chvt 3") end),
-    awful.key({ "",     "Control" }, "XF86Eject", function () awful.util.spawn("sudo chvt 3") end),
+    -- awful.key({ "",               }, "XF86Eject", function () awful.util.spawn("sudo chvt 3") end),
+    -- awful.key({ "",     "Control" }, "XF86Eject", function () awful.util.spawn("sudo chvt 3") end),
     awful.key({ "",               }, "F8",     function () awful.util.spawn("mpc toggle") end),
     awful.key({ "",     "Control" }, "F8",     function () awful.util.spawn("mpc stop") end),
-    awful.key({ "",     "Control" }, "XF86AudioMute",           function () awful.util.spawn("sound 0") end),
-    awful.key({ "",               }, "XF86AudioMute",           function () awful.util.spawn("sound 69") end),
-    awful.key({ "",               }, "XF86AudioLowerVolume",    function () awful.util.spawn("sound 75") end),
-    awful.key({ "",               }, "XF86AudioRaiseVolume",    function () awful.util.spawn("sound 100") end),
+    --awful.key({ "",     "Control" }, "XF86AudioMute",           function () awful.util.spawn("sound 0") end),
+    --awful.key({ "",               }, "XF86AudioMute",           function () awful.util.spawn("sound-1") end),
+    --awful.key({ "",               }, "XF86AudioLowerVolume",    function () awful.util.spawn("sound-2") end),
+    --awful.key({ "",               }, "XF86AudioRaiseVolume",    function () awful.util.spawn("sound-3") end),
     awful.key({ modkey, "Shift"   }, "/",      function () awful.util.spawn("notify-mpd-song") end), -- win-? pops up mpc song
-    awful.key({ modkey,           }, "q",      function () awful.util.spawn("thunar") end),
+    awful.key({ modkey,           }, "q",      function () awful.util.spawn("thunar /storage/studijas") end),
     awful.key({ modkey,           }, "t",      function () awful.util.spawn("thunar /storage/torenti") end),
     awful.key({ modkey,           }, "b",      function () awful.util.spawn("thunar /storage/studijas") end),
     awful.key({ modkey,           }, "d",      function () awful.util.spawn("thunar /storage/dokumenti") end),
@@ -246,7 +246,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "F1", function () mymainmenu:show({keygrabber=true}) end),
 
 
-    awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
+    --awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
     awful.key({ modkey,           }, "Tab",
         function ()
             awful.client.focus.history.previous()
@@ -277,6 +277,7 @@ globalkeys = awful.util.table.join(
 clientkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
+    awful.key({ modkey, "Shift"   }, "x",      function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),

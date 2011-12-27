@@ -1,8 +1,9 @@
 #!/usr/bin/env zsh
 
-#
-# !!! common aliases
-#
+
+
+# temp workaround with a tmux character issue
+alias tmux='LC_CTYPE=en_US.UTF-8 tmux'
 
 alias wine='WINEDLLOVERRIDES=winemenubuilder.exe=d wine'
 
@@ -22,9 +23,9 @@ alias cx="chmod +x"
 
 alias rdesktop='rdesktop -xb -z -a16 -rsound:off -r clipboard:PRIMARYCLIPBOARD -0 -g1200x900'
 
-alias l='ls -lh --color=tty --si'
-alias ll='ls -lAh --color=tty --si'
-alias ls='ls --color=tty --si'
+alias ls='ls --color=tty --si -l --group-directories-first --time-style=+'
+alias ll='ls --color=tty --si -l --almost-all --group-directories-first --time-style=+'
+alias l=ls
 
 alias iddqd='sudo -s'
 
@@ -60,7 +61,7 @@ alias sa="svn add"
 alias suu="svn update --ignore-externals"
 
 alias offlineimap='offlineimap -u basic'
-alias o="offlineimap -u Noninteractive.Basic 2>/dev/null | grep --line-buffered 'message\|account'| grep --line-buffered -v 'Copy message -\|Delet\|Adding flag'"
+#alias o="offlineimap -u Noninteractive.Basic 2>/dev/null | grep --line-buffered 'message\|account'| grep --line-buffered -v 'Copy message -\|Delet\|Adding flag'"
 
 alias xsel='xsel -b'
 
@@ -95,6 +96,7 @@ alias ocamldebug='rlwrap ocamldebug'
 alias sbcl='rlwrap sbcl'
 alias arc='cd ~/arc; rlwrap mzscheme -m -f as.scm'
 alias clojure='rlwrap java -cp $CLOJURE_HOME/clojure.jar clojure.lang.Repl'
+alias octave='octave --silent'
 
 
 alias cflagged='CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe" CXXFLAGS="-march=x86-64 -mtune=generic -O2 -pipe" LDFLAGS="-Wl,--hash-style=gnu -Wl,--as-needed"'
@@ -127,7 +129,7 @@ alias sensors='sensors | \grep -E "CPU FAN|CPU Tem|MB Tem|Core"'
 # show sizes of subfolders in current direcory
 #alias dirsizes='\du --max-depth=1 | sort -nr | head -n 20'
 function dirsizes {
-    \du --max-depth=1 | sort -nr | head -n 30 | sed 's/^.*\t//' | xargs --delimiter=\\n -n 1 \du -sh
+    \du --max-depth=1 | sort -nr | head -n 30 | sed 's/^.*\t//' | xargs --delimiter=\\n -n 1 \du -sh --si
 }
 
 alias psql='PAGER="less -RSX" psql -P pager=always'

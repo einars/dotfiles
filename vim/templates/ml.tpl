@@ -1,9 +1,5 @@
+(* vim: set ts=2 tw=0 foldmethod=marker : *)
+
 open Printf
 
-let main () =
 
-    ()
-
-let _ = main ()
-
-(* vim: set tw=0 : *)

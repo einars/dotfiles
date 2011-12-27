@@ -2,8 +2,8 @@
 let g:loaded_matchparen=1             " die, slow and needless matching paren highlighting
 let g:searchEmptyLinesPostfixing = 3  " php folding stuff
 let g:cursor_follows_alphabet = 1     " translit plugin
-"let g:translit_map = 'translit.ru'
-let g:translit_map = 'greek'
+let g:translit_map = 'translit.ru'
+"let g:translit_map = 'greek'
 
 let mapleader=","
 
@@ -20,7 +20,6 @@ set nrformats=hex       " c-a, c-x won't treat 05 as octal
 set wildmenu            " filename etc completion on tab
 set wildmode=full
 set t_md=               " no bold fonts in terminal
-set mouse=a             " mouse support in console
 set scrolloff=3
 set nostartofline
 set tabstop=4
@@ -71,12 +70,20 @@ set lazyredraw
 set hidden              " suddenly, magically, buffers get usable
 set autoread            " don't care about ext-modified files, just reload them
 set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set listchars=tab:\|.,trail:.,extends:#,nbsp:.
 if has('conceal')
     set conceallevel=2      " 7.3, if supported
 endif
 
-call pathogen#runtime_append_all_bundles()
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+Bundle 'airblade/vim-rooter'
+Bundle 'tpope/vim-surround'
+Bundle 'spiiph/vim-space'
+Bundle 'einars/vim-phpfold'
+Bundle 'einars/vim-phpsyntax'
+
 
 filetype plugin indent on  " detect filetypes
 syntax on                  " colors
@@ -117,14 +124,13 @@ if has('gui_running')
     """ I automatically :wq main vim much more often than I need to.
     """ So here I get rid of the wq command.
     cmap wq w
-
-    """ don't need mouse
-    set mouse=
+    set mouse= " don't need mouse in gui at all
 
     """ cursorline is quite nice actually
-    set cursorline
+                                                                                                    set cursorline
 
-     set guifont=Monaco\ 11
+    " set guifont=Monaco\ 11
+    set guifont=Terminus\ 14
 
     set guioptions+=c       """ use console dialogs, not the gui ones
     set guioptions-=T       """ don't show the toolbar
@@ -150,12 +156,20 @@ if has('gui_running')
     "colorscheme lucius
     source ~/.vim/phpcolors-zenburn.vim
 
+    hi Irrelevant guifg=#666670
+    
+    " "set list"
+    hi SpecialKey guifg=#333333
+
 else
     cnoreabbr W w
     cnoreabbr Wq wq
     if &t_Co > 120
         colorscheme desert
     end
+    set mouse=a " while I'd prefer mouse off, the scrollwheel messes up the text in console
+    hi SpecialKey ctermfg=58
+
 end
 
 
@@ -198,11 +212,6 @@ call l:SetDir($HOME . '/.vim-swap')
 """
 
 " {{{ KEYMAPS
-
-
-" allow deleting selection without updating the yank buffer
-vnoremap x "_x
-vnoremap X "_X
 
 
 "  too frequent misclick on the thinkpad
@@ -333,6 +342,16 @@ nmap <Leader>nf :NERDTreeFind<CR>
 nmap <Leader>nm :NERDTreeMirror<CR>
 nmap <Leader>nc :NERDTreeClose<CR>
 
+" sane search/replace regexen
+vnoremap / /\v
+nnoremap / /\v
+
+" line start/end
+nnoremap H ^
+nnoremap L $
+
+
+
 " }}}
 
 function! CleanDeleteBuffer()
@@ -385,7 +404,9 @@ nnoremap <leader>eq :e ~/dokumenti/quotes.txt<cr>
 nnoremap <leader>en :e ~/dokumenti/notes.txt<cr>
 nnoremap <leader>eb :e ~/dokumenti/backlog.txt<cr>
 nnoremap <leader>ed :e ~/dokumenti/drawing.txt<cr>
-nnoremap <leader>eo :e ~/opera/js/blockeds.js<cr>
+" nnoremap <leader>eo :e ~/opera/js/blockeds.js<cr>
+nnoremap <leader>eo :e ~/.config/openbox/rc.xml<cr>
+nnoremap <leader>em :e ~/.config/openbox/menu.xml<cr>
 nnoremap <leader>ea :e ~/.config/awesome/rc.lua<cr>
 
 
@@ -436,6 +457,10 @@ augroup PHP
     autocmd FileType php setlocal keywordprg=~/bin/phpdoc
 augroup END
 
+augroup CZZ
+    autocmd BufRead,BufNewFile *.czz set filetype=scss
+augroup END
+
 augroup Latex
     """ use internal help from bundle/latexhelp
     autocmd!
@@ -451,7 +476,7 @@ augroup END
 
 """ subtly tell when lines are too long
 
-highlight RedundantSpaces term=standout ctermbg=red guibg=red
+highlight RedundantSpaces term=standout ctermbg=60 guibg=#555555
 
 au BufRead,BufNew *.* call matchadd('Error', '\%120v.')
 au BufRead,BufNew *.* call matchadd('Todo', '\v<\+\w+\+>')
@@ -462,8 +487,6 @@ autocmd FileType inc setlocal syn=php
 
 """ let's try the autosave on focus lost magic
 au FocusLost * :update
-
-
 
 
 " let g:space_no_character_movements = 1
@@ -487,5 +510,8 @@ autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:las
 
 " ,l highlights - and leaves highlighted - current line (:match removes)
 :nnoremap <silent> <Leader>l ml:execute 'match RedundantSpaces /\%'.line('.').'l/'<CR>
+
+:command! Wsudo w !sudo tee % > /dev/null
+
 
 " vim: set fdm=marker :

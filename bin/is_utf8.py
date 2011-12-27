@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 import sys
 
@@ -14,7 +14,7 @@ if '-a' in sys.argv:
 n_files = 0
 n_failures = 0
 
-for file in sys.argv:
+for file in sys.argv[1:]:
 
     if file[0] == '-': 
         continue
@@ -24,13 +24,13 @@ for file in sys.argv:
     try:
         unicode(''.join(open(file)),'utf-8').encode('utf-8')
         if all:
-            print '    %s' % file
+            print ('    %s\n' % file)
     except UnicodeDecodeError:
         n_failures = n_failures + 1
         if verbose:
             raise
         else:
-            print 'FAIL %s' % file
+            print ('FAIL %s\n' % file);
 
 if n_failures == 0:
     print('Files ok: %d' % n_files)

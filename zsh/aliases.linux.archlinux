@@ -1,34 +1,41 @@
 #!/usr/bin/env zsh
 
-PACMAN_CMD=(echo pacman)
+function get_pacman {
+    # pacman=$(which pacmatic)
+    # if [[ $pacman != "" ]]; then
+    #     echo $pacman
+    #     return
+    # fi;
 
-which pacman &>/dev/null
-if [[ $? == 0 ]] {
-    PACMAN_CMD=pacman
+    pacman=$(which pacman-color)
+    if [[ $pacman != "" ]]; then
+        echo $pacman
+        return
+    fi;
+
+    which pacman
 }
 
-which pacman-color &>/dev/null
-if [[ $? == 0 ]] {
-    PACMAN_CMD=pacman-color
-}
+
+pacman=$(get_pacman)
 
 
 alias edalias.arch='vim ~/.zsh/aliases.linux.archlinux; source ~/.zsh/aliases.linux.archlinux'
 
 function run-pacman {
-    S $PACMAN_CMD $@ && rehash
+    S $pacman $@ && rehash
 }
 
 # http://www.reddit.com/r/linux/comments/8pmss/alias_iddqdsudo_su/
 alias canhaz='run-pacman -S --needed'
 alias drop='run-pacman -R'
 alias isthere='run-pacman -Ss'
-alias current='$PACMAN_CMD -Q | grep '
+alias current='$pacman -Q | grep '
 
 #alias inside='pacman -Ql'
 
-function inside { $PACMAN_CMD -Ql $1 | grep -v '/$' }
-function binside { $PACMAN_CMD -Ql $1 | grep -v '/$' | grep --color=never bin }
+function inside { $pacman -Ql $1 | grep -v '/$' }
+function binside { $pacman -Ql $1 | grep -v '/$' | grep --color=never bin }
 function aurget {
   if [[ $1 != "" ]]; then
     package=$1
@@ -37,12 +44,12 @@ function aurget {
   fi
 }
 
-alias whohas='$PACMAN_CMD -Qo'
-alias whose='$PACMAN_CMD -Qo'
+alias whohas='$pacman -Qo'
+alias whose='$pacman -Qo'
 alias y='yaourt'
 
-alias suy='clear; S $PACMAN_CMD -Suy'
-alias syu='clear; S $PACMAN_CMD -Suy'
+alias suy='clear; S $pacman -Suy'
+alias syu='clear; S $pacman -Suy'
 
 
 # vim: syn=zsh :

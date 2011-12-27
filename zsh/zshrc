@@ -160,7 +160,7 @@ function setup_cd_autols() #{{{
         test -f .description && cat .description
         test -f  description && cat  description
         if [[ -z ${(M)SKIPPED_DIRS:#$DIR} ]] {
-            ls -l --color=tty
+            ls --color=tty --si -l --group-directories-first --time-style=+
         }
     }
 

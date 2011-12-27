@@ -498,7 +498,7 @@ if exists("g:zenburn_high_Contrast") && g:zenburn_high_Contrast
     hi TabLineSel    guifg=#ccd990 guibg=#222222
     hi TabLineFill   guifg=#88b090 guibg=#313633 gui=none
 
-    hi SpecialKey    guibg=#242424
+    " hi SpecialKey    guibg=#242424
 
     if &t_Co > 255
         hi FoldColumn    ctermbg=233
@@ -514,7 +514,7 @@ else
     hi TabLineSel    guifg=#f0f0b0 guibg=#333333 gui=none
     hi TabLineFill   guifg=#dccdcc guibg=#101010 gui=none
 
-    hi SpecialKey    guibg=#444444
+    " hi SpecialKey    guibg=#444444
 
     if &t_Co > 255
         hi FoldColumn    ctermbg=236

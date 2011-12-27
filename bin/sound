@@ -5,5 +5,5 @@ if [[ $sound == "" ]]; then
     sound=90
 fi
 
-amixer -c 0 set PCM $sound
+#amixer -c 0 set PCM $sound
 amixer -c 0 set Master $sound

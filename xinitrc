@@ -5,7 +5,8 @@ function setup_apple_keyboard()
     echo '
 keycode 94 = grave asciitilde grave asciitilde asciitilde
 remove mod4 = Super_R
-add mod5 = Super_R
+keycode 134 = ISO_Level3_Shift
+!add mod5 = Super_R
 ! keycode 108 = Super_R
 ! keycode 134 = ISO_Level3_Shift ISO_Level3_Shift ISO_Level3_Shift' \
         | xmodmap -
@@ -53,7 +54,8 @@ function init_sparta()
 
     # work user
     if [[ $USER = w ]]; then
-        export desktop_wm=awesome
+        #export desktop_wm=awesome
+        export desktop_wm=openbox
     fi
 
 }
@@ -92,6 +94,10 @@ fi
 
 if [[ $desktop_wm == "xfce" ]]; then
     exec ck-launch-session startxfce4
+fi
+
+if [[ $desktop_wm == "openbox" ]]; then
+    exec ck-launch-session dbus-launch openbox-session
 fi
 
 #exec ck-launch-session openbox
