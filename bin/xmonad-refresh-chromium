@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -e
+
+classname=chromium
+
+focused_window=$(xdotool getwindowfocus)
+desktop=$(xdotool get_desktop)
+
+xdotool search --desktop $desktop --onlyvisible --classname $classname windowfocus &&\
+    sleep 0.1 &&\
+    xdotool key "ctrl+r"
+
+xdotool windowfocus $focused_window

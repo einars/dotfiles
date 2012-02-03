@@ -201,6 +201,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "t",      function () awful.util.spawn("thunar /storage/torenti") end),
     awful.key({ modkey,           }, "b",      function () awful.util.spawn("thunar /storage/studijas") end),
     awful.key({ modkey,           }, "d",      function () awful.util.spawn("thunar /storage/dokumenti") end),
+    awful.key({ modkey,           }, "c",      function () awful.util.spawn("/usr/bin/chromium") end),
+    awful.key({ modkey, "Shift"   }, "c",      function () awful.util.spawn("/usr/bin/chromium") end),
     awful.key({ modkey, "Shift"   }, "t",      awful.client.floating.toggle                     ),
 
     awful.key({ modkey,           }, "x",      function () awful.util.spawn("xsetroot -cursor_name left_ptr") end),
@@ -276,7 +278,7 @@ globalkeys = awful.util.table.join(
 
 clientkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
+    -- awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
     awful.key({ modkey, "Shift"   }, "x",      function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),

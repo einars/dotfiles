@@ -7,13 +7,13 @@ function get_pacman {
     #     return
     # fi;
 
-    pacman=$(which pacman-color)
-    if [[ $pacman != "" ]]; then
-        echo $pacman
+    which pacman-color >/dev/null
+    if [[ $! != 0 ]]; then
+        echo pacman-color
         return
     fi;
 
-    which pacman
+    echo pacman
 }
 
 

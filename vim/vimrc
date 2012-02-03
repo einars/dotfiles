@@ -2,8 +2,6 @@
 let g:loaded_matchparen=1             " die, slow and needless matching paren highlighting
 let g:searchEmptyLinesPostfixing = 3  " php folding stuff
 let g:cursor_follows_alphabet = 1     " translit plugin
-let g:translit_map = 'translit.ru'
-"let g:translit_map = 'greek'
 
 let mapleader=","
 
@@ -78,11 +76,14 @@ endif
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
+Bundle 'gmarik/vundle'
 Bundle 'airblade/vim-rooter'
 Bundle 'tpope/vim-surround'
 Bundle 'spiiph/vim-space'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'einars/vim-phpfold'
 Bundle 'einars/vim-phpsyntax'
+Bundle 'einars/translit.vim'
 
 
 filetype plugin indent on  " detect filetypes
@@ -125,9 +126,6 @@ if has('gui_running')
     """ So here I get rid of the wq command.
     cmap wq w
     set mouse= " don't need mouse in gui at all
-
-    """ cursorline is quite nice actually
-                                                                                                    set cursorline
 
     " set guifont=Monaco\ 11
     set guifont=Terminus\ 14
@@ -386,7 +384,7 @@ endfunction
 
 
 " let's try this magic
-imap jj <Esc>
+imap jk <Esc>
 
 " get rid of search highlighting with leader-space
 nnoremap <leader><space> :noh<cr>
@@ -465,6 +463,12 @@ augroup Latex
     """ use internal help from bundle/latexhelp
     autocmd!
     autocmd FileType tex setlocal keywordprg=:help
+augroup END
+
+augroup Text
+    autocmd!
+    " autoflow paragrpahs
+    autocmd FileType txt set formatoptions +=wa
 augroup END
 
 augroup MyPasswords

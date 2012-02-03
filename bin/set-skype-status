@@ -1,0 +1,25 @@
+#!/usr/bin/env python2
+
+import sys
+import dbus
+
+"""
+UNKNOWN
+ONLINE  current user is online
+OFFLINE  current user is offline
+SKYPEME  current user is in Skype Me mode (protocol 2).
+AWAY  current user is away.
+NA  current user is not available.
+DND  current user is in Do not disturb mode.
+INVISIBLE  current user is invisible to others.
+LOGGEDOUT  current user is logged out. Clients are detached.
+"""
+
+status = sys.argv[1].upper()
+
+d = dbus.SessionBus()
+s = d.get_object('com.Skype.API', '/com/Skype')
+s.Invoke('NAME SkypeStatusChanger')
+s.Invoke('PROTOCOL 8')
+s.Invoke('SET USERSTATUS ' + status)
+
