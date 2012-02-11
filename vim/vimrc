@@ -2,6 +2,7 @@
 let g:loaded_matchparen=1             " die, slow and needless matching paren highlighting
 let g:searchEmptyLinesPostfixing = 3  " php folding stuff
 let g:cursor_follows_alphabet = 1     " translit plugin
+let g:translit_toggle_keymap = '<S-F1>'     " translit plugin
 
 let mapleader=","
 
@@ -340,10 +341,6 @@ nmap <Leader>nf :NERDTreeFind<CR>
 nmap <Leader>nm :NERDTreeMirror<CR>
 nmap <Leader>nc :NERDTreeClose<CR>
 
-" sane search/replace regexen
-vnoremap / /\v
-nnoremap / /\v
-
 " line start/end
 nnoremap H ^
 nnoremap L $
@@ -485,7 +482,7 @@ highlight RedundantSpaces term=standout ctermbg=60 guibg=#555555
 au BufRead,BufNew *.* call matchadd('Error', '\%120v.')
 au BufRead,BufNew *.* call matchadd('Todo', '\v<\+\w+\+>')
 au BufRead,BufNew *.* call matchadd('RedundantSpaces', '\s\+$\| \+\ze\t') "\ze sets end of match so only spaces highlighted
-au BufRead,BufNew *.* call matchadd('Todo', '\v(!!!|///).*')
+au BufRead,BufNew *.* call matchadd('Todo', '\v(!!!|///|###|;;;) .*')
 
 autocmd FileType inc setlocal syn=php
 
