@@ -195,4 +195,6 @@ umask 0002
 
 maybe_source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+compdef -d git # i'm smarter and faster
+
 # vim: set fdm=marker :

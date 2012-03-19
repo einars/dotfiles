@@ -26,28 +26,28 @@ URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.urlLauncher: opera
 URxvt.underlineURLs: true
 
-!! good white-on-black colors
-URxvt*foreground: #eeeeee
-URxvt*background: #242424
 
-!! true transparency:
-!! URxvt*background: rgba:1111/1111/1111/dddd
-URxvt*color0: #242424
-URxvt*color1: #bf7979
-URxvt*color2: #97b26b
-URxvt*color3: #cdcda1
-URxvt*color4: #86a2be
-URxvt*color5: #d9b798
-URxvt*color6: #a1b5cd
-URxvt*color7: #f4f4f4
-URxvt*color8: #cdb5cd
-URxvt*color9: #f4a45f
-URxvt*color10: #c5f779
-URxvt*color11: #ffffaf
-URxvt*color12: #98afd9
-URxvt*color13: #d7d998
-URxvt*color14: #a1b5cd
-URxvt*color15: #dedede
+!! good white-on-black colors
+! urxvt*background: rgba:1111/1111/1111/dddd
+!! urxvt*background: #242424
+!! urxvt*foreground: #eeeeee
+
+!! URxvt*color0: #242424
+!! URxvt*color1: #bf7979
+!! URxvt*color2: #97b26b
+!! URxvt*color3: #cdcda1
+!! URxvt*color4: #86a2be
+!! URxvt*color5: #d9b798
+!! URxvt*color6: #a1b5cd
+!! URxvt*color7: #f4f4f4
+!! URxvt*color8: #cdb5cd
+!! URxvt*color9: #f4a45f
+!! URxvt*color10: #c5f779
+!! URxvt*color11: #ffffaf
+!! URxvt*color12: #98afd9
+!! URxvt*color13: #d7d998
+!! URxvt*color14: #a1b5cd
+!! URxvt*color15: #dedede
 URxvt*fading: 30
 URxvt*fadeColor: #242424
 
@@ -70,6 +70,28 @@ URxvt*fadeColor: #242424
 ! URxvt*color14:        rgb:a1/cd/cd
 ! URxvt*color7:         rgb:00/00/00
 ! URxvt*color15:        rgb:00/00/00
+
+!! tango
+!! urxvt.background:             #000000
+urxvt.background:             #222222
+urxvt.foreground:             #D3D7CF
+urxvt.color0:                 #2E3436
+urxvt.color1:                 #CC0000
+urxvt.color2:                 #4E9A06
+urxvt.color3:                 #C4A000
+urxvt.color4:                 #3465A4
+urxvt.color5:                 #75507B
+urxvt.color6:                 #06989A
+urxvt.color7:                 #D3D7CF
+urxvt.color8:                 #555753
+urxvt.color9:                 #EF2929
+urxvt.color10:                #8AE234
+urxvt.color11:                #FCE94F
+urxvt.color12:                #729FCF
+urxvt.color13:                #AD7FA8
+urxvt.color14:                #34E2E2
+urxvt.color15:                #EEEEEC
+
 
 !Xcursor.size: 16
 !Xcursor.theme: Jimmac

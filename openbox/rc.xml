@@ -291,6 +291,18 @@
         <command>/my-lock</command>
       </action>
     </keybind>
+    <keybind key="0xc5">
+      <action name="Execute">
+        <command>xset dpms force off</command>
+      </action>
+    </keybind>
+    <keybind key="c-0xc5">
+      <action name="Execute">
+        <command>~/bin/rekey</command>
+      </action>
+    </keybind>
+
+
     <keybind key="W-f">
       <action name="ToggleMaximize"/>
     </keybind>
@@ -309,6 +321,18 @@
       <action name="Execute">
         <command>chromium</command>
       </action>
+    </keybind>
+    <keybind key="W-m">
+      <action name="Execute"><command>run-inferior super-m</command></action>
+    </keybind>
+    <keybind key="W-s-m">
+      <action name="Execute"><command>run-inferior super-M</command></action>
+    </keybind>
+    <keybind key="W-n">
+      <action name="Execute"><command>run-inferior super-n</command></action>
+    </keybind>
+    <keybind key="W-s-n">
+      <action name="Execute"><command>run-inferior super-N</command></action>
     </keybind>
     <!-- <keybind key="W-grave"> -->
     <!--     <action name="Execute"><command>focus-or-run urxvt</command></action> -->
@@ -405,6 +429,7 @@
         <command>dmenu_run -f -b -i -p Run: </command>
       </action>
     </keybind>
+    <!-- 1920x1200
     <keybind key="W-Left">
       <action name="MoveResizeTo">
         <x>0</x>
@@ -421,6 +446,7 @@
         <height>1151</height>
       </action>
     </keybind>
+
     <keybind key="W-Up">
       <action name="MoveResizeTo">
         <x>0</x>
@@ -437,6 +463,42 @@
         <height>917</height>
       </action>
     </keybind>
+    -->
+    <!-- 1600x1200 -->
+    <keybind key="W-Left">
+      <action name="MoveResizeTo">
+        <x>0</x>
+        <y>0</y>
+        <width>795</width>
+        <height>1151</height>
+      </action>
+    </keybind>
+    <keybind key="W-Right">
+      <action name="MoveResizeTo">
+        <x>795</x>
+        <y>0</y>
+        <width>805</width>
+        <height>1151</height>
+      </action>
+    </keybind>
+
+    <keybind key="W-Up">
+      <action name="MoveResizeTo">
+        <x>0</x>
+        <y>0</y>
+        <width>1200</width>
+        <height>769</height>
+      </action>
+    </keybind>
+    <keybind key="W-Down">
+      <action name="MoveResizeTo">
+        <x>0</x>
+        <y>795</y>
+        <width>1200</width>
+        <height>757</height>
+      </action>
+    </keybind>
+
     <keybind key="W-S-Up">
       <action name="MoveResizeTo">
         <x>0</x>

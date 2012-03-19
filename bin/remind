@@ -2,7 +2,7 @@
 
 
 if [[ $# == 0 ]] {
-    echo `basename $0` delay [message]
+    echo `basename $0` "delay [message]"
     exit
 }
 

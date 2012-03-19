@@ -19,7 +19,7 @@ set nrformats=hex       " c-a, c-x won't treat 05 as octal
 set wildmenu            " filename etc completion on tab
 set wildmode=full
 set t_md=               " no bold fonts in terminal
-set scrolloff=3
+set scrolloff=15
 set nostartofline
 set tabstop=4
 set softtabstop=4
@@ -129,7 +129,8 @@ if has('gui_running')
     set mouse= " don't need mouse in gui at all
 
     " set guifont=Monaco\ 11
-    set guifont=Terminus\ 14
+    " set guifont=Terminus\ 14
+    set guifont=Terminus\ 12
 
     set guioptions+=c       """ use console dialogs, not the gui ones
     set guioptions-=T       """ don't show the toolbar
