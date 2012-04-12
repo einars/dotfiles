@@ -35,6 +35,6 @@
 [pack]
 	threads = 0
 [push]
-	default = current
+	default = upstream
 [gui]
 	spellingdictionary = none

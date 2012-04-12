@@ -31,7 +31,8 @@ set expandtab
 set autoindent
 set wildchar=<Tab>
 set laststatus=2        " good statusline is good
-set statusline=%<%f\%h%m%r%=%-20.(%L\ %l:%v\ %)\ \ \%h%m%r%=\%P
+" set statusline=%<%f\%h%m%r%=%-20.(%L\ %l:%v\ %)\ \ \%h%m%r%=\%P
+set statusline=%<%f\%h%m%r\ %{fugitive#statusline()}%=%-20.(%L\ %l:%v\ %)\ \ \%h%m%r%=\%P
 set wildignore=*.cmi,*.cmx,*.cmo,*.class,*.pyc,.svn,.git,*.o,*.a,*.so
 set suffixes-=.h
 set virtualedit=block
@@ -69,7 +70,7 @@ set lazyredraw
 set hidden              " suddenly, magically, buffers get usable
 set autoread            " don't care about ext-modified files, just reload them
 set list
-set listchars=tab:\|.,trail:.,extends:#,nbsp:.
+set listchars=tab:\|.,trail:.,extends:#,nbsp:▮
 if has('conceal')
     set conceallevel=2      " 7.3, if supported
 endif
@@ -80,6 +81,8 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'airblade/vim-rooter'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-unimpaired'
 Bundle 'spiiph/vim-space'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'einars/vim-phpfold'
@@ -157,7 +160,7 @@ if has('gui_running')
     source ~/.vim/phpcolors-zenburn.vim
 
     hi Irrelevant guifg=#666670
-    
+
     " "set list"
     hi SpecialKey guifg=#333333
 
@@ -165,7 +168,8 @@ else
     cnoreabbr W w
     cnoreabbr Wq wq
     if &t_Co > 120
-        colorscheme desert
+        colorscheme zenburn-mine
+        source ~/.vim/phpcolors-zenburn.vim
     end
     set mouse=a " while I'd prefer mouse off, the scrollwheel messes up the text in console
     hi SpecialKey ctermfg=58
@@ -474,6 +478,14 @@ augroup MyPasswords
     highlight Password ctermfg=252 ctermbg=252 guibg=orange guifg=orange
     au BufRead passwords.txt call matchadd('Password', '\v  \zs([^ ]+)\ze$')
     " au BufRead passwords.txt syn match Password /\v  \zs([^ ]+)\ze$/
+augroup END
+
+augroup Fugitive
+    autocmd User fugitive
+        \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+        \   nnoremap <buffer> .. :edit %:h<CR> |
+        \ endif
+    autocmd BufReadPost fugitive://* set bufhidden=delete
 augroup END
 
 """ subtly tell when lines are too long

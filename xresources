@@ -1,4 +1,4 @@
-URxvt*font: xft:Terminus:pixelsize=12:antialias=false
+URxvt*font: xft:Terminus:pixelsize=14:antialias=false
 
 URxvt*depth: 32
 
@@ -17,13 +17,14 @@ URxvt*scrollBar: false
 URxvt*scrollTtyKeypress: true
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
+URxvt*lineSpace: 4
 
 URxvt*termName: rxvt-256color
 URxvt*underlineColor: #86a2be
 
 URxvt.perl-ext-common: default,url-select
 URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.urlLauncher: opera
+URxvt.urlLauncher: chromium
 URxvt.underlineURLs: true
 
 
@@ -48,8 +49,9 @@ URxvt.underlineURLs: true
 !! URxvt*color13: #d7d998
 !! URxvt*color14: #a1b5cd
 !! URxvt*color15: #dedede
-URxvt*fading: 30
-URxvt*fadeColor: #242424
+
+URxvt*fading: 0
+!URxvt*fadeColor: #242424
 
 !! gnome-ish colors
 ! URxvt*foreground:     rgb:22/22/22
