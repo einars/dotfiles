@@ -11,6 +11,8 @@ export LS_COLORS="ow=4" # all-writable folders are unreadable, so remove the for
 
 test -d ~/bin && export PATH=~/bin:$PATH
 test -d ~/bin/private && export PATH=~/bin/private:$PATH
+test -d /usr/lib/ccache/bin && export PATH=/usr/lib/ccache/bin:$PATH
+test -d ~/.odb/bin && export PATH=$PATH:~/.odb/bin
 
 
 # remove \0 from IFS

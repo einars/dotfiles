@@ -36,6 +36,8 @@ set statusline=%<%f\%h%m%r\ %{fugitive#statusline()}%=%-20.(%L\ %l:%v\ %)\ \ \%h
 set wildignore=*.cmi,*.cmx,*.cmo,*.class,*.pyc,.svn,.git,*.o,*.a,*.so
 set suffixes-=.h
 set virtualedit=block
+
+set background=dark
                         " allow moving past end of lines when selecting
                         "    vertical blocks with ^V
 set bs=indent,eol,start " usable backspace
@@ -88,6 +90,9 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'einars/vim-phpfold'
 Bundle 'einars/vim-phpsyntax'
 Bundle 'einars/translit.vim'
+Bundle 'michalliu/sourcebeautify.vim'
+Bundle 'michalliu/jsruntime.vim'
+Bundle 'michalliu/jsoncodecs.vim'
 
 
 filetype plugin indent on  " detect filetypes
@@ -131,9 +136,9 @@ if has('gui_running')
     cmap wq w
     set mouse= " don't need mouse in gui at all
 
-    " set guifont=Monaco\ 11
+    set guifont=Monaco\ 11
     " set guifont=Terminus\ 14
-    set guifont=Terminus\ 12
+    " set guifont=Terminus\ 12
 
     set guioptions+=c       """ use console dialogs, not the gui ones
     set guioptions-=T       """ don't show the toolbar
@@ -151,40 +156,24 @@ if has('gui_running')
     let &guicursor = &guicursor . ",a:blinkon0"
 
     """ colorscheme xoria256-mine
-    """ colorscheme zenburn
-    let g:zenburn_high_Contrast=1
-    colorscheme zenburn-mine " zenburn w/o bolds
+    colorscheme myfairlady
 
     "let g:lucius_style = "dark"
     "colorscheme lucius
-    source ~/.vim/phpcolors-zenburn.vim
-
-    hi Irrelevant guifg=#666670
-
-    " "set list"
-    hi SpecialKey guifg=#333333
+    " source ~/.vim/phpcolors-zenburn.vim
 
 else
     cnoreabbr W w
     cnoreabbr Wq wq
-    if &t_Co > 120
-        colorscheme zenburn-mine
-        source ~/.vim/phpcolors-zenburn.vim
+    if &t_Co > 255
+        colorscheme myfairlady
     end
     set mouse=a " while I'd prefer mouse off, the scrollwheel messes up the text in console
-    hi SpecialKey ctermfg=58
 
 end
 
 
 """ only underline on search
-
-hi clear Search
-hi Search cterm=underline gui=underline
-
-
-
-
 
 hi link htmlTag htmlTagName
 hi link htmlEndTag htmlTagName

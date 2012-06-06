@@ -85,7 +85,6 @@ if [[ $desktop_wm == "xmonad" ]]; then
     exec ck-launch-session xmonad
 fi
 
-
 if [[ $desktop_wm == "awesome" ]]; then
     hsetroot -solid '#111111'
     exec ck-launch-session awesome
@@ -97,7 +96,8 @@ if [[ $desktop_wm == "xfce" ]]; then
 fi
 
 if [[ $desktop_wm == "openbox" ]]; then
-    exec ck-launch-session dbus-launch openbox-session
+    #exec ck-launch-session dbus-launch openbox-session-debug
+    exec ck-launch-session dbus-launch openbox-session-ulimit
 fi
 
 #exec ck-launch-session openbox

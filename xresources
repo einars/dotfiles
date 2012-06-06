@@ -1,11 +1,12 @@
-URxvt*font: xft:Terminus:pixelsize=14:antialias=false
+URxvt*font: xft:Terminus:size=10,xft:Lucida Console:size=10
+!URxvt*font: xft:Terminus (TTF):size=14
 
 URxvt*depth: 32
 
 URxvt*cutchars: BACKSLASH '"'&()*,;<=>?@[]{|}
 URxvt*colorUL: #86a2be
 URxvt*geometry: 140x35
-URxvt.cursorColor: #86a2be
+URxvt*cursorColor: #86a2be
 URxvt*internalBorder: 1
 URxvt*loginShell: false
 URxvt*pointerBlank: false
@@ -17,88 +18,59 @@ URxvt*scrollBar: false
 URxvt*scrollTtyKeypress: true
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
-URxvt*lineSpace: 4
+URxvt*lineSpace: 3
 
 URxvt*termName: rxvt-256color
 URxvt*underlineColor: #86a2be
 
-URxvt.perl-ext-common: default,url-select
-URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.urlLauncher: chromium
-URxvt.underlineURLs: true
-
-
-!! good white-on-black colors
-! urxvt*background: rgba:1111/1111/1111/dddd
-!! urxvt*background: #242424
-!! urxvt*foreground: #eeeeee
-
-!! URxvt*color0: #242424
-!! URxvt*color1: #bf7979
-!! URxvt*color2: #97b26b
-!! URxvt*color3: #cdcda1
-!! URxvt*color4: #86a2be
-!! URxvt*color5: #d9b798
-!! URxvt*color6: #a1b5cd
-!! URxvt*color7: #f4f4f4
-!! URxvt*color8: #cdb5cd
-!! URxvt*color9: #f4a45f
-!! URxvt*color10: #c5f779
-!! URxvt*color11: #ffffaf
-!! URxvt*color12: #98afd9
-!! URxvt*color13: #d7d998
-!! URxvt*color14: #a1b5cd
-!! URxvt*color15: #dedede
+URxvt*perl-ext-common: default,url-select
+URxvt*keysym.M-u: perl:url-select:select_next
+URxvt*urlLauncher: chromium
+URxvt*underlineURLs: true
 
 URxvt*fading: 0
 !URxvt*fadeColor: #242424
 
-!! gnome-ish colors
-! URxvt*foreground:     rgb:22/22/22
-! URxvt*background:     rgb:fa/fa/fa
-! URxvt*color0:         rgb:4f/4f/4f
-! URxvt*color8:         rgb:25/25/25
-! URxvt*color1:         rgb:85/0d/0d
-! URxvt*color9:         rgb:98/2b/2b
-! URxvt*color2:         rgb:88/be/32
-! URxvt*color10:        rgb:af/f7/3e
-! URxvt*color3:         rgb:ff/7e/00
-! URxvt*color11:        rgb:fa/d4/3d
-! URxvt*color4:         rgb:32/4c/80
-! URxvt*color12:        rgb:2b/4f/98
-! URxvt*color5:         rgb:70/6c/9a
-! URxvt*color13:        rgb:82/6a/b1
-! URxvt*color6:         rgb:92/b1/9e
-! URxvt*color14:        rgb:a1/cd/cd
-! URxvt*color7:         rgb:00/00/00
-! URxvt*color15:        rgb:00/00/00
-
 !! tango
-!! urxvt.background:             #000000
-urxvt.background:             #222222
-urxvt.foreground:             #D3D7CF
-urxvt.color0:                 #2E3436
-urxvt.color1:                 #CC0000
-urxvt.color2:                 #4E9A06
-urxvt.color3:                 #C4A000
-urxvt.color4:                 #3465A4
-urxvt.color5:                 #75507B
-urxvt.color6:                 #06989A
-urxvt.color7:                 #D3D7CF
-urxvt.color8:                 #555753
-urxvt.color9:                 #EF2929
-urxvt.color10:                #8AE234
-urxvt.color11:                #FCE94F
-urxvt.color12:                #729FCF
-urxvt.color13:                #AD7FA8
-urxvt.color14:                #34E2E2
-urxvt.color15:                #EEEEEC
+!! urxvt*background:             #000000
+urxvt*background:             #222222
+urxvt*foreground:             #D3D7CF
+urxvt*color0:                 #2E3436
+urxvt*color1:                 #CC0000
+urxvt*color2:                 #4E9A06
+urxvt*color3:                 #C4A000
+urxvt*color4:                 #3465A4
+urxvt*color5:                 #75507B
+urxvt*color6:                 #06989A
+urxvt*color7:                 #D3D7CF
+urxvt*color8:                 #555753
+urxvt*color9:                 #EF2929
+urxvt*color10:                #8AE234
+urxvt*color11:                #FCE94F
+urxvt*color12:                #729FCF
+urxvt*color13:                #AD7FA8
+urxvt*color14:                #34E2E2
+urxvt*color15:                #EEEEEC
 
-
-!Xcursor.size: 16
-!Xcursor.theme: Jimmac
-!Xcursor.theme: Chameleon-Anthracite-Small
-!Xcursor.theme: FlatbedCursors.Orange.Small
-!Xcursor.theme: Polar
 Xcursor.theme: lil-polar
+!! Xcursor.theme: Bluecurve
+
+urxvtq*background:             #333333
+urxvtq*foreground:             #D3D7CF
+urxvtq*color0:                 #2E3436
+urxvtq*color1:                 #CC0000
+urxvtq*color2:                 #4E9A06
+urxvtq*color3:                 #C4A000
+urxvtq*color4:                 #3465A4
+urxvtq*color5:                 #75507B
+urxvtq*color6:                 #06989A
+urxvtq*color7:                 #D3D7CF
+urxvtq*color8:                 #555753
+urxvtq*color9:                 #EF2929
+urxvtq*color10:                #8AE234
+urxvtq*color11:                #FCE94F
+urxvtq*color12:                #729FCF
+urxvtq*color13:                #AD7FA8
+urxvtq*color14:                #34E2E2
+urxvtq*color15:                #EEEEEC
 

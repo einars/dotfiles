@@ -2,13 +2,13 @@
 
 set -e
 
-classname=chromium
+classname=google-chrome
 
 focused_window=$(xdotool getwindowfocus)
 desktop=$(xdotool get_desktop)
 
-xdotool search --desktop $desktop --onlyvisible --classname $classname windowfocus &&\
-    sleep 0.1 &&\
+xdotool search --sync --desktop $desktop --onlyvisible --classname $classname windowfocus &&\
+    sleep 0.2 &&\
     xdotool key "ctrl+r"
 
 xdotool windowfocus $focused_window
