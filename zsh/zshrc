@@ -69,7 +69,7 @@ function setup_prompt() #{{{
         HOST_PART=$host
         USER_PART=$USER
 
-        if [[ $SSH_CONNECTION = '' ]] {
+        if [[ $SSH_CONNECTION = '' && $USER != 'root' ]] {
             # don't print host when on localhost
             # (i.e print host for remotely connected systems, etc)
             HOST_PART=
