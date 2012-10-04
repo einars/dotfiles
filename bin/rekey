@@ -1,0 +1,13 @@
+#!/bin/sh
+
+
+setxkbmap lv -option ctrl:nocaps -option altwin:swap_lalt_lwin
+
+echo '
+keycode 94 = grave asciitilde grave asciitilde asciitilde
+remove mod4 = Super_R
+keycode 134 = ISO_Level3_Shift
+!add mod5 = Super_R
+! keycode 108 = Super_R
+! keycode 134 = ISO_Level3_Shift ISO_Level3_Shift ISO_Level3_Shift' \
+        | xmodmap -

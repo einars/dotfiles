@@ -1,7 +1,7 @@
 URxvt*font: xft:Terminus:size=10,xft:Lucida Console:size=10
 !URxvt*font: xft:Terminus (TTF):size=14
 
-URxvt*depth: 32
+URxvt*depth: 24
 
 URxvt*cutchars: BACKSLASH '"'&()*,;<=>?@[]{|}
 URxvt*colorUL: #86a2be

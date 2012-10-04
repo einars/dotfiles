@@ -1,9 +1,10 @@
 #!/usr/bin/env zsh
 
-DECAY=/services/web/decay.spicausis.lv
+#DECAY=/services/web/decay.spicausis.lv
+DECAY=minerva:tmp/
 
-mkdir -p $DECAY
-find $DECAY -type f -mtime +2 -delete
+#mkdir -p $DECAY
+#find $DECAY -type f -mtime +2 -delete
 
 opt_link=0
 
@@ -43,5 +44,9 @@ if (( $opt_link == 1 )); then
         ln -t $DECAY -s `pwd`/$@
     fi
 else
-    cp -r -t $DECAY $@
+    #cp -r -t $DECAY $@
+    scp $@ $DECAY
+    url="http://decay.spicausis.lv/$@"
+    echo $url | xclip 
+    echo $url
 fi

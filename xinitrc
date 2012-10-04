@@ -12,7 +12,6 @@ keycode 134 = ISO_Level3_Shift
         | xmodmap -
 }
 
-
 function init_common()
 {
     export PATH=$HOME/bin:$HOME/bin/private:$PATH

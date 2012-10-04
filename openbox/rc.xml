@@ -391,14 +391,29 @@
         <dialog>list</dialog>
       </action>
     </keybind>
+    <keybind key="XF86Launch7">
+      <action name="Execute">
+        <command>xrandr --output "DVI-I-1" --rotate normal --output "HDMI-0" --right-of "DVI-I-1"</command>
+      </action>
+    </keybind>
     <keybind key="C-XF86Launch7">
       <action name="Execute">
-        <command>xrandr -o normal</command>
+        <command>xrandr --output "DVI-I-1" --rotate left --output "HDMI-0" --right-of "DVI-I-1"</command>
+      </action>
+    </keybind>
+    <keybind key="XF86Launch8">
+      <action name="Execute">
+        <command>xrandr --output "HDMI-0" --auto --rotate normal --right-of "DVI-I-1"</command>
       </action>
     </keybind>
     <keybind key="C-XF86Launch8">
       <action name="Execute">
-        <command>xrandr -o left</command>
+        <command>xrandr --output "HDMI-0" --auto --rotate left --right-of "DVI-I-1"</command>
+      </action>
+    </keybind>
+    <keybind key="S-XF86Launch8">
+      <action name="Execute">
+        <command>xrandr --output "HDMI-0" --off</command>
       </action>
     </keybind>
     <keybind key="XF86Launch9">
@@ -555,58 +570,11 @@
     <!-- Set this to TRUE to move the mouse pointer across the desktop when
        switching due to hitting the edge of the screen -->
     <context name="Frame">
-      <mousebind action="Press" button="A-Left">
-        <action name="Focus"/>
-        <action name="Raise"/>
-      </mousebind>
-      <mousebind action="Click" button="A-Left">
-        <action name="Unshade"/>
-      </mousebind>
-      <mousebind action="Drag" button="A-Left">
+      <mousebind action="Drag" button="W-Left">
         <action name="Move"/>
       </mousebind>
-      <mousebind action="Press" button="A-Right">
-        <action name="Focus"/>
-        <action name="Raise"/>
-        <action name="Unshade"/>
-      </mousebind>
-      <mousebind action="Drag" button="A-Right">
+      <mousebind action="Drag" button="W-Right">
         <action name="Resize"/>
-      </mousebind>
-      <mousebind action="Press" button="A-Middle">
-        <action name="Lower"/>
-        <action name="FocusToBottom"/>
-        <action name="Unfocus"/>
-      </mousebind>
-      <mousebind action="Click" button="A-Up">
-        <action name="GoToDesktop">
-          <to>previous</to>
-        </action>
-      </mousebind>
-      <mousebind action="Click" button="A-Down">
-        <action name="GoToDesktop">
-          <to>next</to>
-        </action>
-      </mousebind>
-      <mousebind action="Click" button="C-A-Up">
-        <action name="GoToDesktop">
-          <to>previous</to>
-        </action>
-      </mousebind>
-      <mousebind action="Click" button="C-A-Down">
-        <action name="GoToDesktop">
-          <to>next</to>
-        </action>
-      </mousebind>
-      <mousebind action="Click" button="A-S-Up">
-        <action name="SendToDesktop">
-          <to>previous</to>
-        </action>
-      </mousebind>
-      <mousebind action="Click" button="A-S-Down">
-        <action name="SendToDesktop">
-          <to>next</to>
-        </action>
       </mousebind>
     </context>
     <context name="Titlebar">

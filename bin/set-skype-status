@@ -21,5 +21,8 @@ d = dbus.SessionBus()
 s = d.get_object('com.Skype.API', '/com/Skype')
 s.Invoke('NAME SkypeStatusChanger')
 s.Invoke('PROTOCOL 8')
-s.Invoke('SET USERSTATUS ' + status)
+if s.Invoke('GET USERSTATUS') == 'USERSTATUS DND':
+    print "dnd, not setting status"
+else:
+    s.Invoke('SET USERSTATUS ' + status)
 

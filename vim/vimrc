@@ -9,9 +9,11 @@ let mapleader=","
 " sadly, autoindentations tend to go haywire with this
 " set matchpairs=(:)
 
+set ttyfast
 set lsp=5
 set cryptmethod=blowfish
 set ttimeoutlen=100
+set synmaxcol=300
 set history=1000
 set showmatch           " jump to matching paren quickly
 set matchtime=1
@@ -137,8 +139,6 @@ if has('gui_running')
     set mouse= " don't need mouse in gui at all
 
     set guifont=Monaco\ 11
-    " set guifont=Terminus\ 14
-    " set guifont=Terminus\ 12
 
     set guioptions+=c       """ use console dialogs, not the gui ones
     set guioptions-=T       """ don't show the toolbar
@@ -162,13 +162,14 @@ if has('gui_running')
     "colorscheme lucius
     " source ~/.vim/phpcolors-zenburn.vim
 
+    set guifont=Monaco\ 9
+    colorscheme dual
+
 else
     cnoreabbr W w
     cnoreabbr Wq wq
-    if &t_Co > 255
-        colorscheme myfairlady
-    end
     set mouse=a " while I'd prefer mouse off, the scrollwheel messes up the text in console
+    colorscheme dual
 
 end
 
@@ -393,6 +394,7 @@ nnoremap <leader>eq :e ~/dokumenti/quotes.txt<cr>
 nnoremap <leader>en :e ~/dokumenti/notes.txt<cr>
 nnoremap <leader>eb :e ~/dokumenti/backlog.txt<cr>
 nnoremap <leader>ed :e ~/dokumenti/drawing.txt<cr>
+nnoremap <leader>es :e ~/dokumenti/scribble.txt<cr>
 " nnoremap <leader>eo :e ~/opera/js/blockeds.js<cr>
 nnoremap <leader>eo :e ~/.config/openbox/rc.xml<cr>
 nnoremap <leader>em :e ~/.config/openbox/menu.xml<cr>

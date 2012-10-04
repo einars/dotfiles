@@ -2,12 +2,16 @@
 
 set -e
 
+searchmode=classname
 classname=google-chrome
+
+#searchmode=class
+#classname=Firefox
 
 focused_window=$(xdotool getwindowfocus)
 desktop=$(xdotool get_desktop)
 
-xdotool search --sync --desktop $desktop --onlyvisible --classname $classname windowfocus &&\
+xdotool search --desktop $desktop --onlyvisible --$searchmode $classname windowfocus &&\
     sleep 0.2 &&\
     xdotool key "ctrl+r"
 

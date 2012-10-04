@@ -10,7 +10,8 @@ alias wine='WINEDLLOVERRIDES=winemenubuilder.exe=d wine'
 alias jad='jad -b -ff -s java'
 alias ack='clear; ack'
 alias grep="grep --color=auto -d skip -i --line-buffered"
-alias ssh='TERM=xterm ssh -C'
+#alias ssh='TERM=xterm ssh -C'
+alias ssh='ssh -C'
 
 alias edzsh='vim ~/.zsh/zshrc; . ~/.zsh/zshrc'
 alias edalias='vim ~/.zsh/aliases.linux; . ~/.zsh/aliases.linux'
@@ -69,7 +70,8 @@ alias xc='xcalib ~/Samsung*.icm'
 
 alias rsynx='rsync -vax --no-owner --no-group --no-perms'
 
-alias phptags="find . -name '*.php' | grep -v deployment | grep -v release | \\xargs ctags"
+#alias phptags="find . -name '*.php' | grep -v deployment | grep -v release | \\xargs ctags --php-types=f"
+alias phptags="ctags -h .php -R --totals=yes --php-kinds=f --exclude=media --exclude=release --exclude=static"
 #alias phptags="ctags **/*.php"
 
 alias py=ipython
@@ -85,13 +87,14 @@ alias -g KILL9=" awk '{print \$2}' | xargs /bin/kill -9 "
 alias acka='ack --follow -a -i -Q'
 alias ackj='ack --type=java -i -Q'
 alias wget="wget -U 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)' --load-cookies=/tmp/wget.$EUID.cookies.txt --keep-session-cookies --save-cookies=/tmp/wget.$EUID.cookies.txt --keep-session-cookies"
+alias wget_iphone="wget -U 'Mozilla/5.0 (iPhone; U; CPU OS 4_2_1 like Mac OS X) AppleWebKit/532.9 (KHTML, like Gecko) Version/5.0.3 Mobile/8B5097d Safari/6531.22.7' --load-cookies=/tmp/wget.$EUID.cookies.txt --keep-session-cookies --save-cookies=/tmp/wget.$EUID.cookies.txt --keep-session-cookies"
 
 # rlwraps
 
 alias racket='rlwrap racket'
 alias mzscheme='rlwrap mzscheme'
 alias mit-scheme='rlwrap mit-scheme'
-alias ocaml='rlwrap ocaml'
+alias ocaml='rlwrap --prompt-colour=green --multi-line --remember --complete-filenames --command-name=ocaml ocaml'
 alias ocamldebug='rlwrap ocamldebug'
 alias sbcl='rlwrap sbcl'
 alias arc='cd ~/arc; rlwrap mzscheme -m -f as.scm'
@@ -143,6 +146,8 @@ function mkd {
 # so use specific aliases instead
 alias d2u='dos2unix --d2u'
 #alias u2d = 'dos2unix --u2d' who needs that anyway
+
+alias cal='cal --monday'
 
 
 # vim: syn=zsh :
