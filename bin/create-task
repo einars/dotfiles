@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if [[ $1 == "" ]]; then
+    echo "Usage: $0 task-description"
+else
+    echo \
+"To: einars@spicausis.lv
+From: new-task@spicausis.lv
+Subject: $@
+
+$@" | msmtp einars@gmail.com
+fi

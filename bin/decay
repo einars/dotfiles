@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 #DECAY=/services/web/decay.spicausis.lv
-DECAY=minerva:tmp/
+DECAY=minerva:decay/
 
 #mkdir -p $DECAY
 #find $DECAY -type f -mtime +2 -delete
@@ -46,7 +46,7 @@ if (( $opt_link == 1 )); then
 else
     #cp -r -t $DECAY $@
     scp $@ $DECAY
-    url="http://decay.spicausis.lv/$@"
+    url="http://decay.spicausis.lv/$(basename $@)"
     echo $url | xclip 
     echo $url
 fi

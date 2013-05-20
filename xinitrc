@@ -2,22 +2,20 @@
 
 function setup_apple_keyboard()
 {
-    echo '
+echo '
 keycode 94 = grave asciitilde grave asciitilde asciitilde
 remove mod4 = Super_R
-keycode 134 = ISO_Level3_Shift
-!add mod5 = Super_R
-! keycode 108 = Super_R
-! keycode 134 = ISO_Level3_Shift ISO_Level3_Shift ISO_Level3_Shift' \
-        | xmodmap -
+keycode 134 = ISO_Level3_Shift' | xmodmap -
 }
 
 function init_common()
 {
     export PATH=$HOME/bin:$HOME/bin/private:$PATH
     export WINEDLLOVERRIDES=winemenubuilder.exe=d
+    export GVFS_DISABLE_FUSE=1
+    export SDL_AUDIODRIVER=alsa
 
-    setxkbmap lv -option ctrl:nocaps
+    setxkbmap lv -option -option ctrl:nocaps
 
     xsetroot -cursor_name left_ptr
     numlockx
@@ -35,25 +33,23 @@ function init_sparta()
 {
     export QT_PLUGIN_PATH=/opt/lib32/usr/lib/qt/plugins
     export WINEARCH=win32
-    export BROWSER=`which opera`
+    export BROWSER=google-chrome
 
     # swap scrollwheel direction
     #xmodmap -e "pointer = 1 2 3 5 4"
 
-    setxkbmap lv -option ctrl:nocaps -option altwin:swap_lalt_lwin
-
+    setxkbmap lv -option -option ctrl:nocaps  -option altwin:swap_lalt_lwin
     setup_apple_keyboard
 
     nvidia-settings --load-config-only
 
     # leisure user
-    if [[ $USER = e ]]; then
-        export desktop_wm=xfce
-    fi
+    #if [[ $USER = e ]]; then
+        #export desktop_wm=xfce
+    #fi
 
     # work user
-    if [[ $USER = w ]]; then
-        #export desktop_wm=awesome
+    if [[ $USER = e ]]; then
         export desktop_wm=openbox
     fi
 
@@ -86,17 +82,21 @@ fi
 
 if [[ $desktop_wm == "awesome" ]]; then
     hsetroot -solid '#111111'
-    exec ck-launch-session awesome
+    exec awesome
 fi
 
 
 if [[ $desktop_wm == "xfce" ]]; then
-    exec ck-launch-session startxfce4
+    exec startxfce4
 fi
 
 if [[ $desktop_wm == "openbox" ]]; then
     #exec ck-launch-session dbus-launch openbox-session-debug
-    exec ck-launch-session dbus-launch openbox-session-ulimit
+    #exec openbox-session-ulimit
+    #exec ssh-agent /opt/openbox/bin/openbox-session
+    ulimit -c unlimited
+    exec ssh-agent /usr/bin/openbox --startup ~/.config/openbox/autostart
+
 fi
 
 #exec ck-launch-session openbox

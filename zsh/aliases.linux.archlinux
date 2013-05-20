@@ -37,10 +37,10 @@ alias current='$pacman -Q | grep '
 function inside { $pacman -Ql $1 | grep -v '/$' }
 function binside { $pacman -Ql $1 | grep -v '/$' | grep --color=never bin }
 function aurget {
-  if [[ $1 != "" ]]; then
-    package=$1
-    chpwd_functions= cd /aurbuild/
-    yaourt -Gf $package && cd $package && cat PKGBUILD
+  package=$1
+  if [[ $package != "" ]]; then
+    chpwd_functions= cd ~/build/aur/
+    yaourt --getpkgbuild $package && cd $package && cat PKGBUILD
   fi
 }
 

@@ -1,0 +1,54 @@
+#!/usr/bin/fish
+
+set basename
+set paramidx 1
+set scan_params
+set crop_params
+
+while test -n $argv[$paramidx]
+    if test $argv[$paramidx] = 'a5'
+        set scan_params $scan_params -x 215 -y 153
+        set crop_params $crop_params -rotate 90
+    end
+
+    if test $argv[$paramidx] = 'white'
+        set crop_params $crop_params -color-matrix "1.225 0 0 0 1.202 0 0 0 1.186"
+    end
+
+    set filename $argv[$paramidx]
+    if test $paramidx = (count $argv)
+        break
+    end
+    set paramidx (math $paramidx + 1)
+end
+
+if test -z $filename
+    echo Usage: $0 output.jpg
+else
+    set basename (basename $filename .jpg)
+    set filename "$basename.jpg"
+
+    echo $filename
+
+    scanimage \
+        --resolution 300 \
+        --mode Color \
+        --buffer-size=8M \
+        --format=tiff \
+        $scan_params \
+        > $basename.tiff
+
+    convert \
+        -shave '10x10' \
+        -quality 85 \
+        -scale '1024x' \
+        $crop_params \
+        $basename.tiff $basename.jpg
+
+    rm $basename.tiff
+
+    viewnior $filename &
+    echo
+
+end
+

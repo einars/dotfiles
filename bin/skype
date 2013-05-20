@@ -1,9 +1,0 @@
-#!/usr/bin/env zsh
-
-# fix unicode input crap for skype32 under 64-bit system
-
-if [[ `uname -m` == "x86_64" ]]; then
-    GCONV_PATH=/opt/lib32/usr/lib/gconv exec /usr/bin/skype
-else
-    exec /usr/bin/skype
-fi

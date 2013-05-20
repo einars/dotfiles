@@ -2,7 +2,10 @@
 	name = Einar Lielmanis
 	email = einars@gmail.com
 [alias]
-    stat = status
+    stat = status --short
+    s = status --short
+    d = diff -U1 --ignore-all-space
+
     sup = svn rebase
     co = checkout
     la = log --pretty=\"format:%ad %h (%an): %s\" --date=short
@@ -13,9 +16,12 @@
     ch = diff --name-status -r
 
     diffstat = diff --stat -r
-    d = diff --stat -r
     l = log --all --oneline --graph --abbrev-commit --decorate
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
+    assume   = update-index --assume-unchanged
+    unassume = update-index --no-assume-unchanged
+    assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
 
 [core]
     #autocrlf = input
@@ -32,9 +38,14 @@
     untracked = cyan
 [diff]
 	renamelimit = 0
+	algorithm = patience
 [pack]
 	threads = 0
 [push]
 	default = upstream
 [gui]
 	spellingdictionary = none
+[core]
+	pager = less -r
+[merge]
+	conflictstyle = diff3

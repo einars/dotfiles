@@ -1,0 +1,4 @@
+#!/bin/sh
+
+notify "$(date '+%a %d.%b %H:%M')"
+

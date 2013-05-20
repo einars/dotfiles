@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+set -e
+
+snap=$1
+
+if [[ "$snap" == "" ]]; then
+    snap=image.png
+fi
+
+adb pull /dev/graphics/fb0
+ffmpeg -loglevel error -y -vframes 0 -f rawvideo -pix_fmt rgb565 -s 480x800 -i fb0 /tmp/snap%d.png
+rm fb0
+mv /tmp/snap1.png $snap
+echo $snap written

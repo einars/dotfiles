@@ -4,6 +4,18 @@ let g:searchEmptyLinesPostfixing = 3  " php folding stuff
 let g:cursor_follows_alphabet = 1     " translit plugin
 let g:translit_toggle_keymap = '<S-F1>'     " translit plugin
 
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v\/(\.(git|hg|svn)|media|release|releases)$',
+  \ 'file': '\v\.(exe|so|dll|cmi|cmo|cmx)$',
+  \ }
+
+let g:ycm_key_detailed_diagnostics = '<F11>'
+
+" let wiki = {}
+" let wiki.path = '~/dokumenti/wiki/'
+" let g:vimwiki_list = [ wiki ]
+
 let mapleader=","
 
 " sadly, autoindentations tend to go haywire with this
@@ -23,7 +35,7 @@ set wildmode=full
 set t_md=               " no bold fonts in terminal
 set scrolloff=15
 set nostartofline
-set tabstop=4
+set tabstop=8
 set softtabstop=4
 set shiftwidth=4
 set shiftround          " shift in mod 4
@@ -74,7 +86,7 @@ set lazyredraw
 set hidden              " suddenly, magically, buffers get usable
 set autoread            " don't care about ext-modified files, just reload them
 set list
-set listchars=tab:\|.,trail:.,extends:#,nbsp:▮
+set listchars=tab:·\ ,trail:.,extends:#,nbsp:▮
 if has('conceal')
     set conceallevel=2      " 7.3, if supported
 endif
@@ -92,9 +104,16 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'einars/vim-phpfold'
 Bundle 'einars/vim-phpsyntax'
 Bundle 'einars/translit.vim'
-Bundle 'michalliu/sourcebeautify.vim'
-Bundle 'michalliu/jsruntime.vim'
-Bundle 'michalliu/jsoncodecs.vim'
+"- Bundle 'michalliu/sourcebeautify.vim'
+"- Bundle 'michalliu/jsruntime.vim'
+"- Bundle 'michalliu/jsoncodecs.vim'
+Bundle 'kien/ctrlp.vim'
+" Bundle 'vim-scripts/vimwiki'
+" Bundle 'tpope/vim-foreplay'
+" Bundle 'guns/vim-clojure-static'
+
+
+Bundle 'Valloric/YouCompleteMe'
 
 
 filetype plugin indent on  " detect filetypes
@@ -138,7 +157,8 @@ if has('gui_running')
     cmap wq w
     set mouse= " don't need mouse in gui at all
 
-    set guifont=Monaco\ 11
+    " set guifont=Monaco\ 10
+    set guifont=Source\ \Code\ Pro\ 10
 
     set guioptions+=c       """ use console dialogs, not the gui ones
     set guioptions-=T       """ don't show the toolbar
@@ -162,13 +182,12 @@ if has('gui_running')
     "colorscheme lucius
     " source ~/.vim/phpcolors-zenburn.vim
 
-    set guifont=Monaco\ 9
     colorscheme dual
 
 else
     cnoreabbr W w
     cnoreabbr Wq wq
-    set mouse=a " while I'd prefer mouse off, the scrollwheel messes up the text in console
+    set mouse=
     colorscheme dual
 
 end
@@ -216,9 +235,6 @@ nnoremap <f1> <esc>
 vnoremap <f1> <esc>
 
 
-
-" let's try this omnicompletion thing
-inoremap <C-Space> <C-X><C-O>
 
 "
 " Enable spellchecking conditionally
@@ -424,7 +440,7 @@ augroup END
 
 augroup OCaml
     autocmd!
-    autocmd FileType ocaml setlocal tabstop=2 shiftwidth=2 expandtab
+    autocmd FileType ml,ocaml setlocal sts=2 ts=2 sw=2 expandtab
 augroup END
 
 augroup Python
@@ -436,7 +452,7 @@ augroup END
 
 augroup C
     autocmd!
-    autocmd FileType c,cpp setlocal tabstop=8 shiftwidth=4 expandtab
+    autocmd FileType c,cpp setlocal nolist tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
 augroup END
 
 augroup Javascript
@@ -491,7 +507,13 @@ au BufRead,BufNew *.* call matchadd('Todo', '\v(!!!|///|###|;;;) .*')
 autocmd FileType inc setlocal syn=php
 
 """ let's try the autosave on focus lost magic
-au FocusLost * :update
+au FocusLost * silent! w
+
+function WriteFile()
+    if (&buftype == "") && (expand("%:r") > "") && (&readonly==0)
+        write
+    endif
+endfunction
 
 
 " let g:space_no_character_movements = 1

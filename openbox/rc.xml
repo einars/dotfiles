@@ -28,7 +28,7 @@
     <center>yes</center>
     <!-- whether to place windows in the center of the free area found or
        the top left corner -->
-    <monitor>Active</monitor>
+    <monitor>Primary</monitor>
     <!-- with Smart placement on a multi-monitor system, try to place new windows
        on: 'Any' - any monitor, 'Mouse' - where the mouse is, 'Active' - where
        the active window is, 'Primary' - only on the primary monitor -->
@@ -42,7 +42,7 @@
   <theme>
     <!--ame>Clearlooks-Olive</name-->
     <name>Orang</name>
-    <titleLayout>CLIS</titleLayout>
+    <titleLayout>CNLDI</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
       N: window icon
@@ -54,7 +54,7 @@
       D: omnipresent (on all desktops).
   -->
     <keepBorder>yes</keepBorder>
-    <animateIconify>no</animateIconify>
+    <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
       <name>PT Sans Caption</name>
       <size>9</size>
@@ -66,7 +66,7 @@
     </font>
     <font place="InactiveWindow">
       <name>PT Sans Caption</name>
-      <size>8</size>
+      <size>9</size>
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -74,7 +74,7 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="MenuHeader">
-      <name>PT Sans</name>
+      <name>PT Sans Caption</name>
       <size>10</size>
       <!-- font size in points -->
       <weight>Normal</weight>
@@ -133,7 +133,7 @@
   </desktops>
   <resize>
     <drawContents>yes</drawContents>
-    <popupShow>Never</popupShow>
+    <popupShow>NonPixel</popupShow>
     <!-- 'Always', 'Never', or 'Nonpixel' (xterms and such) -->
     <popupPosition>Center</popupPosition>
     <!-- 'Center', 'Top', or 'Fixed' -->
@@ -179,7 +179,7 @@
     <chainQuitKey>C-g</chainQuitKey>
     <keybind key="grave">
       <action name="Execute">
-        <execute>/home/w/bin/urxvtq</execute>
+        <execute>/home/e/bin/urxvtq</execute>
       </action>
     </keybind>
     <keybind key="W-1">
@@ -291,6 +291,11 @@
         <command>gvim ~/dokumenti/passwords.txt</command>
       </action>
     </keybind>
+    <keybind key="W-C-Return">
+      <action name="Execute">
+        <command>gvim</command>
+      </action>
+    </keybind>
     <keybind key="C-A-Delete">
       <action name="ToggleShowDesktop"/>
       <action name="Execute">
@@ -299,10 +304,10 @@
     </keybind>
     <keybind key="0xc5">
       <action name="Execute">
-        <command>xset dpms force off</command>
+        <command>notify-datetime</command>
       </action>
     </keybind>
-    <keybind key="c-0xc5">
+    <keybind key="s-0xc5">
       <action name="Execute">
         <command>~/bin/rekey</command>
       </action>
@@ -316,15 +321,14 @@
     <keybind key="W-s-d">
       <action name="ToggleDecorations"/>
     </keybind>
-    <keybind key="W-s-c">
-      <action name="Execute">
-        <command>chromium</command>
-      </action>
+    <keybind key="W-s-a">
+      <action name="ToggleAlwaysOnTop"/>
+      <action name="ToggleOmnipresent"/>
+      <action name="ToggleDecorations"/>
     </keybind>
-    <keybind key="W-c">
-      <action name="Execute">
-        <command>chromium</command>
-      </action>
+    <keybind key="W-a">
+      <action name="ToggleAlwaysOnTop"/>
+      <action name="ToggleOmnipresent"/>
     </keybind>
     <keybind key="W-m">
       <action name="Execute">
@@ -391,24 +395,53 @@
         <dialog>list</dialog>
       </action>
     </keybind>
+    <keybind key="XF86AudioPrev">
+      <action name="Execute">
+        <command>mpc prev</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioNext">
+      <action name="Execute">
+        <command>mpc next</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioPlay">
+      <action name="Execute">
+        <command>mpc toggle</command>
+      </action>
+    </keybind>
+    <keybind key="C-XF86AudioPlay">
+      <action name="Execute">
+        <command>mpc stop</command>
+      </action>
+    </keybind>
+    <keybind key="S-XF86AudioPlay">
+      <action name="Execute">
+        <command>mpc stop</command>
+      </action>
+    </keybind>
     <keybind key="XF86Launch7">
       <action name="Execute">
-        <command>xrandr --output "DVI-I-1" --rotate normal --output "HDMI-0" --right-of "DVI-I-1"</command>
+        <x-command>xrandr --output "DVI-D-0" --rotate normal --pos 0x0 --output "HDMI-0" --pos 1850x0</x-command>
+        <command>xrandr --output "DVI-D-0" --rotate left --pos 0x0 --output "HDMI-0" --rotate left --pos 1200x0 </command>
       </action>
     </keybind>
-    <keybind key="C-XF86Launch7">
+    <x-keybind key="C-XF86Launch7">
       <action name="Execute">
-        <command>xrandr --output "DVI-I-1" --rotate left --output "HDMI-0" --right-of "DVI-I-1"</command>
+        <x-command>xrandr --output "DVI-D-0" --rotate left --pos 0x0 --output "HDMI-0" --rotate left --pos 1450x0 </x-command>
+        <command>xrandr --output "DVI-D-0" --rotate left --pos 0x0 --output "HDMI-0" --rotate left --pos 1200x0 </command>
       </action>
-    </keybind>
+    </x-keybind>
     <keybind key="XF86Launch8">
       <action name="Execute">
-        <command>xrandr --output "HDMI-0" --auto --rotate normal --right-of "DVI-I-1"</command>
+        <x-command>xrandr --output "HDMI-0" --auto --rotate normal --pos 1850x0</x-command>
+        <command>xrandr --output "DVI-D-0" --rotate left --pos 0x0 --output "HDMI-0" --rotate normal --pos 1200x400 </command>
       </action>
     </keybind>
     <keybind key="C-XF86Launch8">
       <action name="Execute">
-        <command>xrandr --output "HDMI-0" --auto --rotate left --right-of "DVI-I-1"</command>
+        <x-command>xrandr --output "DVI-D-0" --rotate left --pos 0x0 --output "HDMI-0" --rotate left --pos 1450x0 </x-command>
+        <command>xrandr --output "DVI-D-0" --rotate normal --pos 0x0 --output "HDMI-0" --rotate left --pos 1600x0 </command>
       </action>
     </keybind>
     <keybind key="S-XF86Launch8">
@@ -456,104 +489,48 @@
         <command>dmenu_run -f -b -i -p Run: </command>
       </action>
     </keybind>
-    <!-- 1920x1200
     <keybind key="W-Left">
+      <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>0</x>
-        <y>0</y>
-        <width>880</width>
-        <height>1151</height>
+        <monitor>all</monitor>
       </action>
     </keybind>
     <keybind key="W-Right">
+      <action name="Unmaximize"/>
       <action name="MoveResizeTo">
-        <x>882</x>
-        <y>0</y>
-        <width>1040</width>
-        <height>1151</height>
-      </action>
-    </keybind>
-
-    <keybind key="W-Up">
-      <action name="MoveResizeTo">
-        <x>0</x>
-        <y>0</y>
-        <width>1200</width>
-        <height>929</height>
-      </action>
-    </keybind>
-    <keybind key="W-Down">
-      <action name="MoveResizeTo">
-        <x>0</x>
-        <y>955</y>
-        <width>1200</width>
-        <height>917</height>
-      </action>
-    </keybind>
-    -->
-    <!-- 1600x1200 -->
-    <keybind key="W-Left">
-      <action name="MoveResizeTo">
-        <x>0</x>
-        <y>0</y>
-        <width>795</width>
-        <height>1151</height>
-      </action>
-    </keybind>
-    <keybind key="W-Right">
-      <action name="MoveResizeTo">
-        <x>795</x>
-        <y>0</y>
-        <width>805</width>
-        <height>1151</height>
+        <x>1600</x>
+        <monitor>all</monitor>
       </action>
     </keybind>
     <keybind key="W-Up">
+      <action name="Unmaximize"/>
       <action name="MoveResizeTo">
-        <x>0</x>
-        <y>0</y>
-        <width>1200</width>
-        <height>769</height>
+        <y>+0</y>
+        <width>100%</width>
+        <height>50%</height>
       </action>
     </keybind>
     <keybind key="W-Down">
+      <action name="Unmaximize"/>
       <action name="MoveResizeTo">
-        <x>0</x>
-        <y>795</y>
-        <width>1200</width>
-        <height>757</height>
+        <y>-0</y>
+        <width>100%</width>
+        <height>50%</height>
       </action>
     </keybind>
     <keybind key="W-S-Up">
+      <action name="Unmaximize"/>
       <action name="MoveResizeTo">
-        <x>0</x>
-        <y>0</y>
-        <width>1200</width>
-        <height>1349</height>
-      </action>
-    </keybind>
-    <keybind key="W-C-Down">
-      <action name="MoveResizeTo">
-        <x>0</x>
-        <y>575</y>
-        <width>1200</width>
-        <height>1297</height>
-      </action>
-    </keybind>
-    <keybind key="W-C-Up">
-      <action name="MoveResizeTo">
-        <x>0</x>
-        <y>0</y>
-        <width>1200</width>
-        <height>549</height>
+        <width>100%</width>
+        <height>100%</height>
       </action>
     </keybind>
     <keybind key="W-S-Down">
+      <action name="Unmaximize"/>
       <action name="MoveResizeTo">
-        <x>0</x>
-        <y>1375</y>
-        <width>1200</width>
-        <height>497</height>
+        <width>100%</width>
+        <height>60%</height>
       </action>
     </keybind>
   </keyboard>
@@ -562,7 +539,7 @@
     <!-- number of pixels the mouse must move before a drag begins -->
     <doubleClickTime>200</doubleClickTime>
     <!-- in milliseconds (1000 = 1 second) -->
-    <screenEdgeWarpTime>400</screenEdgeWarpTime>
+    <screenEdgeWarpTime>0</screenEdgeWarpTime>
     <!-- Time before changing desktops when the pointer touches the edge of the
        screen while moving a window, in milliseconds (1000 = 1 second).
        Set this to 0 to disable warping -->
@@ -806,7 +783,12 @@
     </context>
     <context name="Root">
       <!-- Menus -->
-      <mousebind action="Press" button="Middle">
+      <mousebind action="Press" button="Up">
+        <action name="ShowMenu">
+          <menu>client-list-combined-menu</menu>
+        </action>
+      </mousebind>
+      <mousebind action="Press" button="Down">
         <action name="ShowMenu">
           <menu>client-list-combined-menu</menu>
         </action>

@@ -15,14 +15,23 @@ INVISIBLE  current user is invisible to others.
 LOGGEDOUT  current user is logged out. Clients are detached.
 """
 
+#exit(0)
+
 status = sys.argv[1].upper()
 
 d = dbus.SessionBus()
 s = d.get_object('com.Skype.API', '/com/Skype')
 s.Invoke('NAME SkypeStatusChanger')
 s.Invoke('PROTOCOL 8')
-if s.Invoke('GET USERSTATUS') == 'USERSTATUS DND':
-    print "dnd, not setting status"
+old_status = s.Invoke('GET USERSTATUS')
+
+if old_status == 'USERSTATUS OFFLINE' or old_status == 'USERSTATUS INVISIBLE':
+    print "%s, not touching with a ten foot pole" % old_status
+    pass
+elif old_status != 'USERSTATUS ONLINE' and status != 'ONLINE':
+    print "not online, not setting status: " + old_status
+elif status == 'ONLINE' and old_status == 'USERSTATUS DND':
+    print "not going online from dnd"
 else:
     s.Invoke('SET USERSTATUS ' + status)
 

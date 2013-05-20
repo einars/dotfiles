@@ -1,0 +1,16 @@
+#!/bin/sh
+
+export GOPATH=~/build/godev
+export PATH=$GOPATH/bin:$PATH
+
+
+export PATH=$PATH:/opt/android-sdk/platform-tools/
+
+cdpath=(. ~ /services/web/localhost /services/web/dev.spicausis.lv /services/web /storage /storage/studijas)
+
+function c() {
+    CDPATH= cd $1
+}
+
+alias ppp="cd ~/.wine/drive_c/Program\ Files/"
+alias of='ocamlbuild -use-ocamlfind'

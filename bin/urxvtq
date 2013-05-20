@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
 pid=$(pidof -sx urxvtq -o %PPID)
 if [ -z "$pid" ]; then
-  urxvt -name urxvtq -geometry 80x40
-  #xdotool search --sync --classname urxvtq windowfocus
+    urxvt -name urxvtq -geometry 199x40 -e /bin/zsh
 else
   if [ -z "$(xdotool search --onlyvisible --classname urxvtq 2>/dev/null)" ]; then
     xdotool search --sync --classname urxvtq windowmap windowactivate

@@ -10,16 +10,15 @@ eval "`dircolors -b`" 2>/dev/null
 export LS_COLORS="ow=4" # all-writable folders are unreadable, so remove the formatting, leaving just underline
 
 test -d ~/bin && export PATH=~/bin:$PATH
+test -d ~/.gem/ruby/1.9.1/bin && export PATH=~/.gem/ruby/1.9.1/bin:$PATH
 test -d ~/bin/private && export PATH=~/bin/private:$PATH
 test -d /usr/lib/ccache/bin && export PATH=/usr/lib/ccache/bin:$PATH
-test -d ~/.odb/bin && export PATH=$PATH:~/.odb/bin
 
 
 # remove \0 from IFS
 export IFS=${IFS/$'\0'}
 export EDITOR=vim
 export VISUAL=vim
-export OOO_FORCE_DESKTOP=gnome
 
 
 autoload -Uz compinit
@@ -58,7 +57,7 @@ function setup_prompt() #{{{
     prefix_sc_branch() {
         (( $+SCHROOT_USER )) && echo -n ${fg_green}arch32 $reset_color
         [ -z $BRANCH ] && [ -d .svn ] && BRANCH=`svn info 2>/dev/null| grep Revision | awk '{print "svn:"$2}'`
-        [ -z $BRANCH ] && [ -d .git -o -d ../.git -o -d ../../.git -o -d ../../../.git ] && BRANCH=`git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+        [ -z $BRANCH ] && [ -d .git -o -d ../.git -o -d ../../.git -o -d ../../../.git ] && BRANCH=$(git rev-parse --abbrev-ref HEAD)
         [ -z $BRANCH ] || echo "${fg_bluish}${BRANCH} "
     }
 
@@ -171,6 +170,8 @@ function setup_cd_autols() #{{{
 } #}}}
 
 
+# g+w
+umask 0002
 
 setup_prompt
 setup_keyboard
@@ -178,25 +179,37 @@ setup_cd_autols
 
 maybe_source ~/.zsh/aliases
 maybe_source ~/.zsh/aliases.private
-maybe_source ~/.zsh/zshrc.$host
+maybe_source ~/.zsh/zsh.$host
 
 
-if [[ $host == "sparta" ]]; then
-    cdpath=(. ~ /services/web/localhost /services/web/dev.spicausis.lv /services/web /storage /storage/studijas)
 
-    function c() {
-        CDPATH= cd $1
-    }
-
-    alias ppp="cd ~/.wine/drive_c/Program\ Files/"
-
+if test -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; then
+    source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    # override some colors:
+    ZSH_HIGHLIGHT_STYLES[default]='none'
+    ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red,bold,underline'
+    ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=green'
+    ZSH_HIGHLIGHT_STYLES[alias]='fg=green'
+    ZSH_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
+    ZSH_HIGHLIGHT_STYLES[function]='fg=green'
+    ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
+    ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=red,bold,standout'
+    ZSH_HIGHLIGHT_STYLES[path]='fg=white,underline'
+    ZSH_HIGHLIGHT_STYLES[globbing]='fg=white,bold'
+    ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=green'
+    ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=blue'
+    ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=blue'
+    ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=red,bold'
+    ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=red'
+    ZSH_HIGHLIGHT_STYLES[assign]='fg=green,bold'
+    ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=cyan,bold'
+    ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=cyan'
 fi
 
-# g+w
-umask 0002
-
-maybe_source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 compdef -d git # i'm smarter and faster
 
 # vim: set fdm=marker :
+
+# OPAM configuration
+. /home/e/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
