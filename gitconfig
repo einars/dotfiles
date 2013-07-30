@@ -16,8 +16,8 @@
     ch = diff --name-status -r
 
     diffstat = diff --stat -r
-    l = log --all --oneline --graph --abbrev-commit --decorate
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    #l = log --all --oneline --graph --abbrev-commit --decorate
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 
     assume   = update-index --assume-unchanged
     unassume = update-index --no-assume-unchanged

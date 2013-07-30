@@ -4,12 +4,6 @@ let g:searchEmptyLinesPostfixing = 3  " php folding stuff
 let g:cursor_follows_alphabet = 1     " translit plugin
 let g:translit_toggle_keymap = '<S-F1>'     " translit plugin
 
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v\/(\.(git|hg|svn)|media|release|releases)$',
-  \ 'file': '\v\.(exe|so|dll|cmi|cmo|cmx)$',
-  \ }
-
 let g:ycm_key_detailed_diagnostics = '<F11>'
 
 " let wiki = {}
@@ -104,14 +98,6 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'einars/vim-phpfold'
 Bundle 'einars/vim-phpsyntax'
 Bundle 'einars/translit.vim'
-"- Bundle 'michalliu/sourcebeautify.vim'
-"- Bundle 'michalliu/jsruntime.vim'
-"- Bundle 'michalliu/jsoncodecs.vim'
-Bundle 'kien/ctrlp.vim'
-" Bundle 'vim-scripts/vimwiki'
-" Bundle 'tpope/vim-foreplay'
-" Bundle 'guns/vim-clojure-static'
-
 
 Bundle 'Valloric/YouCompleteMe'
 
@@ -126,19 +112,6 @@ set cpoptions-=a        " do not leave the template file open
 autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.tpl
 
 
-
-" Sane tabbing — tab vs autocomplete
-
-function! InsertTabWrapper(direction)
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    elseif a:direction == "back"
-        return "\<c-p>"
-    else
-        return "\<c-n>"
-    endif
-endfunction
 
 
 
@@ -175,22 +148,14 @@ if has('gui_running')
     """ i hate blinking cursor
     let &guicursor = &guicursor . ",a:blinkon0"
 
-    """ colorscheme xoria256-mine
-    colorscheme myfairlady
-
-    "let g:lucius_style = "dark"
-    "colorscheme lucius
-    " source ~/.vim/phpcolors-zenburn.vim
-
-    colorscheme dual
-
 else
     cnoreabbr W w
     cnoreabbr Wq wq
     set mouse=
-    colorscheme dual
 
 end
+
+colorscheme dual
 
 
 """ only underline on search
@@ -233,7 +198,6 @@ map! <f1> <esc>
 inoremap <f1> <esc>
 nnoremap <f1> <esc>
 vnoremap <f1> <esc>
-
 
 
 "
@@ -324,38 +288,11 @@ nnoremap <leader>j /<+.\{-1,}+><cr>c/+>/e<cr>
 
 
 
-" human tabs
-
-inoremap <tab>   <c-r>=InsertTabWrapper("fwd")<cr>
-inoremap <s-tab> <c-r>=InsertTabWrapper("back")<cr>
-
-
-" c-space is omnicompletion
-" inoremap <nul> <c-x><c-o>
-
-
 " PHP stuff: rebuild folds on s-f5
-
 map <s-f5> <esc>:EnableFastPHPFolds<cr>
 
-
 " resync colors on f5
-
 map <f5> <esc>:syn sync fromstart<cr>
-
-
-" nerdtree
-
-nmap <Leader>no :NERDTree<CR>
-nmap <Leader>nt :NERDTreeToggle<CR>
-nmap <Leader>nf :NERDTreeFind<CR>
-nmap <Leader>nm :NERDTreeMirror<CR>
-nmap <Leader>nc :NERDTreeClose<CR>
-
-" line start/end
-nnoremap H ^
-nnoremap L $
-
 
 
 " }}}
@@ -389,10 +326,9 @@ function! StripTrailingWhitespace()
 endfunction
 
 
-
-
 " let's try this magic
 imap jk <Esc>
+
 
 " get rid of search highlighting with leader-space
 nnoremap <leader><space> :noh<cr>
@@ -408,13 +344,10 @@ nnoremap <leader>ez :e ~/.zshrc<cr>
 nnoremap <leader>ec :e ~/commands<cr>
 nnoremap <leader>eq :e ~/dokumenti/quotes.txt<cr>
 nnoremap <leader>en :e ~/dokumenti/notes.txt<cr>
-nnoremap <leader>eb :e ~/dokumenti/backlog.txt<cr>
 nnoremap <leader>ed :e ~/dokumenti/drawing.txt<cr>
 nnoremap <leader>es :e ~/dokumenti/scribble.txt<cr>
-" nnoremap <leader>eo :e ~/opera/js/blockeds.js<cr>
 nnoremap <leader>eo :e ~/.config/openbox/rc.xml<cr>
 nnoremap <leader>em :e ~/.config/openbox/menu.xml<cr>
-nnoremap <leader>ea :e ~/.config/awesome/rc.lua<cr>
 
 
 augroup javascript
@@ -461,7 +394,7 @@ augroup Javascript
 augroup END
 
 augroup PHP
-    autocmd FileType php setlocal keywordprg=~/bin/phpdoc
+    autocmd FileType php setlocal keywordprg=~/bin/phpdoc tabstop=4 shiftwidth=4
 augroup END
 
 augroup CZZ
@@ -520,11 +453,6 @@ endfunction
 let g:space_no_brace = 1
 let g:space_no_folds = 1
 
-source ~/.vim/jeetworks-arrows.vim
-
-" no need for shift to enter command mode
-nnoremap ; :
-
 
 au BufEnter *.ml,*.c,*.h,*.cpp,*.php :Rooter
 
@@ -539,6 +467,9 @@ autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:las
 :nnoremap <silent> <Leader>l ml:execute 'match RedundantSpaces /\%'.line('.').'l/'<CR>
 
 :command! Wsudo w !sudo tee % > /dev/null
+
+
+source ~/.vim/jeetworks-arrows.vim
 
 
 " vim: set fdm=marker :

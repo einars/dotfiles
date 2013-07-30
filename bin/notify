@@ -1,8 +1,10 @@
 #!/usr/bin/env zsh
 
 
+
 if [[ $DISPLAY == "" ]]; then
     echo $@
 else
+    echo "$@"
     notify-send -t 10000 -u normal -h int:x:1810 -h int:y:0 "$@"
 fi

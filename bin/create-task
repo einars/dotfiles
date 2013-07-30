@@ -5,7 +5,7 @@ if [[ $1 == "" ]]; then
 else
     echo \
 "To: einars@spicausis.lv
-From: new-task@spicausis.lv
+From: Einārs Lielmanis <new-task@spicausis.lv>
 Subject: $@
 
 $@" | msmtp einars@gmail.com

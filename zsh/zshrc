@@ -5,6 +5,7 @@ setopt nohup
 export HISTFILE=~/.zsh_history
 export HISTSIZE=1000
 export SAVEHIST=1000
+export LESS=eFX
 
 eval "`dircolors -b`" 2>/dev/null
 export LS_COLORS="ow=4" # all-writable folders are unreadable, so remove the formatting, leaving just underline

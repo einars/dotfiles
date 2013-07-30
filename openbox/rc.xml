@@ -42,7 +42,7 @@
   <theme>
     <!--ame>Clearlooks-Olive</name-->
     <name>Orang</name>
-    <titleLayout>CNLDI</titleLayout>
+    <titleLayout>CNLI</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
       N: window icon
@@ -432,13 +432,13 @@
         <command>xrandr --output "DVI-D-0" --rotate left --pos 0x0 --output "HDMI-0" --rotate left --pos 1200x0 </command>
       </action>
     </x-keybind>
-    <keybind key="XF86Launch8">
+    <keybind key="C-XF86Launch8">
       <action name="Execute">
         <x-command>xrandr --output "HDMI-0" --auto --rotate normal --pos 1850x0</x-command>
         <command>xrandr --output "DVI-D-0" --rotate left --pos 0x0 --output "HDMI-0" --rotate normal --pos 1200x400 </command>
       </action>
     </keybind>
-    <keybind key="C-XF86Launch8">
+    <keybind key="XF86Launch8">
       <action name="Execute">
         <x-command>xrandr --output "DVI-D-0" --rotate left --pos 0x0 --output "HDMI-0" --rotate left --pos 1450x0 </x-command>
         <command>xrandr --output "DVI-D-0" --rotate normal --pos 0x0 --output "HDMI-0" --rotate left --pos 1600x0 </command>

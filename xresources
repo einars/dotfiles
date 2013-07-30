@@ -4,6 +4,9 @@ URxvt*font: xft:Terminus:size=10,xft:Lucida Console:size=10
 
 URxvt*depth: 24
 
+xterm*metaSendsEscape: true
+xterm*termName: xterm-256color
+
 URxvt*cutchars: BACKSLASH '"'&()*,;<=>?@[]{|}
 URxvt*colorUL: #86a2be
 URxvt*geometry: 140x35
