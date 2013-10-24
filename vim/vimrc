@@ -130,8 +130,8 @@ if has('gui_running')
     cmap wq w
     set mouse= " don't need mouse in gui at all
 
-    " set guifont=Monaco\ 10
-    set guifont=Source\ \Code\ Pro\ 10
+    set guifont=Monaco\ 9
+    "set guifont=Source\ \Code\ Pro\ 10
 
     set guioptions+=c       """ use console dialogs, not the gui ones
     set guioptions-=T       """ don't show the toolbar
@@ -327,7 +327,7 @@ endfunction
 
 
 " let's try this magic
-imap jk <Esc>
+imap kj <Esc>
 
 
 " get rid of search highlighting with leader-space
@@ -440,7 +440,10 @@ au BufRead,BufNew *.* call matchadd('Todo', '\v(!!!|///|###|;;;) .*')
 autocmd FileType inc setlocal syn=php
 
 """ let's try the autosave on focus lost magic
-au FocusLost * silent! w
+""" single active window:
+" au FocusLost * silent! update
+""" all unsaved windows:
+au FocusLost * silent! wa
 
 function WriteFile()
     if (&buftype == "") && (expand("%:r") > "") && (&readonly==0)
@@ -471,5 +474,8 @@ autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:las
 
 source ~/.vim/jeetworks-arrows.vim
 
+if has("gui_running")
+  set lines=50 columns=120
+endif
 
 " vim: set fdm=marker :

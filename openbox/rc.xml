@@ -422,31 +422,28 @@
     </keybind>
     <keybind key="XF86Launch7">
       <action name="Execute">
-        <x-command>xrandr --output "DVI-D-0" --rotate normal --pos 0x0 --output "HDMI-0" --pos 1850x0</x-command>
-        <command>xrandr --output "DVI-D-0" --rotate left --pos 0x0 --output "HDMI-0" --rotate left --pos 1200x0 </command>
+        <command>xrandr --output "DVI-D-0" --auto --rotate normal --pos 0x0 --output "HDMI-0" --auto --rotate left --pos 1600x0 </command>
       </action>
     </keybind>
-    <x-keybind key="C-XF86Launch7">
-      <action name="Execute">
-        <x-command>xrandr --output "DVI-D-0" --rotate left --pos 0x0 --output "HDMI-0" --rotate left --pos 1450x0 </x-command>
-        <command>xrandr --output "DVI-D-0" --rotate left --pos 0x0 --output "HDMI-0" --rotate left --pos 1200x0 </command>
-      </action>
-    </x-keybind>
     <keybind key="C-XF86Launch8">
       <action name="Execute">
-        <x-command>xrandr --output "HDMI-0" --auto --rotate normal --pos 1850x0</x-command>
-        <command>xrandr --output "DVI-D-0" --rotate left --pos 0x0 --output "HDMI-0" --rotate normal --pos 1200x400 </command>
+        <x-command>xrandr --output "DVI-D-0" --auto --rotate left --pos 0x0 --output "HDMI-0" --auto --rotate normal --pos 1200x0 </x-command>
+        <command>xrandr --output "DVI-D-0" --auto --rotate left --pos 0x0 --output "HDMI-0" --auto --rotate normal --pos 1200x0 </command>
       </action>
     </keybind>
     <keybind key="XF86Launch8">
       <action name="Execute">
-        <x-command>xrandr --output "DVI-D-0" --rotate left --pos 0x0 --output "HDMI-0" --rotate left --pos 1450x0 </x-command>
-        <command>xrandr --output "DVI-D-0" --rotate normal --pos 0x0 --output "HDMI-0" --rotate left --pos 1600x0 </command>
+        <command>xrandr --output "DVI-D-0" --auto --rotate left --pos 0x0 --output "HDMI-0" --auto --rotate normal --pos 1200x0 </command>
+      </action>
+    </keybind>
+    <keybind key="S-XF86Launch7">
+      <action name="Execute">
+        <command>xrandr --output "DVI-D-0" --off --output "HDMI-0" --auto</command>
       </action>
     </keybind>
     <keybind key="S-XF86Launch8">
       <action name="Execute">
-        <command>xrandr --output "HDMI-0" --off</command>
+        <command>xrandr --output "DVI-D-0" --auto --rotate normal --output "HDMI-0" --off</command>
       </action>
     </keybind>
     <keybind key="XF86Launch9">

@@ -1,0 +1,40 @@
+#!/usr/bin/env fish
+
+# vim: set syn=fish :
+
+# ag search, but:
+# 1. case-insenstitive with forced regexp, to workaround a comparison bug w/diacritical chars,
+# 2. all params searched, no need to quote: aa i went home -> searches for "i went home"
+
+set exclude_dirs third-party media
+
+set folder
+set exclude_cmd
+for dir in $exclude_dirs
+    if test -d $dir
+        set exclude_cmd --ignore-dir $dir $exclude_cmd
+    end
+end
+
+
+
+if set -q $argv
+    echo "aa [stuff-to-search] [folder]"
+else
+
+    set n_args (count $argv)
+    # the last argument will be treated as a folder, if a folder by that name exists
+    if test -d $argv[-1]
+        set folder $argv[-1]
+        set -e argv[-1]
+    end
+
+    set search_string ".{0}$argv"
+    set search_lower (echo $search_string | awk '{print tolower($0)}')
+    clear
+    set case_mode "--ignore-case"
+    if test $search_string != $search_lower
+        set case_mode "--case-sensitive"
+    end
+    ag $exclude_cmd $case_mode $search_string $folder
+end

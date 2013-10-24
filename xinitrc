@@ -14,6 +14,7 @@ function init_common()
     export WINEDLLOVERRIDES=winemenubuilder.exe=d
     export GVFS_DISABLE_FUSE=1
     export SDL_AUDIODRIVER=alsa
+    export _JAVA_OPTIONS='-Dawd.useSystemAAFontSettings=on -Dswing.aatext=true'
 
     setxkbmap lv -option -option ctrl:nocaps
 

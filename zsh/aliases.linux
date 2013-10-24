@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 
+alias restart='sudo systemctl restart'
 alias mysql='mysql --pager=less'
 
 
@@ -48,8 +49,6 @@ alias gits="git status"
 alias gitc="git commit"
 alias amend="git commit --amend"
 alias gitsc="test -d .git/svn && git svn dcommit"
-alias develop="git checkout development"
-alias testing="git checkout testing"
 alias b="git checkout "
 
 # svn

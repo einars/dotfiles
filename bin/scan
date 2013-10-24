@@ -1,10 +1,16 @@
 #!/usr/bin/fish
 
 set basename
-set paramidx 1
 set scan_params
 set crop_params
+set color_matrix     -color-matrix "1.225 0 0 0 1.202 0 0 0 1.186"
+set mode             Color
+set resolution       300
+set hires_resolution 1200
+set raw              no
 
+
+set paramidx 1
 while test -n $argv[$paramidx]
     if test $argv[$paramidx] = 'a5'
         set scan_params $scan_params -x 215 -y 153
@@ -12,7 +18,33 @@ while test -n $argv[$paramidx]
     end
 
     if test $argv[$paramidx] = 'white'
-        set crop_params $crop_params -color-matrix "1.225 0 0 0 1.202 0 0 0 1.186"
+        ### 
+    end
+
+    # dark = no whitening
+    if test $argv[$paramidx] = 'dark'
+        set color_matrix
+    end
+
+    if test $argv[$paramidx] = 'hires'
+        set resolution $hires_resolution
+        set raw yes
+    end
+
+    if test $argv[$paramidx] = 'raw'
+        set raw yes
+        set color_matrix
+    end
+
+    if test $argv[$paramidx] = 'color'
+        set mode "Color"
+    end
+
+    if test $argv[$paramidx] = 'grey'
+        set mode "Gray"
+    end
+    if test $argv[$paramidx] = 'gray'
+        set mode "Gray"
     end
 
     set filename $argv[$paramidx]
@@ -25,29 +57,39 @@ end
 if test -z $filename
     echo Usage: $0 output.jpg
 else
-    set basename (basename $filename .jpg)
-    set filename "$basename.jpg"
+    if [ $raw = 'yes' ]
+        set basename (basename $filename .tiff)
+        set filename "$basename.tiff"
+    else
+        set basename (basename $filename .jpg)
+        set filename "$basename.jpg"
+    end
 
     echo $filename
 
     scanimage \
-        --resolution 300 \
-        --mode Color \
-        --buffer-size=8M \
+        --resolution $resolution \
+        --mode $mode \
+        --buffer-size=1M \
         --format=tiff \
         $scan_params \
         > $basename.tiff
 
-    convert \
-        -shave '10x10' \
-        -quality 85 \
-        -scale '1024x' \
-        $crop_params \
-        $basename.tiff $basename.jpg
+    if [ $raw = 'yes' ]
+        echo "Raw mode, not processing"
+    else
+        convert \
+            -shave '10x10' \
+            -quality 85 \
+            -scale '1024x' \
+            $crop_params \
+            $color_matrix \
+            $basename.tiff $basename.jpg
 
-    rm $basename.tiff
+        rm $basename.tiff
+        viewnior $filename &
+    end
 
-    viewnior $filename &
     echo
 
 end

@@ -1,8 +1,12 @@
 [user]
-	name = Einar Lielmanis
+	name = Einar Lielmanis\n
 	email = einars@gmail.com
 [alias]
     stat = status --short
+
+    lstat = log -n 1 --stat
+    lst = log -n 1 --stat
+
     s = status --short
     d = diff -U1 --ignore-all-space
 
@@ -48,4 +52,5 @@
 [core]
 	pager = less -r
 [merge]
-	conflictstyle = diff3
+        #conflictstyle = diff3
+        tool = diffuse
