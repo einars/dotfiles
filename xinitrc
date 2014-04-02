@@ -14,7 +14,7 @@ function init_common()
     export WINEDLLOVERRIDES=winemenubuilder.exe=d
     export GVFS_DISABLE_FUSE=1
     export SDL_AUDIODRIVER=alsa
-    export _JAVA_OPTIONS='-Dawd.useSystemAAFontSettings=on -Dswing.aatext=true'
+    export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.aatext=true -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
     setxkbmap lv -option -option ctrl:nocaps
 
@@ -33,13 +33,13 @@ function init_common()
 function init_sparta()
 {
     export QT_PLUGIN_PATH=/opt/lib32/usr/lib/qt/plugins
-    export WINEARCH=win32
+    # export WINEARCH=win32
     export BROWSER=google-chrome
 
     # swap scrollwheel direction
     #xmodmap -e "pointer = 1 2 3 5 4"
 
-    setxkbmap lv -option -option ctrl:nocaps  -option altwin:swap_lalt_lwin
+    setxkbmap lv -option ctrl:nocaps  -option altwin:swap_lalt_lwin
     setup_apple_keyboard
 
     nvidia-settings --load-config-only
@@ -54,6 +54,10 @@ function init_sparta()
         export desktop_wm=openbox
     fi
 
+    if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && type dbus-launch >/dev/null; then
+        eval $(dbus-launch --sh-syntax --exit-with-session)
+    fi
+
 }
 
 
@@ -64,7 +68,6 @@ init_$(uname -n)
 
 if [[ $desktop_wm == "xmonad" ]]; then
 
-    export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
     export _JAVA_AWT_WM_NONREPARENTING=1
 
     export PATH=$HOME/.xmonad/bin:$PATH

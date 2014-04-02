@@ -22,18 +22,24 @@ URxvt*scrollBar: false
 URxvt*scrollTtyKeypress: true
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
-URxvt*lineSpace: 3
+URxvt*lineSpace: 4
 
-URxvt*termName: rxvt-256color
-URxvt*underlineColor: #86a2be
+! no more ctrl-shift crap!
+URxvt.iso14755: false
+URxvt.iso14755_52: false
 
-!URxvt*perl-ext-common: default,url-select
-!URxvt*keysym.M-u: perl:url-select:select_next
-URxvt*urlLauncher: chromium
-URxvt*underlineURLs: true
+urxvt*termName: rxvt-256color
+urxvt*underlineColor: #86a2be
+
+urxvt*urlLauncher: google-chrome
+urxvt*underlineURLs: true
+
+! no perl
+URxvt.perl-ext:
+URxvt.perl-ext-common:
 
 URxvt*fading: 0
-!URxvt*fadeColor: #242424
+! URxvt*fadeColor: #242424
 
 !! tango
 !! urxvt*background:             #000000
@@ -59,22 +65,22 @@ urxvt*color15:                #EEEEEC
 Xcursor.theme: lil-polar
 !! Xcursor.theme: Bluecurve
 
-urxvtq*background:             #333333
-urxvtq*foreground:             #D3D7CF
-urxvtq*color0:                 #2E3436
-urxvtq*color1:                 #CC0000
-urxvtq*color2:                 #4E9A06
-urxvtq*color3:                 #C4A000
-urxvtq*color4:                 #3465A4
-urxvtq*color5:                 #75507B
-urxvtq*color6:                 #06989A
-urxvtq*color7:                 #D3D7CF
-urxvtq*color8:                 #555753
-urxvtq*color9:                 #EF2929
-urxvtq*color10:                #8AE234
-urxvtq*color11:                #FCE94F
-urxvtq*color12:                #729FCF
-urxvtq*color13:                #AD7FA8
-urxvtq*color14:                #34E2E2
-urxvtq*color15:                #EEEEEC
+urxvt-terminal*background:             #333333
+urxvt-terminal*foreground:             #D3D7CF
+urxvt-terminal*color0:                 #2E3436
+urxvt-terminal*color1:                 #CC0000
+urxvt-terminal*color2:                 #4E9A06
+urxvt-terminal*color3:                 #C4A000
+urxvt-terminal*color4:                 #3465A4
+urxvt-terminal*color5:                 #75507B
+urxvt-terminal*color6:                 #06989A
+urxvt-terminal*color7:                 #D3D7CF
+urxvt-terminal*color8:                 #555753
+urxvt-terminal*color9:                 #EF2929
+urxvt-terminal*color10:                #8AE234
+urxvt-terminal*color11:                #FCE94F
+urxvt-terminal*color12:                #729FCF
+urxvt-terminal*color13:                #AD7FA8
+urxvt-terminal*color14:                #34E2E2
+urxvt-terminal*color15:                #EEEEEC
 

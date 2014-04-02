@@ -1,12 +1,25 @@
 #!/bin/sh
 
-pid=$(pidof -sx urxvtq -o %PPID)
-if [ -z "$pid" ]; then
-    urxvt -name urxvtq -geometry 199x40 -e /bin/zsh
+classname=urxvt-terminal
+
+# parallel execution/frequent switching sometimes fails with
+#  X Error of failed request:  BadWindow (invalid Window parameter)
+#  Major opcode of failed request:  3 (X_GetWindowAttributes)
+wid=failed
+until echo $wid | grep -v failed; do
+  wid=$(xdotool search --classname $classname 2>&1)
+done
+if [ -z "$wid" ]; then
+  exec urxvt -name urxvt-terminal -geometry 199x40 -e tmux &
+  sleep 0.05
+  xdotool search --classname $classname windowactivate
 else
-  if [ -z "$(xdotool search --onlyvisible --classname urxvtq 2>/dev/null)" ]; then
-    xdotool search --sync --classname urxvtq windowmap windowactivate
+  # multiple windows? take first
+  wid=$(echo $wid | awk '{print $1}')
+  if [ -z "$(xdotool search --onlyvisible --classname $classname)" ]; then
+    xdotool windowmap $wid --sync
+    xdotool windowactivate $wid --sync
   else
-    xdotool search --sync --classname urxvtq windowunmap
+    xdotool windowunmap $wid
   fi
 fi

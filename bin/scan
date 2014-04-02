@@ -1,14 +1,38 @@
 #!/usr/bin/fish
 
+function printf_filename
+    set input $argv[1]
+    set input (echo $input | sed s/%d/%04d/)
+    set unfmt (printf $input 0)
+    if test $input -eq $unfmt
+        echo $input
+    else
+        for i in (seq 10000)
+            set unfmt (printf $input $i)
+            if test -e $unfmt
+                true
+            else
+                echo $unfmt
+                break
+            end
+        end
+    end
+end
+
+
 set basename
 set scan_params
 set crop_params
-set color_matrix     -color-matrix "1.225 0 0 0 1.202 0 0 0 1.186"
+set color_matrix
 set mode             Color
 set resolution       300
 set hires_resolution 1200
 set raw              no
 
+if test (count $argv) = 0
+    echo scan [a5 dark hires raw grey] file_name
+    exit -1
+end
 
 set paramidx 1
 while test -n $argv[$paramidx]
@@ -17,8 +41,9 @@ while test -n $argv[$paramidx]
         set crop_params $crop_params -rotate 90
     end
 
+    # white = whitening
     if test $argv[$paramidx] = 'white'
-        ### 
+        set color_matrix     -level "40%,80%"
     end
 
     # dark = no whitening
@@ -59,13 +84,16 @@ if test -z $filename
 else
     if [ $raw = 'yes' ]
         set basename (basename $filename .tiff)
-        set filename "$basename.tiff"
+        set tiffname (printf_filename "$basename.tiff")
+        set jpgname (printf_filename "$basename.jpg")
+        echo $tiffname
     else
         set basename (basename $filename .jpg)
-        set filename "$basename.jpg"
+        set tiffname (printf_filename "$basename.tiff")
+        set jpgname (printf_filename "$basename.jpg")
+        echo $jpgname
     end
 
-    echo $filename
 
     scanimage \
         --resolution $resolution \
@@ -73,7 +101,7 @@ else
         --buffer-size=1M \
         --format=tiff \
         $scan_params \
-        > $basename.tiff
+        > $tiffname
 
     if [ $raw = 'yes' ]
         echo "Raw mode, not processing"
@@ -84,10 +112,10 @@ else
             -scale '1024x' \
             $crop_params \
             $color_matrix \
-            $basename.tiff $basename.jpg
+            $tiffname $jpgname
 
-        rm $basename.tiff
-        viewnior $filename &
+        rm $tiffname
+        viewnior $jpgname &
     end
 
     echo

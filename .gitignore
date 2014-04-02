@@ -5,4 +5,5 @@ vim/spell/*.add.spl
 bin/wineprefixcreate
 bin/ie6
 bin/ie7
+bin/opt
 bin/opera-widget-*

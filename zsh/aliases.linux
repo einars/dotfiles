@@ -45,7 +45,7 @@ alias tree="ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^
 # git
 alias gitd="git diff"
 alias gitdc="git diff --cached"
-alias gits="git status"
+alias gits="git status -sb"
 alias gitc="git commit"
 alias amend="git commit --amend"
 alias gitsc="test -d .git/svn && git svn dcommit"
@@ -70,7 +70,7 @@ alias xc='xcalib ~/Samsung*.icm'
 alias rsynx='rsync -vax --no-owner --no-group --no-perms'
 
 #alias phptags="find . -name '*.php' | grep -v deployment | grep -v release | \\xargs ctags --php-types=f"
-alias phptags="ctags -h .php -R --totals=yes --php-kinds=f --exclude=media --exclude=release --exclude=static"
+alias phptags="ctags --c++-kinds=+p --fields=+iaS --extra=+q -h .php -R --totals=yes --php-kinds=f --exclude=media --exclude=release --exclude=static"
 #alias phptags="ctags **/*.php"
 
 alias py=ipython
@@ -147,6 +147,10 @@ alias d2u='dos2unix --d2u'
 #alias u2d = 'dos2unix --u2d' who needs that anyway
 
 alias cal='cal --monday'
+alias calc=octave
+
+alias clamscan="clamscan --max-scansize=512M --max-filesize=512M"
 
 
 # vim: syn=zsh :
+

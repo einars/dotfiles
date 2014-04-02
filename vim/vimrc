@@ -15,7 +15,8 @@ let mapleader=","
 " sadly, autoindentations tend to go haywire with this
 " set matchpairs=(:)
 
-set ttyfast
+set nottyfast
+set noundofile
 set lsp=5
 set cryptmethod=blowfish
 set ttimeoutlen=100
@@ -94,12 +95,15 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'spiiph/vim-space'
-Bundle 'scrooloose/nerdcommenter'
+" Bundle 'scrooloose/nerdcommenter'
 Bundle 'einars/vim-phpfold'
 Bundle 'einars/vim-phpsyntax'
 Bundle 'einars/translit.vim'
 
 Bundle 'Valloric/YouCompleteMe'
+
+Bundle 'pangloss/vim-javascript'
+Bundle 'nathanaelkane/vim-indent-guides'
 
 
 filetype plugin indent on  " detect filetypes
@@ -136,7 +140,7 @@ if has('gui_running')
     set guioptions+=c       """ use console dialogs, not the gui ones
     set guioptions-=T       """ don't show the toolbar
     set guioptions-=m       """ don't show the menu
-    set guioptions-=r       """ don't need right scrollbar
+    "set guioptions-=r       """ don't need right scrollbar
     set guioptions-=L       """ don't show left scrollbar
 
     """ gvim weirdnesses
@@ -327,8 +331,7 @@ endfunction
 
 
 " let's try this magic
-imap kj <Esc>
-
+imap jh <Esc>
 
 " get rid of search highlighting with leader-space
 nnoremap <leader><space> :noh<cr>
@@ -476,6 +479,9 @@ source ~/.vim/jeetworks-arrows.vim
 
 if has("gui_running")
   set lines=50 columns=120
+   " Make shift-insert work like in Xterm
+   map <S-Insert> <MiddleMouse>
+   map! <S-Insert> <MiddleMouse>
 endif
 
 " vim: set fdm=marker :

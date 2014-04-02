@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd /storage/izklaide/minecraft
+java -jar Minecraft.jar

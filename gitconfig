@@ -1,6 +1,6 @@
 [user]
-	name = Einar Lielmanis\n
-	email = einars@gmail.com
+        name = Einar Lielmanis\n
+        email = einars@gmail.com
 [alias]
     stat = status --short
 
@@ -26,6 +26,7 @@
     assume   = update-index --assume-unchanged
     unassume = update-index --no-assume-unchanged
     assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
+	up = "!git remote update -p; git merge --ff-only @{u}"
 
 [core]
     #autocrlf = input
@@ -41,16 +42,20 @@
     changed = green
     untracked = cyan
 [diff]
-	renamelimit = 0
-	algorithm = patience
+        renamelimit = 0
+        algorithm = patience
 [pack]
-	threads = 0
+        threads = 0
 [push]
-	default = upstream
+        default = upstream
 [gui]
-	spellingdictionary = none
+        spellingdictionary = none
 [core]
-	pager = less -r
+        pager = less -r
 [merge]
         #conflictstyle = diff3
-        tool = diffuse
+        tool = gvimdiff
+[pull]
+        rebase = true
+[rerere]
+	enabled = true

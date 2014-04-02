@@ -13,5 +13,5 @@ function c() {
     CDPATH= cd $1
 }
 
-alias ppp="cd ~/.wine/drive_c/Program\ Files/"
+alias ppp="cd ~/.wine/drive_c/Program\ Files\ \(x86\)/"
 alias of='ocamlbuild -use-ocamlfind'
