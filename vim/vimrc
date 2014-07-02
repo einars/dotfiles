@@ -46,6 +46,8 @@ set wildignore=*.cmi,*.cmx,*.cmo,*.class,*.pyc,.svn,.git,*.o,*.a,*.so
 set suffixes-=.h
 set virtualedit=block
 
+set completeopt-=preview
+
 set background=dark
                         " allow moving past end of lines when selecting
                         "    vertical blocks with ^V
@@ -104,6 +106,7 @@ Bundle 'Valloric/YouCompleteMe'
 
 Bundle 'pangloss/vim-javascript'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'junegunn/goyo.vim'
 
 
 filetype plugin indent on  " detect filetypes
@@ -159,7 +162,8 @@ else
 
 end
 
-colorscheme dual
+" colorscheme dual
+colorscheme seoul256
 
 
 """ only underline on search
@@ -172,7 +176,7 @@ hi link Conceal Statement
 
 """ make and set path for temp files
 
-function! l:SetDir(path)
+function! SetDir(path)
     if ! isdirectory(a:path) && exists('*mkdir')
         exec mkdir(a:path, '', 0700)
     endif
@@ -183,7 +187,7 @@ function! l:SetDir(path)
 endfunction
 
 
-call l:SetDir($HOME . '/.vim-swap')
+call SetDir($HOME . '/.vim-swap')
 
 
 
@@ -347,6 +351,7 @@ nnoremap <leader>ez :e ~/.zshrc<cr>
 nnoremap <leader>ec :e ~/commands<cr>
 nnoremap <leader>eq :e ~/dokumenti/quotes.txt<cr>
 nnoremap <leader>en :e ~/dokumenti/notes.txt<cr>
+nnoremap <leader>et :e ~/dokumenti/notes-tech.txt<cr>
 nnoremap <leader>ed :e ~/dokumenti/drawing.txt<cr>
 nnoremap <leader>es :e ~/dokumenti/scribble.txt<cr>
 nnoremap <leader>eo :e ~/.config/openbox/rc.xml<cr>

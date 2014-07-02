@@ -29,6 +29,10 @@ set resolution       300
 set hires_resolution 1200
 set raw              no
 
+if test -z $scan_viewer
+    set scan_viewer viewnior
+end
+
 if test (count $argv) = 0
     echo scan [a5 dark hires raw grey] file_name
     exit -1
@@ -115,7 +119,7 @@ else
             $tiffname $jpgname
 
         rm $tiffname
-        viewnior $jpgname &
+        eval $scan_viewer $jpgname &
     end
 
     echo

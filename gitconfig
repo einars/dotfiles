@@ -1,6 +1,7 @@
 [user]
         name = Einar Lielmanis\n
         email = einars@gmail.com
+	signingkey = 6C60FD4A
 [alias]
     stat = status --short
 
