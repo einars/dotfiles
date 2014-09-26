@@ -16,6 +16,7 @@ let mapleader=","
 " set matchpairs=(:)
 
 set nottyfast
+set cursorline
 set noundofile
 set lsp=5
 set cryptmethod=blowfish
@@ -82,7 +83,10 @@ set lazyredraw
 
 set hidden              " suddenly, magically, buffers get usable
 set autoread            " don't care about ext-modified files, just reload them
-set list
+
+" set list
+set nolist """ coprogrammers
+
 set listchars=tab:·\ ,trail:.,extends:#,nbsp:▮
 if has('conceal')
     set conceallevel=2      " 7.3, if supported
@@ -114,7 +118,6 @@ syntax on                  " colors
 
 
 " micro-templates: autoload template
-
 set cpoptions-=a        " do not leave the template file open
 autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.tpl
 
@@ -137,8 +140,8 @@ if has('gui_running')
     cmap wq w
     set mouse= " don't need mouse in gui at all
 
-    set guifont=Monaco\ 9
-    "set guifont=Source\ \Code\ Pro\ 10
+    "set guifont=Monaco\ 9
+    set guifont=Source\ \Code\ Pro\ 10
 
     set guioptions+=c       """ use console dialogs, not the gui ones
     set guioptions-=T       """ don't show the toolbar
@@ -163,6 +166,7 @@ else
 end
 
 " colorscheme dual
+" colorscheme seoul256-light
 colorscheme seoul256
 
 
@@ -302,6 +306,29 @@ map <s-f5> <esc>:EnableFastPHPFolds<cr>
 " resync colors on f5
 map <f5> <esc>:syn sync fromstart<cr>
 
+" let's try this magic
+imap jh <Esc>
+
+" get rid of search highlighting with leader-space
+nnoremap <leader><space> :noh<cr>
+nnoremap <leader>R :call StripTrailingWhitespace()<cr>
+nnoremap <leader>r :retab<cr>:call StripTrailingWhitespace()<cr>
+
+" select previous paste
+nnoremap <leader>v V`]
+
+" ,e - various common editors
+nnoremap <leader>ev :e ~/.vimrc<cr>
+nnoremap <leader>ez :e ~/.zshrc<cr>
+nnoremap <leader>ec :e ~/commands<cr>
+nnoremap <leader>eq :e ~/dokumenti/quotes.txt<cr>
+nnoremap <leader>en :e ~/dokumenti/notes.txt<cr>
+nnoremap <leader>et :e ~/dokumenti/notes-tech.txt<cr>
+nnoremap <leader>ed :e ~/dokumenti/drawing.txt<cr>
+nnoremap <leader>es :e ~/dokumenti/scribble.txt<cr>
+nnoremap <leader>eo :e ~/.config/openbox/rc.xml<cr>
+nnoremap <leader>em :e ~/.config/openbox/menu.xml<cr>
+
 
 " }}}
 
@@ -334,32 +361,16 @@ function! StripTrailingWhitespace()
 endfunction
 
 
-" let's try this magic
-imap jh <Esc>
-
-" get rid of search highlighting with leader-space
-nnoremap <leader><space> :noh<cr>
-nnoremap <leader>R :call StripTrailingWhitespace()<cr>
-nnoremap <leader>r :retab<cr>:call StripTrailingWhitespace()<cr>
-
-" select previous paste
-nnoremap <leader>v V`]
-
-" ,e - various common editors
-nnoremap <leader>ev :e ~/.vimrc<cr>
-nnoremap <leader>ez :e ~/.zshrc<cr>
-nnoremap <leader>ec :e ~/commands<cr>
-nnoremap <leader>eq :e ~/dokumenti/quotes.txt<cr>
-nnoremap <leader>en :e ~/dokumenti/notes.txt<cr>
-nnoremap <leader>et :e ~/dokumenti/notes-tech.txt<cr>
-nnoremap <leader>ed :e ~/dokumenti/drawing.txt<cr>
-nnoremap <leader>es :e ~/dokumenti/scribble.txt<cr>
-nnoremap <leader>eo :e ~/.config/openbox/rc.xml<cr>
-nnoremap <leader>em :e ~/.config/openbox/menu.xml<cr>
+augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set cursorline
+    autocmd WinLeave * set nocursorline
+augroup END
 
 
 augroup javascript
-    au FileType javascript setlocal nosmartindent autoindent
+    au!
+    au FileType javascript setlocal nosmartindent autoindent ts=8 sts=2 sw=2
 augroup END
 
 augroup latex
@@ -438,12 +449,13 @@ augroup END
 
 """ subtly tell when lines are too long
 
-highlight RedundantSpaces term=standout ctermbg=60 guibg=#555555
-
-au BufRead,BufNew *.* call matchadd('Error', '\%120v.')
+""" highlight RedundantSpaces term=standout ctermbg=60 guibg=#555555
+""" 
+""" au BufRead,BufNew *.* call matchadd('Error', '\%120v.')
 au BufRead,BufNew *.* call matchadd('Todo', '\v<\+\w+\+>')
-au BufRead,BufNew *.* call matchadd('RedundantSpaces', '\s\+$\| \+\ze\t') "\ze sets end of match so only spaces highlighted
-au BufRead,BufNew *.* call matchadd('Todo', '\v(!!!|///|###|;;;) .*')
+""" au BufRead,BufNew *.* call matchadd('RedundantSpaces', '\s\+$\| \+\ze\t') "\ze sets end of match so only spaces highlighted
+au BufRead,BufNew *.* call matchadd('Todo', '\v(!!!|///|###|;;;) .*$')
+
 
 autocmd FileType inc setlocal syn=php
 
@@ -488,5 +500,6 @@ if has("gui_running")
    map <S-Insert> <MiddleMouse>
    map! <S-Insert> <MiddleMouse>
 endif
+
 
 " vim: set fdm=marker :

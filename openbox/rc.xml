@@ -358,7 +358,7 @@
     </keybind>
     <keybind key="W-n">
       <action name="Execute">
-        <command>run-inferior super-n</command>
+          <command>scribes ~/dokumenti/nxx</command>
       </action>
     </keybind>
     <keybind key="W-s-n">
@@ -444,33 +444,22 @@
     </keybind>
     <keybind key="XF86Launch7">
       <action name="Execute">
-        <command>xrandr --output "DVI-D-0" --auto --panning 1600x1200 --rotate normal --pos 0x0 --output "HDMI-0" --auto --rotate left --pos 1600x0 --panning 1600x1200</command>
+          <command>tt randr.hv</command>
       </action>
     </keybind>
     <keybind key="XF86Launch8">
       <action name="Execute">
-        <command>xrandr --output "DVI-D-0" --auto --rotate left --panning 1200x1600 --pos 0x0 --output "HDMI-0" --auto --rotate normal --pos 1200x0 --panning 1600x1200</command>
-      </action>
-    </keybind>
-    <keybind key="C-XF86Launch7">
-      <action name="Execute">
-        <command>xrandr --output "DVI-D-0" --auto --rotate left --pos 0x0 --output "HDMI-0" --auto --rotate left --pos 1200x0 </command>
-      </action>
-    </keybind>
-    <keybind key="C-XF86Launch8">
-      <action name="Execute">
-        <x-command>xrandr --output "DVI-D-0" --auto --rotate left --pos 0x0 --output "HDMI-0" --auto --rotate normal --pos 1200x0 </x-command>
-        <command>xrandr --output "DVI-D-0" --auto --rotate left --pos 0x0 --output "HDMI-0" --auto --rotate normal --pos 1200x0 </command>
+          <command>tt randr.hv</command>
       </action>
     </keybind>
     <keybind key="S-XF86Launch7">
       <action name="Execute">
-        <command>xrandr --output "DVI-D-0" --auto --output "HDMI-0" --off</command>
+          <command>tt randr.hx</command>
       </action>
     </keybind>
     <keybind key="S-XF86Launch8">
       <action name="Execute">
-        <command>xrandr --output "DVI-D-0" --off --rotate left --output "HDMI-0" --auto</command>
+        <command>tt randr.hx</command>
       </action>
     </keybind>
     <keybind key="XF86Launch9">

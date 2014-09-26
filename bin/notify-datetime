@@ -1,4 +1,4 @@
 #!/bin/sh
 
-notify "$(date '+%a %d.%b %H:%M')"
+notify "$(date '+%a %-d. %b %H:%M')"
 

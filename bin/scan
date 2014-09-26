@@ -99,10 +99,10 @@ else
     end
 
 
+    # --buffer-size=1M
     scanimage \
         --resolution $resolution \
         --mode $mode \
-        --buffer-size=1M \
         --format=tiff \
         $scan_params \
         > $tiffname

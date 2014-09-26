@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
 function setup_apple_keyboard()
 {
@@ -14,6 +14,9 @@ function init_common()
     export WINEDLLOVERRIDES=winemenubuilder.exe=d
     export GVFS_DISABLE_FUSE=1
     export SDL_AUDIODRIVER=alsa
+    # Joystick interface is preferred to evdev,
+    # as this gets calibrated
+    export SDL_JOYSTICK_DEVICE=/dev/input/js0
     export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.aatext=true -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
     setxkbmap lv -option -option ctrl:nocaps
@@ -57,6 +60,8 @@ function init_sparta()
     if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && type dbus-launch >/dev/null; then
         eval $(dbus-launch --sh-syntax --exit-with-session)
     fi
+
+    #start-pulseaudio-x11
 
 }
 

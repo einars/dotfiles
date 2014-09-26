@@ -1,7 +1,0 @@
-#!/bin/sh
-
-play --no-show-progress -n synth 0.1 sin 3000 
-sleep 0.07
-play --no-show-progress -n synth 0.1 sin 3000 
-sleep 0.07
-play --no-show-progress -n synth 0.1 sin 3000 
