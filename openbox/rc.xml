@@ -866,32 +866,36 @@
     </application>
     <application name="gvim" role="gvimconsole">
       <!-- decor>no</decor -->
-      <size><height>97%</height></size>
+    <size>
+        <width>100%</width>
+        <height>95%</height>
+    </size>
       <position force="yes">
           <!-- monitor>mouse</monitor -->
           <monitor>primary</monitor>
-        <x>center</x>
+        <x>0</x>
         <y>0</y>
       </position>
       <desktop>all</desktop>
       <layer>above</layer>
       <skip_pager>no</skip_pager>
       <skip_taskbar>no</skip_taskbar>
-      <maximized>Horizontal</maximized>
     </application>
     <application name="urxvt-terminal">
       <!-- decor>no</decor -->
+      <size>
+          <width>100%</width>
+      </size>
       <position force="yes">
           <!-- monitor>mouse</monitor -->
           <monitor>primary</monitor>
-        <x>center</x>
+        <x>0</x>
         <y>0</y>
       </position>
       <desktop>all</desktop>
       <layer>above</layer>
       <skip_pager>yes</skip_pager>
       <skip_taskbar>yes</skip_taskbar>
-      <maximized>Horizontal</maximized>
     </application>
     <!--
   # this is an example with comments through out. use these to make your
