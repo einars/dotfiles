@@ -226,9 +226,9 @@ vnoremap <f1> <esc>
 "
 " Enable spellchecking conditionally
 "
-map <Leader>se :setlocal spell spelllang=en_us<CR>
-map <Leader>sl :setlocal spell spelllang=lv_lv<CR>
-map <Leader>sn :setlocal nospell<CR>
+map <Leader>le :setlocal spell spelllang=en_us<CR>
+map <Leader>ll :setlocal spell spelllang=lv_lv<CR>
+map <Leader>ln :setlocal nospell<CR>
 
 " S&M {{{
 
@@ -517,7 +517,7 @@ endif
 
 
 " Hombrew session switcher
-" ,ss — open switcher
+" ,s — open switcher
 " sessions stored in ~/.vim/sessions
 function! Switch(session)
     let dir = $HOME . '/.vim/sessions/'
@@ -525,7 +525,7 @@ function! Switch(session)
         exec mkdir(dir, '', 0700)
     endif
     if (v:this_session != '')
-        mksession! v:this_session
+        execute 'mksession!' v:this_session
     endif
     let n = dir . a:session . ".ex"
     echom n
@@ -535,9 +535,6 @@ function! Switch(session)
     execute 'source' n
 endfunction
 
-if filereadable($HOME . '/bin/private/projects.vim')
-    execute 'source' ($HOME . '/bin/private/projects.vim')
-endif
-map <leader>ss :call Switch('')<left><left>
+map <leader>s :call Switch('')<left><left>
 
 " vim: set fdm=marker :
