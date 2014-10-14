@@ -188,6 +188,11 @@
         <execute>/home/e/bin/urxvtq</execute>
       </action>
     </keybind>
+   <keybind key="0x5e">
+      <action name="Execute">
+        <execute>/home/e/bin/gvimq</execute>
+      </action>
+    </keybind>
     <keybind key="W-grave">
       <action name="GoToDesktop">
         <to>10</to>
@@ -855,9 +860,24 @@
   <!-- show the manage desktops section in the client-list-(combined-)menu -->
 </menu>
   <applications>
-    <application clsas="SMPlayer">
+    <application class="SMPlayer">
       <desktop>all</desktop>
       <layer>above</layer>
+    </application>
+    <application name="gvim" role="gvimconsole">
+      <!-- decor>no</decor -->
+      <size><height>97%</height></size>
+      <position force="yes">
+          <!-- monitor>mouse</monitor -->
+          <monitor>primary</monitor>
+        <x>center</x>
+        <y>0</y>
+      </position>
+      <desktop>all</desktop>
+      <layer>above</layer>
+      <skip_pager>no</skip_pager>
+      <skip_taskbar>no</skip_taskbar>
+      <maximized>Horizontal</maximized>
     </application>
     <application name="urxvt-terminal">
       <!-- decor>no</decor -->

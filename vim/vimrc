@@ -49,6 +49,10 @@ set virtualedit=block
 
 set completeopt-=preview
 
+" mksession ~/sessions/session.vim
+set ssop-=options " do not store local/global values in a session
+set ssop-=folds " do not store folds in a session
+
 set background=dark
                         " allow moving past end of lines when selecting
                         "    vertical blocks with ^V
@@ -112,6 +116,13 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'junegunn/goyo.vim'
 
+Bundle 'kien/ctrlp.vim'
+Bundle 'w0ng/vim-hybrid'
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/](\.git|\.svn|media|release|node_modules)$',
+  \ 'file': '\v\.(class|so|o|pyc)$',
+  \ }
 
 filetype plugin indent on  " detect filetypes
 syntax on                  " colors
@@ -454,7 +465,7 @@ augroup END
 """ au BufRead,BufNew *.* call matchadd('Error', '\%120v.')
 au BufRead,BufNew *.* call matchadd('Todo', '\v<\+\w+\+>')
 """ au BufRead,BufNew *.* call matchadd('RedundantSpaces', '\s\+$\| \+\ze\t') "\ze sets end of match so only spaces highlighted
-au BufRead,BufNew *.* call matchadd('Todo', '\v(!!!|///|###|;;;) .*$')
+au BufRead,BufNew *.* call matchadd('Todo', '\v(!!!|///|###|;;;|---) .*$')
 
 
 autocmd FileType inc setlocal syn=php
@@ -495,11 +506,38 @@ autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:las
 source ~/.vim/jeetworks-arrows.vim
 
 if has("gui_running")
-  set lines=50 columns=120
+  set lines=40 columns=85
    " Make shift-insert work like in Xterm
    map <S-Insert> <MiddleMouse>
    map! <S-Insert> <MiddleMouse>
 endif
 
+
+
+
+
+" Hombrew session switcher
+" ,ss — open switcher
+" sessions stored in ~/.vim/sessions
+function! Switch(session)
+    let dir = $HOME . '/.vim/sessions/'
+    if ! isdirectory(dir) && exists('*mkdir')
+        exec mkdir(dir, '', 0700)
+    endif
+    if (v:this_session != '')
+        mksession! v:this_session
+    endif
+    let n = dir . a:session . ".ex"
+    echom n
+    if ( ! filereadable(n))
+        execute 'mksession!' n
+    endif
+    execute 'source' n
+endfunction
+
+if filereadable($HOME . '/bin/private/projects.vim')
+    execute 'source' ($HOME . '/bin/private/projects.vim')
+endif
+map <leader>ss :call Switch('')<left><left>
 
 " vim: set fdm=marker :

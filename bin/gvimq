@@ -1,0 +1,40 @@
+#!/usr/bin/bash
+
+set -e
+
+classname=gvim
+rolename=gvimconsole
+
+# parallel execution/frequent switching sometimes fails with
+#  X Error of failed request:  BadWindow (invalid Window parameter)
+#  Major opcode of failed request:  3 (X_GetWindowAttributes)
+wid=failed
+until echo $wid | grep -v failed; do
+  wid=$(xdotool search --all --name --classname $classname 2>&1)
+done
+
+found=
+for f in ${wid}; do
+    echo Testing $f...
+    window_role=$(xprop -id $f _OB_APP_ROLE)
+    echo Rolename=$window_role
+
+    if echo $window_role | grep -q $rolename; then
+        found=$f
+        if wmctrl -l -p | grep -q $(printf '%08x' $f); then
+            echo 'Visible, bringing down'
+            xdotool windowunmap $f
+        else
+            echo 'Iconic, bringing up'
+            xdotool windowmap $f
+            xdotool windowactivate $f
+        fi
+    fi
+done
+
+if [ -z $found ]; then
+  echo Running a new gvim
+  exec gvim --role $rolename -c "colors sorcerer"
+  #sleep 0.05
+  #xdotool search --all --name --classname $classname windowactivate
+fi

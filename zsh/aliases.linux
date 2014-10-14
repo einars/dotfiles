@@ -151,6 +151,8 @@ alias calc=octave
 
 alias clamscan="clamscan --max-scansize=512M --max-filesize=512M"
 
+alias gpr='git pull --rebase'
+
 hash hub 2>/dev/null && alias git=hub
 
 # vim: syn=zsh :

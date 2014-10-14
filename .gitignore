@@ -1,5 +1,6 @@
 zsh/aliases.private
 vim/.netrwhist
+vim/sessions
 vim/spell/*.add
 vim/spell/*.add.spl
 bin/wineprefixcreate
