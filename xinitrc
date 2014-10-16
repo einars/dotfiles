@@ -47,16 +47,6 @@ function init_sparta()
 
     nvidia-settings --load-config-only
 
-    # leisure user
-    #if [[ $USER = e ]]; then
-        #export desktop_wm=xfce
-    #fi
-
-    # work user
-    if [[ $USER = e ]]; then
-        export desktop_wm=openbox
-    fi
-
     if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && type dbus-launch >/dev/null; then
         eval $(dbus-launch --sh-syntax --exit-with-session)
     fi
@@ -66,6 +56,7 @@ function init_sparta()
 }
 
 
+desktop_wm=openbox
 
 init_common
 init_$(uname -n)
