@@ -120,7 +120,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'w0ng/vim-hybrid'
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v[\/](\.git|\.svn|media|release|node_modules)$',
+  \ 'dir': '\v[\/](\.git|\.svn|media|release|node_modules|app\/bower_components)$',
   \ 'file': '\v\.(class|so|o|pyc)$',
   \ }
 
@@ -152,7 +152,8 @@ if has('gui_running')
     set mouse= " don't need mouse in gui at all
 
     "set guifont=Monaco\ 9
-    set guifont=Source\ \Code\ Pro\ 10
+    " set guifont=Source\ \Code\ Pro\ 10
+    set guifont=Terminus\ 10
 
     set guioptions+=c       """ use console dialogs, not the gui ones
     set guioptions-=T       """ don't show the toolbar
@@ -408,7 +409,7 @@ augroup END
 
 augroup Python
     autocmd!
-    autocmd FileType python setlocal expandtab ts=8 sw=4 sts=4 formatoptions+=croq smartindent
+    autocmd FileType python setlocal expandtab ts=8 sw=2 sts=2 formatoptions+=croq smartindent
         \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
         \ keywordprg=pydoc
 augroup END
@@ -416,11 +417,6 @@ augroup END
 augroup C
     autocmd!
     autocmd FileType c,cpp setlocal nolist tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
-augroup END
-
-augroup Javascript
-    autocmd!
-    autocmd FileType javascript setlocal tabstop=4 shiftwidth=4 expandtab nocindent smartindent
 augroup END
 
 augroup PHP
@@ -527,11 +523,12 @@ function! Switch(session)
     if (v:this_session != '')
         execute 'mksession!' v:this_session
     endif
+    execute "0,100bd"
     let n = dir . a:session . ".ex"
-    echom n
     if ( ! filereadable(n))
         execute 'mksession!' n
     endif
+    echom n
     execute 'source' n
 endfunction
 

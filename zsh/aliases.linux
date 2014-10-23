@@ -70,7 +70,7 @@ alias xc='xcalib ~/Samsung*.icm'
 alias rsynx='rsync -vax --no-owner --no-group --no-perms'
 
 #alias phptags="find . -name '*.php' | grep -v deployment | grep -v release | \\xargs ctags --php-types=f"
-alias phptags="ctags --c++-kinds=+p --fields=+iaS --extra=+q -h .php -R --totals=yes --php-kinds=f --exclude=media --exclude=release --exclude=static"
+alias phptags="ctags --c++-kinds=+p --fields=+iaS --extra=+q -h .php -R --totals=yes --php-kinds=f --exclude=media --exclude=release --exclude=static --exclude=@.gitignore"
 #alias phptags="ctags **/*.php"
 
 alias py=ipython
@@ -102,8 +102,6 @@ alias octave='octave --silent'
 
 
 alias cflagged='CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe" CXXFLAGS="-march=x86-64 -mtune=generic -O2 -pipe" LDFLAGS="-Wl,--hash-style=gnu -Wl,--as-needed"'
-
-alias mc='test $TERM = screen-256color -o $TERM = screen && TERM=xterm mc || mc'
 
 alias m='clear; make -s'
 
