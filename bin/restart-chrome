@@ -1,0 +1,15 @@
+#!/usr/bin/env fish
+
+
+set chrome_pids (ps -d | grep -i chrom | grep -v "kill-chrome" | awk '{print $1}')
+
+#set chrome_pids (ps ux | grep '[c]hrome --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2)
+
+if test (count $chrome_pids) -eq 0
+    echo All chromes dead
+else
+    kill -9 $chrome_pids
+    printf "Chrome tabs killed: %d\n" (count $chrome_pids)
+end
+
+exec google-chrome &

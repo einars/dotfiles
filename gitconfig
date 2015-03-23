@@ -53,6 +53,7 @@
         spellingdictionary = none
 [core]
         pager = less -r
+	quotepath = false
 [merge]
         #conflictstyle = diff3
         tool = gvimdiff

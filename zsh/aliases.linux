@@ -46,8 +46,8 @@ alias tree="ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^
 alias gitd="git diff"
 alias gitdc="git diff --cached"
 alias gits="git status -sb"
-alias gitc="git commit"
-alias amend="git commit --amend"
+alias gitc="git commit -v"
+alias amend="git commit -v --amend"
 alias gitsc="test -d .git/svn && git svn dcommit"
 alias b="git checkout "
 

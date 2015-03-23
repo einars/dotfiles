@@ -15,3 +15,16 @@ function c() {
 
 alias ppp="cd ~/.wine/drive_c/Program\ Files\ \(x86\)/"
 alias of='ocamlbuild -use-ocamlfind'
+
+if ( false ) {
+ echo '########'
+ echo '########'
+ echo '########'
+ echo '########'
+ questions.py
+}
+ 
+clear
+
+ssh-add -l > /dev/null || ssh-add
+

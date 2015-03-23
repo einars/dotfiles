@@ -28,6 +28,8 @@ set mode             Color
 set resolution       300
 set hires_resolution 1200
 set raw              no
+set scale '1024x'
+set shave '10x10'
 
 if test -z $scan_viewer
     set scan_viewer viewnior
@@ -43,7 +45,15 @@ while test -n $argv[$paramidx]
     if test $argv[$paramidx] = 'a5'
         set scan_params $scan_params -x 215 -y 153
         set crop_params $crop_params -rotate 90
+        set shave '10x15'
     end
+    if test $argv[$paramidx] = 'a6'
+        set scan_params $scan_params -x 107 -y 153
+        set crop_params $crop_params -rotate 90
+        set scale '512x'
+        set shave '10x15'
+    end
+
 
     # white = whitening
     if test $argv[$paramidx] = 'white'
@@ -111,9 +121,9 @@ else
         echo "Raw mode, not processing"
     else
         convert \
-            -shave '10x10' \
+            -shave $shave \
             -quality 85 \
-            -scale '1024x' \
+            -scale $scale \
             $crop_params \
             $color_matrix \
             $tiffname $jpgname

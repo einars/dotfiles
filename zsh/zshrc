@@ -210,7 +210,13 @@ fi
 
 compdef -d git # i'm smarter and faster
 
-# vim: set fdm=marker :
-
 # OPAM configuration
 . /home/e/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+# shift-tab to force filename completions
+zle -C complete complete-word complete-files
+bindkey '^[[Z' complete
+complete-files () { compadd - $PREFIX* }
+
+# vim: set fdm=marker :
+

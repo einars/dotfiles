@@ -1,13 +1,5 @@
 #!/bin/sh
 
-function setup_apple_keyboard()
-{
-echo '
-keycode 94 = grave asciitilde grave asciitilde asciitilde
-remove mod4 = Super_R
-keycode 134 = ISO_Level3_Shift' | xmodmap -
-}
-
 function init_common()
 {
     export PATH=$HOME/bin:$HOME/bin/private:$PATH
@@ -42,8 +34,8 @@ function init_sparta()
     # swap scrollwheel direction
     #xmodmap -e "pointer = 1 2 3 5 4"
 
-    setxkbmap lv -option ctrl:nocaps  -option altwin:swap_lalt_lwin
-    setup_apple_keyboard
+    # set up latvian keymap and apple kbd customizations
+    rekey
 
     nvidia-settings --load-config-only
 

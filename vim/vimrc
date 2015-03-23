@@ -32,8 +32,8 @@ set t_md=               " no bold fonts in terminal
 set scrolloff=15
 set nostartofline
 set tabstop=8
-set softtabstop=4
-set shiftwidth=4
+set softtabstop=2
+set shiftwidth=2
 set shiftround          " shift in mod 4
 set nojoinspaces        " with joinspaces, two spaces are entered after . / ? / !
 set splitright          " split on the correct side
@@ -88,8 +88,9 @@ set lazyredraw
 set hidden              " suddenly, magically, buffers get usable
 set autoread            " don't care about ext-modified files, just reload them
 
-" set list
-set nolist """ coprogrammers
+" show or hide whitespace warnings
+set list
+" set nolist """ coprogrammers
 
 set listchars=tab:·\ ,trail:.,extends:#,nbsp:▮
 if has('conceal')
@@ -119,8 +120,15 @@ Bundle 'junegunn/goyo.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'w0ng/vim-hybrid'
 
+Bundle 'stephpy/vim-yaml'
+Bundle 'derekwyatt/vim-scala'
+
+Bundle 'dart-lang/dart-vim-plugin'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'kchmck/vim-coffee-script'
+
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v[\/](\.git|\.svn|media|release|node_modules|app\/bower_components)$',
+  \ 'dir': '\v[\/](\.git|\.svn|media|release|node_modules|bower_components|burvis\/app)$',
   \ 'file': '\v\.(class|so|o|pyc)$',
   \ }
 
@@ -407,6 +415,13 @@ augroup OCaml
     autocmd FileType ml,ocaml setlocal sts=2 ts=2 sw=2 expandtab
 augroup END
 
+augroup HTML
+    autocmd!
+    autocmd FileType html setlocal sts=2 ts=2 sw=2 expandtab
+augroup END
+
+
+
 augroup Python
     autocmd!
     autocmd FileType python setlocal expandtab ts=8 sw=2 sts=2 formatoptions+=croq smartindent
@@ -458,7 +473,7 @@ augroup END
 
 """ highlight RedundantSpaces term=standout ctermbg=60 guibg=#555555
 """ 
-""" au BufRead,BufNew *.* call matchadd('Error', '\%120v.')
+au BufRead,BufNew *.* call matchadd('Error', '\%80v.')
 au BufRead,BufNew *.* call matchadd('Todo', '\v<\+\w+\+>')
 """ au BufRead,BufNew *.* call matchadd('RedundantSpaces', '\s\+$\| \+\ze\t') "\ze sets end of match so only spaces highlighted
 au BufRead,BufNew *.* call matchadd('Todo', '\v(!!!|///|###|;;;|---) .*$')
@@ -523,7 +538,8 @@ function! Switch(session)
     if (v:this_session != '')
         execute 'mksession!' v:this_session
     endif
-    execute "0,100bd"
+    "execute "0,9000bd"
+    execute "%bd"
     let n = dir . a:session . ".ex"
     if ( ! filereadable(n))
         execute 'mksession!' n

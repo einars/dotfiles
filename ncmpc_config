@@ -8,6 +8,13 @@
 ## list-format
 list-format = "%name%|[%artist% - ][%album% #| ]%title%|%file%"
 
+mpd_host = localhost
+mpd_port = 6600
+mpd_music_dir = /storage/music
+playlist_show_remaining_time = yes
+playlist_shorten_total_times = yes
+playlist_display_mode = classic
+
 ## status-format
 status-format = "[%artist% - ][%album% #| ]%title%|%shortfile%"
 
@@ -17,8 +24,10 @@ audible-bell = no
 ## enable visible bell on alerts
 visible-bell = yes
 
+playlist_disable_highlight_delay = 0
+
 ## change the xterm title 
-set-xterm-title = yes
+set-xterm-title = no
 
 ## xterm title format
 #xterm-title-format = "ncmpc: [ %name%|[%artist% - ]%title%|%file%]"
