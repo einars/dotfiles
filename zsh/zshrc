@@ -22,6 +22,16 @@ export EDITOR=vim
 export VISUAL=vim
 
 
+export WINEDLLOVERRIDES=winemenubuilder.exe=d
+export GVFS_DISABLE_FUSE=1
+export SDL_AUDIODRIVER=alsa
+# Joystick interface is preferred to evdev,
+# as this gets calibrated
+export SDL_JOYSTICK_DEVICE=/dev/input/js0
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.aatext=true -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -XX:+PerfDisableSharedMem"
+
+
+
 autoload -Uz compinit
 compinit
 

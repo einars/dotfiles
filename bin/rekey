@@ -28,8 +28,8 @@ keycode 33 = p P U25A1 U25A0 U25A1 U25A0
 
 ! altgr-[ ▸  altgr-sift-[ = ▸
 ! altgr-] □  altgr-sift-] = ■
-keycode 34 = bracketleft braceleft bracketleft braceleft U25B8 U25B8 U25B8 U25B8
-keycode 35 = bracketright braceright bracketright braceright U25A1 U25A0 U25A1 U25A0
+! keycode 34 = bracketleft braceleft bracketleft braceleft U25B8 U25B8 U25B8 U25B8
+! keycode 35 = bracketright braceright bracketright braceright U25A1 U25A0 U25A1 U25A0
 
 keycode 134 = ISO_Level3_Shift
 

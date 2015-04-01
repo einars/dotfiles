@@ -168,6 +168,7 @@ if has('gui_running')
     set guioptions-=m       """ don't show the menu
     "set guioptions-=r       """ don't need right scrollbar
     set guioptions-=L       """ don't show left scrollbar
+    set guioptions-=e       """ don't show tab menu
 
     """ gvim weirdnesses
     map  <S-CR> <CR>

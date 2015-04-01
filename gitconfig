@@ -3,6 +3,19 @@
         email = einars@gmail.com
 	signingkey = 6C60FD4A
 [alias]
+    co = checkout
+    ec = config --global -e
+    up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+    cob = checkout -b
+    cm = !git add -A && git commit -m
+    save = !git add -A && git commit -m 'SAVEPOINT'
+    undo = reset HEAD~1 --mixed
+    amend = commit -a --amend
+    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+
+    bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
+    bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+
     stat = status --short
 
     lstat = log -n 1 --stat
@@ -11,7 +24,6 @@
     s = status --short
     d = diff -U1 --ignore-all-space
 
-    sup = svn rebase
     co = checkout
     la = log --pretty=\"format:%ad %h (%an): %s\" --date=short
     last = log -n 1
@@ -27,7 +39,6 @@
     assume   = update-index --assume-unchanged
     unassume = update-index --no-assume-unchanged
     assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
-	up = "!git remote update -p; git merge --ff-only @{u}"
 
 [core]
     #autocrlf = input
