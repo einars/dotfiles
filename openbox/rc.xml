@@ -460,12 +460,12 @@
     </keybind>
     <keybind key="XF86Launch7">
       <action name="Execute">
-        <command>tt randr.hh</command>
+        <command>tt randr.hv</command>
       </action>
     </keybind>
     <keybind key="XF86Launch8">
       <action name="Execute">
-        <command>tt randr.hh</command>
+        <command>tt randr.hv</command>
       </action>
     </keybind>
     <keybind key="S-XF86Launch7">

@@ -10,7 +10,7 @@ until echo $wid | grep -v failed; do
   wid=$(xdotool search --classname $classname 2>&1)
 done
 if [ -z "$wid" ]; then
-  exec urxvt -name urxvt-terminal -geometry 199x40 -e tmux &
+  exec urxvt -name urxvt-terminal -geometry 199x40 -e tmux-attach-or-create global &
   sleep 0.05
   xdotool search --classname $classname windowactivate
 else
