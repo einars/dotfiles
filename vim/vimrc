@@ -92,6 +92,13 @@ set autoread            " don't care about ext-modified files, just reload them
 set list
 " set nolist """ coprogrammers
 
+
+" remove bell
+set noerrorbells
+set visualbell
+set t_vb=
+
+
 set listchars=tab:·\ ,trail:.,extends:#,nbsp:▮
 if has('conceal')
     set conceallevel=2      " 7.3, if supported
@@ -128,10 +135,17 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'kchmck/vim-coffee-script'
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v[\/](\.git|\.svn|media|release|node_modules|bower_components|burvis\/app)$',
+  \ 'dir': '\v[\/](\.git|\.svn|media|release|node_modules|bower_components)$',
   \ 'file': '\v\.(class|so|o|pyc)$',
   \ }
 
+let g:ctrlp_user_command = {
+        \ 'types': {
+                \ 1: ['.git', 'cd %s && git ls-files'],
+                \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+                \ },
+        \ 'fallback': 'find %s -type f'
+        \ }
 filetype plugin indent on  " detect filetypes
 syntax on                  " colors
 
@@ -473,7 +487,7 @@ augroup END
 """ subtly tell when lines are too long
 
 """ highlight RedundantSpaces term=standout ctermbg=60 guibg=#555555
-""" 
+"""
 au BufRead,BufNew *.* call matchadd('Error', '\%80v.')
 au BufRead,BufNew *.* call matchadd('Todo', '\v<\+\w+\+>')
 """ au BufRead,BufNew *.* call matchadd('RedundantSpaces', '\s\+$\| \+\ze\t') "\ze sets end of match so only spaces highlighted
