@@ -84,3 +84,5 @@ urxvt-terminal*color13:                #AD7FA8
 urxvt-terminal*color14:                #34E2E2
 urxvt-terminal*color15:                #EEEEEC
 
+Xft.lcdfilter: lcdnone
+Xft.rgba: none
