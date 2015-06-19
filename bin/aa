@@ -7,6 +7,7 @@
 # 2. all params searched, no need to quote: aa i went home -> searches for "i went home"
 
 set exclude_dirs third-party media
+set wraps -B 2 -A 2
 
 set folder
 set exclude_cmd
@@ -36,5 +37,10 @@ else
     if test $search_string != $search_lower
         set case_mode "--case-sensitive"
     end
-    ag $exclude_cmd $case_mode $search_string $folder
+
+    if test -d .git
+      set folder $folder (git ls-files)
+    end
+
+    ag $wraps $exclude_cmd $case_mode $search_string $folder
 end

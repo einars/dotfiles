@@ -183,7 +183,7 @@
   </dock>
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
-    <keybind key="grave">
+    <keybind key="W-grave">
       <action name="Execute">
         <execute>/home/e/bin/urxvtq</execute>
       </action>
@@ -194,11 +194,11 @@
         <execute>/home/e/bin/gvimq</execute>
       </action>
     </keybind>
-    <keybind key="W-grave">
+    <!-- keybind key="W-grave">
       <action name="GoToDesktop">
         <to>10</to>
       </action>
-    </keybind>
+    </keybind -->
     <keybind key="W-S-b">
       <action name="Execute">
         <execute>/home/e/bin/private/edit-blog</execute>
@@ -374,7 +374,7 @@
     </keybind>
     <keybind key="W-n">
       <action name="Execute">
-        <command>scribes ~/dokumenti/nxx</command>
+        <command>run-inferior super-n</command>
       </action>
     </keybind>
     <keybind key="W-s-n">
@@ -460,12 +460,12 @@
     </keybind>
     <keybind key="XF86Launch7">
       <action name="Execute">
-        <command>tt randr.hv</command>
+        <command>tt randr.hh</command>
       </action>
     </keybind>
     <keybind key="XF86Launch8">
       <action name="Execute">
-        <command>tt randr.hv</command>
+        <command>tt randr.hh</command>
       </action>
     </keybind>
     <keybind key="S-XF86Launch7">

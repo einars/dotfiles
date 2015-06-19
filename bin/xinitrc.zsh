@@ -4,6 +4,7 @@ function init_common()
 {
     test -d ~/bin && export PATH=~/bin:$PATH
     test -d ~/bin/private && export PATH=~/bin/private:$PATH
+    test -d ~/.opam/system/bin && export PATH=~/.opam/system/bin:$PATH
 
     setxkbmap lv -option ctrl:nocaps
 
@@ -32,6 +33,8 @@ function init_sparta()
     rekey
 
     nvidia-settings --load-config-only
+
+    ~/bin/nv fast
 
     if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && type dbus-launch >/dev/null; then
         eval $(dbus-launch --sh-syntax --exit-with-session)

@@ -94,9 +94,7 @@ set list
 
 
 " remove bell
-set noerrorbells
-set visualbell
-set t_vb=
+set noerrorbells novisualbell t_vb=
 
 
 set listchars=tab:·\ ,trail:.,extends:#,nbsp:▮
@@ -117,6 +115,7 @@ Bundle 'spiiph/vim-space'
 Bundle 'einars/vim-phpfold'
 Bundle 'einars/vim-phpsyntax'
 Bundle 'einars/translit.vim'
+Bundle 'shawncplus/phpcomplete.vim'
 
 Bundle 'Valloric/YouCompleteMe'
 
@@ -564,5 +563,12 @@ function! Switch(session)
 endfunction
 
 map <leader>s :call Switch('')<left><left>
+
+if filereadable("~/.opam/system/share/vim/syntax/ocp-indent.vim")
+  execute ":source " . "~/.opam/system/share/vim/syntax/ocp-indent.vim"
+endif
+
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 " vim: set fdm=marker :
