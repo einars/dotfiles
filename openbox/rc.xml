@@ -183,17 +183,41 @@
   </dock>
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
+
     <keybind key="W-grave">
       <action name="Execute">
         <execute>/home/e/bin/urxvtq</execute>
       </action>
     </keybind>
-    <!-- keybind key="0x5e" -->
-    <keybind key="F1">
+    <keybind dis-key="W-grave" key="0xbf" key-comment="F13">
+      <action name="Execute">
+        <execute>/home/e/bin/urxvtq</execute>
+      </action>
+    </keybind>
+    <keybind key="S-0xbf" key-comment="S-F13">
+      <action name="Execute">
+        <execute>/home/e/bin/urxvtq --hide</execute>
+      </action>
+    </keybind>
+
+    <dis-keybind key="0xbf" key-comment="F13">
       <action name="Execute">
         <execute>/home/e/bin/gvimq</execute>
       </action>
+    </dis-keybind>
+
+    <keybind key="XF86Launch6" key-comment="F14">
+      <action name="Execute">
+        <dis-command>xdotool click --repeat 5000 --delay 1 1</dis-command>
+        <execute>/home/e/bin/gvimq</execute>
+      </action>
     </keybind>
+    <keybind key="S-XF86Launch6" key-comment="S-F14">
+      <action name="Execute">
+        <execute>/home/e/bin/gvimq --hide</execute>
+      </action>
+    </keybind>
+
     <!-- keybind key="W-grave">
       <action name="GoToDesktop">
         <to>10</to>
@@ -310,7 +334,7 @@
     </keybind>
     <keybind key="W-C">
       <action name="Execute">
-        <command>~/bin/cal</command>
+        <command>orage</command>
       </action>
     </keybind>
     <keybind key="W-S-slash">
@@ -451,11 +475,6 @@
     <keybind key="S-XF86AudioPlay">
       <action name="Execute">
         <command>mpc stop</command>
-      </action>
-    </keybind>
-    <keybind key="XF86Launch6">
-      <action name="Execute">
-        <command>xdotool click --repeat 5000 --delay 1 1</command>
       </action>
     </keybind>
     <keybind key="XF86Launch7">

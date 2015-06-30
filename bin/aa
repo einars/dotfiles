@@ -39,7 +39,9 @@ else
     end
 
     if test -d .git
-      set folder $folder (git ls-files)
+      if test $folder = ""
+        set folder $folder (git ls-files)
+      end
     end
 
     ag $wraps $exclude_cmd $case_mode $search_string $folder

@@ -21,7 +21,7 @@ set noundofile
 set lsp=5
 set cryptmethod=blowfish
 set ttimeoutlen=100
-set synmaxcol=300
+set synmaxcol=0
 set history=1000
 set showmatch           " jump to matching paren quickly
 set matchtime=1

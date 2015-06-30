@@ -63,6 +63,7 @@
         default = upstream
 [gui]
         spellingdictionary = none
+	tabsize = 4
 [core]
         pager = less -r
 	quotepath = false

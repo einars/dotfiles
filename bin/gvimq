@@ -19,13 +19,18 @@ for f in ${wid}; do
 
     if echo $window_role | grep -q $rolename; then
         found=$f
-        if wmctrl -l -p | grep -q $(printf '%08x' $f); then
-            echo 'Visible, bringing down'
+        if [ "$1" == "--hide" ]; then
+            echo 'Force hide'
             xdotool windowunmap $f
         else
-            echo 'Iconic, bringing up'
-            xdotool windowmap $f
-            xdotool windowactivate $f
+          if wmctrl -l -p | grep -q $(printf '%08x' $f); then
+              echo 'Visible, bringing down'
+              xdotool windowunmap $f
+          else
+              echo 'Iconic, bringing up'
+              xdotool windowmap $f
+              xdotool windowactivate $f
+          fi
         fi
     fi
 done

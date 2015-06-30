@@ -1,9 +1,0 @@
-#!/usr/bin/env fish
-
-set -gx LC_TIME lv_LV.UTF-8
-
-if test -z "$DISPLAY"
-  cal $argv
-else
-  gsimplecal 2>/dev/null
-end

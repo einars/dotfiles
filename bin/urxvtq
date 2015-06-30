@@ -16,10 +16,14 @@ if [ -z "$wid" ]; then
 else
   # multiple windows? take first
   wid=$(echo $wid | awk '{print $1}')
-  if [ -z "$(xdotool search --onlyvisible --classname $classname)" ]; then
-    xdotool windowmap $wid --sync
-    xdotool windowactivate $wid --sync
-  else
+  if [ "$1" == "--hide" ]; then
     xdotool windowunmap $wid
+  else
+    if [ -z "$(xdotool search --onlyvisible --classname $classname)" ]; then
+      xdotool windowmap $wid
+      xdotool windowactivate $wid
+    else
+      xdotool windowunmap $wid
+    fi
   fi
 fi

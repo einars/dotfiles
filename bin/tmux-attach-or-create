@@ -2,6 +2,14 @@
 
 # Attach or create a tmux session
 # tmux-attach-or-create "session_name"
+maybe_cd() {
+  test -e $1 && cd $1
+}
+
+
+
+maybe_cd /home/e/projekti/$1
+maybe_cd /ssd/$1
 
 test -z $1 && printf "Usage: %s [session_name]\n" $(basename $0)
 test -z $1 || {

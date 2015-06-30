@@ -1,0 +1,11 @@
+#!/usr/bin/env fish
+
+set port (aconnect -o | grep FLUID | awk '{print $2}' | sed 's/[^0123456789]//g')
+if [ "$port" = "" ]
+  printf "MIDI port not found: run qsynth first\n"
+else
+  printf "Using port: %s\n" $port
+  aplaymidi -p$port $argv
+end
+
+
