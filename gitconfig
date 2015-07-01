@@ -74,3 +74,10 @@
         rebase = true
 [rerere]
 	enabled = true
+
+[tig]
+        vertical-split = false
+        git-colors = no
+        tab-size = 4
+        ignore-space = all
+
