@@ -1,0 +1,11 @@
+tint2 &
+tt compton
+
+#dump-dbus-information
+
+volumeicon &
+parcellite &
+
+tt randr.hh
+
+ulimit -c unlimited
