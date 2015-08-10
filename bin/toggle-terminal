@@ -1,25 +1,31 @@
 #!/usr/bin/bash
 
-classname=urxvt-terminal
+identifier=sparta-terminal
+
+cmd_to_exec="evilvte -T $identifier --name $identifier --class $identifier"
+cmd_to_exec="urxvt -name $identifier -geometry 199x40"
+
+
 
 # parallel execution/frequent switching sometimes fails with
 #  X Error of failed request:  BadWindow (invalid Window parameter)
 #  Major opcode of failed request:  3 (X_GetWindowAttributes)
 wid=failed
 until echo $wid | grep -v failed; do
-  wid=$(xdotool search --classname $classname 2>&1)
+  wid=$(xdotool search --classname $identifier 2>&1)
 done
 if [ -z "$wid" ]; then
-  exec urxvt -name urxvt-terminal -geometry 199x40 -e tmux-attach-or-create global &
+  echo "exec $cmd_to_exec -e ~/bin/tmux-attach-or-create global &"
+  exec $cmd_to_exec -e tmux-attach-or-create global &
   sleep 0.05
-  xdotool search --classname $classname windowactivate
+  xdotool search --classname $identifier windowactivate
 else
   # multiple windows? take first
   wid=$(echo $wid | awk '{print $1}')
   if [ "$1" == "--hide" ]; then
     xdotool windowunmap $wid
   else
-    if [ -z "$(xdotool search --onlyvisible --classname $classname)" ]; then
+    if [ -z "$(xdotool search --onlyvisible --classname $identifier)" ]; then
       xdotool windowmap $wid
       xdotool windowactivate $wid
     else

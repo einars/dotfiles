@@ -15,7 +15,7 @@ let mapleader=","
 " sadly, autoindentations tend to go haywire with this
 " set matchpairs=(:)
 
-set nottyfast
+set ttyfast
 set cursorline
 set noundofile
 set lsp=5
@@ -24,7 +24,7 @@ set ttimeoutlen=100
 set synmaxcol=0
 set history=1000
 set showmatch           " jump to matching paren quickly
-set matchtime=1
+"set matchtime=1
 set nrformats=hex       " c-a, c-x won't treat 05 as octal
 set wildmenu            " filename etc completion on tab
 set wildmode=full
@@ -43,7 +43,7 @@ set wildchar=<Tab>
 set laststatus=2        " good statusline is good
 " set statusline=%<%f\%h%m%r%=%-20.(%L\ %l:%v\ %)\ \ \%h%m%r%=\%P
 set statusline=%<%f\%h%m%r\ %{fugitive#statusline()}%=%-20.(%L\ %l:%v\ %)\ \ \%h%m%r%=\%P
-set wildignore=*.cmi,*.cmx,*.cmo,*.class,*.pyc,.svn,.git,*.o,*.a,*.so
+set wildignore=*.cmi,*.cmx,*.cmo,*.class,*.pyc,.svn,.git,*.o,*.a,*.so,target
 set suffixes-=.h
 set virtualedit=block
 
@@ -79,11 +79,8 @@ set noswapfile          " can't remember a single time this would have been usef
 set viminfo='250,\"250,f1,:500,/500,@500
 
 set display=lastline,uhex
-set lazyredraw
+"set lazyredraw
 
-
-"set textwidth=120       " screw purists
-" set textwidth=75         " meh
 
 set hidden              " suddenly, magically, buffers get usable
 set autoread            " don't care about ext-modified files, just reload them
@@ -110,7 +107,7 @@ Bundle 'airblade/vim-rooter'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'spiiph/vim-space'
+" Bundle 'spiiph/vim-space'
 " Bundle 'scrooloose/nerdcommenter'
 Bundle 'einars/vim-phpfold'
 Bundle 'einars/vim-phpsyntax'
@@ -120,16 +117,16 @@ Bundle 'shawncplus/phpcomplete.vim'
 Bundle 'Valloric/YouCompleteMe'
 
 Bundle 'pangloss/vim-javascript'
-Bundle 'nathanaelkane/vim-indent-guides'
+"Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'junegunn/goyo.vim'
 
 Bundle 'kien/ctrlp.vim'
-Bundle 'w0ng/vim-hybrid'
+"Bundle 'w0ng/vim-hybrid'
 
 Bundle 'stephpy/vim-yaml'
 Bundle 'derekwyatt/vim-scala'
 
-Bundle 'dart-lang/dart-vim-plugin'
+"Bundle 'dart-lang/dart-vim-plugin'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'kchmck/vim-coffee-script'
 
@@ -339,9 +336,6 @@ map <s-f5> <esc>:EnableFastPHPFolds<cr>
 
 " resync colors on f5
 map <f5> <esc>:syn sync fromstart<cr>
-
-" let's try this magic
-imap jh <Esc>
 
 " get rid of search highlighting with leader-space
 nnoremap <leader><space> :noh<cr>
@@ -564,11 +558,11 @@ endfunction
 
 map <leader>s :call Switch('')<left><left>
 
-if filereadable("~/.opam/system/share/vim/syntax/ocp-indent.vim")
-  execute ":source " . "~/.opam/system/share/vim/syntax/ocp-indent.vim"
-endif
+" if filereadable("~/.opam/system/share/vim/syntax/ocp-indent.vim")
+"   execute ":source " . "~/.opam/system/share/vim/syntax/ocp-indent.vim"
+" endif
 
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
+" let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+" execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 " vim: set fdm=marker :

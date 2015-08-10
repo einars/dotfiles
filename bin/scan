@@ -31,6 +31,10 @@ set raw              no
 set scale '1024x'
 set shave '10x10'
 
+# work around some race issues
+# http://lists.alioth.debian.org/pipermail/sane-devel/2015-July/033606.html
+set -x SANE_DEBUG_GENESYS_LOW 7
+
 if test -z $scan_viewer
     set scan_viewer viewnior
 end
@@ -110,7 +114,7 @@ else
 
 
     # --buffer-size=1M
-    scanimage \
+    scanimage -v \
         --resolution $resolution \
         --mode $mode \
         --format=tiff \

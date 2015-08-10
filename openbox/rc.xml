@@ -186,17 +186,17 @@
 
     <keybind key="W-grave">
       <action name="Execute">
-        <execute>/home/e/bin/urxvtq</execute>
+        <execute>/home/e/bin/toggle-terminal</execute>
       </action>
     </keybind>
     <keybind dis-key="W-grave" key="0xbf" key-comment="F13">
       <action name="Execute">
-        <execute>/home/e/bin/urxvtq</execute>
+        <execute>/home/e/bin/toggle-terminal</execute>
       </action>
     </keybind>
     <keybind key="S-0xbf" key-comment="S-F13">
       <action name="Execute">
-        <execute>/home/e/bin/urxvtq --hide</execute>
+        <execute>/home/e/bin/toggle-terminal --hide</execute>
       </action>
     </keybind>
 
@@ -208,15 +208,27 @@
 
     <keybind key="XF86Launch6" key-comment="F14">
       <action name="Execute">
-        <dis-command>xdotool click --repeat 5000 --delay 1 1</dis-command>
-        <execute>/home/e/bin/gvimq</execute>
+        <command>tt screenshot</command>
       </action>
     </keybind>
     <keybind key="S-XF86Launch6" key-comment="S-F14">
       <action name="Execute">
+        <command>tt screenshot</command>
+      </action>
+    </keybind>
+
+    <keybind key="XF86Eject">
+      <action name="Execute">
+        <dis-command>xdotool click --repeat 5000 --delay 1 1</dis-command>
+        <execute>/home/e/bin/gvimq</execute>
+      </action>
+    </keybind>
+    <keybind key="S-XF86Eject">
+      <action name="Execute">
         <execute>/home/e/bin/gvimq --hide</execute>
       </action>
     </keybind>
+
 
     <!-- keybind key="W-grave">
       <action name="GoToDesktop">
@@ -498,18 +510,12 @@
       </action>
     </keybind>
     <keybind key="XF86Launch9">
-      <action name="ToggleShowDesktop"/>
-    </keybind>
-    <keybind key="XF86Eject">
+      <ex-action name="ToggleShowDesktop"/>
       <action name="Execute">
-        <command>tt screenshot</command>
+        <command>killall a.out</command>
       </action>
     </keybind>
-    <keybind key="S-XF86Eject">
-      <action name="Execute">
-        <command>tt screenshot.gimp</command>
-      </action>
-    </keybind>
+
     <keybind key="W-d">
       <action name="Execute">
         <command>my-file-manager ~/dokumenti</command>
@@ -917,11 +923,11 @@
         <y>0</y>
       </position>
       <desktop>all</desktop>
-      <layer>above</layer>
+      <dis-layer>above</dis-layer>
       <skip_pager>no</skip_pager>
       <skip_taskbar>no</skip_taskbar>
     </application>
-    <application name="urxvt-terminal">
+    <application name="sparta-terminal">
       <!-- decor>no</decor -->
       <size>
         <width>100%</width>
@@ -936,6 +942,12 @@
       <layer>above</layer>
       <skip_pager>yes</skip_pager>
       <skip_taskbar>yes</skip_taskbar>
+    </application>
+    <application class="Ltk">
+      <position force="yes">
+        <x>100</x>
+        <y>100</y>
+      </position>
     </application>
     <!--
   # this is an example with comments through out. use these to make your
@@ -1018,17 +1030,5 @@
 
   # end of the example
 -->
-    <application name="urxvtc">
-      <decor>no</decor>
-      <position force="yes">
-        <x>center</x>
-        <y>0</y>
-      </position>
-      <desktop>all</desktop>
-      <layer>above</layer>
-      <skip_pager>yes</skip_pager>
-      <skip_taskbar>yes</skip_taskbar>
-      <maximized>Horizontal</maximized>
-    </application>
   </applications>
 </openbox_config>
