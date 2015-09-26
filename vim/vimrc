@@ -1,6 +1,7 @@
 
 let g:loaded_matchparen=1             " die, slow and needless matching paren highlighting
-let g:searchEmptyLinesPostfixing = 3  " php folding stuff
+let g:php_folding = 1
+let php_folding = 1
 let g:cursor_follows_alphabet = 1     " translit plugin
 let g:translit_toggle_keymap = '<S-F1>'     " translit plugin
 
@@ -16,7 +17,7 @@ let mapleader=","
 " set matchpairs=(:)
 
 set ttyfast
-set cursorline
+set nocursorline
 set noundofile
 set lsp=5
 set cryptmethod=blowfish
@@ -107,10 +108,10 @@ Bundle 'airblade/vim-rooter'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-unimpaired'
-" Bundle 'spiiph/vim-space'
+Bundle 'spiiph/vim-space'
 " Bundle 'scrooloose/nerdcommenter'
-Bundle 'einars/vim-phpfold'
-Bundle 'einars/vim-phpsyntax'
+"" Bundle 'einars/vim-phpfold'
+"" Bundle 'einars/vim-phpsyntax'
 Bundle 'einars/translit.vim'
 Bundle 'shawncplus/phpcomplete.vim'
 
@@ -129,6 +130,7 @@ Bundle 'derekwyatt/vim-scala'
 "Bundle 'dart-lang/dart-vim-plugin'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'rgrinberg/vim-ocaml'
 
 let g:ctrlp_custom_ignore = {
   \ 'dir': '\v[\/](\.git|\.svn|media|release|node_modules|bower_components)$',
@@ -331,9 +333,6 @@ nnoremap <leader>j /<+.\{-1,}+><cr>c/+>/e<cr>
 
 
 
-" PHP stuff: rebuild folds on s-f5
-map <s-f5> <esc>:EnableFastPHPFolds<cr>
-
 " resync colors on f5
 map <f5> <esc>:syn sync fromstart<cr>
 
@@ -389,12 +388,6 @@ function! StripTrailingWhitespace()
 endfunction
 
 
-augroup BgHighlight
-    autocmd!
-    autocmd WinEnter * set cursorline
-    autocmd WinLeave * set nocursorline
-augroup END
-
 
 augroup javascript
     au!
@@ -443,7 +436,7 @@ augroup C
 augroup END
 
 augroup PHP
-    autocmd FileType php setlocal keywordprg=~/bin/phpdoc tabstop=4 shiftwidth=4
+    autocmd FileType php setlocal keywordprg=~/bin/phpdoc tabstop=4 shiftwidth=4 foldmethod=syntax
 augroup END
 
 augroup CZZ
@@ -564,5 +557,8 @@ map <leader>s :call Switch('')<left><left>
 
 " let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 " execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
+set guicursor+=n:blinkwait700-blinkoff200-blinkon700
+
 
 " vim: set fdm=marker :

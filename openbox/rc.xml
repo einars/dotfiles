@@ -86,31 +86,31 @@
       <name>PT Sans</name>
       <size>10</size>
       <!-- font size in points -->
-      <weight>Normal</weight>
-      <!-- 'bold' or 'normal' -->
-      <slant>Normal</slant>
-      <!-- 'italic' or 'normal' -->
-    </font>
-    <font place="ActiveOnScreenDisplay">
-      <name>PT Sans Caption</name>
-      <size>10</size>
-      <!-- font size in points -->
-      <weight>Bold</weight>
-      <!-- 'bold' or 'normal' -->
-      <slant>Normal</slant>
-      <!-- 'italic' or 'normal' -->
-    </font>
-    <font place="InactiveOnScreenDisplay">
-      <name>PT Sans Caption</name>
-      <size>10</size>
-      <!-- font size in points -->
-      <weight>Normal</weight>
-      <!-- 'bold' or 'normal' -->
-      <slant>Normal</slant>
-      <!-- 'italic' or 'normal' -->
-    </font>
-  </theme>
-  <desktops>
+    <weight>Normal</weight>
+    <!-- 'bold' or 'normal' -->
+    <slant>Normal</slant>
+    <!-- 'italic' or 'normal' -->
+  </font>
+  <font place="ActiveOnScreenDisplay">
+    <name>PT Sans Caption</name>
+    <size>10</size>
+    <!-- font size in points -->
+    <weight>Bold</weight>
+    <!-- 'bold' or 'normal' -->
+    <slant>Normal</slant>
+    <!-- 'italic' or 'normal' -->
+  </font>
+  <font place="InactiveOnScreenDisplay">
+    <name>PT Sans Caption</name>
+    <size>10</size>
+    <!-- font size in points -->
+    <weight>Normal</weight>
+    <!-- 'bold' or 'normal' -->
+    <slant>Normal</slant>
+    <!-- 'italic' or 'normal' -->
+  </font>
+</theme>
+<desktops>
     <!-- this stuff is only used at startup, pagers allow you to change them
        during a session
 
@@ -131,7 +131,6 @@
       <name>desktop 7</name>
       <name>desktop 8</name>
       <name>desktop 9</name>
-      <name>desktop 0</name>
     </names>
     <popupTime>310</popupTime>
     <!-- The number of milliseconds to show the popup for when switching
@@ -194,17 +193,28 @@
         <execute>/home/e/bin/toggle-terminal</execute>
       </action>
     </keybind>
+    <keybind key="Pause">
+      <action name="Execute">
+        <execute>/home/e/bin/notify-datetime</execute>
+      </action>
+    </keybind>
     <keybind key="S-0xbf" key-comment="S-F13">
       <action name="Execute">
         <execute>/home/e/bin/toggle-terminal --hide</execute>
       </action>
     </keybind>
 
-    <dis-keybind key="0xbf" key-comment="F13">
+    <keybind key="F12" prev-key="0xbf" key-comment="F13">
       <action name="Execute">
         <execute>/home/e/bin/gvimq</execute>
       </action>
-    </dis-keybind>
+    </keybind>
+
+    <keybind key="Print">
+      <action name="Execute">
+        <execute>/home/e/bin/gvimq</execute>
+      </action>
+    </keybind>
 
     <keybind key="XF86Launch6" key-comment="F14">
       <action name="Execute">
@@ -562,10 +572,28 @@
       <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>0</x>
-        <monitor>all</monitor>
+        <y>0</y>
+        <width>50%</width>
+        <height>100%</height>
       </action>
     </keybind>
     <keybind key="W-Right">
+      <action name="Unmaximize"/>
+      <action name="MoveResizeTo">
+        <x>50%</x>
+        <y>0</y>
+        <width>50%</width>
+        <height>100%</height>
+      </action>
+    </keybind>
+    <keybind key="W-C-Left">
+      <action name="Unmaximize"/>
+      <action name="MoveResizeTo">
+        <x>0</x>
+        <monitor>all</monitor>
+      </action>
+    </keybind>
+    <keybind key="W-C-Right">
       <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>1600</x>
