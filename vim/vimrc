@@ -1,7 +1,5 @@
 
 let g:loaded_matchparen=1             " die, slow and needless matching paren highlighting
-let g:php_folding = 1
-let php_folding = 1
 let g:cursor_follows_alphabet = 1     " translit plugin
 let g:translit_toggle_keymap = '<S-F1>'     " translit plugin
 
@@ -110,7 +108,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'spiiph/vim-space'
 " Bundle 'scrooloose/nerdcommenter'
-"" Bundle 'einars/vim-phpfold'
 "" Bundle 'einars/vim-phpsyntax'
 Bundle 'einars/translit.vim'
 Bundle 'shawncplus/phpcomplete.vim'
@@ -131,6 +128,18 @@ Bundle 'derekwyatt/vim-scala'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'rgrinberg/vim-ocaml'
+
+
+"" php folding:
+"" built-in php folding:
+"" (probably have to add foldmethod=syntax to php augroup, too)
+" let g:php_folding = 1
+" let php_folding = 1
+
+"" or my folder (faster, simpler)
+Bundle 'einars/vim-phpfold'
+map <s-f5> <esc>:EnableFastPHPFolds<cr>
+let g:searchEmptyLinesPostfixing = 3
 
 let g:ctrlp_custom_ignore = {
   \ 'dir': '\v[\/](\.git|\.svn|media|release|node_modules|bower_components)$',
@@ -436,7 +445,7 @@ augroup C
 augroup END
 
 augroup PHP
-    autocmd FileType php setlocal keywordprg=~/bin/phpdoc tabstop=4 shiftwidth=4 foldmethod=syntax
+    autocmd FileType php setlocal keywordprg=~/bin/phpdoc tabstop=4 shiftwidth=4
 augroup END
 
 augroup CZZ
