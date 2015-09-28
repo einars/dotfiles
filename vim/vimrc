@@ -157,13 +157,6 @@ filetype plugin indent on  " detect filetypes
 syntax on                  " colors
 
 
-" micro-templates: autoload template
-set cpoptions-=a        " do not leave the template file open
-autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.tpl
-
-
-
-
 
 
 """ Convenient command to see the difference between the current buffer and the
@@ -335,10 +328,6 @@ map  <c-c> :bn<cr>
 " use real tab on c-tab
 
 imap <c-tab> <c-v><tab>
-
-
-" microtemplates: ,j moves to next block marked by <+SOMETHING+>
-nnoremap <leader>j /<+.\{-1,}+><cr>c/+>/e<cr>
 
 
 
