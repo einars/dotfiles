@@ -8,18 +8,6 @@
 # 1. case-insenstitive with forced regexp, to workaround a comparison bug w/diacritical chars,
 # 2. all params searched, no need to quote: aa i went home -> searches for "i went home"
 
-set exclude_dirs third-party media node_modules 
-
-set folder
-set exclude_cmd
-for dir in $exclude_dirs
-    if test -d $dir
-        set exclude_cmd --ignore $dir $exclude_cmd
-    end
-end
-
-
-
 if set -q $argv
     echo "aa [stuff-to-search] [folder]"
 else
@@ -38,5 +26,5 @@ else
       #set folder (git ls-files $folder)
     #end
 
-    pt --smart-case --context 2 $exclude_cmd $case_mode $search_string $folder
+    pt --smart-case --context 2 $case_mode $search_string $folder
 end

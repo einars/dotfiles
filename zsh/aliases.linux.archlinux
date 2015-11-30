@@ -40,7 +40,8 @@ function aurget {
   package=$1
   if [[ $package != "" ]]; then
     chpwd_functions= cd ~/build/aur/
-    yaourt --getpkgbuild $package && cd $package && cat PKGBUILD
+    yaourt --getpkgbuild $package
+    test -d $package && cd $package && cat PKGBUILD
   fi
 }
 

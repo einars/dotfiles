@@ -13,6 +13,7 @@ git submodule update
 ln -sfn $install_source/vim ~/.vim
 ln -sfn $install_source/vim/vimrc ~/.vimrc
 ln -sfn $install_source/gitconfig ~/.gitconfig
+ln -sfn $install_source/ptconfig.toml ~/.ptconfig.toml
 
 ln -sfn $install_source/xresources ~/.Xresources
 
