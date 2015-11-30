@@ -153,7 +153,5 @@ alias gpr='git pull --rebase --prune'
 
 alias aag='grep -Ri -A 5 -B 2'
 
-hash hub 2>/dev/null && alias git=hub
-
 # vim: syn=zsh :
 
