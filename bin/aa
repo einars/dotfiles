@@ -1,19 +1,20 @@
 #!/usr/bin/env fish
 
+# deprecated with the rise of the platinum searcher, pt
+
 # vim: set syn=fish :
 
 # ag search, but:
 # 1. case-insenstitive with forced regexp, to workaround a comparison bug w/diacritical chars,
 # 2. all params searched, no need to quote: aa i went home -> searches for "i went home"
 
-set exclude_dirs third-party media
-set wraps -B 2 -A 2
+set exclude_dirs third-party media node_modules 
 
 set folder
 set exclude_cmd
 for dir in $exclude_dirs
     if test -d $dir
-        set exclude_cmd --ignore-dir $dir $exclude_cmd
+        set exclude_cmd --ignore $dir $exclude_cmd
     end
 end
 
@@ -30,20 +31,12 @@ else
         set -e argv[-1]
     end
 
-    set search_string ".{0}$argv"
-    set search_lower (echo $search_string | awk '{print tolower($0)}')
+    set search_string "$argv"
     clear
-    set case_mode "--ignore-case"
-    if test $search_string != $search_lower
-        set case_mode "--case-sensitive"
-    end
 
-    if test -d .git
-      set folder (git ls-files $folder)
-      #if test "$folder" = ""
-        #set folder $folder (git ls-files)
-      #end
-    end
+    #if test -d .git
+      #set folder (git ls-files $folder)
+    #end
 
-    ag $wraps $exclude_cmd $case_mode $search_string $folder
+    pt --smart-case --context 2 $exclude_cmd $case_mode $search_string $folder
 end

@@ -183,6 +183,16 @@
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
 
+    <keybind key="W-space">
+      <action name="ShowMenu">
+        <menu>root-menu</menu>
+      </action>
+    </keybind>
+    <keybind key="W-s-space">
+      <action name="ShowMenu">
+        <menu>client-list-combined-menu</menu>
+      </action>
+    </keybind>
     <keybind key="W-grave">
       <action name="Execute">
         <execute>/home/e/bin/toggle-terminal</execute>
@@ -204,17 +214,11 @@
       </action>
     </keybind>
 
-    <keybind key="F12" prev-key="0xbf" key-comment="F13">
+    <!-- keybind key="F12" prev-key="0xbf" key-comment="F13">
       <action name="Execute">
         <execute>/home/e/bin/gvimq</execute>
       </action>
-    </keybind>
-
-    <keybind key="Print">
-      <action name="Execute">
-        <execute>/home/e/bin/gvimq</execute>
-      </action>
-    </keybind>
+    </keybind -->
 
     <keybind key="XF86Launch6" key-comment="F14">
       <action name="Execute">
@@ -433,6 +437,9 @@
     <!-- </keybind> -->
     <keybind key="W-S-p">
       <action name="Reconfigure"/>
+      <action name="Execute">
+        <execute>notify 'Openbox reconfigured'</execute>
+      </action>
     </keybind>
     <keybind key="W-S-x">
       <action name="Close"/>
@@ -501,12 +508,12 @@
     </keybind>
     <keybind key="XF86Launch7">
       <action name="Execute">
-        <command>tt randr.hh</command>
+        <command>tt randr.hv</command>
       </action>
     </keybind>
     <keybind key="XF86Launch8">
       <action name="Execute">
-        <command>tt randr.hh</command>
+        <command>tt randr.hv</command>
       </action>
     </keybind>
     <keybind key="S-XF86Launch7">
@@ -565,7 +572,8 @@
     </keybind>
     <keybind key="W-r">
       <action name="Execute">
-        <command>dmenu_run -f -b -i -p Run: </command>
+        <!-- command>dmenu_run -f -b -i -p Run: </command-->
+        <command>dmenu_run -sb '#e63' -sf '#111' -fn "Monaco-14" -f -b -i -p Run: </command>
       </action>
     </keybind>
     <keybind key="W-Left">
@@ -580,7 +588,7 @@
     <keybind key="W-Right">
       <action name="Unmaximize"/>
       <action name="MoveResizeTo">
-        <x>50%</x>
+        <x>-0</x>
         <y>0</y>
         <width>50%</width>
         <height>100%</height>
@@ -893,6 +901,7 @@
       <mousebind action="Press" button="Right">
         <action name="ShowMenu">
           <menu>root-menu</menu>
+          <!-- menu>client-list-combined-menu</menu -->
         </action>
       </mousebind>
     </context>

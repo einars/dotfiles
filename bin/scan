@@ -2,7 +2,7 @@
 
 function printf_filename
     set input $argv[1]
-    set input (echo $input | sed s/%d/%04d/)
+    set input (echo $input | sed s/%d/%02d/)
     set unfmt (printf $input 0)
     if test $input -eq $unfmt
         echo $input

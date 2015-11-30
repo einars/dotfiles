@@ -94,9 +94,6 @@ set noerrorbells novisualbell t_vb=
 
 
 set listchars=tab:·\ ,trail:.,extends:#,nbsp:▮
-if has('conceal')
-    set conceallevel=2      " 7.3, if supported
-endif
 
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
@@ -128,6 +125,8 @@ Bundle 'derekwyatt/vim-scala'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'rgrinberg/vim-ocaml'
+Bundle 'mxw/vim-jsx'
+Bundle 'mtscout6/vim-cjsx'
 
 
 "" php folding:
