@@ -1,0 +1,7 @@
+#!/bin/sh
+
+json=$(curl --silent http://kexp.org/s/s.aspx?x=3)
+artist=$(echo $json | jq -r '.Artist')
+title=$(echo $json | jq -r '.SongTitle')
+text="KEXP: $artist — $title"
+notify "$text"

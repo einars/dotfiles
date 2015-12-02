@@ -26,8 +26,8 @@ alias cx="chmod +x"
 
 alias rdesktop='rdesktop -xb -z -a16 -rsound:off -r clipboard:PRIMARYCLIPBOARD -0 -g1200x900'
 
-alias ls='ls --color=tty --si -l --group-directories-first --time-style=+'
-alias ll='ls --color=tty --si -l --almost-all --group-directories-first --time-style=+'
+alias ls='ls --time-style=+        --color=tty --si -l --group-directories-first'
+alias ll='ls --time-style=long-iso --color=tty --si -l --group-directories-first --almost-all'
 alias l=ls
 
 alias iddqd='sudo -s'

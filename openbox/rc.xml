@@ -363,9 +363,14 @@
         <command>orage</command>
       </action>
     </keybind>
-    <keybind key="W-S-slash">
+    <keybind key="W-slash">
       <action name="Execute">
         <command>notify-mpd-song</command>
+      </action>
+    </keybind>
+    <keybind key="W-S-slash">
+      <action name="Execute">
+        <command>notify-kexp-song</command>
       </action>
     </keybind>
     <keybind key="W-S-Return">
