@@ -4,8 +4,9 @@ tt compton
 #dump-dbus-information
 
 volumeicon &
-parcellite &
+#parcellite &
+clipit &
 
-tt randr.hh
+tt randr.hv
 
 ulimit -c unlimited
