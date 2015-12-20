@@ -5,6 +5,8 @@ function init_common()
     test -d ~/bin && export PATH=~/bin:$PATH
     test -d ~/bin/private && export PATH=~/bin/private:$PATH
     test -d ~/.opam/system/bin && export PATH=~/.opam/system/bin:$PATH
+    
+    export STEAM_FRAME_FORCE_CLOSE=1
 
     setxkbmap lv -option ctrl:nocaps
 
