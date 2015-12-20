@@ -2,7 +2,8 @@
 
 identifier=sparta-terminal
 
-cmd_to_exec="evilvte -T $identifier --name $identifier --class $identifier"
+# evilvte ir foršs, bet nokonfigurēts ar maziem burtiem
+#cmd_to_exec="evilvte -T $identifier --name $identifier --class $identifier"
 cmd_to_exec="urxvt -name $identifier -geometry 199x40"
 
 

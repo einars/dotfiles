@@ -183,12 +183,12 @@
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
 
-    <keybind key="W-space">
+    <keybind key="W-s-space">
       <action name="ShowMenu">
         <menu>root-menu</menu>
       </action>
     </keybind>
-    <keybind key="W-s-space">
+    <keybind key="W-space">
       <action name="ShowMenu">
         <menu>client-list-combined-menu</menu>
       </action>
