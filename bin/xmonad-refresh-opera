@@ -1,9 +1,0 @@
-#!/bin/sh
-
-set -e
-
-focused_window=$(xdotool getwindowfocus)
-xdotool search --onlyvisible --classname opera windowfocus &&\
-    xdotool key F5
-
-xdotool windowfocus $focused_window

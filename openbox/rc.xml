@@ -566,13 +566,7 @@
     <keybind key="W-w">
       <action name="Execute">
         <!-- command>xmonad-refresh-opera</command -->
-        <command>xmonad-refresh-chromium</command>
-      </action>
-    </keybind>
-    <keybind key="W-e">
-      <action name="Execute">
-        <!-- command>xmonad-refresh-opera</command -->
-        <command>xmonad-refresh-opera</command>
+        <command>chrome-refresh-current</command>
       </action>
     </keybind>
     <keybind key="W-r">
