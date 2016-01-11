@@ -4,10 +4,10 @@ function printf_filename
     set input $argv[1]
     set input (echo $input | sed s/%d/%02d/)
     set unfmt (printf $input 0)
-    if test $input -eq $unfmt
+    if [ $input = $unfmt ]
         echo $input
     else
-        for i in (seq 10000)
+        for i in (seq 100)
             set unfmt (printf $input $i)
             if test -e $unfmt
                 true
@@ -46,12 +46,12 @@ end
 
 set paramidx 1
 while test -n $argv[$paramidx]
-    if test $argv[$paramidx] = 'a5'
+    if [ $argv[$paramidx] = 'a5' ]
         set scan_params $scan_params -x 215 -y 153
         set crop_params $crop_params -rotate 90
         set shave '10x15'
     end
-    if test $argv[$paramidx] = 'a6'
+    if [ $argv[$paramidx] = 'a6' ]
         set scan_params $scan_params -x 107 -y 153
         set crop_params $crop_params -rotate 90
         set scale '512x'
@@ -60,38 +60,38 @@ while test -n $argv[$paramidx]
 
 
     # white = whitening
-    if test $argv[$paramidx] = 'white'
+    if [ $argv[$paramidx] = 'white' ]
         set color_matrix     -level "40%,80%"
     end
 
     # dark = no whitening
-    if test $argv[$paramidx] = 'dark'
+    if [ $argv[$paramidx] = 'dark' ]
         set color_matrix
     end
 
-    if test $argv[$paramidx] = 'hires'
+    if [ $argv[$paramidx] = 'hires' ]
         set resolution $hires_resolution
         set raw yes
     end
 
-    if test $argv[$paramidx] = 'raw'
+    if [ $argv[$paramidx] = 'raw' ]
         set raw yes
         set color_matrix
     end
 
-    if test $argv[$paramidx] = 'color'
+    if [ $argv[$paramidx] = 'color' ]
         set mode "Color"
     end
 
-    if test $argv[$paramidx] = 'grey'
+    if [ $argv[$paramidx] = 'grey' ]
         set mode "Gray"
     end
-    if test $argv[$paramidx] = 'gray'
+    if [ $argv[$paramidx] = 'gray' ]
         set mode "Gray"
     end
 
     set filename $argv[$paramidx]
-    if test $paramidx = (count $argv)
+    if [ $paramidx = (count $argv) ]
         break
     end
     set paramidx (math $paramidx + 1)

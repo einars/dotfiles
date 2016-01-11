@@ -107,7 +107,6 @@ Bundle 'spiiph/vim-space'
 " Bundle 'scrooloose/nerdcommenter'
 "" Bundle 'einars/vim-phpsyntax'
 Bundle 'einars/translit.vim'
-Bundle 'shawncplus/phpcomplete.vim'
 
 Bundle 'Valloric/YouCompleteMe'
 

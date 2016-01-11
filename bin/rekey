@@ -46,7 +46,7 @@ keycode 19 = 0 parenright  NoSymbol NoSymbol zerosuperior  degree
 keycode 33 = p P           NoSymbol NoSymbol U25A1         U25A0
 
 ! altgr , = ,·○
-keycode 59 = comma less    NoSymbol NoSymbol periodcentered U25CF
+keycode 59 = comma less    NoSymbol NoSymbol multiply U25CF
 ! altgr . = .·○
 keycode 60 = period greater NoSymbol NoSymbol periodcentered U25CB
 

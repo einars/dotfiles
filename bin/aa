@@ -8,11 +8,11 @@
 # 1. case-insenstitive with forced regexp, to workaround a comparison bug w/diacritical chars,
 # 2. all params searched, no need to quote: aa i went home -> searches for "i went home"
 
-if set -q $argv
+set n_args (count $argv)
+if [ n_args = 0 ]
     echo "aa [stuff-to-search] [folder]"
 else
 
-    set n_args (count $argv)
     # the last argument will be treated as a folder, if a folder by that name exists
     if test -d $argv[-1]
         set folder $argv[-1]
