@@ -234,12 +234,12 @@
     <keybind key="XF86Eject">
       <action name="Execute">
         <dis-command>xdotool click --repeat 5000 --delay 1 1</dis-command>
-        <execute>/home/e/bin/gvimq</execute>
+        <execute>/home/e/bin/nvimq</execute>
       </action>
     </keybind>
     <keybind key="S-XF86Eject">
       <action name="Execute">
-        <execute>/home/e/bin/gvimq --hide</execute>
+        <execute>/home/e/bin/nvimq --hide</execute>
       </action>
     </keybind>
 
@@ -375,7 +375,7 @@
     </keybind>
     <keybind key="W-S-Return">
       <action name="Execute">
-        <command>gvim ~/dokumenti/passwords.txt</command>
+        <command>/opt/vim/bin/gvim ~/dokumenti/passwords.txt</command>
       </action>
     </keybind>
     <keybind key="W-C-Return">
@@ -532,10 +532,10 @@
       </action>
     </keybind>
     <keybind key="XF86Launch9">
-      <ex-action name="ToggleShowDesktop"/>
-      <action name="Execute">
+      <action name="ToggleShowDesktop"/>
+      <!-- action name="Execute">
         <command>killall a.out</command>
-      </action>
+      </action -->
     </keybind>
 
     <keybind key="W-d">
@@ -946,7 +946,8 @@
       <desktop>all</desktop>
       <layer>above</layer>
     </application>
-    <application name="gvim" role="gvimconsole">
+    <!-- application name="gvim" role="gvimconsole" -->
+    <application name="nvim-qt">
       <!-- decor>no</decor -->
       <size>
         <width>100%</width>

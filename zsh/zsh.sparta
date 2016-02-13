@@ -28,3 +28,6 @@ clear
 
 ssh-add -l > /dev/null || ssh-add
 
+export EDITOR=nvim
+export VISUAL=nvim
+

@@ -4,8 +4,10 @@ tt compton
 #dump-dbus-information
 
 volumeicon &
-#parcellite &
-clipit &
+parcellite &
+#clipit &
+
+rescuetime &
 
 tt randr.hv
 
