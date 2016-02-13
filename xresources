@@ -69,8 +69,7 @@ URxvt*fading: 0
 *color14:                #34E2E2
 *color15:                #EEEEEC
 
-Xcursor.theme: lil-polar
-!! Xcursor.theme: Bluecurve
+Xcursor.theme: Human
 
 URxvt-terminal*background:             #333333
 URxvt-terminal*foreground:             #D3D7CF
