@@ -125,7 +125,8 @@ let g:ctrlp_user_command = {
 
 
 " let g:seoul256_background=235
-colors seoul256
+" colors seoul256
+colors sorcerer
 
 command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>") | let g:Guifont="<args>"
 " let g:Guifont="DejaVu Sans Mono:h13"

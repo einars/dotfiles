@@ -12,4 +12,4 @@ else
     printf "Chrome tabs killed: %d\n" (count $chrome_pids)
 end
 
-exec google-chrome --restore-last-session &
+google-chrome --restore-last-session &
