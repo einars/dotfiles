@@ -37,7 +37,6 @@ done
 
 if [ -z $found ]; then
   echo Running a new gvim
-  exec gvim --role $rolename -c "colors sorcerer"
-  #sleep 0.05
-  #xdotool search --all --name --classname $classname windowactivate
+  exec gvim --role $rolename
+  #exec gvim --role $rolename -c "colors sorcerer"
 fi

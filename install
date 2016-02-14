@@ -10,8 +10,25 @@
 git submodule init
 git submodule update
 
-ln -sfn $install_source/vim ~/.vim
-ln -sfn $install_source/vim/vimrc ~/.vimrc
+mkdir -p ~/.vim
+mkdir -p ~/.config/nvim
+
+for f in $install_source/nvim/*; do
+	bf=$(basename $f)
+	ln -sfn $f ~/.vim/$bf
+	ln -sfn $f ~/.config/nvim/$bf
+done
+ln -sfn $install_source/nvim/init.vim ~/.vimrc
+
+[ -d ~/.vim/bundle/Vundle.vim ] || {
+  mkdir -p ~/.vim/bundle
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+}
+[ -d ~/.config/nvim/bundle/Vundle.vim ] || {
+  mkdir -p ~/.config/nvim/bundle
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
+}
+
 ln -sfn $install_source/gitconfig ~/.gitconfig
 ln -sfn $install_source/ptconfig.toml ~/.ptconfig.toml
 

@@ -1,6 +1,24 @@
-set ttimeoutlen=100
+let g:loaded_matchparen=1             " die, slow and needless matching paren highlighting
 
 let mapleader=","
+
+""" vim stuff
+if ! has('nvim')
+  set ttyfast
+  set cryptmethod=blowfish
+  set t_md=               " no bold fonts in terminal
+  " remove bell
+  set noerrorbells novisualbell t_vb=
+  if has('gui_running')
+    set guioptions+=c       """ use console dialogs
+    set guioptions-=T       """ show the toolbar
+    set guioptions-=m       """ show the menu
+    set guioptions+=r       """ right scrollbar
+    set guioptions-=L       """ left scrollbar
+    set guioptions-=e       """ tab menu
+    set guifont=Terminus\ 10
+  endif
+endif
 
 set nocursorline
 set noundofile
@@ -28,6 +46,9 @@ set wildignore=*.cmi,*.cmx,*.cmo,*.class,*.pyc,.svn,.git,*.o,*.a,*.so,target
 set suffixes-=.h
 set virtualedit=block
 
+set backupdir= " no need for backups
+set dir=       " no need for swap
+
 set completeopt-=preview
 
 set hidden              " suddenly, magically, buffers get usable
@@ -54,18 +75,36 @@ filetype plugin indent on  " detect filetypes
 syntax on                  " colors
 
 
-set rtp+=~/.config/nvim/bundle/vundle
-call vundle#rc('~/.config/nvim/bundle')
+if has('nvim')
+    let s:editor_root=expand("~/.config/nvim")
+else
+    let s:editor_root=expand("~/.vim")
+endif
 
-Bundle 'airblade/vim-rooter'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'spiiph/vim-space'
-Bundle 'einars/vim-phpfold'
-Bundle 'kien/ctrlp.vim'
+let &rtp = &rtp . ',' . s:editor_root . '/bundle/Vundle.vim/'
+call vundle#begin(s:editor_root . '/bundle')
 
-Bundle 'Shougo/deoplete.nvim'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'airblade/vim-rooter'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'spiiph/vim-space'
+Plugin 'einars/vim-phpfold'
+Plugin 'kien/ctrlp.vim'
+
+Plugin 'digitaltoad/vim-jade'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'rgrinberg/vim-ocaml'
+
+call vundle#end()
+
+if has('nvim')
+  Bundle 'Shougo/deoplete.nvim'
+else
+  let g:ycm_key_detailed_diagnostics = '<F11>'
+  Bundle 'Valloric/YouCompleteMe'
+endif
 
 let g:searchEmptyLinesPostfixing = 3
 
@@ -83,20 +122,9 @@ let g:ctrlp_user_command = {
         \ }
 
 
-function! SetDir(path)
-    if ! isdirectory(a:path) && exists('*mkdir')
-        exec mkdir(a:path, '', 0700)
-    endif
-    if isdirectory(a:path)
-        exec 'set dir=' . a:path
-        exec 'set backupdir=' . a:path
-    endif
-endfunction
 
 
-call SetDir($HOME . '/.nvim-swap')
-
-let g:seoul256_background=235
+" let g:seoul256_background=235
 colors seoul256
 
 command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>") | let g:Guifont="<args>"
@@ -104,5 +132,6 @@ command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>") | let g:G
 let g:Guifont="Terminus:h11"
 
 
-source ~/.config/nvim/keymaps.vim
-source ~/.config/nvim/autogroups.vim
+exec 'source ' . s:editor_root . '/keymaps.vim'
+exec 'source ' . s:editor_root . '/autogroups.vim'
+exec 'source ' . s:editor_root . '/jeetworks-arrows.vim'

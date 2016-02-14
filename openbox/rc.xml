@@ -234,12 +234,12 @@
     <keybind key="XF86Eject">
       <action name="Execute">
         <dis-command>xdotool click --repeat 5000 --delay 1 1</dis-command>
-        <execute>/home/e/bin/nvimq</execute>
+        <execute>/home/e/bin/gvimq</execute>
       </action>
     </keybind>
     <keybind key="S-XF86Eject">
       <action name="Execute">
-        <execute>/home/e/bin/nvimq --hide</execute>
+        <execute>/home/e/bin/gvimq --hide</execute>
       </action>
     </keybind>
 
@@ -946,23 +946,29 @@
       <desktop>all</desktop>
       <layer>above</layer>
     </application>
-    <!-- application name="gvim" role="gvimconsole" -->
-    <application name="nvim-qt">
-      <!-- decor>no</decor -->
+    <application name="gvim" role="gvimconsole">
       <size>
         <width>100%</width>
         <height>95%</height>
       </size>
       <position force="yes">
-        <!-- monitor>mouse</monitor -->
         <monitor>primary</monitor>
         <x>0</x>
         <y>0</y>
       </position>
       <desktop>all</desktop>
-      <dis-layer>above</dis-layer>
-      <skip_pager>no</skip_pager>
-      <skip_taskbar>no</skip_taskbar>
+    </application>
+    <application name="nvim-qt">
+      <size>
+        <width>100%</width>
+        <height>95%</height>
+      </size>
+      <position force="yes">
+        <monitor>primary</monitor>
+        <x>0</x>
+        <y>0</y>
+      </position>
+      <desktop>all</desktop>
     </application>
     <application name="sparta-terminal">
       <!-- decor>no</decor -->
