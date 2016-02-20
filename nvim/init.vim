@@ -1,4 +1,4 @@
-let g:loaded_matchparen=1             " die, slow and needless matching paren highlighting
+" let g:loaded_matchparen=1             " die, slow and needless matching paren highlighting
 
 let mapleader=","
 
@@ -47,6 +47,8 @@ set suffixes-=.h
 set virtualedit=block
 
 set backupdir= " no need for backups
+set nobackup
+set nowritebackup
 set dir=       " no need for swap
 
 set completeopt-=preview
@@ -65,24 +67,21 @@ set incsearch
 set ignorecase          " search ignores case while no uppercase is searched
 set smartcase
 set nowrap              " dont' wrap the text
-set nobackup            " this is a default, but let's say it explicitly
-                        "    (who knows what's in /etc/vimrc)
-set nowritebackup       " don't care about vim's backups at all
 set noswapfile          " can't remember a single time this would have been useful
 set nonumber
 
-filetype plugin indent on  " detect filetypes
-syntax on                  " colors
+
+function! EditorRoot()
+  if has('nvim')
+      return expand("~/.config/nvim")
+  else
+      return expand("~/.vim")
+  endif
+endfunction
 
 
-if has('nvim')
-    let s:editor_root=expand("~/.config/nvim")
-else
-    let s:editor_root=expand("~/.vim")
-endif
-
-let &rtp = &rtp . ',' . s:editor_root . '/bundle/Vundle.vim/'
-call vundle#begin(s:editor_root . '/bundle')
+let &rtp = &rtp . ',' . EditorRoot() . '/bundle/Vundle.vim/'
+call vundle#begin(EditorRoot() . '/bundle')
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-rooter'
@@ -93,18 +92,23 @@ Plugin 'spiiph/vim-space'
 Plugin 'einars/vim-phpfold'
 Plugin 'kien/ctrlp.vim'
 
-Plugin 'digitaltoad/vim-jade'
+Plugin 'digitaltoad/vim-pug'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'rgrinberg/vim-ocaml'
 
-call vundle#end()
-
 if has('nvim')
-  Bundle 'Shougo/deoplete.nvim'
+  Plugin 'Shougo/deoplete.nvim'
 else
   let g:ycm_key_detailed_diagnostics = '<F11>'
-  Bundle 'Valloric/YouCompleteMe'
+  Plugin 'Valloric/YouCompleteMe'
 endif
+
+
+call vundle#end()
+
+filetype plugin indent on  " detect filetypes
+syntax on                  " colors
+
 
 let g:searchEmptyLinesPostfixing = 3
 
@@ -133,6 +137,6 @@ command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>") | let g:G
 let g:Guifont="Terminus:h11"
 
 
-exec 'source ' . s:editor_root . '/keymaps.vim'
-exec 'source ' . s:editor_root . '/autogroups.vim'
-exec 'source ' . s:editor_root . '/jeetworks-arrows.vim'
+exec 'source ' . EditorRoot() . '/keymaps.vim'
+exec 'source ' . EditorRoot() . '/autogroups.vim'
+exec 'source ' . EditorRoot() . '/jeetworks-arrows.vim'

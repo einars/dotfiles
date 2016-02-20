@@ -51,9 +51,12 @@ augroup PHP
     autocmd FileType php setlocal keywordprg=~/bin/phpdoc tabstop=4 shiftwidth=4
 augroup END
 
-augroup CZZ
-    autocmd BufRead,BufNewFile *.czz set filetype=scss
+augroup Filetypes
+  autocmd BufReadPost,BufNewFile *.czz set filetype=scss syn=scss
+  autocmd BufReadPost,BufNewFile *.jade set filetype=pug syn=pug
+  autocmd BufReadPost,BufNewFile *.inc set filetype=php syn=php
 augroup END
+
 
 augroup Latex
     """ use internal help from bundle/latexhelp
@@ -70,7 +73,7 @@ augroup END
 augroup MyPasswords
     autocmd!
     highlight Password ctermfg=252 ctermbg=252 guibg=orange guifg=orange
-    autocmd BufRead passwords.txt call matchadd('Password', '\v  \zs([^ ]+)\ze$')
+    autocmd BufReadPost passwords.txt call matchadd('Password', '\v  \zs([^ ]+)\ze$')
 augroup END
 
 augroup Fugitive
@@ -80,9 +83,6 @@ augroup Fugitive
         \ endif
     autocmd BufReadPost fugitive://* set bufhidden=delete
 augroup END
-
-autocmd FileType inc setlocal syn=php
-
 
 autocmd BufRead,BufNew *.* call matchadd('Error', '\%80v.')
 autocmd BufRead,BufNew *.* call matchadd('Todo', '\v<\+\w+\+>')

@@ -4,6 +4,7 @@ imap <c-z> <esc>:bp<cr>
 imap <c-c> <esc>:bn<cr>
 map  <c-z> :bp<cr>
 map  <c-c> :bn<cr>
+map  <S-CR> <cr>
 
 map <leader>s :call Switch('')<left><left>
 " resync colors on f5
@@ -39,7 +40,7 @@ nnoremap <leader>em :e ~/.config/openbox/menu.xml<cr>
 " ,s — open switcher
 " sessions stored in ~/.vim/sessions
 function! Switch(session)
-    let dir = $HOME . '/.vim/sessions/'
+    let dir = EditorRoot() . '/sessions'
     if ! isdirectory(dir) && exists('*mkdir')
         exec mkdir(dir, '', 0700)
     endif
@@ -48,7 +49,7 @@ function! Switch(session)
     endif
     "execute "0,9000bd"
     execute "%bd"
-    let n = dir . a:session . ".ex"
+    let n = dir . '/' . a:session . '.ex'
     if ( ! filereadable(n))
         execute 'mksession!' n
     endif
@@ -81,3 +82,5 @@ function! StripTrailingWhitespace()
   normal `Z
 endfunction
 
+map  <silent>  <S-Insert>  "+p
+imap <silent>  <S-Insert>  <Esc>"+pa
