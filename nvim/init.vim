@@ -45,6 +45,7 @@ set statusline=%<%f\%h%m%r\ %{fugitive#statusline()}%=%-20.(%L\ %l:%v\ %)\ \ \%h
 set wildignore=*.cmi,*.cmx,*.cmo,*.class,*.pyc,.svn,.git,*.o,*.a,*.so,target
 set suffixes-=.h
 set virtualedit=block
+set shortmess+=c  " fuck completion message spam
 
 set backupdir= " no need for backups
 set nobackup
@@ -80,6 +81,7 @@ function! EditorRoot()
 endfunction
 
 
+filetype off
 let &rtp = &rtp . ',' . EditorRoot() . '/bundle/Vundle.vim/'
 call vundle#begin(EditorRoot() . '/bundle')
 
@@ -95,13 +97,10 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'rgrinberg/vim-ocaml'
+Plugin 'derekwyatt/vim-scala'
 
-if has('nvim')
-  Plugin 'Shougo/deoplete.nvim'
-else
-  let g:ycm_key_detailed_diagnostics = '<F11>'
-  Plugin 'Valloric/YouCompleteMe'
-endif
+let g:ycm_key_detailed_diagnostics = '<F11>'
+Plugin 'Valloric/YouCompleteMe'
 
 
 call vundle#end()
