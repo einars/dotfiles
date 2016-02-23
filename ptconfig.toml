@@ -1,3 +1,4 @@
-context = 2
+before = 2
+after = 2
 smart-case = true
 ignore = [ 'third-party', 'media', 'node_modules' ]
