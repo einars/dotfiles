@@ -52,6 +52,14 @@ set nobackup
 set nowritebackup
 set dir=       " no need for swap
 
+set sessionoptions-=options " no settings in session
+set sessionoptions-=folds   " no folds in session
+set sessionoptions-=winpos  " no need for win pos
+set sessionoptions-=winsize " no need for win size
+set sessionoptions-=help    " dont care for help windows
+set sessionoptions+=curdir  " curdir is important
+
+
 set completeopt-=preview
 
 set hidden              " suddenly, magically, buffers get usable
@@ -99,6 +107,8 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'rgrinberg/vim-ocaml'
 Plugin 'derekwyatt/vim-scala'
 
+Plugin 'junegunn/goyo.vim'
+
 let g:ycm_key_detailed_diagnostics = '<F11>'
 Plugin 'Valloric/YouCompleteMe'
 
@@ -134,6 +144,19 @@ colors sorcerer
 command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>") | let g:Guifont="<args>"
 " let g:Guifont="DejaVu Sans Mono:h13"
 let g:Guifont="Terminus:h11"
+
+
+function! Phpdoc(word)
+  " let word = expand('<cword>')
+  enew!
+  exe 'r !phpdoc '.a:word
+  setlocal nomod
+  setf txt
+  normal gg
+endfunction
+
+command! -nargs=* Phpdoc call Phpdoc(<f-args>)
+
 
 
 exec 'source ' . EditorRoot() . '/keymaps.vim'

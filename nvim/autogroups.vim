@@ -48,7 +48,8 @@ augroup C
 augroup END
 
 augroup PHP
-    autocmd FileType php setlocal keywordprg=~/bin/phpdoc tabstop=4 shiftwidth=4
+    " autocmd FileType php setlocal keywordprg=phpdoc tabstop=4 shiftwidth=4
+    autocmd FileType php setlocal keywordprg=:Phpdoc tabstop=4 shiftwidth=4
 augroup END
 
 augroup Filetypes
