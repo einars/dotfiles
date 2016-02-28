@@ -47,6 +47,8 @@ set suffixes-=.h
 set virtualedit=block
 set shortmess+=c  " fuck completion message spam
 
+set mouse= " don't care for specific mouse support, neovim and gvim-qt guis provide enough pizzazz
+
 set backupdir= " no need for backups
 set nobackup
 set nowritebackup
