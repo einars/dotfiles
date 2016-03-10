@@ -1,0 +1,39 @@
+#!/usr/bin/bash
+
+classname=qvim
+
+# parallel execution/frequent switching sometimes fails with
+#  X Error of failed request:  BadWindow (invalid Window parameter)
+#  Major opcode of failed request:  3 (X_GetWindowAttributes)
+wid=failed
+until echo $wid | grep -v failed; do
+  wid=$(xdotool search --all --classname $classname 2>&1)
+done
+
+found=
+for f in ${wid}; do
+    echo Testing $f...
+    window_name=$(xprop -id $f _OB_APP_NAME)
+
+    if echo $window_name | grep -q $classname; then
+        found=$f
+        if [ "$1" == "--hide" ]; then
+            echo 'Force hide'
+            xdotool windowunmap $f
+        else
+          if wmctrl -l -p | grep -q $(printf '%08x' $f); then
+              echo 'Visible, bringing down'
+              xdotool windowunmap $f
+          else
+              echo 'Iconic, bringing up'
+              xdotool windowmap $f
+              xdotool windowactivate $f
+          fi
+        fi
+    fi
+done
+
+if [ -z $found ]; then
+  echo Running a new qvim
+  exec qvim
+fi
