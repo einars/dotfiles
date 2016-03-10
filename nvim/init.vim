@@ -62,7 +62,7 @@ set sessionoptions-=help    " dont care for help windows
 set sessionoptions+=curdir  " curdir is important
 
 
-set completeopt-=preview
+set completeopt=menu,preview,noinsert,noselect
 
 set hidden              " suddenly, magically, buffers get usable
 set autoread            " don't care about ext-modified files, just reload them
@@ -102,6 +102,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'spiiph/vim-space'
 Plugin 'einars/vim-phpfold'
+
+let g:translit_toggle_keymap = '<S-F1>'
+Plugin 'einars/translit.vim'
 Plugin 'kien/ctrlp.vim'
 
 Plugin 'digitaltoad/vim-pug'
@@ -110,6 +113,7 @@ Plugin 'rgrinberg/vim-ocaml'
 Plugin 'derekwyatt/vim-scala'
 
 Plugin 'junegunn/goyo.vim'
+Plugin 'stephpy/vim-yaml'
 
 let g:ycm_key_detailed_diagnostics = '<F11>'
 Plugin 'Valloric/YouCompleteMe'

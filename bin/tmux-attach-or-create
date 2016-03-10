@@ -12,6 +12,6 @@ maybe_cd /home/e/projekti/$1
 maybe_cd /ssd/$1
 
 test -z $1 && printf "Usage: %s [session_name]\n" $(basename $0)
-test -z $1 || {
-  tmux attach -t $1 || tmux new -s $1
-}
+test -z $1 && exit -1
+
+tmux attach -t $1 || tmux new -s $1

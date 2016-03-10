@@ -47,9 +47,18 @@ augroup C
     autocmd FileType c,cpp setlocal nolist tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
 augroup END
 
+if has('nvim')
+  augroup PHP
+      autocmd FileType php setlocal keywordprg=:Phpdoc
+  augroup END
+else
+  augroup PHP
+      autocmd FileType php setlocal keywordprg=phpdoc
+  augroup END
+endif
+
 augroup PHP
-    " autocmd FileType php setlocal keywordprg=phpdoc tabstop=4 shiftwidth=4
-    autocmd FileType php setlocal keywordprg=:Phpdoc tabstop=4 shiftwidth=4
+    autocmd FileType php setlocal tabstop=4 shiftwidth=4
 augroup END
 
 augroup Filetypes

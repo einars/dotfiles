@@ -958,6 +958,18 @@
       </position>
       <desktop>all</desktop>
     </application>
+    <application name="qvim">
+      <size>
+        <width>100%</width>
+        <height>95%</height>
+      </size>
+      <position force="yes">
+        <monitor>primary</monitor>
+        <x>0</x>
+        <y>0</y>
+      </position>
+      <desktop>all</desktop>
+    </application>
     <application name="nvim-qt">
       <size>
         <width>100%</width>
