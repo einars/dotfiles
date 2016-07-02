@@ -50,6 +50,9 @@ keycode 43 = h H NoSymbol NoSymbol U2126 U2126
 ! altgr o = ω Ω
 keycode 32 = o O NoSymbol NoSymbol U03C9 U03A9
 
+! altgr x = ☆ ★
+keycode 53 = x X NoSymbol NoSymbol U2606 U2605
+
 ! altgr , = ×□
 keycode 59 = comma less    NoSymbol NoSymbol multiply U25A1
 ! altgr . = ·■
