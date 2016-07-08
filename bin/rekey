@@ -52,8 +52,8 @@ keycode 32 = o O NoSymbol NoSymbol U03C9 U03A9
 
 ! altgr x = ☆ ★
 keycode 53 = x X NoSymbol NoSymbol U2606 U2605
-! altgr t = ⚓☘
-keycode 28 = t T NoSymbol NoSymbol U2693 U2618 
+! altgr y = ⚓☘
+keycode 29 = y Y NoSymbol NoSymbol U2693 U2618 
 
 ! altgr , = ×□
 keycode 59 = comma less    NoSymbol NoSymbol multiply U25A1

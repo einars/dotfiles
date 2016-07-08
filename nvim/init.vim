@@ -62,7 +62,8 @@ set sessionoptions-=help    " dont care for help windows
 set sessionoptions+=curdir  " curdir is important
 
 
-set completeopt=menu,preview,noinsert,noselect
+"set completeopt=menu,preview,noinsert,noselect
+set completeopt=menu
 
 set hidden              " suddenly, magically, buffers get usable
 set autoread            " don't care about ext-modified files, just reload them
@@ -114,6 +115,8 @@ Plugin 'derekwyatt/vim-scala'
 
 Plugin 'junegunn/goyo.vim'
 Plugin 'stephpy/vim-yaml'
+
+Plugin 'avr8bit.vim'
 
 let g:ycm_key_detailed_diagnostics = '<F11>'
 Plugin 'Valloric/YouCompleteMe'

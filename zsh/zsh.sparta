@@ -1,11 +1,9 @@
 #!/bin/sh
 
 export GOPATH=~/build/godev
-export PATH=$GOPATH/bin:$PATH
-
-
-export PATH=$PATH:/opt/android-sdk/platform-tools/
-export PATH=$PATH:~/.opam/system/bin
+try_path $GOPATH
+try_path /opt/android-sdk/platform-tools/
+try_path ~/.opam/system/bin
 
 cdpath=(. ~ /services/web/localhost /services/web/dev.spicausis.lv /services/web /storage /storage/studijas /home/e/projekti)
 

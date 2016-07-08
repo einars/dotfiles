@@ -61,10 +61,15 @@ augroup PHP
     autocmd FileType php setlocal tabstop=4 shiftwidth=4
 augroup END
 
+augroup ASM
+    autocmd FileType asm setlocal syn=avr8bit softtabstop=4 tabstop=4 shiftwidth=4
+    autocmd BufReadPost,BufNewFile *.inc setlocal filetype=avr8bit syn=avr8bit
+augroup END
+
 augroup Filetypes
   autocmd BufReadPost,BufNewFile *.czz set filetype=scss syn=scss
   autocmd BufReadPost,BufNewFile *.jade set filetype=pug syn=pug
-  autocmd BufReadPost,BufNewFile *.inc set filetype=php syn=php
+  "autocmd BufReadPost,BufNewFile *.inc set filetype=php syn=php
 augroup END
 
 

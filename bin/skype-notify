@@ -1,15 +1,11 @@
-#!/usr/bin/env fish
+#!/bin/bash
 
-set sender $argv[1]
-#set sender_username $argv[2]
-set message $argv
-set -e message[1]
+message=$@
 
-
-if test -n $message
+if test -n "$message"; then
   printf "%s\n" "$argv" >> /home/e/.skype-notify
 
   #notify (printf "%s\n%s" $sender (printf "%s" $message | sed 's/<[^<>]*>//g'))
   notify-send -t 10000 -u normal -h int:x:1810 -h int:y:0 "$message"
-end
+fi
 
