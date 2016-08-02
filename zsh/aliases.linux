@@ -13,7 +13,7 @@ alias jad='jad -b -ff -s java'
 alias ack='clear; ack'
 alias grep="grep --color=auto -d skip -i --line-buffered"
 #alias ssh='TERM=xterm ssh -C'
-alias ssh='ssh -C'
+#alias ssh='ssh -v'
 
 alias edzsh='vim ~/.zsh/zshrc; . ~/.zsh/zshrc'
 alias edalias='vim ~/.zsh/aliases.linux; . ~/.zsh/aliases.linux'
