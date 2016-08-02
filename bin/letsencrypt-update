@@ -28,8 +28,8 @@ domain=$1
 email=${2:-info@kurkur.lv}
 letsencrypt=/etc/letsencrypt
 
-account_key=/letsencrypt.account.key
-domain_key=./letsencrypt.domain.key
+account_key=$letsencrypt/letsencrypt.account.key
+domain_key=$letsencrypt/letsencrypt.domain.key
 
 test -d /var/www/acme && acme_path=/var/www/acme
 test -d /services/web/acme && acme_path=/services/web/acme
@@ -49,8 +49,8 @@ file=${domain//./_}
 
 cd $letsencrypt
 
-test -f $account_key   && openssl genrsa 4096 > $account_key
-test -f $domain_key && openssl genrsa 4096 > $domain_key
+test -f $account_key || openssl genrsa 4096 > $account_key
+test -f $domain_key  || openssl genrsa 4096 > $domain_key
 
 test -f $file.csr || {
   if [[ $multiple == "true" ]]; then
