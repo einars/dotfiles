@@ -157,9 +157,10 @@ alias aag='grep -Ri -A 5 -B 2'
 alias phpp='php -d xdebug.profiler_output_dir=. -d xdebug.profiler_enable=1 -d xdebug.profiler_output_name=callgrind.out'
 alias sshh='ssh -o PreferredAuthentications=keyboard-interactive,password -o PubkeyAuthentication=no'
 
+alias sx=startx
+
 # platinum searcher
 alias aa=pt
 
 # vim: syn=zsh :
-
 
