@@ -46,7 +46,7 @@ if (( $opt_link == 1 )); then
 else
     #cp -r -t $DECAY $@
     scp $@ $DECAY
-    url="http://decay.spicausis.lv/$(basename $@)"
+    url="https://decay.spicausis.lv/$(basename $@)"
     echo $url | xclip 
     echo $url
 fi
