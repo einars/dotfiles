@@ -1,4 +1,4 @@
 before = 2
 after = 2
 smart-case = true
-ignore = [ 'third-party', 'media', 'node_modules', 'bower_components', 'static/bower', '*.compiled.*' ]
+ignore = [ '*.pot', '*.po', 'third-party', 'media', 'node_modules', 'bower_components', 'static/bower', '*.compiled.*' ]

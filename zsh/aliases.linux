@@ -162,5 +162,8 @@ alias sx=startx
 # platinum searcher
 alias aa=pt
 
+alias h2j='html2jade --noemptypipe --noattrcomma --donotencode --bodyless --double'
+
 # vim: syn=zsh :
+
 

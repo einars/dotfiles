@@ -1,0 +1,8 @@
+#!/bin/sh
+
+sys-before-lock
+
+#i3lock --nofork --color 222222 --pointer default --image /storage/draza/images/random-crap/lock-tiling.png --tiling
+~/bin/private/xtrlock
+
+sys-after-unlock

@@ -384,9 +384,8 @@
       </action>
     </keybind>
     <keybind key="C-A-Delete">
-      <action name="ToggleShowDesktop"/>
       <action name="Execute">
-        <command>/my-lock</command>
+        <command>~/bin/my-lock</command>
       </action>
     </keybind>
     <keybind key="0xc5">
@@ -533,9 +532,6 @@
     </keybind>
     <keybind key="XF86Launch9">
       <action name="ToggleShowDesktop"/>
-      <!-- action name="Execute">
-        <command>killall a.out</command>
-      </action -->
     </keybind>
 
     <keybind key="W-d">
