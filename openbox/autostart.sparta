@@ -1,5 +1,5 @@
 tint2 &
-tt compton
+###tt compton
 
 #dump-dbus-information
 
@@ -7,8 +7,10 @@ volumeicon &
 parcellite &
 #clipit &
 
-rescuetime &
+#rescuetime &
 
-tt randr.hv
+###tt randr.hv
 
 ulimit -c unlimited
+
+xinput --set-ptr-feedback "Logitech M570" 1 8 3
