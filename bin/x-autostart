@@ -1,0 +1,13 @@
+#!/bin/sh
+
+dump-dbus-information
+
+xinput --set-ptr-feedback "Logitech M570" 0 18 10
+
+tint2 &
+volumeicon &
+parcellite &
+
+###tt randr.hv
+
+
