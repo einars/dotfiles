@@ -2,7 +2,9 @@
 
 dump-dbus-information
 
-xinput --set-ptr-feedback "Logitech M570" 20 5 1
+#xinput --set-ptr-feedback "Logitech M570" 20 5 1
+xinput --set-ptr-feedback "Logitech M570" 15 20 1
+xinput set-button-map "Logitech M570" 1 2 3 4 5 6 7 1 1 11 12 13 14 15 16
 
 tint2 &
 volumeicon &

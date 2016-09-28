@@ -7,7 +7,7 @@ alias mysql='mysql --pager=less'
 # temp workaround with a tmux character issue
 alias tmux='LC_CTYPE=en_US.UTF-8 tmux'
 
-alias wine='WINEDLLOVERRIDES=winemenubuilder.exe=d wine'
+#alias wine='WINEDLLOVERRIDES=winemenubuilder.exe=d wine'
 
 alias jad='jad -b -ff -s java'
 alias ack='clear; ack'
@@ -163,7 +163,8 @@ alias sx="xinit /home/e/.xinitrc -- /etc/X11/xinit/xserverrc :0"
 # platinum searcher
 alias aa=pt
 
-alias h2j='html2jade --noemptypipe --noattrcomma --donotencode --bodyless --double'
+alias h2j='=html2jade --noemptypipe --noattrcomma --donotencode --bodyless --double'
+alias html2jade='echo Use h2j alias'
 
 # vim: syn=zsh :
 

@@ -2,8 +2,8 @@
 
 let mapleader=","
 
-""" vim stuff
 if ! has('nvim')
+  """ vim stuff
   set ttyfast
   set cryptmethod=blowfish
   set t_md=               " no bold fonts in terminal
@@ -19,6 +19,8 @@ if ! has('nvim')
     set guifont=Terminus\ 10
   endif
 endif
+
+
 
 set nocursorline
 set noundofile
@@ -121,11 +123,24 @@ Plugin 'avr8bit.vim'
 let g:ycm_key_detailed_diagnostics = '<F11>'
 Plugin 'Valloric/YouCompleteMe'
 
+if has('nvim')
+  Plugin 'equalsraf/neovim-gui-shim'
+endif
+
 
 call vundle#end()
 
 filetype plugin indent on  " detect filetypes
 syntax on                  " colors
+
+colors sorcerer
+
+if has('nvim')
+  """ " let g:Guifont="DejaVu Sans Mono:h13"
+  " let g:Guifont="Terminus:h11"
+  """ let g:Guifont="Noto Mono:h11"
+  "Guifont Terminus:h11
+endif
 
 
 let g:searchEmptyLinesPostfixing = 3
@@ -145,14 +160,6 @@ let g:ctrlp_user_command = {
 
 
 
-
-" let g:seoul256_background=235
-" colors seoul256
-colors sorcerer
-
-command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>") | let g:Guifont="<args>"
-" let g:Guifont="DejaVu Sans Mono:h13"
-let g:Guifont="Terminus:h11"
 
 
 function! Phpdoc(word)
