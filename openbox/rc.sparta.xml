@@ -214,12 +214,6 @@
       </action>
     </keybind>
 
-    <!-- keybind key="F12" prev-key="0xbf" key-comment="F13">
-      <action name="Execute">
-        <execute>/home/e/bin/gvimq</execute>
-      </action>
-    </keybind -->
-
     <keybind key="Print" key-comment="F14">
       <action name="Execute">
         <command>tt screenshot</command>
@@ -242,15 +236,18 @@
         <execute>/home/e/bin/gvimq</execute>
       </action>
     </keybind>
-    <keybind key="S-XF86Eject">
+    <keybind key="F12">
       <action name="Execute">
-        <execute>/home/e/bin/gvimq --hide</execute>
+        <execute>/home/e/bin/gvimq</execute>
       </action>
     </keybind>
-
+    <keybind key="XF86Documents">
+      <action name="Execute">
+        <execute>/home/e/bin/gvimq</execute>
+      </action>
+    </keybind>
     <keybind key="XF86Mail">
       <action name="Execute">
-        <dis-command>xdotool click --repeat 5000 --delay 1 1</dis-command>
         <execute>/home/e/bin/gvimq</execute>
       </action>
     </keybind>
@@ -528,7 +525,7 @@
         <command>tt randr.hv</command>
       </action>
     </keybind>
-    <keybind key="XF86Launch8">
+    <keybind key="XF86Calculator">
       <action name="Execute">
         <command>tt randr.hv</command>
       </action>
@@ -538,7 +535,7 @@
         <command>tt randr.hx</command>
       </action>
     </keybind>
-    <keybind key="S-XF86Launch8">
+    <keybind key="S-XF86Calculator">
       <action name="Execute">
         <command>tt randr.hx</command>
       </action>
@@ -552,14 +549,14 @@
         <command>my-file-manager ~/dokumenti</command>
       </action>
     </keybind>
-    <keybind key="W-S-t">
-      <action name="Execute">
-        <command>my-file-manager ~/dokumenti/tasks</command>
-      </action>
-    </keybind>
     <keybind key="W-t">
       <action name="Execute">
         <command>my-file-manager /readonly/torrents/</command>
+      </action>
+    </keybind>
+    <keybind key="W-s-t">
+      <action name="Execute">
+        <command>my-file-manager /storage/torrents/</command>
       </action>
     </keybind>
     <keybind key="W-q">

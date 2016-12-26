@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 classname=gvim
 rolename=gvimconsole
@@ -13,7 +13,8 @@ done
 
 found=
 for f in ${wid}; do
-    echo Testing $f...
+    hex=$(printf '%08x' $f)
+    echo "Testing $f | $hex..."
     window_role=$(xprop -id $f _OB_APP_ROLE)
     echo Rolename=$window_role
 
@@ -23,11 +24,16 @@ for f in ${wid}; do
             echo 'Force hide'
             xdotool windowunmap $f
         else
-          if wmctrl -l -p | grep -q $(printf '%08x' $f); then
-              echo 'Visible, bringing down'
+          if wmctrl -l -p | grep -q $hex; then
+            if [[ $(xwininfo -id 0x$hex | grep 'Map State' | awk '{print $3}') == "IsUnMapped" ]]; then
+              echo "Minimized $hex, restoring"
+              xdotool windowmap $f
+            else
+              echo "Visible $hex, bringing down"
               xdotool windowunmap $f
+            fi
           else
-              echo 'Iconic, bringing up'
+              echo "Iconic $hex, bringing up"
               xdotool windowmap $f
               xdotool windowactivate $f
           fi

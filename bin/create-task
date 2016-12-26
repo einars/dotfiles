@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 if [[ $1 == "" ]]; then
     echo "Usage: $0 task-description"
@@ -8,5 +8,6 @@ else
 From: Einārs Lielmanis <new-task@spicausis.lv>
 Subject: $@
 
-$@" | msmtp einars@gmail.com
+$@
+" | msmtp einars@gmail.com
 fi

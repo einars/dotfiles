@@ -5,7 +5,7 @@ try_path $GOPATH
 try_path /opt/android-sdk/platform-tools/
 try_path ~/.opam/system/bin
 
-cdpath=(. ~ /services/web/localhost /services/web/dev.spicausis.lv /services/web /storage /storage/studijas /home/e/projekti)
+cdpath=(. ~ /ssd /home/e/projekti /services/web /storage /storage/studijas /home/e/projekti)
 
 function c() {
     CDPATH= cd $1

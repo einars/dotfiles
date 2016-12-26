@@ -4,6 +4,9 @@ URxvt*font: xft:Terminus:size=10,xft:Lucida Console:size=10
 
 URxvt*depth: 24
 
+rxvt.print-pipe: "cat > /dev/null"
+URxvt.print-pipe: "cat > /dev/null"
+
 xterm*metaSendsEscape: true
 xterm*termName: xterm-256color
 

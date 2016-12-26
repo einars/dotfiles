@@ -208,7 +208,6 @@ setup_cd_autols
 
 maybe_source ~/.zsh/aliases
 maybe_source ~/.zsh/aliases.private
-maybe_source ~/.zsh/zsh.$host
 
 maybe_source /usr/share/git/git-prompt.sh
 
@@ -246,6 +245,8 @@ compdef -d git # i'm smarter and faster
 zle -C complete complete-word complete-files
 bindkey '^[[Z' complete
 complete-files () { compadd - $PREFIX* }
+
+maybe_source ~/.zsh/zsh.$host
 
 # vim: set fdm=marker :
 

@@ -12,8 +12,6 @@ alias tmux='LC_CTYPE=en_US.UTF-8 tmux'
 alias jad='jad -b -ff -s java'
 alias ack='clear; ack'
 alias grep="grep --color=auto -d skip -i --line-buffered"
-#alias ssh='TERM=xterm ssh -C'
-#alias ssh='ssh -v'
 
 alias edzsh='vim ~/.zsh/zshrc; . ~/.zsh/zshrc'
 alias edalias='vim ~/.zsh/aliases.linux; . ~/.zsh/aliases.linux'
@@ -51,15 +49,6 @@ alias amend="git commit -v --amend"
 alias gitsc="test -d .git/svn && git svn dcommit"
 alias b="git checkout"
 
-# svn
-
-alias sc="svn commit"
-alias scc="svn commit -m turbocommit"
-alias sd="svn diff -x -w"
-alias ss="svn stat --ignore-externals"
-alias sa="svn add"
-alias suu="svn update --ignore-externals"
-
 alias offlineimap='offlineimap -u basic'
 #alias o="offlineimap -u Noninteractive.Basic 2>/dev/null | grep --line-buffered 'message\|account'| grep --line-buffered -v 'Copy message -\|Delet\|Adding flag'"
 
@@ -78,13 +67,7 @@ alias py=ipython
 alias du='du --si'
 alias df='df --si'
 
-# pss virtualbox | KILL
-alias -g KILL=" awk '{print \$2}' | xargs /bin/kill "
-alias -g KILL9=" awk '{print \$2}' | xargs /bin/kill -9 "
 
-
-alias acka='ack --follow -a -i -Q'
-alias ackj='ack --type=java -i -Q'
 alias wget="wget -U 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)' --load-cookies=/tmp/wget.$EUID.cookies.txt --keep-session-cookies --save-cookies=/tmp/wget.$EUID.cookies.txt --keep-session-cookies"
 alias wget_iphone="wget -U 'Mozilla/5.0 (iPhone; U; CPU OS 4_2_1 like Mac OS X) AppleWebKit/532.9 (KHTML, like Gecko) Version/5.0.3 Mobile/8B5097d Safari/6531.22.7' --load-cookies=/tmp/wget.$EUID.cookies.txt --keep-session-cookies --save-cookies=/tmp/wget.$EUID.cookies.txt --keep-session-cookies"
 
@@ -108,8 +91,6 @@ alias m='clear; make -s'
 alias clip='xclip -o -selection clipboard'
 alias clipp='xclip -o -selection primary'
 
-alias temps='sudo hddtemp /dev/sda; sudo hddtemp /dev/sdb; sudo hddtemp /dev/sdc'
-
 # space as a delimiter for xargs is too idiotic
 # also add -n 1 as a default, we're in no hurry
 alias xargs="xargs --delimiter '\n' -n 1"
@@ -132,7 +113,7 @@ function dirsizes {
     \du --max-depth=1 | sort -nr | head -n 30 | sed 's/^.*\t//' | xargs --delimiter=\\n -n 1 \du -sh --si
 }
 
-alias psql='PAGER="less -RSX" psql -P pager=always'
+#alias psql='PAGER="less -RSX" psql -P pager=always'
 
 # mkdir + cd
 function mkd {
@@ -141,7 +122,7 @@ function mkd {
 
 # sometimes, for weird-ish files, the autodetection doesn't do what i want
 # so use specific aliases instead
-alias d2u='dos2unix --d2u'
+alias d2u='dos2unix'
 #alias u2d = 'dos2unix --u2d' who needs that anyway
 
 alias cal='cal --monday -3'
@@ -165,6 +146,13 @@ alias aa=pt
 
 alias h2j='=html2jade --noemptypipe --noattrcomma --donotencode --bodyless --double'
 alias html2jade='echo Use h2j alias'
+
+alias curl='curl --location '
+
+
+# ssh and immediately connect to screen
+ss() { ssh $* -t screen -Rd }
+sst() { ssh $* -t screen -Rd }
 
 # vim: syn=zsh :
 

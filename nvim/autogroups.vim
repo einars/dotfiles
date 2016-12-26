@@ -1,9 +1,22 @@
 autocmd BufEnter *.ml,*.c,*.h,*.cpp,*.php :Rooter
 
 
-augroup javascript
+
+autocmd BufRead,BufNewFile * filetype indent off
+
+augroup broken_indents
     autocmd!
-    autocmd FileType javascript setlocal nosmartindent autoindent ts=8 sts=2 sw=2
+    autocmd FileType javascript,yaml,coffee,pug setlocal nosmartindent autoindent ts=8 sts=2 sw=2
+augroup END
+
+augroup dumb_huge_tabs
+    autocmd!
+    autocmd FileType make,c setlocal noexpandtab shiftwidth=8 tabstop=8
+augroup END
+
+augroup Haskell
+    autocmd!
+    autocmd FileType haskell setlocal expandtab shiftwidth=8 tabstop=8
 augroup END
 
 augroup latex
@@ -13,24 +26,9 @@ augroup latex
     let g:tex_fold_enable=1
 augroup END
 
-augroup Make
+augroup sweet_tiny_tabs
     autocmd!
-    autocmd FileType make setlocal noexpandtab shiftwidth=8 tabstop=8
-augroup END
-
-augroup Haskell
-    autocmd!
-    autocmd FileType haskell setlocal expandtab shiftwidth=8 tabstop=8
-augroup END
-
-augroup OCaml
-    autocmd!
-    autocmd FileType ml,ocaml setlocal sts=2 ts=2 sw=2 expandtab
-augroup END
-
-augroup HTML
-    autocmd!
-    autocmd FileType html setlocal sts=2 ts=2 sw=2 expandtab
+    autocmd FileType ml,ocaml,html setlocal sts=2 ts=2 sw=2 expandtab
 augroup END
 
 
@@ -58,7 +56,7 @@ else
 endif
 
 augroup PHP
-    autocmd FileType php setlocal tabstop=4 shiftwidth=4
+    autocmd FileType php setlocal tabstop=4 shiftwidth=4 sts=4
 augroup END
 
 augroup ASM
@@ -67,9 +65,8 @@ augroup ASM
 augroup END
 
 augroup Filetypes
-  autocmd BufReadPost,BufNewFile *.czz set filetype=scss syn=scss
-  autocmd BufReadPost,BufNewFile *.jade set filetype=pug syn=pug
-  "autocmd BufReadPost,BufNewFile *.inc set filetype=php syn=php
+  autocmd BufReadPost,BufNewFile *.czz setlocal filetype=scss syn=scss
+  autocmd BufReadPost,BufNewFile *.jade setlocal filetype=pug syn=pug
 augroup END
 
 
@@ -82,13 +79,13 @@ augroup END
 augroup Text
     autocmd!
     " autoflow paragrpahs
-    autocmd FileType txt set formatoptions +=wa
+    autocmd FileType txt setlocal formatoptions +=wa
 augroup END
 
 augroup MyPasswords
     autocmd!
     highlight Password ctermfg=252 ctermbg=252 guibg=orange guifg=orange
-    autocmd BufReadPost passwords.txt call matchadd('Password', '\v  \zs([^ ]+)\ze$')
+    autocmd BufReadPost passwords.txt call matchadd('Password', '\v  \zs([^ ]+)\ze( +; .*|$)')
 augroup END
 
 augroup Fugitive
@@ -96,12 +93,16 @@ augroup Fugitive
         \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
         \   nnoremap <buffer> .. :edit %:h<CR> |
         \ endif
-    autocmd BufReadPost fugitive://* set bufhidden=delete
+    autocmd BufReadPost fugitive://* setlocal bufhidden=delete
 augroup END
 
-autocmd BufRead,BufNew *.* call matchadd('Error', '\%80v.')
-autocmd BufRead,BufNew *.* call matchadd('Todo', '\v<\+\w+\+>')
-autocmd BufRead,BufNew *.* call matchadd('Todo', '\v(!!!|///|###|;;;|---) .*$')
+" Soft text limiter
+"""autocmd BufRead,BufNew *.* call matchadd('Error', '\%80v.')
+
+" Diff-adds/deletes have a tendency to have nice backgrounds
+" Whitespace (ignored) followed by one or multiple TK — TK, TKTKTK etc
+autocmd BufRead,BufNew *.* call matchadd('DiffDelete', '\v( )@<=(TK)+')
+autocmd BufRead,BufNew *.* call matchadd('DiffAdd', '\v(!!!|///|###|;;;|---) .*$')
 
 """ let's try the autosave on focus lost magic
 """ single active window:
