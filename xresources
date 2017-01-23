@@ -1,4 +1,4 @@
-URxvt*font: xft:Terminus:size=10,xft:Lucida Console:size=10
+URxvt*font: xft:xos4 Terminus:size=10,xft:Lucida Console:size=10
 !URxvt*font: xft:Source Code Pro:size=10:antialias=false,xft:Lucida Console:size=10
 !URxvt*font: xft:Terminus (TTF):size=14
 

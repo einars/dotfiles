@@ -13,6 +13,11 @@ map <s-f5> <esc>:EnableFastPHPFolds<cr>
 " close buffer leaving splits intact
 map <leader>d <esc>:call CleanDeleteBuffer()<cr>
 
+inoremap jk <Esc>
+
+map ; :
+noremap ;; ;
+
 " get rid of search highlighting with leader-space
 nnoremap <leader><space> :noh<cr>
 

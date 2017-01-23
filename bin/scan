@@ -28,7 +28,7 @@ set mode             Color
 set resolution       300
 set hires_resolution 1200
 set raw              no
-set scale '1024x'
+set scale '1600x'
 set shave '10x10'
 
 # work around some race issues

@@ -150,6 +150,8 @@ alias html2jade='echo Use h2j alias'
 alias curl='curl --location '
 
 
+
+alias logs='journalctl --since "3 hours ago"'
 # ssh and immediately connect to screen
 ss() { ssh $* -t screen -Rd }
 sst() { ssh $* -t screen -Rd }

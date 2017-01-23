@@ -1,0 +1,86 @@
+# mostly taken from https://github.com/Argon-/mpv-config/blob/master/mpv.conf
+
+no-border                               # no window title bar
+msg-module                              # prepend module name to log messages
+msg-color                               # color log messages on terminal
+term-osd-bar                            # display a progress bar on the terminal
+#pause                                   # no autoplay
+keep-open                               # keep the player open when a file's end is reached
+ao=alsa
+audio-display=no
+volume=64
+
+cache=yes
+cache-default=8000000                   # size in KB
+cache-backbuffer=25000                  # size in KB
+cache-initial=100                       # start playback when your cache is filled up with x kB
+cache-secs=10                           # how many seconds of audio/video to prefetch if the cache is active
+
+
+osd-level=1                             # enable osd and display --osd-status-msg on interaction
+osd-duration=2500                       # hide the osd after x ms
+osd-status-msg='${time-pos} / ${duration}${?percent-pos:　(${percent-pos}%)}${?vo-drop-frame-count:${!vo-drop-frame-count==0:　Dropped: ${vo-drop-frame-count}}}\n${?chapter:Chapter: ${chapter}}'
+
+osd-font='Roboto Light'
+osd-font-size=32
+osd-color='#CCFFFFFF'                   # ARGB format
+osd-border-color='#DD322640'            # ARGB format
+#osd-shadow-offset=1                    # pixel width for osd text and progress bar
+osd-bar-align-y=0                       # progress bar y alignment (-1 top, 0 centered, 1 bottom)
+osd-border-size=2                       # size for osd text and progress bar
+osd-bar-h=2                             # height of osd bar as a fractional percentage of your screen height
+osd-bar-w=60                            # width of osd bar
+
+
+sub-use-margins
+sub-ass-force-margins
+
+demuxer-mkv-subtitle-preroll            # try to correctly show embedded subs when seeking
+sub-auto=fuzzy                          # external subs don't have to match the file name exactly to autoload
+sub-paths=ass:srt:sub:subs:subtitles    # search for external subs in the listed subdirectories
+embeddedfonts=yes                       # use embedded fonts for SSA/ASS subs
+sub-fix-timing=no                       # do not try to fix gaps (which might make it worse in some cases)
+sub-ass-force-style=Kerning=yes         # allows you to override style parameters of ASS scripts
+
+# the following options only apply to subtitles without own styling (i.e. not ASS but e.g. SRT)
+sub-font="Roboto"
+sub-font-size=36
+sub-color="#FFFFFFFF"
+sub-border-color="#FF262626"
+sub-border-size=3.2
+sub-shadow-offset=1
+sub-shadow-color="#33000000"
+sub-spacing=0.5
+
+
+slang=enm,en,eng,ru,rus # automatically select these subtitles (decreasing priority)
+alang=en,eng,ru,rus     # automatically select these audio tracks (decreasing priority)
+
+vo=opengl
+tscale=linear
+
+[protocol.https]
+#cache=yes
+#cache-default=500000                    # size in KB
+#cache-backbuffer=250000                 # size in KB
+cache-secs=100                          # how many seconds of audio/video to prefetch
+user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:47.0) Gecko/20100101 Firefox/47.0'
+
+[protocol.http]
+#cache=yes
+#cache-default=500000                    # size in KB
+#cache-backbuffer=250000                 # size in KB
+cache-secs=100                          # how many seconds of audio/video to prefetch
+user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:47.0) Gecko/20100101 Firefox/47.0'
+
+
+# [high-quality]
+scale=ewa_lanczossharp
+cscale=ewa_lanczossoft
+dscale=mitchell
+scale-antiring=0.7
+cscale-antiring=0.7
+dither-depth=auto
+correct-downscaling=yes
+sigmoid-upscaling=yes
+deband=yes

@@ -16,10 +16,13 @@ if ! has('nvim')
     set guioptions+=r       """ right scrollbar
     set guioptions-=L       """ left scrollbar
     set guioptions-=e       """ tab menu
-    set guifont=Terminus\ 10
+    set guifont=xos4\ Terminus\ 10
   endif
 endif
 
+
+" Disable cursor blinking
+set guicursor+=a:blinkon0
 
 
 set nocursorline
@@ -98,11 +101,15 @@ filetype off
 let &rtp = &rtp . ',' . EditorRoot() . '/bundle/Vundle.vim/'
 call vundle#begin(EditorRoot() . '/bundle')
 
+
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-rooter'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
+
+" leave colon/semicolon alone
+let g:space_no_character_movements = 1
 Plugin 'spiiph/vim-space'
 Plugin 'einars/vim-phpfold'
 
@@ -120,6 +127,8 @@ Plugin 'stephpy/vim-yaml'
 
 Plugin 'avr8bit.vim'
 
+Plugin 'othree/yajs.vim' " ES6
+
 let g:ycm_key_detailed_diagnostics = '<F11>'
 Plugin 'Valloric/YouCompleteMe'
 
@@ -130,10 +139,17 @@ endif
 
 call vundle#end()
 
+"let g:loaded_sql_completion = 0
+
 filetype plugin indent on  " detect filetypes
 syntax on                  " colors
 
-colors sorcerer
+"colors sorcerer
+if has('gui_running')
+  colors sourcerer
+else
+  colors mustang
+endif
 
 if has('nvim')
   """ " let g:Guifont="DejaVu Sans Mono:h13"

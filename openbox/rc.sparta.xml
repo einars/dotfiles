@@ -203,6 +203,36 @@
         <execute>/home/e/bin/toggle-terminal</execute>
       </action>
     </keybind>
+    <!-- dell keyboard -->
+    <!--
+    <keybind key="XF86AudioMute">
+      <action name="Execute">
+        <execute>tt screenshot</execute>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioLowerVolume">
+      <action name="Execute">
+        <execute>gcolor2</execute>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioRaiseVolume">
+      <action name="Execute">
+        <execute>/home/e/bin/notify-datetime</execute>
+      </action>
+    </keybind>
+    -->
+    <!-- DAS -->
+    <keybind key="Print">
+      <action name="Execute">
+        <execute>tt screenshot</execute>
+      </action>
+    </keybind>
+    <keybind key="Scroll_Lock">
+      <action name="Execute">
+        <execute>gcolor2</execute>
+      </action>
+    </keybind>
+
     <keybind key="Pause">
       <action name="Execute">
         <execute>/home/e/bin/notify-datetime</execute>
@@ -520,6 +550,17 @@
         <command>mpc stop</command>
       </action>
     </keybind>
+
+    <keybind key="C-S-F12">
+      <action name="Execute">
+        <command>tt randr.hx</command>
+      </action>
+    </keybind>
+    <keybind key="C-F12">
+      <action name="Execute">
+        <command>tt randr.hv</command>
+      </action>
+    </keybind>
     <keybind key="XF86Launch7">
       <action name="Execute">
         <command>tt randr.hv</command>
@@ -540,6 +581,7 @@
         <command>tt randr.hx</command>
       </action>
     </keybind>
+
     <keybind key="XF86Launch9">
       <action name="ToggleShowDesktop"/>
     </keybind>

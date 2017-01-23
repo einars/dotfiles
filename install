@@ -44,6 +44,7 @@ test -d ~/.ncmpc || mkdir ~/.ncmpc
 ln -sfn $install_source/ncmpc_config ~/.ncmpc/config
 
 ln -sfn $install_source/tmux.conf ~/.tmux.conf
+ln -sfn $install_source/mpv ~/.config/mpv
 
 
 mkdir -p ~/node/modules
