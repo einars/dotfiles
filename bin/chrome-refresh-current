@@ -3,7 +3,7 @@
 set -e
 
 searchmode=classname
-classname=google-chrome
+classname=chromium
 
 #searchmode=class
 #classname=Firefox

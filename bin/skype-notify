@@ -3,7 +3,7 @@
 message=$@
 
 if test -n "$message"; then
-  printf "%s\n" "$argv" >> /home/e/.skype-notify
+  printf "%s\n" "$message" >> /home/e/.skype-notify
 
   #notify (printf "%s\n%s" $sender (printf "%s" $message | sed 's/<[^<>]*>//g'))
   notify-send -t 10000 -u normal -h int:x:1810 -h int:y:0 "$message"

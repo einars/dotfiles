@@ -1,7 +1,16 @@
 #!/usr/bin/env bash
 
 classname=gvim
-rolename=gvimconsole
+desktop=$(xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}')
+
+echo "Desktop $desktop"
+
+# no gvim on some desktops
+[ "$desktop" == "7" ] && exit -1
+[ "$desktop" == "8" ] && exit -1
+[ "$desktop" == "9" ] && exit -1
+
+rolename=gvimconsole_$desktop
 
 # parallel execution/frequent switching sometimes fails with
 #  X Error of failed request:  BadWindow (invalid Window parameter)

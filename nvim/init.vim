@@ -47,7 +47,7 @@ set wildchar=<Tab>
 set laststatus=2        " good statusline is good
 " set statusline=%<%f\%h%m%r%=%-20.(%L\ %l:%v\ %)\ \ \%h%m%r%=\%P
 set statusline=%<%f\%h%m%r\ %{fugitive#statusline()}%=%-20.(%L\ %l:%v\ %)\ \ \%h%m%r%=\%P
-set wildignore=*.cmi,*.cmx,*.cmo,*.class,*.pyc,.svn,.git,*.o,*.a,*.so,target
+set wildignore=*.cmi,*.cmx,*.cmo,*.class,*.pyc,.svn,.git,*.o,*.a,*.so,target,*/.git/*,*/bower_components/*,*/node_modules/*
 set suffixes-=.h
 set virtualedit=block
 set shortmess+=c  " fuck completion message spam
@@ -108,8 +108,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
 
-" leave colon/semicolon alone
-let g:space_no_character_movements = 1
+" without this jk = Esc mapping is broken
+" let g:space_no_character_movements = 1
 Plugin 'spiiph/vim-space'
 Plugin 'einars/vim-phpfold'
 
@@ -151,24 +151,15 @@ else
   colors mustang
 endif
 
-if has('nvim')
-  """ " let g:Guifont="DejaVu Sans Mono:h13"
-  " let g:Guifont="Terminus:h11"
-  """ let g:Guifont="Noto Mono:h11"
-  "Guifont Terminus:h11
-endif
-
 
 let g:searchEmptyLinesPostfixing = 3
 
-let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v[\/](\.git|\.svn|media|release|node_modules|bower_components)$',
-  \ 'file': '\v\.(class|so|o|pyc)$',
-  \ }
+" open multiple files in current tab
+let g:ctrlp_open_multiple_files = '1vir'
 
 let g:ctrlp_user_command = {
         \ 'types': {
-                \ 1: ['.git', 'cd %s && git ls-files'],
+                \ 1: ['.git', 'cd %s && git ls-files | grep -v bower_components'],
                 \ 2: ['.hg', 'hg --cwd %s locate -I .'],
                 \ },
         \ 'fallback': 'find %s -type f'

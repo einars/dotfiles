@@ -145,16 +145,19 @@ alias sx="xinit /home/e/.xinitrc -- /etc/X11/xinit/xserverrc :0"
 alias aa=pt
 
 alias h2j='=html2jade --noemptypipe --noattrcomma --donotencode --bodyless --double'
+alias coffee2js='coffee --bare --compile --no-header --'
 alias html2jade='echo Use h2j alias'
 
 alias curl='curl --location '
 
 
+alias yaourt='yaourt --nameonly'
 
 alias logs='journalctl --since "3 hours ago"'
 # ssh and immediately connect to screen
-ss() { ssh $* -t screen -Rd }
-sst() { ssh $* -t screen -Rd }
+# you may use "ss example.com sessionname" for named sessions
+#ss() { ssh $1 -t screen -URd -S ${2:-default}}
+ss() { ssh $1 -t screen -RUDS ${2:-default}}
 
 # vim: syn=zsh :
 

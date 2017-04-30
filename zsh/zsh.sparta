@@ -22,7 +22,7 @@ if ( false ) {
  questions.py
 }
  
-clear
+# clear
 
 ssh-add -l > /dev/null || ssh-add
 

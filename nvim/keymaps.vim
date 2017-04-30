@@ -13,7 +13,10 @@ map <s-f5> <esc>:EnableFastPHPFolds<cr>
 " close buffer leaving splits intact
 map <leader>d <esc>:call CleanDeleteBuffer()<cr>
 
-inoremap jk <Esc>
+" mostly broken with vim-space
+" inoremap jk <Esc>
+imap <C-L> <Esc>
+
 
 map ; :
 noremap ;; ;

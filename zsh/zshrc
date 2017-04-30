@@ -167,18 +167,22 @@ function setup_keyboard() #{{{
     unset k
 
     # setup key accordingly
-    [[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
-    [[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
-    [[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
-    [[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
-    [[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      history-beginning-search-backward
-    [[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    history-beginning-search-forward
-    [[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
-    [[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
-    [[ -n "${key[AltLeft]}" ]]  && bindkey  "${key[AltLeft]}"  emacs-backward-word
-    [[ -n "${key[AltRight]}" ]]  && bindkey  "${key[AltRight]}" emacs-forward-word
+    [[ -n "${key[Home]}"    ]]  && bindkey  -- "${key[Home]}"    beginning-of-line
+    [[ -n "${key[End]}"     ]]  && bindkey  -- "${key[End]}"     end-of-line
+    [[ -n "${key[Insert]}"  ]]  && bindkey  -- "${key[Insert]}"  overwrite-mode
+    [[ -n "${key[Delete]}"  ]]  && bindkey  -- "${key[Delete]}"  delete-char
+    [[ -n "${key[Up]}"      ]]  && bindkey  -- "${key[Up]}"      history-beginning-search-backward
+    [[ -n "${key[Down]}"    ]]  && bindkey  -- "${key[Down]}"    history-beginning-search-forward
+    [[ -n "${key[Left]}"    ]]  && bindkey  -- "${key[Left]}"    backward-char
+    [[ -n "${key[Right]}"   ]]  && bindkey  -- "${key[Right]}"   forward-char
+    [[ -n "${key[AltLeft]}" ]]  && bindkey  -- "${key[AltLeft]}"  emacs-backward-word
+    [[ -n "${key[AltRight]}" ]] && bindkey  -- "${key[AltRight]}" emacs-forward-word
 
     bindkey "^J" self-insert # sweet multiline input
+
+    [[ "$TERM" == "rxvt-unicode-256color" ]] && bindkey  -- "^[[1~" beginning-of-line
+    [[ "$TERM" == "rxvt-unicode-256color" ]] && bindkey  -- "^[[4~" end-of-line
+
 } #}}}
 
 function setup_cd_autols() #{{{

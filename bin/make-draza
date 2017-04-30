@@ -11,7 +11,7 @@ drazapath="/storage/draza/$year/$month"
 
 mkdir -p $drazapath/sync
 
-mkdir -p "/home/e/dokumenti/Gramatvediba/guntai/$year-$month"
+mkdir -p "/home/e/dokumenti/Gramatvediba/accounting/$year-$month"
 
 cd /storage/draza
 rm -f current

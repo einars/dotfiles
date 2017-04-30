@@ -8,7 +8,7 @@ init_common()
     
     export STEAM_FRAME_FORCE_CLOSE=1
 
-    setxkbmap lv -option ctrl:nocaps
+    #setxkbmap lv -option ctrl:nocaps
 
     xsetroot -cursor_name left_ptr
     numlockx
@@ -35,9 +35,9 @@ init_sparta()
     # set up latvian keymap and apple kbd customizations
     rekey
 
-    nvidia-settings --load-config-only
+    # nvidia-settings --load-config-only
 
-    ~/bin/nv fast
+    # ~/bin/nv fast
 
     xset m 4 1 # mouse
 

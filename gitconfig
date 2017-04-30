@@ -70,6 +70,7 @@
 [merge]
         #conflictstyle = diff3
         tool = gvimdiff
+	conflictstyle = diff3
 [pull]
         rebase = true
 [rerere]

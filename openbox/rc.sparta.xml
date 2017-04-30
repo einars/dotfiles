@@ -41,7 +41,7 @@
   </placement>
   <theme>
     <!--ame>Clearlooks-Olive</name-->
-    <name>Clearlooks-3.4</name>
+    <name>Orang</name>
     <titleLayout>CNLI</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -86,31 +86,31 @@
       <name>PT Sans</name>
       <size>10</size>
       <!-- font size in points -->
-    <weight>Normal</weight>
-    <!-- 'bold' or 'normal' -->
-    <slant>Normal</slant>
-    <!-- 'italic' or 'normal' -->
-  </font>
-  <font place="ActiveOnScreenDisplay">
-    <name>PT Sans Caption</name>
-    <size>10</size>
-    <!-- font size in points -->
-    <weight>Bold</weight>
-    <!-- 'bold' or 'normal' -->
-    <slant>Normal</slant>
-    <!-- 'italic' or 'normal' -->
-  </font>
-  <font place="InactiveOnScreenDisplay">
-    <name>PT Sans Caption</name>
-    <size>10</size>
-    <!-- font size in points -->
-    <weight>Normal</weight>
-    <!-- 'bold' or 'normal' -->
-    <slant>Normal</slant>
-    <!-- 'italic' or 'normal' -->
-  </font>
-</theme>
-<desktops>
+      <weight>Normal</weight>
+      <!-- 'bold' or 'normal' -->
+      <slant>Normal</slant>
+      <!-- 'italic' or 'normal' -->
+    </font>
+    <font place="ActiveOnScreenDisplay">
+      <name>PT Sans Caption</name>
+      <size>10</size>
+      <!-- font size in points -->
+      <weight>Bold</weight>
+      <!-- 'bold' or 'normal' -->
+      <slant>Normal</slant>
+      <!-- 'italic' or 'normal' -->
+    </font>
+    <font place="InactiveOnScreenDisplay">
+      <name>PT Sans Caption</name>
+      <size>10</size>
+      <!-- font size in points -->
+      <weight>Normal</weight>
+      <!-- 'bold' or 'normal' -->
+      <slant>Normal</slant>
+      <!-- 'italic' or 'normal' -->
+    </font>
+  </theme>
+  <desktops>
     <!-- this stuff is only used at startup, pagers allow you to change them
        during a session
 
@@ -138,16 +138,16 @@
   </desktops>
   <resize>
     <drawContents>yes</drawContents>
-    <popupShow>NonPixel</popupShow>
+    <popupShow>Never</popupShow>
     <!-- 'Always', 'Never', or 'Nonpixel' (xterms and such) -->
     <popupPosition>Center</popupPosition>
     <!-- 'Center', 'Top', or 'Fixed' -->
     <popupFixedPosition>
       <!-- these are used if popupPosition is set to 'Fixed' -->
-      <x>10</x>
+      <x>-10</x>
       <!-- positive number for distance from left edge, negative number for
          distance from right edge, or 'Center' -->
-      <y>10</y>
+      <y>-10</y>
       <!-- positive number for distance from top edge, negative number for
          distance from bottom edge, or 'Center' -->
     </popupFixedPosition>
@@ -182,7 +182,6 @@
   </dock>
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
-
     <keybind key="W-s-space">
       <action name="ShowMenu">
         <menu>root-menu</menu>
@@ -232,7 +231,6 @@
         <execute>gcolor2</execute>
       </action>
     </keybind>
-
     <keybind key="Pause">
       <action name="Execute">
         <execute>/home/e/bin/notify-datetime</execute>
@@ -243,7 +241,6 @@
         <execute>/home/e/bin/toggle-terminal --hide</execute>
       </action>
     </keybind>
-
     <keybind key="Print" key-comment="F14">
       <action name="Execute">
         <command>tt screenshot</command>
@@ -259,31 +256,27 @@
         <command>tt screenshot</command>
       </action>
     </keybind>
-
     <keybind key="XF86Eject">
       <action name="Execute">
         <dis-command>xdotool click --repeat 5000 --delay 1 1</dis-command>
-        <execute>/home/e/bin/gvimq</execute>
+        <execute>/home/e/bin/nvimq</execute>
       </action>
     </keybind>
     <keybind key="F12">
       <action name="Execute">
-        <execute>/home/e/bin/gvimq</execute>
+        <execute>/home/e/bin/nvimq</execute>
       </action>
     </keybind>
     <keybind key="XF86Documents">
       <action name="Execute">
-        <execute>/home/e/bin/gvimq</execute>
+        <execute>/home/e/bin/nvimq</execute>
       </action>
     </keybind>
     <keybind key="XF86Mail">
       <action name="Execute">
-        <execute>/home/e/bin/gvimq</execute>
+        <execute>/home/e/bin/nvimq</execute>
       </action>
     </keybind>
-
-
-
     <!-- keybind key="W-grave">
       <action name="GoToDesktop">
         <to>10</to>
@@ -550,7 +543,6 @@
         <command>mpc stop</command>
       </action>
     </keybind>
-
     <keybind key="C-S-F12">
       <action name="Execute">
         <command>tt randr.hx</command>
@@ -558,6 +550,7 @@
     </keybind>
     <keybind key="C-F12">
       <action name="Execute">
+        <!-- command>tt randr.hv</command-->
         <command>tt randr.hv</command>
       </action>
     </keybind>
@@ -581,11 +574,9 @@
         <command>tt randr.hx</command>
       </action>
     </keybind>
-
     <keybind key="XF86Launch9">
       <action name="ToggleShowDesktop"/>
     </keybind>
-
     <keybind key="W-d">
       <action name="Execute">
         <command>my-file-manager ~/dokumenti</command>
@@ -593,7 +584,7 @@
     </keybind>
     <keybind key="W-t">
       <action name="Execute">
-        <command>my-file-manager /readonly/torrents/</command>
+        <command>my-file-manager /storage/torrents/</command>
       </action>
     </keybind>
     <keybind key="W-s-t">
@@ -628,7 +619,7 @@
       <action name="MoveResizeTo">
         <x>0</x>
         <y>0</y>
-        <width>50%</width>
+        <width>40%</width>
         <height>100%</height>
       </action>
     </keybind>
@@ -637,7 +628,7 @@
       <action name="MoveResizeTo">
         <x>-0</x>
         <y>0</y>
-        <width>50%</width>
+        <width>60%</width>
         <height>100%</height>
       </action>
     </keybind>
@@ -994,18 +985,48 @@
       <desktop>all</desktop>
       <layer>above</layer>
     </application>
+
     <application name="gvim" role="gvimconsole">
-      <size>
-        <width>100%</width>
-        <height>95%</height>
-      </size>
-      <position force="yes">
-        <monitor>primary</monitor>
-        <x>0</x>
-        <y>0</y>
-      </position>
-      <desktop>all</desktop>
+      <size><width>100%</width><height>95%</height></size>
+      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
     </application>
+    <application name="gvim" role="gvimconsole_0">
+      <size><width>100%</width><height>95%</height></size>
+      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+    </application>
+    <application name="gvim" role="gvimconsole_1">
+      <size><width>100%</width><height>95%</height></size>
+      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+    </application>
+    <application name="gvim" role="gvimconsole_2">
+      <size><width>100%</width><height>95%</height></size>
+      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+    </application>
+    <application name="gvim" role="gvimconsole_3">
+      <size><width>100%</width><height>95%</height></size>
+      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+    </application>
+    <application name="gvim" role="gvimconsole_4">
+      <size><width>100%</width><height>95%</height></size>
+      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+    </application>
+    <application name="gvim" role="gvimconsole_5">
+      <size><width>100%</width><height>95%</height></size>
+      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+    </application>
+    <application name="gvim" role="gvimconsole_6">
+      <size><width>100%</width><height>95%</height></size>
+      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+    </application>
+    <application name="gvim" role="gvimconsole_7">
+      <size><width>100%</width><height>95%</height></size>
+      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+    </application>
+    <application name="gvim" role="gvimconsole_8">
+      <size><width>100%</width><height>95%</height></size>
+      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+    </application>
+
     <application name="qvim">
       <size>
         <width>100%</width>
