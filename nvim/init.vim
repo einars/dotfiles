@@ -108,9 +108,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
 
-" without this jk = Esc mapping is broken
-" let g:space_no_character_movements = 1
-Plugin 'spiiph/vim-space'
 Plugin 'einars/vim-phpfold'
 
 let g:translit_toggle_keymap = '<S-F1>'
@@ -129,11 +126,16 @@ Plugin 'avr8bit.vim'
 
 Plugin 'othree/yajs.vim' " ES6
 
-let g:ycm_key_detailed_diagnostics = '<F11>'
-Plugin 'Valloric/YouCompleteMe'
-
 if has('nvim')
+  " neovim
+  let g:deoplete#enable_at_startup = 1
   Plugin 'equalsraf/neovim-gui-shim'
+  Plugin 'Shougo/deoplete.nvim'
+  Plugin 'ternjs/tern_for_vim'
+else
+  " gvim
+  let g:ycm_key_detailed_diagnostics = '<F11>'
+  Plugin 'Valloric/YouCompleteMe'
 endif
 
 
@@ -145,8 +147,8 @@ filetype plugin indent on  " detect filetypes
 syntax on                  " colors
 
 "colors sorcerer
-if has('gui_running')
-  colors sourcerer
+if has('gui_running') || exists('g:GuiLoaded')
+  colors sourcerer_noitalic
 else
   colors mustang
 endif
@@ -184,4 +186,3 @@ command! -nargs=* Phpdoc call Phpdoc(<f-args>)
 
 exec 'source ' . EditorRoot() . '/keymaps.vim'
 exec 'source ' . EditorRoot() . '/autogroups.vim'
-exec 'source ' . EditorRoot() . '/jeetworks-arrows.vim'

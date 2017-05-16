@@ -136,7 +136,7 @@ alias aag='grep -Ri -A 5 -B 2'
 
 
 alias phpp='php -d xdebug.profiler_output_dir=. -d xdebug.profiler_enable=1 -d xdebug.profiler_output_name=callgrind.out'
-alias sshh='ssh -o PreferredAuthentications=keyboard-interactive,password -o PubkeyAuthentication=no'
+alias sshh='TERM=xterm ssh -o PreferredAuthentications=keyboard-interactive,password -o PubkeyAuthentication=no'
 
 #alias sx=startx
 alias sx="xinit /home/e/.xinitrc -- /etc/X11/xinit/xserverrc :0"
@@ -158,6 +158,9 @@ alias logs='journalctl --since "3 hours ago"'
 # you may use "ss example.com sessionname" for named sessions
 #ss() { ssh $1 -t screen -URd -S ${2:-default}}
 ss() { ssh $1 -t screen -RUDS ${2:-default}}
+
+# tarz out.tgz folder
+tarz() { tar cvf - $2 | pigz -1 - > $1 }
 
 # vim: syn=zsh :
 

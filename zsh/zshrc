@@ -182,7 +182,8 @@ function setup_keyboard() #{{{
 
     [[ "$TERM" == "rxvt-unicode-256color" ]] && bindkey  -- "^[[1~" beginning-of-line
     [[ "$TERM" == "rxvt-unicode-256color" ]] && bindkey  -- "^[[4~" end-of-line
-
+    [[ "$TERM" == "rxvt-256color" ]] && bindkey  -- "^[[1~" beginning-of-line
+    [[ "$TERM" == "rxvt-256color" ]] && bindkey  -- "^[[4~" end-of-line
 } #}}}
 
 function setup_cd_autols() #{{{

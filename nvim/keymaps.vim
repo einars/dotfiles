@@ -17,7 +17,6 @@ map <leader>d <esc>:call CleanDeleteBuffer()<cr>
 " inoremap jk <Esc>
 imap <C-L> <Esc>
 
-
 map ; :
 noremap ;; ;
 
@@ -38,6 +37,22 @@ nnoremap <leader>es :e ~/dokumenti/scribble.txt<cr>
 nnoremap <leader>eo :e ~/.config/openbox/rc.xml<cr>
 nnoremap <leader>em :e ~/.config/openbox/menu.xml<cr>
 
+
+if has('nvim')
+  " deoplete tab
+  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+endif
+
+
+" Arrow key remapping: Left/Right = indent/unindent
+nmap <silent> <Left> <<
+nmap <silent> <Right> >>
+vmap <silent> <Left> <gv
+vmap <silent> <Right> >gv
+vmap <silent> < <gv
+vmap <silent> > >gv
+imap <silent> <Left> <C-D>
+imap <silent> <Right> <C-T>
 
 
 

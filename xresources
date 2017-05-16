@@ -9,7 +9,7 @@ rxvt.print-pipe: "cat > /dev/null"
 URxvt.print-pipe: "cat > /dev/null"
 
 xterm*metaSendsEscape: true
-xterm*termName: xterm-256color
+xterm*termName: rxvt-256color
 
 URxvt*cutchars: '"'&()*,;<=>?@[]{|}
 URxvt*colorUL: #86a2be
