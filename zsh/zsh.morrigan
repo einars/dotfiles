@@ -1,0 +1,14 @@
+
+function c() {
+  CDPATH= cd $1
+}
+
+export EDITOR=nvim
+export VISUAL=nvim
+
+cdpath=(. ~ /services/web /storage)
+
+try_path ~/.opam/system/bin
+try_path ~/node/modules/bin
+
+
