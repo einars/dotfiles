@@ -41,6 +41,10 @@ nnoremap <leader>em :e ~/.config/openbox/menu.xml<cr>
 if has('nvim')
   " deoplete tab
   inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+  function! s:my_cr_function()
+    return deoplete#mappings#close_popup() . "\<CR>"
+  endfunction
 endif
 
 

@@ -137,6 +137,7 @@ alias aag='grep -Ri -A 5 -B 2'
 
 alias phpp='php -d xdebug.profiler_output_dir=. -d xdebug.profiler_enable=1 -d xdebug.profiler_output_name=callgrind.out'
 alias sshh='TERM=xterm ssh -o PreferredAuthentications=keyboard-interactive,password -o PubkeyAuthentication=no'
+alias ssh='TERM=screen ssh'
 
 #alias sx=startx
 alias sx="xinit /home/e/.xinitrc -- /etc/X11/xinit/xserverrc :0"

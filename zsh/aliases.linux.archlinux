@@ -39,7 +39,7 @@ function binside { $pacman -Ql $1 | grep -v '/$' | grep --color=never bin }
 function aurget {
   package=$1
   if [[ $package != "" ]]; then
-    chpwd_functions= cd ~/build/aur/
+    chpwd_functions= cd /proj/build/aur/
     yaourt --getpkgbuild $package
     test -d $package && cd $package && cat PKGBUILD
   fi

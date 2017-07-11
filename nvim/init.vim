@@ -16,7 +16,8 @@ if ! has('nvim')
     set guioptions+=r       """ right scrollbar
     set guioptions-=L       """ left scrollbar
     set guioptions-=e       """ tab menu
-    set guifont=xos4\ Terminus\ 10
+    " set guifont=xos4\ Terminus\ 10
+    set guifont=Iosevka\ Term\ 12
   endif
 endif
 
@@ -74,7 +75,7 @@ set hidden              " suddenly, magically, buffers get usable
 set autoread            " don't care about ext-modified files, just reload them
 
 " show or hide whitespace warnings
-set list
+set nolist
 " set nolist """ coprogrammers
 set listchars=tab:·\ ,trail:.,extends:#,nbsp:▮
 

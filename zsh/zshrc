@@ -19,6 +19,7 @@ function try_path
 try_path ~/bin
 try_path ~/node/node-latest/bin
 #try_path ~/node/modules/bin
+try_path ~/.gem/ruby/2.4.0/bin
 try_path ~/.gem/ruby/2.3.0/bin
 try_path ~/.gem/ruby/2.2.0/bin
 try_path ~/.gem/ruby/1.9.1/bin
@@ -38,7 +39,7 @@ export SDL_AUDIODRIVER=alsa
 # Joystick interface is preferred to evdev,
 # as this gets calibrated
 export SDL_JOYSTICK_DEVICE=/dev/input/js0
-export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.aatext=true -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -XX:+PerfDisableSharedMem"
+# export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.aatext=true -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -XX:+PerfDisableSharedMem"
 
 
 
@@ -157,9 +158,6 @@ function setup_keyboard() #{{{
     key[PageUp]=${terminfo[kpp]}
     key[PageDown]=${terminfo[knp]}
 
-    key[AltLeft]="^[^[[D"
-    key[AltRight]="^[^[[C"
-
     for k in ${(k)key} ; do
         # $terminfo[] entries are weird in ncurses application mode...
         [[ ${key[$k]} == $'\eO'* ]] && key[$k]=${key[$k]/O/[}
@@ -175,8 +173,8 @@ function setup_keyboard() #{{{
     [[ -n "${key[Down]}"    ]]  && bindkey  -- "${key[Down]}"    history-beginning-search-forward
     [[ -n "${key[Left]}"    ]]  && bindkey  -- "${key[Left]}"    backward-char
     [[ -n "${key[Right]}"   ]]  && bindkey  -- "${key[Right]}"   forward-char
-    [[ -n "${key[AltLeft]}" ]]  && bindkey  -- "${key[AltLeft]}"  emacs-backward-word
-    [[ -n "${key[AltRight]}" ]] && bindkey  -- "${key[AltRight]}" emacs-forward-word
+    [[ -n "${key[Left]}" ]]  && bindkey  -- "\e${key[Left]}"  emacs-backward-word
+    [[ -n "${key[Right]}" ]] && bindkey  -- "\e${key[Right]}" emacs-forward-word
 
     bindkey "^J" self-insert # sweet multiline input
 

@@ -1,7 +1,6 @@
-!URxvt*font: xft:xos4 Terminus:size=10,xft:Lucida Console:size=10
+!URxvt*font: xft:xos4 Terminus:size=10
 URxvt*font: xft:Ubuntu Mono:size=13,xft
 !URxvt*font: xft:Source Code Pro:size=10:antialias=false,xft:Lucida Console:size=10
-!URxvt*font: xft:Terminus (TTF):size=14
 
 URxvt*depth: 24
 
@@ -14,10 +13,17 @@ xterm*termName: rxvt-256color
 URxvt*cutchars: '"'&()*,;<=>?@[]{|}
 URxvt*colorUL: #86a2be
 URxvt*geometry: 140x35
-URxvt*cursorColor: #86a2be
+!URxvt*cursorColor: #86a2be
+URxvt*cursorColor: #ff3300
+URxvt*pointerBlank: true
+
+! these are pretty, but reset back to block after vim/nvim
+URxvt*cursorBlink: false
+URxvt*cursorUnderline: false
+
 URxvt*internalBorder: 2
 URxvt*loginShell: false
-URxvt*pointerBlank: false
+!URxvt*pointerBlank: false
 URxvt*saveLines: 500
 URxvt*secondaryScroll: true
 URxvt*jumpScroll: true
