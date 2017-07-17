@@ -56,7 +56,7 @@
     <keepBorder>yes</keepBorder>
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
-      <name>PT Sans Caption</name>
+      <name>Liberation Sans</name>
       <size>9</size>
       <!-- font size in points -->
       <weight>Bold</weight>
@@ -65,7 +65,7 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveWindow">
-      <name>PT Sans Caption</name>
+      <name>Liberation Sans</name>
       <size>9</size>
       <!-- font size in points -->
       <weight>Normal</weight>
@@ -221,12 +221,22 @@
     </keybind>
     -->
     <!-- DAS -->
+    <!-- keybind key="Print">
+      <action name="Execute">
+        <execute>tt screenshot</execute>
+      </action>
+    </keybind -->
     <keybind key="Print">
+      <action name="Execute">
+        <execute>/home/e/bin/nvimq</execute>
+      </action>
+    </keybind>
+    <keybind key="Scroll_Lock">
       <action name="Execute">
         <execute>tt screenshot</execute>
       </action>
     </keybind>
-    <keybind key="Scroll_Lock">
+    <keybind key="S-Scroll_Lock">
       <action name="Execute">
         <execute>gcolor2</execute>
       </action>
@@ -241,32 +251,17 @@
         <execute>/home/e/bin/toggle-terminal --hide</execute>
       </action>
     </keybind>
-    <keybind key="Print" key-comment="F14">
-      <action name="Execute">
-        <command>tt screenshot</command>
-      </action>
-    </keybind>
-    <keybind key="XF86Launch6" key-comment="F14">
-      <action name="Execute">
-        <command>tt screenshot</command>
-      </action>
-    </keybind>
-    <keybind key="S-XF86Launch6" key-comment="S-F14">
-      <action name="Execute">
-        <command>tt screenshot</command>
-      </action>
-    </keybind>
     <keybind key="XF86Eject">
       <action name="Execute">
         <dis-command>xdotool click --repeat 5000 --delay 1 1</dis-command>
         <execute>/home/e/bin/nvimq</execute>
       </action>
     </keybind>
-    <keybind key="F12">
+    <!-- keybind key="F12">
       <action name="Execute">
         <execute>/home/e/bin/nvimq</execute>
       </action>
-    </keybind>
+    </keybind -->
     <keybind key="XF86Documents">
       <action name="Execute">
         <execute>/home/e/bin/nvimq</execute>
@@ -392,8 +387,9 @@
       </action>
     </keybind>
     <keybind key="W-C">
-      <action name="Execute">
-        <command>orage</command>
+      <action name="MoveResizeTo">
+        <x>center</x>
+        <y>center</y>
       </action>
     </keybind>
     <keybind key="W-slash">
@@ -985,48 +981,116 @@
       <desktop>all</desktop>
       <layer>above</layer>
     </application>
-
     <application name="gvim" role="gvimconsole">
-      <size><width>100%</width><height>95%</height></size>
-      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+      <size>
+        <width>100%</width>
+        <height>95%</height>
+      </size>
+      <position force="yes">
+        <monitor>primary</monitor>
+        <x>0</x>
+        <y>0</y>
+      </position>
     </application>
     <application name="gvim" role="gvimconsole_0">
-      <size><width>100%</width><height>95%</height></size>
-      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+      <size>
+        <width>100%</width>
+        <height>95%</height>
+      </size>
+      <position force="yes">
+        <monitor>primary</monitor>
+        <x>0</x>
+        <y>0</y>
+      </position>
     </application>
     <application name="gvim" role="gvimconsole_1">
-      <size><width>100%</width><height>95%</height></size>
-      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+      <size>
+        <width>100%</width>
+        <height>95%</height>
+      </size>
+      <position force="yes">
+        <monitor>primary</monitor>
+        <x>0</x>
+        <y>0</y>
+      </position>
     </application>
     <application name="gvim" role="gvimconsole_2">
-      <size><width>100%</width><height>95%</height></size>
-      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+      <size>
+        <width>100%</width>
+        <height>95%</height>
+      </size>
+      <position force="yes">
+        <monitor>primary</monitor>
+        <x>0</x>
+        <y>0</y>
+      </position>
     </application>
     <application name="gvim" role="gvimconsole_3">
-      <size><width>100%</width><height>95%</height></size>
-      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+      <size>
+        <width>100%</width>
+        <height>95%</height>
+      </size>
+      <position force="yes">
+        <monitor>primary</monitor>
+        <x>0</x>
+        <y>0</y>
+      </position>
     </application>
     <application name="gvim" role="gvimconsole_4">
-      <size><width>100%</width><height>95%</height></size>
-      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+      <size>
+        <width>100%</width>
+        <height>95%</height>
+      </size>
+      <position force="yes">
+        <monitor>primary</monitor>
+        <x>0</x>
+        <y>0</y>
+      </position>
     </application>
     <application name="gvim" role="gvimconsole_5">
-      <size><width>100%</width><height>95%</height></size>
-      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+      <size>
+        <width>100%</width>
+        <height>95%</height>
+      </size>
+      <position force="yes">
+        <monitor>primary</monitor>
+        <x>0</x>
+        <y>0</y>
+      </position>
     </application>
     <application name="gvim" role="gvimconsole_6">
-      <size><width>100%</width><height>95%</height></size>
-      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+      <size>
+        <width>100%</width>
+        <height>95%</height>
+      </size>
+      <position force="yes">
+        <monitor>primary</monitor>
+        <x>0</x>
+        <y>0</y>
+      </position>
     </application>
     <application name="gvim" role="gvimconsole_7">
-      <size><width>100%</width><height>95%</height></size>
-      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+      <size>
+        <width>100%</width>
+        <height>95%</height>
+      </size>
+      <position force="yes">
+        <monitor>primary</monitor>
+        <x>0</x>
+        <y>0</y>
+      </position>
     </application>
     <application name="gvim" role="gvimconsole_8">
-      <size><width>100%</width><height>95%</height></size>
-      <position force="yes"><monitor>primary</monitor><x>0</x><y>0</y></position>
+      <size>
+        <width>100%</width>
+        <height>95%</height>
+      </size>
+      <position force="yes">
+        <monitor>primary</monitor>
+        <x>0</x>
+        <y>0</y>
+      </position>
     </application>
-
     <application name="qvim">
       <size>
         <width>100%</width>
