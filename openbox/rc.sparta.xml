@@ -547,17 +547,17 @@
     <keybind key="C-F12">
       <action name="Execute">
         <!-- command>tt randr.hv</command-->
-        <command>tt randr.hh</command>
+        <command>tt randr.hv</command>
       </action>
     </keybind>
     <keybind key="XF86Launch7">
       <action name="Execute">
-        <command>tt randr.hh</command>
+        <command>tt randr.hv</command>
       </action>
     </keybind>
     <keybind key="XF86Calculator">
       <action name="Execute">
-        <command>tt randr.hh</command>
+        <command>tt randr.hv</command>
       </action>
     </keybind>
     <keybind key="S-XF86Launch7">
@@ -576,6 +576,11 @@
     <keybind key="W-d">
       <action name="Execute">
         <command>my-file-manager ~/dokumenti</command>
+      </action>
+    </keybind>
+    <keybind key="W-m">
+      <action name="Execute">
+        <command>my-file-manager /storage/music/</command>
       </action>
     </keybind>
     <keybind key="W-t">

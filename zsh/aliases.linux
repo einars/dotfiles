@@ -144,6 +144,7 @@ alias sx="xinit /home/e/.xinitrc -- /etc/X11/xinit/xserverrc :0"
 
 # platinum searcher
 alias aa=pt
+alias aa0='pt -A 0 -B 0'
 
 alias h2j='=html2jade --noemptypipe --noattrcomma --donotencode --bodyless --double'
 alias coffee2js='coffee --bare --compile --no-header --'
@@ -158,7 +159,8 @@ alias logs='journalctl --since "3 hours ago"'
 # ssh and immediately connect to screen
 # you may use "ss example.com sessionname" for named sessions
 #ss() { ssh $1 -t screen -URd -S ${2:-default}}
-ss() { ssh $1 -t screen -RUDS ${2:-default}}
+# ss() { ssh $1 -t bash --login -c screen -RUDS ${2:-default}}
+ss() { ssh $1 -t "LC_ALL=en_US.UTF8 screen -RUDS ${2:-default}"}
 
 # tarz out.tgz folder
 tarz() { tar cvf - $2 | pigz -1 - > $1 }

@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# track cmd args...
+# run command and notify about the completion
+
+args=$@
+
+eval $@
+
+if [ $? -eq 0 ]; then
+  text="done: $@"
+else
+  text="crit: failed: $@"
+fi
+notify "$text"
+  
+

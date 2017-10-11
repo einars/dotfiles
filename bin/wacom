@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# http://www.davidrevoy.com/article316/ubuntu-16-04-for-my-digital-painting-workstation
+
+
+pad='Wacom Intuos Pro M Pad pad'
+touch='Wacom Intuos Pro M Finger touch'
+#xsetwacom set  Button 1 'key Shift_L'
+#xsetwacom set 'Wacom Intuos Pro M Pad pad' Button 2 'key Control_L'
+
+xsetwacom set "$pad" Button 1 "button 3"
+
+xsetwacom set "$pad" Button 2 "key ctrl"
+xsetwacom set "$pad" Button 3 "key shift"
+xsetwacom set "$pad" Button 8 "key alt"
+xsetwacom set "$pad" Button 9 "key ctrl z"
+
+xsetwacom set "$pad" Button 10 "key H"
+xsetwacom set "$pad" Button 11 "key L"
+xsetwacom set "$pad" Button 12 "key Delete"
+xsetwacom set "$pad" Button 13 "key B"
+
+xsetwacom set "$touch" Touch off
+
