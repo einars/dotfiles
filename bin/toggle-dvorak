@@ -1,0 +1,15 @@
+#!/bin/sh
+
+#current=$(setxkbmap -query  | grep layout | awk '{print $2}')
+#if [ "$current" = "lv" ]; then
+if setxkbmap -query  | grep dvp; then
+        ~/bin/rekey
+else
+        setxkbmap lv_custom -variant dvp
+        echo '
+clear Lock
+keycode 0x42 = Escape
+        ' | xmodmap -
+fi
+
+layout-notify

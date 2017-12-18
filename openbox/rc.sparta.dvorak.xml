@@ -197,40 +197,6 @@
         <execute>/home/e/bin/toggle-terminal</execute>
       </action>
     </keybind>
-    <keybind key="W-grave">
-      <action name="Execute">
-        <execute>/home/e/bin/toggle-terminal</execute>
-      </action>
-    </keybind>
-    <keybind dis-key="W-grave" key="0xbf" key-comment="F13">
-      <action name="Execute">
-        <execute>/home/e/bin/toggle-terminal</execute>
-      </action>
-    </keybind>
-    <!-- dell keyboard -->
-    <!--
-    <keybind key="XF86AudioMute">
-      <action name="Execute">
-        <execute>tt screenshot</execute>
-      </action>
-    </keybind>
-    <keybind key="XF86AudioLowerVolume">
-      <action name="Execute">
-        <execute>gcolor2</execute>
-      </action>
-    </keybind>
-    <keybind key="XF86AudioRaiseVolume">
-      <action name="Execute">
-        <execute>/home/e/bin/notify-datetime</execute>
-      </action>
-    </keybind>
-    -->
-    <!-- DAS -->
-    <!-- keybind key="Print">
-      <action name="Execute">
-        <execute>tt screenshot</execute>
-      </action>
-    </keybind -->
     <keybind key="Print">
       <action name="Execute">
         <execute>/home/e/bin/nvimq</execute>
@@ -249,11 +215,6 @@
     <keybind key="Pause">
       <action name="Execute">
         <execute>/home/e/bin/notify-datetime</execute>
-      </action>
-    </keybind>
-    <keybind key="S-0xbf" key-comment="S-F13">
-      <action name="Execute">
-        <execute>/home/e/bin/toggle-terminal --hide</execute>
       </action>
     </keybind>
     <keybind key="XF86Eject">
@@ -277,32 +238,12 @@
         <execute>/home/e/bin/toggle-dvorak</execute>
       </action>
     </keybind>
-    <keybind key="XF86Documents">
-      <action name="Execute">
-        <execute>/home/e/bin/nvimq</execute>
-      </action>
-    </keybind>
-    <keybind key="XF86Mail">
-      <action name="Execute">
-        <execute>/home/e/bin/nvimq</execute>
-      </action>
-    </keybind>
-    <!-- keybind key="W-grave">
-      <action name="GoToDesktop">
-        <to>10</to>
-      </action>
-    </keybind -->
-    <keybind key="W-S-b">
-      <action name="Execute">
-        <execute>/home/e/bin/private/edit-blog</execute>
-      </action>
-    </keybind>
-    <keybind key="W-1">
+    <!-- keybind key="W-0x26">
       <action name="GoToDesktop">
         <to>1</to>
       </action>
     </keybind>
-    <keybind key="W-2">
+    <keybind key="W-0x5b">
       <action name="GoToDesktop">
         <to>2</to>
       </action>
@@ -317,36 +258,36 @@
         <to>4</to>
       </action>
     </keybind>
-    <keybind key="W-5">
+    <keybind key="W-(">
       <action name="GoToDesktop">
         <to>5</to>
       </action>
     </keybind>
-    <keybind key="W-6">
+    <keybind key="W-=">
       <action name="GoToDesktop">
         <to>6</to>
       </action>
     </keybind>
-    <keybind key="W-7">
+    <keybind key="W-*">
       <action name="GoToDesktop">
         <to>7</to>
       </action>
     </keybind>
-    <keybind key="W-8">
+    <keybind key="W-)">
       <action name="GoToDesktop">
         <to>8</to>
       </action>
     </keybind>
-    <keybind key="W-9">
+    <keybind key="W-+">
       <action name="GoToDesktop">
         <to>9</to>
       </action>
     </keybind>
-    <keybind key="W-0">
+    <keybind key="W-]">
       <action name="GoToDesktop">
         <to>10</to>
       </action>
-    </keybind>
+    </keybind -->
     <!--
     <keybind key="W-S-1">
       <action name="SendToDesktop">
@@ -447,29 +388,6 @@
       <action name="ToggleAlwaysOnTop"/>
       <action name="ToggleOmnipresent"/>
     </keybind>
-    <keybind key="W-m">
-      <action name="Execute">
-        <command>run-inferior super-m</command>
-      </action>
-    </keybind>
-    <keybind key="W-s-m">
-      <action name="Execute">
-        <command>run-inferior super-M</command>
-      </action>
-    </keybind>
-    <keybind key="W-n">
-      <action name="Execute">
-        <command>run-inferior super-n</command>
-      </action>
-    </keybind>
-    <keybind key="W-s-n">
-      <action name="Execute">
-        <command>run-inferior super-N</command>
-      </action>
-    </keybind>
-    <!-- <keybind key="W-grave"> -->
-    <!--     <action name="Execute"><command>focus-or-run urxvt</command></action> -->
-    <!-- </keybind> -->
     <keybind key="W-S-l">
       <action name="Reconfigure"/>
       <action name="Execute">
@@ -516,31 +434,7 @@
         <dialog>list</dialog>
       </action>
     </keybind>
-    <keybind key="XF86AudioPrev">
-      <action name="Execute">
-        <command>mpc prev</command>
-      </action>
-    </keybind>
-    <keybind key="XF86AudioNext">
-      <action name="Execute">
-        <command>mpc next</command>
-      </action>
-    </keybind>
-    <keybind key="XF86AudioPlay">
-      <action name="Execute">
-        <command>mpc toggle</command>
-      </action>
-    </keybind>
-    <keybind key="C-XF86AudioPlay">
-      <action name="Execute">
-        <command>mpc stop</command>
-      </action>
-    </keybind>
-    <keybind key="S-XF86AudioPlay">
-      <action name="Execute">
-        <command>mpc stop</command>
-      </action>
-    </keybind>
+
     <keybind key="C-S-F12">
       <action name="Execute">
         <command>tt randr.hx</command>
@@ -571,6 +465,7 @@
         <command>tt randr.hx</command>
       </action>
     </keybind>
+
     <keybind key="XF86Launch9">
       <action name="ToggleShowDesktop"/>
     </keybind>

@@ -1,5 +1,15 @@
 #!/bin/sh
 
+run_system_scripts()
+{
+    if [ -d /etc/X11/xinit/xinitrc.d ] ; then                                                                                                                                                                          
+        for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do                                                                                                                                                                      
+            [ -x "$f" ] && . "$f"                                                                                                                                                                                            
+        done                                                                                                                                                                                                              
+        unset f                                                                                                                                                                                                           
+    fi 
+}
+
 init_common()
 {
     test -d ~/bin && export PATH=~/bin:$PATH
@@ -25,6 +35,9 @@ init_common()
 
 init_sparta()
 {
+    test -d /home/e/bin && export PATH=/home/e/bin:$PATH
+    test -d /home/e/bin/private && export PATH=/home/e/bin/private:$PATH
+
     export QT_PLUGIN_PATH=/opt/lib32/usr/lib/qt/plugins
     # export WINEARCH=win32
     export BROWSER=google-chrome
@@ -49,47 +62,12 @@ init_sparta()
 
 }
 
-
-desktop_wm=openbox
-
 init_common
 init_$(uname -n)
 
-
-if [ "$desktop_wm" = "xmonad" ]; then
-
-    export _JAVA_AWT_WM_NONREPARENTING=1
-
-    export PATH=$HOME/.xmonad/bin:$PATH
-
-    hsetroot -solid '#111111'
-
-    trayer --edge top --align right --transparent true --SetDockType true --SetPartialStrut true --width 16 --height 11 --transparent true --tint 0x000000 &
-
-    parcellite &
-    skype &
-    ( sleep 2s && pidgin ) &
-    ( sleep 4s && opera ) &
-
-    exec ck-launch-session xmonad
-fi
-
-if [ "$desktop_wm" = "awesome" ]; then
-    hsetroot -solid '#111111'
-    exec awesome
-fi
+run_system_scripts
 
 
-if [ "$desktop_wm" = "xfce" ]; then
-    exec startxfce4
-fi
-
-if [ "$desktop_wm" = "openbox" ]; then
-    #exec ck-launch-session dbus-launch openbox-session-debug
-    #exec openbox-session-ulimit
-    ulimit -c unlimited
-    exec ssh-agent /usr/bin/openbox --startup ~/.config/openbox/autostart
-
-fi
-
-#exec ck-launch-session openbox
+ulimit -c unlimited
+exec ssh-agent /usr/bin/openbox --startup ~/.config/openbox/autostart
+# exec ssh-agent /usr/bin/openbox-session

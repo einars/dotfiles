@@ -1,0 +1,12 @@
+#!/bin/sh
+
+
+#current=$(setxkbmap -query  | grep layout | awk '{print $2}')
+# if [ "$current" = "lv" ]; then
+
+if setxkbmap -query  | grep dvp; then
+        notify 'Dvorāka izkārtojums. F12, lai izslēgtu'
+else
+        notify '~ Latviešu izkārtojums'
+fi
+

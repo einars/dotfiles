@@ -1,0 +1,30 @@
+partial alphanumeric_keys modifier_keys
+xkb_symbols "dvp" {
+
+	include "lv(dvorak)"
+
+	name[Group1]= "Latvian (programmer US Dvorak)";
+
+	key <TLDE> {[ dollar,		asciitilde,	EuroSign,		cent			]};
+	key <AE01> {[ ampersand,	1,	acute,			asciitilde		]};
+	key <AE02> {[ bracketleft,	2,		onesuperior,		twosuperior		]};
+	key <AE03> {[ braceleft,	3,		guillemotleft,		leftdoublequotemark	]};
+	key <AE04> {[ braceright,	4,		guillemotright,		rightdoublequotemark	]};
+	key <AE05> {[ parenleft,	5,		onehalf,		threeeighths		]};
+	key <AE06> {[ equal,		6,		threequarters,		fiveeighths		]};
+	key <AE07> {[ asterisk,		7,		degree,			copyright		]};
+	key <AE08> {[ parenright,	8,		endash,			emdash			]};
+	key <AE09> {[ plus,		9,		plusminus,		section			]};
+	key <AE10> {[ bracketright,	0,		registered,		trademark		]};
+	key <AE11> {[ exclam,		percent,	exclam,			exclamdown		]};
+	key <AE12> {[ numbersign,	grave,		Greek_alpha,		Greek_beta		]};
+
+	key <AD01> {[ semicolon,	colon,		semicolon,		colon			]};
+	key <AD12> {[ at,		asciicircum,	at,			asciicircum		]};
+
+	key <AB01> {[ apostrophe,	quotedbl,	leftdoublequotemark,	doublelowquotemark	]};
+
+	include "level3(ralt_switch)"
+};
+
+

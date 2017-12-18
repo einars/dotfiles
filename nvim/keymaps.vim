@@ -13,12 +13,7 @@ map <s-f5> <esc>:EnableFastPHPFolds<cr>
 " close buffer leaving splits intact
 map <leader>d <esc>:call CleanDeleteBuffer()<cr>
 
-" mostly broken with vim-space
-" inoremap jk <Esc>
-imap <C-L> <Esc>
-
-map ; :
-noremap ;; ;
+nmap ; :
 
 " get rid of search highlighting with leader-space
 nnoremap <leader><space> :noh<cr>
@@ -27,13 +22,6 @@ nnoremap <leader>r :retab<cr>:call StripTrailingWhitespace()<cr>
 
 " ,e - various common editors
 nnoremap <leader>ev :e ~/.config/nvim/init.vim<cr>
-nnoremap <leader>ez :e ~/.zshrc<cr>
-nnoremap <leader>ec :e ~/commands<cr>
-nnoremap <leader>eq :e ~/dokumenti/quotes.txt<cr>
-nnoremap <leader>en :e ~/dokumenti/notes.txt<cr>
-nnoremap <leader>et :e ~/dokumenti/notes-tech.txt<cr>
-nnoremap <leader>ed :e ~/dokumenti/drawing.txt<cr>
-nnoremap <leader>es :e ~/dokumenti/scribble.txt<cr>
 nnoremap <leader>eo :e ~/.config/openbox/rc.xml<cr>
 nnoremap <leader>em :e ~/.config/openbox/menu.xml<cr>
 
@@ -111,3 +99,4 @@ endfunction
 
 map  <silent>  <S-Insert>  "+p
 imap <silent>  <S-Insert>  <Esc>"+pa
+

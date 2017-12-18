@@ -36,14 +36,11 @@ set wildmenu            " filename etc completion on tab
 set wildmode=full
 set scrolloff=15
 set nostartofline
-set tabstop=8
-set softtabstop=2
-set shiftwidth=2
 set shiftround          " shift in mod 4
 set nojoinspaces        " with joinspaces, two spaces are entered after . / ? / !
 set splitright          " split on the correct side
 set expandtab
-set autoindent
+set smartindent
 set wildchar=<Tab>
 set laststatus=2        " good statusline is good
 " set statusline=%<%f\%h%m%r%=%-20.(%L\ %l:%v\ %)\ \ \%h%m%r%=\%P
@@ -97,17 +94,15 @@ function! EditorRoot()
   endif
 endfunction
 
-
 filetype off
 let &rtp = &rtp . ',' . EditorRoot() . '/bundle/Vundle.vim/'
 call vundle#begin(EditorRoot() . '/bundle')
-
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-rooter'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-sleuth'
 
 Plugin 'einars/vim-phpfold'
 
@@ -116,23 +111,22 @@ Plugin 'einars/translit.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'digitaltoad/vim-pug'
-Plugin 'kchmck/vim-coffee-script'
+" Plugin 'kchmck/vim-coffee-script'
 Plugin 'rgrinberg/vim-ocaml'
 Plugin 'derekwyatt/vim-scala'
 
 Plugin 'junegunn/goyo.vim'
 Plugin 'stephpy/vim-yaml'
 
-Plugin 'avr8bit.vim'
-
-Plugin 'othree/yajs.vim' " ES6
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'neoclide/vim-jsx-improve'
+" Plugin 'othree/yajs.vim' " ES6
 
 if has('nvim')
   " neovim
   let g:deoplete#enable_at_startup = 1
   Plugin 'equalsraf/neovim-gui-shim'
   Plugin 'Shougo/deoplete.nvim'
-  Plugin 'ternjs/tern_for_vim'
 else
   " gvim
   let g:ycm_key_detailed_diagnostics = '<F11>'

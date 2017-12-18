@@ -3,10 +3,10 @@
 have_apple_kbd=$(lsusb | grep 'Aluminum Keyboard')
 have_ms_kbd=$(lsusb | grep 'Microsoft Corp. Nano') # Ms Wireless 3000
 
-if [ "$have_apple_kbd" != "" ]
-then
+if [ "$have_apple_kbd" != "" ]; then
+
   echo 'rekey: using Apple keyboard modifications'
-  setxkbmap lv -option '' -option ctrl:nocaps  -option altwin:swap_lalt_lwin
+  setxkbmap lv  -option altwin:swap_lalt_lwin
   echo '
 ! bring some apple keys in order
 keycode 94 = grave asciitilde grave asciitilde asciitilde
@@ -14,11 +14,11 @@ remove mod4 = Super_R
 keycode 134 = ISO_Level3_Shift NoSymbol ISO_Level3_Shift
 !keycode 108 = Mode_switch NoSymbol Mode_switch
   ' | xmodmap -
-else
-  if [ "$have_ms_kbd" != "" ]
-  then
+
+else if [ "$have_ms_kbd" != "" ]; then
+
     echo 'rekey: using MS Wireless 3000 keyboard modifications'
-    setxkbmap lv -option '' -option ctrl:nocaps
+    setxkbmap lv
     echo '
 ! menu as a copy of escape:
 ! wireless desktop 3000 has a dumb tiny escape
@@ -27,8 +27,7 @@ keycode 135 = Escape NoSymbol Escape
 
   else
 
-    echo 'rekey: using default keyboard settings'
-    setxkbmap lv -option '' -option ctrl:nocaps
+    setxkbmap lv
 
   fi
 fi
@@ -79,6 +78,8 @@ keycode 60 = period greater NoSymbol NoSymbol periodcentered U25A0
 ! altgr-minus gets typographical minus
 keycode 20 = minus underscore NoSymbol NoSymbol U2212 U2212
 
+clear Lock
+keycode 0x42 = Escape
 ' | xmodmap -
 
 

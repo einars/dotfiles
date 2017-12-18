@@ -14,7 +14,7 @@ cache=yes
 cache-default=8000000                   # size in KB
 cache-backbuffer=25000                  # size in KB
 cache-initial=500                       # start playback when your cache is filled up with x kB
-cache-secs=30                           # how many seconds of audio/video to prefetch if the cache is active
+cache-secs=10                           # how many seconds of audio/video to prefetch if the cache is active
 
 
 osd-level=1                             # enable osd and display --osd-status-msg on interaction
@@ -71,7 +71,7 @@ user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:47.0) Gecko/2010010
 #cache=yes
 #cache-default=500000                    # size in KB
 #cache-backbuffer=250000                 # size in KB
-cache-secs=100                          # how many seconds of audio/video to prefetch
+cache-secs=10                            # how many seconds of audio/video to prefetch
 user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:47.0) Gecko/20100101 Firefox/47.0'
 
 

@@ -35,7 +35,8 @@ alias reh='sudo /etc/rc.d/httpd restart'
 alias relight='sudo /etc/rc.d/httpd restart'
 
 alias pss="ps -Adf | grep -i"
-alias p="/bin/ps axfwwh -eo '%p %U %a'"
+# "p -w" for unlimited width
+alias p="/bin/ps axfwh -eo pid,user,args"
 alias S='sudo'
 
 alias tree="ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
@@ -152,10 +153,12 @@ alias html2jade='echo Use h2j alias'
 
 alias curl='curl --location '
 
+alias wip='git add --all && git commit -am WIP'
 
 alias yaourt='yaourt --nameonly'
 
 alias logs='journalctl --since "3 hours ago"'
+alias mc='mc --nosubshell'
 # ssh and immediately connect to screen
 # you may use "ss example.com sessionname" for named sessions
 #ss() { ssh $1 -t screen -URd -S ${2:-default}}
@@ -166,5 +169,3 @@ ss() { ssh $1 -t "LC_ALL=en_US.UTF8 screen -RUDS ${2:-default}"}
 tarz() { tar cvf - $2 | pigz -1 - > $1 }
 
 # vim: syn=zsh :
-
-

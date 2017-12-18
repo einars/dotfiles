@@ -253,3 +253,5 @@ maybe_source ~/.zsh/zsh.$host
 
 # vim: set fdm=marker :
 
+
+export PATH="$HOME/.yarn/bin:$PATH"
