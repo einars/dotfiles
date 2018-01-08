@@ -233,6 +233,16 @@
         <execute>/storage/izklaide/isaac-local/isaac-restore</execute>
       </action>
     </keybind -->
+    <keybind key="S-F9">
+      <action name="Execute">
+        <execute>/home/e/bin/private/click</execute>
+      </action>
+    </keybind>
+    <keybind key="C-F9">
+      <action name="Execute">
+        <execute>killall click</execute>
+      </action>
+    </keybind>
     <keybind key="F12">
       <action name="Execute">
         <execute>/home/e/bin/toggle-dvorak</execute>

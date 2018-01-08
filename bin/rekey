@@ -27,7 +27,7 @@ keycode 135 = Escape NoSymbol Escape
 
   else
 
-    setxkbmap lv
+    setxkbmap lv -option ctrl:nocaps
 
   fi
 fi
@@ -78,8 +78,8 @@ keycode 60 = period greater NoSymbol NoSymbol periodcentered U25A0
 ! altgr-minus gets typographical minus
 keycode 20 = minus underscore NoSymbol NoSymbol U2212 U2212
 
-clear Lock
-keycode 0x42 = Escape
+! clear Lock
+! keycode 0x42 = Escape
 ' | xmodmap -
 
 
