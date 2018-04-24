@@ -21,6 +21,9 @@ if ! has('nvim')
   endif
 endif
 
+if has('nvim')
+  set termguicolors
+endif
 
 " Disable cursor blinking
 set guicursor+=a:blinkon0
@@ -44,7 +47,8 @@ set smartindent
 set wildchar=<Tab>
 set laststatus=2        " good statusline is good
 " set statusline=%<%f\%h%m%r%=%-20.(%L\ %l:%v\ %)\ \ \%h%m%r%=\%P
-set statusline=%<%f\%h%m%r\ %{fugitive#statusline()}%=%-20.(%L\ %l:%v\ %)\ \ \%h%m%r%=\%P
+"set statusline=%<%f\%h%m%r\ %{fugitive#statusline()}%=%-20.(%L\ %l:%v\ %)\ \ \%h%m%r%=\%P
+set statusline=%<%f\%h%m%r\ %=%-20.(%L\ %l:%v\ %)\ \ \%h%m%r%=\%P
 set wildignore=*.cmi,*.cmx,*.cmo,*.class,*.pyc,.svn,.git,*.o,*.a,*.so,target,*/.git/*,*/bower_components/*,*/node_modules/*
 set suffixes-=.h
 set virtualedit=block
@@ -77,14 +81,15 @@ set nolist
 set listchars=tab:·\ ,trail:.,extends:#,nbsp:▮
 
 set bs=indent,eol,start " usable backspace
+set complete-=i
+set smarttab
 set hlsearch
 set incsearch
-set ignorecase          " search ignores case while no uppercase is searched
+set ignorecase
 set smartcase
 set nowrap              " dont' wrap the text
 set noswapfile          " can't remember a single time this would have been useful
 set nonumber
-
 
 function! EditorRoot()
   if has('nvim')
@@ -100,6 +105,9 @@ call vundle#begin(EditorRoot() . '/bundle')
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-rooter'
+
+" vim-surround: do not use C-s / C-g s
+let g:surround_no_insert_mappings = 1
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sleuth'
@@ -120,6 +128,7 @@ Plugin 'stephpy/vim-yaml'
 
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'neoclide/vim-jsx-improve'
+Plugin 'tpope/vim-flagship'
 " Plugin 'othree/yajs.vim' " ES6
 
 if has('nvim')
@@ -142,10 +151,10 @@ filetype plugin indent on  " detect filetypes
 syntax on                  " colors
 
 "colors sorcerer
-if has('gui_running') || exists('g:GuiLoaded')
-  colors sourcerer_noitalic
+if ! has('nvim')
+  colors industry
 else
-  colors mustang
+  colors sourcerer_noitalic
 endif
 
 
@@ -156,7 +165,7 @@ let g:ctrlp_open_multiple_files = '1vir'
 
 let g:ctrlp_user_command = {
         \ 'types': {
-                \ 1: ['.git', 'cd %s && git ls-files | grep -v bower_components'],
+                \ 1: ['.git', 'cd %s && git ls-files | grep -v bower_components | grep -v build'],
                 \ 2: ['.hg', 'hg --cwd %s locate -I .'],
                 \ },
         \ 'fallback': 'find %s -type f'

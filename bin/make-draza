@@ -19,6 +19,11 @@ cd /storage/draza
 rm -f current
 ln -sf /storage/draza/$year/$month current
 
+cd /storage/torrents
+rm current
+ln -sf "$year-$month" current
+
+
 echo Created $drazapath
 echo Restarting smbd service...
 sudo systemctl restart smbd

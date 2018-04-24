@@ -1,5 +1,7 @@
 autocmd BufEnter *.ml,*.c,*.h,*.cpp,*.php :Rooter
 
+" neovim broken map with auto-pairs
+autocmd VimEnter,BufEnter,BufWinEnter * silent! iunmap <buffer> <M-">
 
 
 augroup broken_indents

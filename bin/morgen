@@ -1,0 +1,5 @@
+#!/bin/sh
+
+t s.prod.receive
+t postdoc.prod.receive
+t dl.test.receive

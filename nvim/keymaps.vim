@@ -6,6 +6,10 @@ map  <c-z> :bp<cr>
 map  <c-c> :bn<cr>
 map  <S-CR> <cr>
 
+" c-b as an alias for c-w, window cmds
+map  <c-b> <c-w>
+map  <c-b><c-b> <c-w><c-w>
+
 map <leader>s :call Switch('')<left><left>
 " resync colors on f5
 map <f5> <esc>:syn sync fromstart<cr>

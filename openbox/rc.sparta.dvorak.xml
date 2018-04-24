@@ -182,41 +182,53 @@
   </dock>
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
-    <keybind key="W-s-space">
-      <action name="ShowMenu">
+
+    <keybind key="W-h"><action name="Execute">
+        <execute>xdotool key --clearmodifiers Left</execute>
+    </action></keybind>
+    <keybind key="W-S-h"><action name="Execute">
+        <execute>xdotool key --clearmodifiers Home</execute>
+    </action></keybind>
+    <keybind key="W-n"><action name="Execute">
+        <execute>xdotool key --clearmodifiers Right</execute>
+    </action></keybind>
+    <keybind key="W-S-n"><action name="Execute">
+        <execute>xdotool key --clearmodifiers End</execute>
+    </action></keybind>
+    <keybind key="W-c"><action name="Execute">
+        <execute>xdotool key --clearmodifiers Up</execute>
+    </action></keybind>
+    <keybind key="W-S-c"><action name="Execute">
+        <execute>xdotool key --clearmodifiers Page_Up</execute>
+    </action></keybind>
+    <keybind key="W-t"><action name="Execute">
+        <execute>xdotool key --clearmodifiers Down</execute>
+    </action></keybind>
+    <keybind key="W-S-t"><action name="Execute">
+        <execute>xdotool key --clearmodifiers Page_Down</execute>
+    </action></keybind>
+
+    <keybind key="W-s-space"><action name="ShowMenu">
         <menu>root-menu</menu>
-      </action>
-    </keybind>
-    <keybind key="W-space">
-      <action name="ShowMenu">
+    </action></keybind>
+    <keybind key="W-space"><action name="ShowMenu">
         <menu>client-list-combined-menu</menu>
-      </action>
-    </keybind>
-    <keybind key="W-dollar">
-      <action name="Execute">
+    </action></keybind>
+    <keybind key="W-dollar"><action name="Execute">
         <execute>/home/e/bin/toggle-terminal</execute>
-      </action>
-    </keybind>
-    <keybind key="Print">
-      <action name="Execute">
+    </action></keybind>
+    <keybind key="Print"><action name="Execute">
         <execute>/home/e/bin/nvimq</execute>
-      </action>
-    </keybind>
-    <keybind key="Scroll_Lock">
-      <action name="Execute">
+    </action></keybind>
+    <keybind key="Scroll_Lock"><action name="Execute">
         <execute>tt screenshot</execute>
-      </action>
-    </keybind>
-    <keybind key="S-Scroll_Lock">
-      <action name="Execute">
+    </action></keybind>
+    <keybind key="S-Scroll_Lock"><action name="Execute">
         <execute>gcolor2</execute>
-      </action>
-    </keybind>
-    <keybind key="Pause">
-      <action name="Execute">
+    </action></keybind>
+    <keybind key="Pause"><action name="Execute">
         <execute>/home/e/bin/notify-datetime</execute>
-      </action>
-    </keybind>
+    </action></keybind>
     <keybind key="XF86Eject">
       <action name="Execute">
         <dis-command>xdotool click --repeat 5000 --delay 1 1</dis-command>
@@ -243,122 +255,67 @@
         <execute>killall click</execute>
       </action>
     </keybind>
-    <keybind key="F12">
+    <keybind dis-key="F12">
       <action name="Execute">
         <execute>/home/e/bin/toggle-dvorak</execute>
       </action>
     </keybind>
-    <!-- keybind key="W-0x26">
-      <action name="GoToDesktop">
-        <to>1</to>
-      </action>
+    <keybind key="W-KP_1">
+      <action name="GoToDesktop"><to>1</to></action>
     </keybind>
-    <keybind key="W-0x5b">
-      <action name="GoToDesktop">
-        <to>2</to>
-      </action>
+    <keybind key="W-KP_2">
+      <action name="GoToDesktop"><to>2</to></action>
     </keybind>
-    <keybind key="W-3">
-      <action name="GoToDesktop">
-        <to>3</to>
-      </action>
+    <keybind key="W-KP_3">
+      <action name="GoToDesktop"><to>3</to></action>
     </keybind>
-    <keybind key="W-4">
-      <action name="GoToDesktop">
-        <to>4</to>
-      </action>
+    <keybind key="W-KP_4">
+      <action name="GoToDesktop"><to>4</to></action>
     </keybind>
-    <keybind key="W-(">
-      <action name="GoToDesktop">
-        <to>5</to>
-      </action>
+    <keybind key="W-KP_5">
+      <action name="GoToDesktop"><to>5</to></action>
     </keybind>
-    <keybind key="W-=">
-      <action name="GoToDesktop">
-        <to>6</to>
-      </action>
+    <keybind key="W-KP_6">
+      <action name="GoToDesktop"><to>6</to></action>
     </keybind>
-    <keybind key="W-*">
-      <action name="GoToDesktop">
-        <to>7</to>
-      </action>
+    <keybind key="W-KP_7">
+      <action name="GoToDesktop"><to>7</to></action>
     </keybind>
-    <keybind key="W-)">
-      <action name="GoToDesktop">
-        <to>8</to>
-      </action>
+    <keybind key="W-KP_8">
+      <action name="GoToDesktop"><to>8</to></action>
     </keybind>
-    <keybind key="W-+">
-      <action name="GoToDesktop">
-        <to>9</to>
-      </action>
+    <keybind key="W-KP_9">
+      <action name="GoToDesktop"><to>9</to></action>
     </keybind>
-    <keybind key="W-]">
-      <action name="GoToDesktop">
-        <to>10</to>
-      </action>
-    </keybind -->
-    <!--
-    <keybind key="W-S-1">
-      <action name="SendToDesktop">
-        <to>1</to>
-        <follow>no</follow>
-      </action>
+    <keybind key="W-KP_0">
+      <action name="GoToDesktop"><to>10</to></action>
     </keybind>
-    <keybind key="W-S-2">
-      <action name="SendToDesktop">
-        <to>2</to>
-        <follow>no</follow>
-      </action>
+    <keybind key="W-S-KP_1">
+      <action name="SendToDesktop"><to>1</to><follow>no</follow></action>
     </keybind>
-    <keybind key="W-S-3">
-      <action name="SendToDesktop">
-        <to>3</to>
-        <follow>no</follow>
-      </action>
+    <keybind key="W-S-KP_2">
+      <action name="SendToDesktop"><to>2</to><follow>no</follow></action>
     </keybind>
-    <keybind key="W-S-4">
-      <action name="SendToDesktop">
-        <to>4</to>
-        <follow>no</follow>
-      </action>
+    <keybind key="W-S-KP_3">
+      <action name="SendToDesktop"><to>3</to><follow>no</follow></action>
     </keybind>
-    <keybind key="W-S-5">
-      <action name="SendToDesktop">
-        <to>5</to>
-        <follow>no</follow>
-      </action>
+    <keybind key="W-S-KP_4">
+      <action name="SendToDesktop"><to>4</to><follow>no</follow></action>
     </keybind>
-    <keybind key="W-S-6">
-      <action name="SendToDesktop">
-        <to>6</to>
-        <follow>no</follow>
-      </action>
+    <keybind key="W-S-KP_5">
+      <action name="SendToDesktop"><to>5</to><follow>no</follow></action>
     </keybind>
-    <keybind key="W-S-7">
-      <action name="SendToDesktop">
-        <to>7</to>
-        <follow>no</follow>
-      </action>
+    <keybind key="W-S-KP_6">
+      <action name="SendToDesktop"><to>6</to><follow>no</follow></action>
     </keybind>
-    <keybind key="W-S-8">
-      <action name="SendToDesktop">
-        <to>8</to>
-        <follow>no</follow>
-      </action>
+    <keybind key="W-S-KP_7">
+      <action name="SendToDesktop"><to>7</to><follow>no</follow></action>
     </keybind>
-    <keybind key="W-S-9">
-      <action name="SendToDesktop">
-        <to>9</to>
-        <follow>no</follow>
-      </action>
+    <keybind key="W-S-KP_8">
+      <action name="SendToDesktop"><to>8</to><follow>no</follow></action>
     </keybind>
-    -->
-    <keybind key="W-C">
-      <action name="MoveResizeTo">
-        <x>center</x>
-        <y>center</y>
-      </action>
+    <keybind key="W-S-KP_9">
+      <action name="SendToDesktop"><to>9</to><follow>no</follow></action>
     </keybind>
     <keybind key="W-S-Return">
       <action name="Execute">
@@ -489,12 +446,7 @@
         <command>my-file-manager /storage/music/</command>
       </action>
     </keybind>
-    <keybind key="W-t">
-      <action name="Execute">
-        <command>my-file-manager /storage/torrents/</command>
-      </action>
-    </keybind>
-    <keybind key="W-s-t">
+    <keybind key="W-c-t">
       <action name="Execute">
         <command>my-file-manager /storage/torrents/</command>
       </action>
@@ -521,7 +473,7 @@
         <command>dmenu_run -sb '#e63' -sf '#111' -fn "Monaco-14" -f -b -i -p Run: </command>
       </action>
     </keybind>
-    <keybind key="W-Left">
+    <keybind key="W-S-Left">
       <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>0</x>
@@ -530,7 +482,7 @@
         <height>100%</height>
       </action>
     </keybind>
-    <keybind key="W-Right">
+    <keybind key="W-S-Right">
       <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>-0</x>
@@ -551,22 +503,6 @@
       <action name="MoveResizeTo">
         <x>1600</x>
         <monitor>all</monitor>
-      </action>
-    </keybind>
-    <keybind key="W-Up">
-      <action name="Unmaximize"/>
-      <action name="MoveResizeTo">
-        <y>+0</y>
-        <width>100%</width>
-        <height>50%</height>
-      </action>
-    </keybind>
-    <keybind key="W-Down">
-      <action name="Unmaximize"/>
-      <action name="MoveResizeTo">
-        <y>-0</y>
-        <width>100%</width>
-        <height>50%</height>
       </action>
     </keybind>
     <keybind key="W-S-Up">

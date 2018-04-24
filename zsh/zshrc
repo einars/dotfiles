@@ -145,6 +145,9 @@ function setup_keyboard() #{{{
     stty stop '^-'
     stty start '^-'
 
+    # ^z has better uses than suspend
+    stty susp ''
+
     typeset -A key
 
     key[Home]=${terminfo[khome]}
