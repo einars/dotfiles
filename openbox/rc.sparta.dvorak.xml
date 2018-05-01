@@ -319,12 +319,12 @@
     </keybind>
     <keybind key="W-S-Return">
       <action name="Execute">
-        <command>qvim ~/dokumenti/passwords.txt</command>
+        <command>nvim-qt ~/dokumenti/passwords.txt</command>
       </action>
     </keybind>
     <keybind key="W-C-Return">
       <action name="Execute">
-        <command>gvim</command>
+        <command>nvim-qt</command>
       </action>
     </keybind>
     <keybind key="C-A-Delete">

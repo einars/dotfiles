@@ -28,6 +28,7 @@ ssh-add -l > /dev/null || ssh-add
 
 export EDITOR=nvim
 export VISUAL=nvim
+alias vim=nvim
 
 
 eval $(opam config env)

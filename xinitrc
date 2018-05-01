@@ -40,7 +40,8 @@ init_sparta()
 
     export QT_PLUGIN_PATH=/opt/lib32/usr/lib/qt/plugins
     # export WINEARCH=win32
-    export BROWSER=google-chrome
+    # export BROWSER=google-chrome
+    export BROWSER=chromium
 
     # swap scrollwheel direction
     #xmodmap -e "pointer = 1 2 3 5 4"

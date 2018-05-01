@@ -44,11 +44,6 @@ augroup Text
     autocmd FileType txt setlocal formatoptions +=wa
 augroup END
 
-augroup MyPasswords
-    autocmd!
-    highlight Password ctermfg=252 ctermbg=252 guibg=orange guifg=orange
-    autocmd BufReadPost passwords.txt call matchadd('Password', '\v  \zs([^ ]+)\ze( +; .*|$)')
-augroup END
 
 augroup Fugitive
     autocmd User fugitive

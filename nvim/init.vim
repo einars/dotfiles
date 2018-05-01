@@ -188,5 +188,6 @@ command! -nargs=* Phpdoc call Phpdoc(<f-args>)
 
 
 
+exec 'source ' . EditorRoot() . '/passwords.vim'
 exec 'source ' . EditorRoot() . '/keymaps.vim'
 exec 'source ' . EditorRoot() . '/autogroups.vim'
