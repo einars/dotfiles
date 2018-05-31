@@ -12,9 +12,9 @@ run_system_scripts()
 
 init_common()
 {
-    test -d ~/bin && export PATH=~/bin:$PATH
-    test -d ~/bin/private && export PATH=~/bin/private:$PATH
-    test -d ~/.opam/system/bin && export PATH=~/.opam/system/bin:$PATH
+    test -d /home/e/bin && export PATH=/home/e/bin:$PATH
+    test -d /home/e/bin/private && export PATH=/home/e/bin/private:$PATH
+    test -d /home/e/.opam/system/bin && export PATH=/home/e/.opam/system/bin:$PATH
     
     export STEAM_FRAME_FORCE_CLOSE=1
 
@@ -23,7 +23,7 @@ init_common()
     xsetroot -cursor_name left_ptr
     numlockx
 
-    xrdb -merge ~/.Xresources
+    xrdb -merge /home/e/.Xresources
 
     # to hell with screensaver
     xset s off
@@ -31,7 +31,12 @@ init_common()
 
 }
 
-
+init_morrigan()
+{
+    if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && type dbus-launch >/dev/null; then
+        eval $(dbus-launch --sh-syntax --exit-with-session)
+    fi
+}
 
 init_sparta()
 {

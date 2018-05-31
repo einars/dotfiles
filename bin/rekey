@@ -2,6 +2,7 @@
 
 have_apple_kbd=$(lsusb | grep 'Aluminum Keyboard')
 have_ms_kbd=$(lsusb | grep 'Microsoft Corp. Nano') # Ms Wireless 3000
+have_ms_kbd=
 
 if [ "$have_apple_kbd" != "" ]; then
 

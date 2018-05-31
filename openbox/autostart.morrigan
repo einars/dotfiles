@@ -17,8 +17,12 @@ syndaemon -i 1.5 -k -R -d
 synclient VertScrollDelta=-120 TapButton1=1 TapButton2=3 TapButton3=2
 
 # keyboard layout nuances
+# toggle-dvorak
 rekey
 
 #### nm-applet & # freezing son of a bitch
 
 ulimit -c unlimited
+
+thunar /home/e/video &
+google-chrome &
