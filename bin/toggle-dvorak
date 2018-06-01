@@ -12,7 +12,10 @@ else
         echo '
 clear Lock
 keycode 0x42 = Escape
-keycode 135 = Control_R
+! altgr , = ×□
+keycode 59 = w W w W multiply U25A1
+! altgr . = ·■
+keycode 60 = v V w W periodcentered U25A0
         ' | xmodmap -
 fi
 

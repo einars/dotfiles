@@ -74,6 +74,7 @@ set completeopt=menu
 
 set hidden              " suddenly, magically, buffers get usable
 set autoread            " don't care about ext-modified files, just reload them
+au FocusGained * :checktime " nvim autoread workaround
 
 " show or hide whitespace warnings
 set nolist

@@ -57,7 +57,7 @@ sub-spacing=0.5
 slang=enm,en,eng,ru,rus # automatically select these subtitles (decreasing priority)
 alang=en,eng,ru,rus     # automatically select these audio tracks (decreasing priority)
 
-vo=opengl
+vo=gpu
 tscale=linear
 
 [protocol.https]

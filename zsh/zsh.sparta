@@ -32,3 +32,5 @@ alias vim=nvim
 
 
 eval $(opam config env)
+
+source ~/dbus-information.auto.txt

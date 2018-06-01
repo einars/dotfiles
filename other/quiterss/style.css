@@ -135,3 +135,8 @@ a.enclosure {
 .newsTable td div[style] {
     width: 100% !important;
 }
+.newsTable span {
+  background-color: transparent !important;
+  line-height: 120% !important;
+  font-family: inherit;
+}

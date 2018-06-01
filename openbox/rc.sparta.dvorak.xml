@@ -824,110 +824,7 @@
   <!-- show the manage desktops section in the client-list-(combined-)menu -->
 </menu>
   <applications>
-    <application class="SMPlayer">
-      <desktop>all</desktop>
-      <layer>above</layer>
-    </application>
     <application name="gvim" role="gvimconsole">
-      <size>
-        <width>100%</width>
-        <height>95%</height>
-      </size>
-      <position force="yes">
-        <monitor>primary</monitor>
-        <x>0</x>
-        <y>0</y>
-      </position>
-    </application>
-    <application name="gvim" role="gvimconsole_0">
-      <size>
-        <width>100%</width>
-        <height>95%</height>
-      </size>
-      <position force="yes">
-        <monitor>primary</monitor>
-        <x>0</x>
-        <y>0</y>
-      </position>
-    </application>
-    <application name="gvim" role="gvimconsole_1">
-      <size>
-        <width>100%</width>
-        <height>95%</height>
-      </size>
-      <position force="yes">
-        <monitor>primary</monitor>
-        <x>0</x>
-        <y>0</y>
-      </position>
-    </application>
-    <application name="gvim" role="gvimconsole_2">
-      <size>
-        <width>100%</width>
-        <height>95%</height>
-      </size>
-      <position force="yes">
-        <monitor>primary</monitor>
-        <x>0</x>
-        <y>0</y>
-      </position>
-    </application>
-    <application name="gvim" role="gvimconsole_3">
-      <size>
-        <width>100%</width>
-        <height>95%</height>
-      </size>
-      <position force="yes">
-        <monitor>primary</monitor>
-        <x>0</x>
-        <y>0</y>
-      </position>
-    </application>
-    <application name="gvim" role="gvimconsole_4">
-      <size>
-        <width>100%</width>
-        <height>95%</height>
-      </size>
-      <position force="yes">
-        <monitor>primary</monitor>
-        <x>0</x>
-        <y>0</y>
-      </position>
-    </application>
-    <application name="gvim" role="gvimconsole_5">
-      <size>
-        <width>100%</width>
-        <height>95%</height>
-      </size>
-      <position force="yes">
-        <monitor>primary</monitor>
-        <x>0</x>
-        <y>0</y>
-      </position>
-    </application>
-    <application name="gvim" role="gvimconsole_6">
-      <size>
-        <width>100%</width>
-        <height>95%</height>
-      </size>
-      <position force="yes">
-        <monitor>primary</monitor>
-        <x>0</x>
-        <y>0</y>
-      </position>
-    </application>
-    <application name="gvim" role="gvimconsole_7">
-      <size>
-        <width>100%</width>
-        <height>95%</height>
-      </size>
-      <position force="yes">
-        <monitor>primary</monitor>
-        <x>0</x>
-        <y>0</y>
-      </position>
-    </application>
-    <application name="gvim" role="gvimconsole_8">
       <size>
         <width>100%</width>
         <height>95%</height>
@@ -948,7 +845,6 @@
         <x>0</x>
         <y>0</y>
       </position>
-      <desktop>all</desktop>
     </application>
     <application name="nvim-qt">
       <size>
@@ -960,7 +856,6 @@
         <x>0</x>
         <y>0</y>
       </position>
-      <desktop>all</desktop>
     </application>
     <application name="sparta-terminal">
       <!-- decor>no</decor -->
