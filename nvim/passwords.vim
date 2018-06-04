@@ -2,6 +2,7 @@ highlight Password ctermfg=252 ctermbg=252 guibg=orange guifg=orange
 
 augroup CPT
 au!
+au BufReadPre passwords.txt set eventignore=FocusLost
 au BufReadPre passwords.txt set bin viminfo= noswapfile
 
 au BufReadPost passwords.txt let $vimpass = inputsecret("Password: ")

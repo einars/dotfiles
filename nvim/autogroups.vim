@@ -65,7 +65,9 @@ autocmd BufRead,BufNew *.* call matchadd('DiffAdd', '\v(!!!|///|###|;;;|---) .*$
 """ single active window:
 " au FocusLost * silent! update
 """ all unsaved windows:
-autocmd FocusLost * silent! wa
+augroup FocusLostSave
+  autocmd FocusLost * silent! wa
+augroup END
 
 
 " Don't screw up folds when inserting text that might affect them
