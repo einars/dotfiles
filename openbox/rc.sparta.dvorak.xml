@@ -255,7 +255,7 @@
         <execute>killall click</execute>
       </action>
     </keybind>
-    <keybind dis-key="F12">
+    <keybind dkey="F12">
       <action name="Execute">
         <execute>/home/e/bin/toggle-dvorak</execute>
       </action>
@@ -857,7 +857,7 @@
         <y>0</y>
       </position>
     </application>
-    <application name="sparta-terminal">
+    <application name="urxvt.terminal">
       <!-- decor>no</decor -->
       <size>
         <width>100%</width>

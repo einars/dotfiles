@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-identifier=sparta-terminal
 
 # evilvte ir foršs, bet nokonfigurēts ar maziem burtiem
 #cmd_to_exec="evilvte -T $identifier --name $identifier --class $identifier"
-cmd_to_exec="urxvt -name $identifier -geometry 199x40"
+
+# -name allows the use of different Xresources
+identifier=urxvt.terminal
+cmd_to_exec="urxvt -name $identifier"
 
 
 
@@ -16,7 +18,7 @@ until echo $wid | grep -v failed; do
   wid=$(xdotool search --classname $identifier 2>&1)
 done
 if [ -z "$wid" ]; then
-  echo "exec $cmd_to_exec -e ~/bin/tmux-attach-or-create global &"
+  #echo "exec $cmd_to_exec -e ~/bin/tmux-attach-or-create global &"
   exec $cmd_to_exec -e tmux-attach-or-create global &
   sleep 0.05
   xdotool search --classname $identifier windowactivate

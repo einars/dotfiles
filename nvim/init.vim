@@ -132,6 +132,9 @@ Plugin 'neoclide/vim-jsx-improve'
 Plugin 'tpope/vim-flagship'
 " Plugin 'othree/yajs.vim' " ES6
 
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'junegunn/seoul256.vim'
+
 if has('nvim')
   " neovim
   let g:deoplete#enable_at_startup = 1
@@ -155,7 +158,11 @@ syntax on                  " colors
 if ! has('nvim')
   colors industry
 else
-  colors sourcerer_noitalic
+  set background=light
+  "colors sourcerer_noitalic
+  colors PaperColor
+  "let g:seoul256_light_backround = 255
+  "colors seoul256-light
 endif
 
 

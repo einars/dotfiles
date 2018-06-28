@@ -1,0 +1,4 @@
+#!/bin/sh
+
+pkill -f sparta-smp
+mpv --x11-name sparta-smp $@

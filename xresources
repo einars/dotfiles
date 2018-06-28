@@ -1,104 +1,121 @@
-!URxvt*font: xft:xos4 Terminus:size=10
-URxvt*font: xft:Ubuntu Mono:size=13,xft
-!URxvt*font: xft:Source Code Pro:size=10:antialias=false,xft:Lucida Console:size=10
+urxvt*font: xft:Iosevka Term:size=11
+!urxvt*font: xft:Ubuntu Mono:size=11
 
-URxvt*depth: 24
+urxvt*depth: 24
 
 rxvt.print-pipe: "cat > /dev/null"
-URxvt.print-pipe: "cat > /dev/null"
+urxvt*print-pipe: "cat > /dev/null"
 
-xterm*metaSendsEscape: true
-xterm*termName: rxvt-256color
+!xterm*metaSendsEscape: true
+!xterm*termName: rxvt-256color
 
-URxvt*cutchars: '"'&()*,;<=>?@[]{|}
-URxvt*colorUL: #86a2be
-URxvt*geometry: 140x35
-!URxvt*cursorColor: #86a2be
-URxvt*cursorColor: #ff3300
-URxvt*pointerBlank: true
+urxvt*cutchars: '"'&()*,;<=>?@[]{|}
+!urxvt*geometry: 140x35
+urxvt*pointerBlank: true
 
 ! these are pretty, but reset back to block after vim/nvim
-URxvt*cursorBlink: false
-URxvt*cursorUnderline: false
 
-URxvt*internalBorder: 2
-URxvt*loginShell: false
+urxvt*internalBorder: 2
+urxvt*loginShell: false
 !URxvt*pointerBlank: false
-URxvt*saveLines: 500
-URxvt*secondaryScroll: true
-URxvt*jumpScroll: true
-URxvt*skipScroll: true
+urxvt*saveLines: 500
+urxvt*secondaryScroll: true
+urxvt*jumpScroll: true
+urxvt*skipScroll: true
 
-URxvt*scrollBar: false
+urxvt*scrollBar: false
 
-URxvt*scrollTtyKeypress: true
-URxvt*scrollTtyOutput: false
-URxvt*scrollWithBuffer: true
-URxvt*lineSpace: 4
+urxvt*scrollTtyKeypress: true
+urxvt*scrollTtyOutput: false
+urxvt*scrollWithBuffer: true
+urxvt*lineSpace: 4
 
 ! no more ctrl-shift crap!
-URxvt.iso14755: false
-URxvt.iso14755_52: false
+urxvt*iso14755: false
+urxvt*iso14755_52: false
 
-URxvt*termName: rxvt-256color
-URxvt*underlineColor: #86a2be
+!urxvt*termName: rxvt-256color
+urxvt*underlineColor: #86a2be
 
-URxvt*urlLauncher: google-chrome
-URxvt*underlineURLs: true
+urxvt*underlineURLs: true
 
-URxvt.keysym.M-BackSpace: \033\010
-URxvt.keysym.C-Right:   \033[1;5C
-URxvt.keysym.C-Left:    \033[1;5D
-URxvt.keysym.C-Home:    \033[1;5H
-URxvt.keysym.C-End:     \033[1;5F
+!urxvt.keysym.M-BackSpace: \033\010
+!urxvt.keysym.C-Right:   \033[1;5C
+!urxvt.keysym.C-Left:    \033[1;5D
+!urxvt.keysym.C-Home:    \033[1;5H
+!urxvt.keysym.C-End:     \033[1;5F
+
 ! no perl
-URxvt.perl-ext:
-URxvt.perl-ext-common:
-
-URxvt*fading: 0
-! URxvt*fadeColor: #242424
-
-!! tango
-!! URxvt*background:             #000000
-*background:             #222222
-*foreground:             #D3D7CF
-*color0:                 #2E3436
-*color1:                 #CC0000
-*color2:                 #4E9A06
-*color3:                 #C4A000
-*color4:                 #3465A4
-*color5:                 #75507B
-*color6:                 #06989A
-*color7:                 #D3D7CF
-*color8:                 #555753
-*color9:                 #EF2929
-*color10:                #8AE234
-*color11:                #FCE94F
-*color12:                #729FCF
-*color13:                #AD7FA8
-*color14:                #34E2E2
-*color15:                #EEEEEC
+urxvt*perl-ext:
+urxvt*perl-ext-common:
 
 Xcursor.theme: Human
 
-URxvt-terminal*background:             #333333
-URxvt-terminal*foreground:             #D3D7CF
-URxvt-terminal*color0:                 #2E3436
-URxvt-terminal*color1:                 #CC0000
-URxvt-terminal*color2:                 #4E9A06
-URxvt-terminal*color3:                 #C4A000
-URxvt-terminal*color4:                 #3465A4
-URxvt-terminal*color5:                 #75507B
-URxvt-terminal*color6:                 #06989A
-URxvt-terminal*color7:                 #D3D7CF
-URxvt-terminal*color8:                 #555753
-URxvt-terminal*color9:                 #EF2929
-URxvt-terminal*color10:                #8AE234
-URxvt-terminal*color11:                #FCE94F
-URxvt-terminal*color12:                #729FCF
-URxvt-terminal*color13:                #AD7FA8
-URxvt-terminal*color14:                #34E2E2
-URxvt-terminal*color15:                #EEEEEC
-
 Xft.lcdfilter: lcdnone
 Xft.rgba: none
+
+urxvt*cursorBlink: false
+urxvt*cursorUnderline: false
+
+! urxvt*foreground: #000011
+! urxvt*background: #e4e4e4
+! urxvt*cursorColor: #23476a
+! urxvt*color0:#000000
+! urxvt*color1:#b5407b
+! urxvt*color2:#7bb540
+! urxvt*color3:#b57b40
+! urxvt*color4:#407bb5
+! urxvt*color5:#7b40b5
+! urxvt*color6:#40b57b
+! urxvt*color7:#f8f8f8
+! urxvt*color8:#737373
+! urxvt*color9:#cd73a0
+! urxvt*color10:#a0cd73
+! urxvt*color11:#cda073
+! urxvt*color12:#73a0cd
+! urxvt*color13:#a073cd
+! urxvt*color14:#73cda0
+! urxvt*color15:#ffffff
+
+
+! https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/Xresources/BlulocoLight
+*.foreground:  #2a2c33
+*.background:  #f7f7f7
+*.cursorColor: #ed0047
+!
+! Black
+*.color0:      #cbccd5
+*.color8:      #dedfe8
+!
+! Red
+*.color1:      #c90e42
+*.color9:      #fc4a6d
+!
+! Green
+*.color2:      #21883a
+*.color10:     #34b354
+!
+! Yellow
+*.color3:      #d54d17
+*.color11:     #b89427
+!
+! Blue
+*.color4:      #1e44dd
+*.color12:     #1085d9
+!
+! Magenta
+*.color5:      #6d1bed
+*.color13:     #c00db3
+!
+! Cyan
+*.color6:      #1f4d7a
+*.color14:     #5b80ad
+!
+! White
+*.color7:      #000000
+*.color15:     #1d1d22
+!
+! Bold, Italic, Underline
+*.colorBD:     #2a2c33
+!*.colorIT:
+!*.colorUL:
