@@ -1,8 +1,7 @@
-"" no need to set if same as gui
-"" "set background=light
-"" "colors PaperColor
-"Guifont Ubuntu Mono:h12
-"Guifont PragmataPro:h11
-Guifont Iosevka Term:h12
-GuiLinespace 6
-"call rpcnotify(1, 'Gui', 'Font', 'Iosevka Term 12')
+" source host-specific ginit.$hostname.vim
+
+let hostname = substitute(system('hostname'), '\n', '', '')
+let local_init = EditorRoot() . '/ginit.' . hostname . '.vim'
+if filereadable(local_init)
+  exec 'source ' . local_init
+endif

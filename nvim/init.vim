@@ -199,3 +199,11 @@ command! -nargs=* Phpdoc call Phpdoc(<f-args>)
 exec 'source ' . EditorRoot() . '/passwords.vim'
 exec 'source ' . EditorRoot() . '/keymaps.vim'
 exec 'source ' . EditorRoot() . '/autogroups.vim'
+
+" source host-specific init.$hostname.vim
+let hostname = substitute(system('hostname'), '\n', '', '')
+let local_init = EditorRoot() . '/init.' . hostname . '.vim'
+if filereadable(local_init)
+  exec 'source ' . local_init
+endif
+
