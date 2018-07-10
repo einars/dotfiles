@@ -107,6 +107,10 @@ call vundle#begin(EditorRoot() . '/bundle')
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-rooter'
 
+" adds Wipeout command to cleanup buffers
+Plugin 'artnez/vim-wipeout' 
+
+
 " vim-surround: do not use C-s / C-g s
 let g:surround_no_insert_mappings = 1
 Plugin 'tpope/vim-surround'
@@ -156,7 +160,7 @@ syntax on                  " colors
 
 "colors sorcerer
 if ! has('nvim')
-  colors industry
+  colors default
 else
   set background=light
   "colors sourcerer_noitalic
@@ -199,6 +203,7 @@ command! -nargs=* Phpdoc call Phpdoc(<f-args>)
 exec 'source ' . EditorRoot() . '/passwords.vim'
 exec 'source ' . EditorRoot() . '/keymaps.vim'
 exec 'source ' . EditorRoot() . '/autogroups.vim'
+exec 'source ' . EditorRoot() . '/sessions.vim'
 
 " source host-specific init.$hostname.vim
 let hostname = substitute(system('hostname'), '\n', '', '')

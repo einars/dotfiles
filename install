@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ -z $install_source ] && install_source=$(pwd)
+install_source=$(readlink -f $(dirname $0))
 
 [ -f $install_source/install ] || {
     echo No installation source.
@@ -10,24 +10,7 @@
 git submodule init
 git submodule update
 
-mkdir -p ~/.vim
-mkdir -p ~/.config/nvim
-
-for f in $install_source/nvim/*; do
-	bf=$(basename $f)
-	ln -sfn $f ~/.vim/$bf
-	ln -sfn $f ~/.config/nvim/$bf
-done
-ln -sfn $install_source/nvim/init.vim ~/.vimrc
-
-[ -d ~/.vim/bundle/Vundle.vim ] || {
-  mkdir -p ~/.vim/bundle
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-}
-[ -d ~/.config/nvim/bundle/Vundle.vim ] || {
-  mkdir -p ~/.config/nvim/bundle
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
-}
+nvim/install
 
 ln -sfn $install_source/gitconfig ~/.gitconfig
 ln -sfn $install_source/ptconfig.toml ~/.ptconfig.toml

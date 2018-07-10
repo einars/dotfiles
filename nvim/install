@@ -1,0 +1,26 @@
+#!/bin/sh
+
+pwd=$(readlink -f $(dirname $0))
+#echo $pwd
+
+mkdir -p ~/.vim
+mkdir -p ~/.config/nvim
+
+
+for f in $pwd/*.vim; do
+	bf=$(basename $f)
+	ln -sfn $f ~/.vim/$bf
+	ln -sfn $f ~/.config/nvim/$bf
+done
+ln -sfn $pwd/init.vim ~/.vimrc
+
+[ -d ~/.vim/bundle/Vundle.vim ] || {
+  mkdir -p ~/.vim/bundle
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+}
+[ -d ~/.config/nvim/bundle/Vundle.vim ] || {
+  mkdir -p ~/.config/nvim/bundle
+  cp -r ~/.vim/bundle/Vundle.vim ~/.config/nvim/bundle/
+  # git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
+}
+

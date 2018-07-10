@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-echo $TERM
-
 setopt nohup
 
 export HISTFILE=~/.zsh_history
@@ -168,31 +166,40 @@ function setup_keyboard() #{{{
     key[PageUp]=${terminfo[kpp]}
     key[PageDown]=${terminfo[knp]}
 
-    #for k in ${(k)key} ; do
-        ## $terminfo[] entries are weird in ncurses application mode...
-        #[[ ${key[$k]} == $'\eO'* ]] && key[$k]=${key[$k]/O/[}
-    #done
-    unset k
+    # for k in ${(k)key} ; do
+        # $terminfo[] entries are weird in ncurses application mode...
+        # [[ ${key[$k]} == $'\eO'* ]] && key[$k]=${key[$k]/O/[}
+    # done
+    # unset k
 
     # setup key accordingly
-    [[ -n "${key[Home]}"    ]]  && bindkey  -- "${key[Home]}"    beginning-of-line
-    [[ -n "${key[End]}"     ]]  && bindkey  -- "${key[End]}"     end-of-line
-    [[ -n "${key[Insert]}"  ]]  && bindkey  -- "${key[Insert]}"  overwrite-mode
-    [[ -n "${key[Delete]}"  ]]  && bindkey  -- "${key[Delete]}"  delete-char
-    [[ -n "${key[Up]}"      ]]  && bindkey  -- "${key[Up]}"      history-beginning-search-backward
-    [[ -n "${key[Down]}"    ]]  && bindkey  -- "${key[Down]}"    history-beginning-search-forward
-    [[ -n "${key[Left]}"    ]]  && bindkey  -- "${key[Left]}"    backward-char
-    [[ -n "${key[Right]}"   ]]  && bindkey  -- "${key[Right]}"   forward-char
-    [[ -n "${key[Left]}" ]]  && bindkey  -- "\e${key[Left]}"  emacs-backward-word
-    [[ -n "${key[Right]}" ]] && bindkey  -- "\e${key[Right]}" emacs-forward-word
+    [[ -n "${key[Home]}"     ]]  && bindkey  -- "${key[Home]}"    beginning-of-line
+    [[ -n "${key[End]}"      ]]  && bindkey  -- "${key[End]}"     end-of-line
+    [[ -n "${key[Insert]}"   ]]  && bindkey  -- "${key[Insert]}"  overwrite-mode
+    [[ -n "${key[Delete]}"   ]]  && bindkey  -- "${key[Delete]}"  delete-char
+    [[ -n "${key[Up]}"       ]]  && bindkey  -- "${key[Up]}"      history-beginning-search-backward
+    [[ -n "${key[Down]}"     ]]  && bindkey  -- "${key[Down]}"    history-beginning-search-forward
+    [[ -n "${key[PageUp]}"   ]]  && bindkey  -- "${key[PageUp]}" up-line-or-history
+    [[ -n "${key[PageDown]}" ]]  && bindkey  -- "${key[PageDown]}" down-line-or-history
+    [[ -n "${key[Left]}"     ]]  && bindkey  -- "${key[Left]}"    backward-char
+    [[ -n "${key[Right]}"    ]]  && bindkey  -- "${key[Right]}"   forward-char
+    [[ -n "${key[Left]}"     ]]  && bindkey  -- "\e${key[Left]}"  emacs-backward-word
+    [[ -n "${key[Right]}"    ]] && bindkey  -- "\e${key[Right]}" emacs-forward-word
 
     bindkey "^J" self-insert # sweet multiline input
 
-    [[ "$TERM" == "rxvt-unicode-256color" ]] && bindkey  -- "^[[1~" beginning-of-line
-    [[ "$TERM" == "rxvt-unicode-256color" ]] && bindkey  -- "^[[4~" end-of-line
-    [[ "$TERM" == "rxvt-256color" ]] && bindkey  -- "^[[1~" beginning-of-line
-    [[ "$TERM" == "rxvt-256color" ]] && bindkey  -- "^[[4~" end-of-line
+    # [[ "$TERM" == "rxvt-unicode-256color" ]] && bindkey  -- "^[[1~" beginning-of-line
+    # [[ "$TERM" == "rxvt-unicode-256color" ]] && bindkey  -- "^[[4~" end-of-line
+    # [[ "$TERM" == "rxvt-256color" ]] && bindkey  -- "^[[1~" beginning-of-line
+    # [[ "$TERM" == "rxvt-256color" ]] && bindkey  -- "^[[4~" end-of-line
+    # Finally, make sure the terminal is in application mode, when zle is
+    # active. Only then are the values from $terminfo valid.
+    zle -N zle-line-init
+    zle -N zle-line-finish  
 } #}}}
+
+function zle-line-init () { echoti smkx }
+function zle-line-finish () { echoti rmkx }
 
 function setup_cd_autols() #{{{
 {

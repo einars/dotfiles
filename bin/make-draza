@@ -25,8 +25,8 @@ ln -sf "$year-$month" current
 
 
 echo Created $drazapath
-echo Restarting smbd service...
-sudo systemctl restart smbd
+echo Restarting smb...
+sudo systemctl restart smb
 echo Service restared
 
 

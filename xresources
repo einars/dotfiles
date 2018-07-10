@@ -9,7 +9,8 @@ urxvt*print-pipe: "cat > /dev/null"
 !xterm*metaSendsEscape: true
 !xterm*termName: rxvt-256color
 
-urxvt*cutchars: '"'&()*,;<=>?@[]{|}
+!urxvt*cutchars: '"'&()*,;<=>?@[]{|}
+urxvt*cutchars: "()*,<>[]{}|''?@│"
 !urxvt*geometry: 140x35
 urxvt*pointerBlank: true
 

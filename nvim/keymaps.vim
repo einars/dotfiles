@@ -10,7 +10,6 @@ map  <S-CR> <cr>
 map  <c-b> <c-w>
 map  <c-b><c-b> <c-w><c-w>
 
-map <leader>s :call Switch('')<left><left>
 " resync colors on f5
 map <f5> <esc>:syn sync fromstart<cr>
 map <s-f5> <esc>:EnableFastPHPFolds<cr>
@@ -18,6 +17,24 @@ map <s-f5> <esc>:EnableFastPHPFolds<cr>
 map <leader>d <esc>:call CleanDeleteBuffer()<cr>
 
 nmap ; :
+
+function! CleanDeleteBuffer()
+    """ based on CleanClose function, found somewhere
+    " just do not save the buffer under no circumstances
+    let todelbufNr = bufnr("%")
+    let newbufNr = bufnr("#")
+    if ((newbufNr != -1) && (newbufNr != todelbufNr) && buflisted(newbufNr))
+        exe "b".newbufNr
+    else
+        bnext
+    endif
+
+    if (bufnr("%") == todelbufNr)
+        new
+    endif
+    exe "bd!".todelbufNr
+endfunction
+
 
 " get rid of search highlighting with leader-space
 nnoremap <leader><space> :noh<cr>
@@ -51,31 +68,14 @@ imap <silent> <Left> <C-D>
 imap <silent> <Right> <C-T>
 
 
-
-""" functions
-"
-" leader-s: homebrew session switcher
-" Hombrew session switcher
-" ,s — open switcher
-" sessions stored in ~/.vim/sessions
-function! Switch(session)
-    let dir = EditorRoot() . '/sessions'
-    if ! isdirectory(dir) && exists('*mkdir')
-        exec mkdir(dir, '', 0700)
-    endif
-    if (v:this_session != '')
-        execute 'mksession!' v:this_session
-    endif
-    "execute "0,9000bd"
-    execute "%bd"
-    let n = dir . '/' . a:session . '.ex'
-    if ( ! filereadable(n))
-        execute 'mksession!' n
-    endif
-    echom n
-    execute 'source' n
+function! StripTrailingWhitespace()
+  normal mZ
+  %s/\s\+$//e
+  normal `Z
 endfunction
 
+map  <silent>  <S-Insert>  "+p
+imap <silent>  <S-Insert>  <Esc>"+pa
 
 function! CleanDeleteBuffer()
     """ based on CleanClose function, found somewhere
@@ -94,13 +94,4 @@ function! CleanDeleteBuffer()
     exe "bd!".todelbufNr
 endfunction
 
-
-function! StripTrailingWhitespace()
-  normal mZ
-  %s/\s\+$//e
-  normal `Z
-endfunction
-
-map  <silent>  <S-Insert>  "+p
-imap <silent>  <S-Insert>  <Esc>"+pa
 

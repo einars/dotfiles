@@ -448,7 +448,7 @@
     </keybind>
     <keybind key="W-c-t">
       <action name="Execute">
-        <command>my-file-manager /storage/torrents/</command>
+        <command>my-file-manager /storage/torrents/current</command>
       </action>
     </keybind>
     <keybind key="W-q">
