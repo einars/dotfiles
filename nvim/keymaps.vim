@@ -10,6 +10,9 @@ map  <S-CR> <cr>
 map  <c-b> <c-w>
 map  <c-b><c-b> <c-w><c-w>
 
+map  <leader>y "+y
+map  <leader>p "+p
+
 " resync colors on f5
 map <f5> <esc>:syn sync fromstart<cr>
 map <s-f5> <esc>:EnableFastPHPFolds<cr>
@@ -49,11 +52,20 @@ nnoremap <leader>em :e ~/.config/openbox/menu.xml<cr>
 
 if has('nvim')
   " deoplete tab
-  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+  " inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
   inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
   function! s:my_cr_function()
     return deoplete#mappings#close_popup() . "\<CR>"
   endfunction
+
+  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+  imap <expr><TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ neosnippet#expandable_or_jumpable() ?
+    \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 endif
 
 
@@ -73,9 +85,6 @@ function! StripTrailingWhitespace()
   %s/\s\+$//e
   normal `Z
 endfunction
-
-map  <silent>  <S-Insert>  "+p
-imap <silent>  <S-Insert>  <Esc>"+pa
 
 function! CleanDeleteBuffer()
     """ based on CleanClose function, found somewhere

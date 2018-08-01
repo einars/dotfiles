@@ -1,0 +1,53 @@
+snippet ccc
+abbr ReactClassComponent
+options word
+    import React, { PureComponent } from 'react'
+    import { connect } from 'react-redux'
+
+    class ${1:MyComponent} extends PureComponent {
+      render () {
+        return (
+          <div>
+            ${0}
+          </div>
+        )
+      }
+    }
+
+    const mapState = ({ self, tree, location }) => ({ self, tree, location })
+
+    export default connect(mapState)($1)
+
+snippet ccp
+abbr ReactPageComponent
+options word
+    import React, { PureComponent } from 'react'
+    import { connect } from 'react-redux'
+
+    import * as actions from '../actions'
+
+    class ${1:MyPage} extends PureComponent {
+
+      constructor (props) {
+        super(props)
+        this.state = {
+        }
+      }
+
+      render () {
+        return (
+          <div>
+            ${0}
+          </div>
+        )
+      }
+    }
+
+    const mapState = ({ self, tree, location }) => ({ self, tree, location })
+
+    const mapActions = {
+      navigate: actions.navigate,
+    }
+
+    export default connect(mapState, mapActions)($1)
+

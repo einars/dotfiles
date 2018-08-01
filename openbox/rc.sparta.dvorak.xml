@@ -319,7 +319,7 @@
     </keybind>
     <keybind key="W-S-Return">
       <action name="Execute">
-        <command>nvim-qt ~/dokumenti/passwords.txt</command>
+        <command>nvim-qt -- ~/dokumenti/passwords.txt</command>
       </action>
     </keybind>
     <keybind key="W-C-Return">
@@ -409,17 +409,17 @@
     </keybind>
     <keybind key="C-F12">
       <action name="Execute">
-        <command>tt randr.hv</command>
+        <command>tt randr.hh</command>
       </action>
     </keybind>
     <keybind key="XF86Launch7">
       <action name="Execute">
-        <command>tt randr.hv</command>
+        <command>tt randr.hh</command>
       </action>
     </keybind>
     <keybind key="XF86Calculator">
       <action name="Execute">
-        <command>tt randr.hv</command>
+        <command>tt randr.hh</command>
       </action>
     </keybind>
     <keybind key="S-XF86Launch7">
@@ -856,6 +856,12 @@
         <x>0</x>
         <y>0</y>
       </position>
+    </application>
+    <application name="Time Tracker">
+      <desktop>all</desktop>
+      <layer>above</layer>
+      <skip_pager>yes</skip_pager>
+      <skip_taskbar>yes</skip_taskbar>
     </application>
     <application name="urxvt.terminal">
       <!-- decor>no</decor -->

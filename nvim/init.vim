@@ -31,7 +31,7 @@ set guicursor+=a:blinkon0
 
 set nocursorline
 set noundofile
-set lsp=5
+set linespace=5
 " set cryptmethod=blowfish
 set noshowmatch         " jump to matching paren quickly
 set nrformats=hex       " c-a, c-x won't treat 05 as octal
@@ -56,10 +56,12 @@ set shortmess+=c  " fuck completion message spam
 
 set mouse= " don't care for specific mouse support, neovim and gvim-qt guis provide enough pizzazz
 
-set backupdir= " no need for backups
+" no need for backups, swaps, nothing
+set backupdir= 
 set nobackup
 set nowritebackup
-set dir=       " no need for swap
+set dir=
+set noswapfile
 
 set sessionoptions-=options " no settings in session
 set sessionoptions-=folds   " no folds in session
@@ -88,8 +90,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-set nowrap              " dont' wrap the text
-set noswapfile          " can't remember a single time this would have been useful
+set nowrap
 set nonumber
 
 function! EditorRoot()
@@ -119,6 +120,12 @@ Plugin 'tpope/vim-sleuth'
 
 Plugin 'einars/vim-phpfold'
 
+
+"let g:templates_directory = '/dotfiles/nvim/templates/'
+"let g:templates_no_builtin_templates = 1
+"let g:templates_global_name_prefix = 't-'
+"Plugin 'aperezdc/vim-template'
+
 let g:translit_toggle_keymap = '<S-F1>'
 Plugin 'einars/translit.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -133,21 +140,22 @@ Plugin 'stephpy/vim-yaml'
 
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'neoclide/vim-jsx-improve'
+let g:tabprefix = ""
 Plugin 'tpope/vim-flagship'
 " Plugin 'othree/yajs.vim' " ES6
 
 Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'junegunn/seoul256.vim'
+" Plugin 'junegunn/seoul256.vim' " paper beats seoul
 
 if has('nvim')
-  " neovim
-  let g:deoplete#enable_at_startup = 1
   Plugin 'equalsraf/neovim-gui-shim'
+  let g:deoplete#enable_at_startup = 1
   Plugin 'Shougo/deoplete.nvim'
-else
-  " gvim
-  let g:ycm_key_detailed_diagnostics = '<F11>'
-  Plugin 'Valloric/YouCompleteMe'
+
+  let g:neosnippet#disable_runtime_snippets = { '_': 1 }
+  let g:neosnippet#snippets_directory = "/dotfiles/nvim/snippets"
+  " Plugin 'Shougo/neosnippet-snippets'
+  Plugin 'Shougo/neosnippet.vim'
 endif
 
 
@@ -163,10 +171,7 @@ if ! has('nvim')
   colors default
 else
   set background=light
-  "colors sourcerer_noitalic
   colors PaperColor
-  "let g:seoul256_light_backround = 255
-  "colors seoul256-light
 endif
 
 

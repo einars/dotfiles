@@ -28,6 +28,7 @@ set mode             Color
 set resolution       300
 set hires_resolution 1200
 set raw              no
+set preview          yes
 set scale '1600x'
 set shave '10x10'
 
@@ -69,6 +70,10 @@ while test -n $argv[$paramidx]
         set color_matrix
     end
 
+    if [ $argv[$paramidx] = 'nopreview' ]
+        set preview no
+    end
+
     if [ $argv[$paramidx] = 'hires' ]
         set resolution $hires_resolution
         set raw yes
@@ -100,15 +105,13 @@ end
 if test -z $filename
     echo Usage: $0 output.jpg
 else
+    set basename (basename $filename .jpg)
     if [ $raw = 'yes' ]
-        set basename (basename $filename .tiff)
         set tiffname (printf_filename "$basename.tiff")
-        set jpgname (printf_filename "$basename.jpg")
         echo $tiffname
     else
-        set basename (basename $filename .jpg)
-        set tiffname (printf_filename "$basename.tiff")
         set jpgname (printf_filename "$basename.jpg")
+        set tiffname (basename $jpgname .jpg).tiff
         echo $jpgname
     end
 
@@ -133,7 +136,9 @@ else
             $tiffname $jpgname
 
         rm $tiffname
-        eval $scan_viewer $jpgname &
+        if [ $preview = "yes" ]
+            eval $scan_viewer $jpgname &
+        end
     end
 
     echo

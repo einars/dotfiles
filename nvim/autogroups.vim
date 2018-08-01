@@ -3,6 +3,11 @@ autocmd BufEnter *.ml,*.c,*.h,*.cpp,*.php :Rooter
 " neovim broken map with auto-pairs
 autocmd VimEnter,BufEnter,BufWinEnter * silent! iunmap <buffer> <M-">
 
+augroup cursorline
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
 
 augroup broken_indents
     autocmd!

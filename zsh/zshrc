@@ -18,11 +18,7 @@ function try_path
 
 try_path ~/bin
 try_path ~/node/node-latest/bin
-#try_path ~/node/modules/bin
-try_path ~/.gem/ruby/2.4.0/bin
-try_path ~/.gem/ruby/2.3.0/bin
-try_path ~/.gem/ruby/2.2.0/bin
-try_path ~/.gem/ruby/1.9.1/bin
+try_path ~/node/modules/bin
 try_path ~/bin/private
 try_path ~/.pub-cache/bin
 try_path /usr/lib/ccache/bin
