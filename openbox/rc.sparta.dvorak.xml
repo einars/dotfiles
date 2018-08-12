@@ -255,7 +255,7 @@
         <execute>killall click</execute>
       </action>
     </keybind>
-    <keybind dkey="F12">
+    <keybind key="F12">
       <action name="Execute">
         <execute>/home/e/bin/toggle-dvorak</execute>
       </action>
