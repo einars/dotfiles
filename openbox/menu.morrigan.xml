@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+
+
+<menu id="root-menu" label="Openbox 3">
+
+  <separator label="morrigan" />
+
+  <menu id="ob-calendar" label="Kalendārs" execute="ob-date-menu" /-->
+
+  <item label="Chrome">
+    <action name="Execute">
+      <command>chromium</command>
+    </action>
+  </item>
+
+  <item label="Faili">
+    <action name="Execute">
+      <command>thunar /home/e/draza</command>
+    </action>
+  </item>
+
+  <item label="Terminālis">
+    <action name="Execute">
+        <command>urxvt</command>
+    </action>
+  </item>
+
+  <item label="Taimeris">
+    <action name="Execute">
+        <command>gnome-clocks</command>
+    </action>
+  </item>
+
+
+  <separator />
+
+  <item label="Izslēgt mūziku">
+    <action name="Execute">
+      <command>tt music.off</command>
+    </action>
+  </item>
+
+
+  <item label="Chromanova">
+    <action name="Execute">
+      <command>mpv-singleton 'http://176.31.123.212:8096/listen.pls?sid=1'</command>
+    </action>
+  </item>
+  <item label="Soma fluid">
+    <action name="Execute">
+      <command>tt soma fluid</command>
+    </action>
+  </item>
+  <item label="Soma trip">
+    <action name="Execute">
+      <command>tt soma thetrip</command>
+    </action>
+  </item>
+
+  <!-- separator label="Applications" / -->
+  <!-- menu id="xdg-apps" label="Applications" execute="openbox-xdgmenu /etc/xdg/menus/xfce-applications.menu" /-->
+</menu>
+
+</openbox_menu>
