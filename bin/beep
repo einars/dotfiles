@@ -1,0 +1,3 @@
+#!/bin/sh
+
+aplay --quiet /home/e/bin/chime.wav &
