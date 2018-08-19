@@ -14,12 +14,7 @@ init_common()
 {
     test -d /home/e/bin && export PATH=/home/e/bin:$PATH
     test -d /home/e/bin/private && export PATH=/home/e/bin/private:$PATH
-    test -d /home/e/.opam/system/bin && export PATH=/home/e/.opam/system/bin:$PATH
     
-    export STEAM_FRAME_FORCE_CLOSE=1
-
-    #setxkbmap lv -option ctrl:nocaps
-
     xsetroot -cursor_name left_ptr
     numlockx
 
@@ -29,6 +24,7 @@ init_common()
     xset s off
     xset dpms 0 0 0
 
+    xset r rate 300 30
 }
 
 init_morrigan()

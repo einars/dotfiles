@@ -165,10 +165,10 @@
     summary = "*crit*"
     urgency = critical
 
-[beep_test]
-    summary = "*beep*"
+[hamster_working_on]
+    summary = "*Working on *"
+    script = /home/e/bin/beep
     urgency = critical
-    script = /home/e/bin/private/beep
 
 [defaults_low]
     msg_urgency = low
