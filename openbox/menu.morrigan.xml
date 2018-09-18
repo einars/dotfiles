@@ -33,6 +33,11 @@
     </action>
   </item>
 
+  <item label="Terraria">
+    <action name="Execute">
+      <command>/home/e/bin/terraria</command>
+    </action>
+  </item>
 
   <separator />
 

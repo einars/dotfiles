@@ -138,6 +138,10 @@ Plugin 'derekwyatt/vim-scala'
 Plugin 'junegunn/goyo.vim'
 Plugin 'stephpy/vim-yaml'
 
+let g:colorizer_auto_filetype='css,scss,sass'
+let g:colorizer_skip_comments=1
+Plugin 'chrisbra/Colorizer'
+
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'neoclide/vim-jsx-improve'
 let g:tabprefix = ""

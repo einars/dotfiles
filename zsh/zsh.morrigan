@@ -8,6 +8,9 @@ export VISUAL=nvim
 
 cdpath=(. ~ /proj /services/web /storage)
 
+export GOPATH=/proj/godev
+try_path $GOPATH/bin
+
 try_path ~/.opam/system/bin
 try_path ~/node/modules/bin
 
