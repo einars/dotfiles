@@ -3,3 +3,4 @@
 clear
 FUNCTION=`echo $1 | sed 's/_/-/g' | sed 's/[()]//g'`
 w3m -dump  /services/web/localhost/phpdoc/function.$FUNCTION.html | more
+#w3m -dump  ~/.local/share/Zeal/Zeal/docsets/PHP.docset/Contents/Resources/Documents/php.net/manual/en/function.$FUNCTION.html | more

@@ -4,6 +4,7 @@ run_system_scripts()
 {
     if [ -d /etc/X11/xinit/xinitrc.d ] ; then                                                                                                                                                                          
         for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do                                                                                                                                                                      
+            logger "Running $f"
             [ -x "$f" ] && . "$f"                                                                                                                                                                                            
         done                                                                                                                                                                                                              
         unset f                                                                                                                                                                                                           
@@ -36,6 +37,7 @@ init_morrigan()
 
 init_sparta()
 {
+    logger "init_sparta"
     test -d /home/e/bin && export PATH=/home/e/bin:$PATH
     test -d /home/e/bin/private && export PATH=/home/e/bin/private:$PATH
 
@@ -56,9 +58,8 @@ init_sparta()
 
     xset m 4 1 # mouse
 
-    if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && type dbus-launch >/dev/null; then
-        eval $(dbus-launch --sh-syntax --exit-with-session)
-    fi
+    #eval $(dbus-launch --sh-syntax --exit-with-session 2>&1 | tee -a /tmp/dbus-launch.log)
+
 
     #start-pulseaudio-x11
 
@@ -71,5 +72,8 @@ run_system_scripts
 
 
 ulimit -c unlimited
+
+#eval $(dbus-launch --sh-syntax --exit-with-session 2>&1 | tee -a /tmp/dbus-launch.log)
+eval $(dbus-launch --sh-syntax 2>&1 | tee -a /tmp/dbus-launch.log)
+
 exec ssh-agent /usr/bin/openbox --startup ~/.config/openbox/autostart
-# exec ssh-agent /usr/bin/openbox-session

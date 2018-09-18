@@ -5,7 +5,7 @@
 # if [ "$current" = "lv" ]; then
 
 if setxkbmap -query  | grep dvp; then
-        notify 'Dvorāka izkārtojums. F12, lai izslēgtu'
+        notify '~ Dvorāka izkārtojums. F12, lai izslēgtu'
 else
         notify '~ Latviešu izkārtojums'
 fi

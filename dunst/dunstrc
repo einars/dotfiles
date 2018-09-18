@@ -70,7 +70,7 @@
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
     # Set to 0 to disable.
-    idle_threshold = 120
+    idle_threshold = 30
 
     # Which monitor should the notifications be displayed on.
     monitor = 0
@@ -173,8 +173,8 @@
 [defaults_low]
     msg_urgency = low
     background = "#222222"
-    foreground = "#888888"
-    timeout = 20
+    foreground = "#aaaaaa"
+    timeout = 10
 
 [defaults_normal]
     msg_urgency = normal
@@ -186,6 +186,6 @@
     msg_urgency = critical
     background = "#900000"
     foreground = "#ffffff"
-    timeout = 60
+    timeout = 20
 
 # vim: set ft=conf:

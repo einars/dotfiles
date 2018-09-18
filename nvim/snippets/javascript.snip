@@ -1,10 +1,19 @@
 snippet ccc
 abbr ReactClassComponent
 options word
-    import React, { PureComponent } from 'react'
+    import React from 'react'
     import { connect } from 'react-redux'
 
-    class ${1:MyComponent} extends PureComponent {
+    class ${1:MyComponent} extends React.PureComponent {
+
+      constructor (props) {
+        super(props)
+
+        this.state = {
+        }
+      }
+
+
       render () {
         return (
           <div>
@@ -21,12 +30,12 @@ options word
 snippet ccp
 abbr ReactPageComponent
 options word
-    import React, { PureComponent } from 'react'
+    import React from 'react'
     import { connect } from 'react-redux'
 
     import * as actions from '../actions'
 
-    class ${1:MyPage} extends PureComponent {
+    class ${1:MyPage} extends React.PureComponent {
 
       constructor (props) {
         super(props)

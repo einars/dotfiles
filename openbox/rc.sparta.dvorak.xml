@@ -217,6 +217,9 @@
     <keybind key="W-dollar"><action name="Execute">
         <execute>/home/e/bin/toggle-terminal</execute>
     </action></keybind>
+    <keybind key="F1"><action name="Execute">
+        <execute>/home/e/bin/nvimq</execute>
+    </action></keybind>
     <keybind key="Print"><action name="Execute">
         <execute>/home/e/bin/nvimq</execute>
     </action></keybind>
@@ -358,7 +361,7 @@
     <keybind key="W-S-l">
       <action name="Reconfigure"/>
       <action name="Execute">
-        <execute>notify 'Openbox reconfigured'</execute>
+        <execute>notify '~ Openbox reconfigured'</execute>
       </action>
     </keybind>
     <keybind key="W-S-x">
@@ -409,27 +412,12 @@
     </keybind>
     <keybind key="C-F12">
       <action name="Execute">
-        <command>tt randr.hh</command>
+        <command>tt randr.hv</command>
       </action>
     </keybind>
-    <keybind key="XF86Launch7">
+    <keybind key="W-F12">
       <action name="Execute">
         <command>tt randr.hh</command>
-      </action>
-    </keybind>
-    <keybind key="XF86Calculator">
-      <action name="Execute">
-        <command>tt randr.hh</command>
-      </action>
-    </keybind>
-    <keybind key="S-XF86Launch7">
-      <action name="Execute">
-        <command>tt randr.hx</command>
-      </action>
-    </keybind>
-    <keybind key="S-XF86Calculator">
-      <action name="Execute">
-        <command>tt randr.hx</command>
       </action>
     </keybind>
 
@@ -441,9 +429,9 @@
         <command>my-file-manager ~/dokumenti</command>
       </action>
     </keybind>
-    <keybind key="W-m">
+    <keybind key="W-t">
       <action name="Execute">
-        <command>my-file-manager /storage/music/</command>
+        <command>my-file-manager /storage/torrents/current</command>
       </action>
     </keybind>
     <keybind key="W-c-t">
@@ -470,7 +458,7 @@
     <keybind key="W-r">
       <action name="Execute">
         <!-- command>dmenu_run -f -b -i -p Run: </command-->
-        <command>dmenu_run -sb '#e63' -sf '#111' -fn "Monaco-14" -f -b -i -p Run: </command>
+        <command>dmenu_run -sb '#e63' -sf '#111' -fn "Ubuntu Mono-14" -f -i -dim 0.6 -h 40 -p Run: </command>
       </action>
     </keybind>
     <keybind key="W-S-Left">

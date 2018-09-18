@@ -27,6 +27,11 @@
       <command>tt soma thetrip</command>
     </action>
   </item>
+  <item label="Soma beatblender">
+    <action name="Execute">
+      <command>tt soma beatblender</command>
+    </action>
+  </item>
 
   <item label="Torenti">
     <action name="Execute">
