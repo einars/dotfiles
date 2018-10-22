@@ -1,4 +1,8 @@
 
+export GOPATH=/proj/go
+try_path $GOPATH/bin
+
+
 function c() {
   CDPATH= cd $1
 }
@@ -8,10 +12,13 @@ export VISUAL=nvim
 
 cdpath=(. ~ /proj /services/web /storage)
 
-export GOPATH=/proj/godev
-try_path $GOPATH/bin
-
 try_path ~/.opam/system/bin
 try_path ~/node/modules/bin
 
-
+# emgo
+export EGCC=/usr/bin/arm-none-eabi-gcc
+export EGLD=/usr/bin/arm-none-eabi-ld
+export EGAR=/usr/bin/arm-none-eabi-ar
+#export EGROOT=/proj/stm/emgo-test/
+export EGROOT=/proj/go/src/github.com/ziutek/emgo/egroot
+export EGPATH=/proj/go/src/github.com/ziutek/emgo/egpath

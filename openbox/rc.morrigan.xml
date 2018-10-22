@@ -217,6 +217,9 @@
     <keybind key="W-dollar"><action name="Execute">
         <execute>/home/e/bin/toggle-terminal</execute>
     </action></keybind>
+    <keybind key="W-grave"><action name="Execute">
+        <execute>/home/e/bin/toggle-terminal</execute>
+    </action></keybind>
     <keybind key="F1"><action name="Execute">
         <execute>/home/e/bin/nvimq</execute>
     </action></keybind>
