@@ -17,6 +17,21 @@
       <command>mpv-singleton 'http://176.31.123.212:8096/listen.pls?sid=1'</command>
     </action>
   </item>
+  <item label="Bluemars">
+    <action name="Execute">
+      <command>mpv-singleton 'http://streams.echoesofbluemars.org:8000/bluemars'</command>
+    </action>
+  </item>
+  <item label="Psyradio">
+    <action name="Execute">
+      <command>mpv-singleton 'http://stream.psyradio.com.ua:8000/128kbps'</command>
+    </action>
+  </item>
+  <item label="Cryosleep">
+    <action name="Execute">
+      <command>mpv-singleton 'http://streams.echoesofbluemars.org:8000/cryosleep'</command>
+    </action>
+  </item>
   <item label="Soma fluid">
     <action name="Execute">
       <command>tt soma fluid</command>

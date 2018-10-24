@@ -42,7 +42,7 @@ set nostartofline
 set shiftround          " shift in mod 4
 set nojoinspaces        " with joinspaces, two spaces are entered after . / ? / !
 set splitright          " split on the correct side
-set expandtab
+set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab
 set smartindent
 set wildchar=<Tab>
 set laststatus=2        " good statusline is good
@@ -85,7 +85,6 @@ set listchars=tab:·\ ,trail:.,extends:#,nbsp:▮
 
 set bs=indent,eol,start " usable backspace
 set complete-=i
-set smarttab
 set hlsearch
 set incsearch
 set ignorecase

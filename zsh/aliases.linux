@@ -49,6 +49,7 @@ alias gitc="git commit -v"
 alias amend="git commit -v --amend"
 alias gitsc="test -d .git/svn && git svn dcommit"
 alias b="git checkout"
+alias bb="git branch"
 
 alias offlineimap='offlineimap -u basic'
 #alias o="offlineimap -u Noninteractive.Basic 2>/dev/null | grep --line-buffered 'message\|account'| grep --line-buffered -v 'Copy message -\|Delet\|Adding flag'"
@@ -111,7 +112,7 @@ alias sensors='sensors | \grep -E "CPU FAN|CPU Tem|MB Tem|Core"'
 # show sizes of subfolders in current direcory
 #alias dirsizes='\du --max-depth=1 | sort -nr | head -n 20'
 function dirsizes {
-    \du --max-depth=1 | sort -nr | head -n 30 | sed 's/^.*\t//' | xargs --delimiter=\\n -n 1 \du -sh --si
+    \du --max-depth=1 | \sort -nr | \head -n 30 | \sed 's/^.*\t//' | \xargs --delimiter=\\n -n 1 \du -sh --si
 }
 
 #alias psql='PAGER="less -RSX" psql -P pager=always'

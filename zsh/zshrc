@@ -20,8 +20,10 @@ try_path ~/bin
 try_path ~/node/node-latest/bin
 try_path ~/node/modules/bin
 try_path ~/bin/private
-try_path ~/.pub-cache/bin
-try_path /usr/lib/ccache/bin
+try_path ~/.pub-cache/bin    # dart
+try_path /usr/lib/ccache/bin # ccache
+try_path ~/.opam/system/bin  # opam
+try_path ~/.cargo/bin        # rust
 
 
 # remove \0 from IFS
@@ -77,18 +79,36 @@ function setup_prompt() #{{{
     fg_bluish=%{$'\e[0;34m'%}
     reset_color=%{$'\e[0m'%}
 
+    git_branch() {
+      GIT_PS1_SHOWDIRTYSTATE=1 \
+      GIT_PS1_SHOWSTASHSTATE=1 \
+      GIT_PS1_SHOWUNTRACKEDFILES=1 \
+      GIT_PS1_SHOWCOLORHINTS=1 \
+      GIT_PS1_SHOWUPSTREAM=verbose \
+      GIT_PS1_DESCRIBE_STYLE=branch \
+      __git_ps1 "%s"
+    }
+
+    alien_git_branch() {
+      GIT_PS1_SHOWDIRTYSTATE= \
+      GIT_PS1_SHOWSTASHSTATE= \
+      GIT_PS1_SHOWUNTRACKEDFILES= \
+      GIT_PS1_SHOWCOLORHINTS=1 \
+      GIT_PS1_SHOWUPSTREAM= \
+      GIT_PS1_DESCRIBE_STYLE=branch \
+      __git_ps1 "%s (read-only)"
+    }
+
     prefix_sc_branch() {
         (( $+SCHROOT_USER )) && echo -n ${fg_green}arch32 $reset_color
         [ -z $BRANCH ] && [ -d .svn ] && BRANCH=`svn info 2>/dev/null| grep Revision | awk '{print "svn:"$2}'`
-        [ -z $BRANCH ] && [ -d .git -o -d ../.git -o -d ../../.git -o -d ../../../.git ] && \
-          BRANCH=$(\
-            GIT_PS1_SHOWDIRTYSTATE=1 \
-            GIT_PS1_SHOWSTASHSTATE=1 \
-            GIT_PS1_SHOWUNTRACKEDFILES=1 \
-            GIT_PS1_SHOWCOLORHINTS=1 \
-            GIT_PS1_SHOWUPSTREAM=verbose \
-            GIT_PS1_DESCRIBE_STYLE=branch \
-            __git_ps1 "%s")
+        # writable and inaccessible git branches need different treatments
+        [ -z $BRANCH ] && [ -d .git ] && [ -w .git/config ] && BRANCH=$(git_branch)
+        [ -z $BRANCH ] && [ -d ../.git ] && [ -w ../.git/config ] && BRANCH=$(git_branch)
+        [ -z $BRANCH ] && [ -d ../../.git ] && [ -w ../../.git/config ] && BRANCH=$(git_branch)
+        [ -z $BRANCH ] && [ -d .git ] && [ ! -w .git/config ] && BRANCH=$(alien_git_branch)
+        [ -z $BRANCH ] && [ -d ../.git ] && [ ! -w ../.git/config ] && BRANCH=$(alien_git_branch)
+        [ -z $BRANCH ] && [ -d ../../.git ] && [ ! -w ../../.git/config ] && BRANCH=$(alien_git_branch)
         [ -z $BRANCH ] || echo "${fg_bluish}${BRANCH} "
     }
 
@@ -226,7 +246,6 @@ maybe_source ~/.zsh/aliases
 maybe_source ~/.zsh/aliases.private
 
 maybe_source /usr/share/git/git-prompt.sh
-
 
 compdef -d git # i'm smarter and faster
 
