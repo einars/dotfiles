@@ -27,7 +27,9 @@ try_path ~/.cargo/bin        # rust
 
 
 # remove \0 from IFS
-export IFS=${IFS/$'\0'}
+#export IFS=${IFS/$'\0'}
+export IFS=$'\n\t'
+
 if type nvim &> /dev/null; then
   export EDITOR=nvim
   export VISUAL=nvim
@@ -248,9 +250,6 @@ maybe_source ~/.zsh/aliases.private
 maybe_source /usr/share/git/git-prompt.sh
 
 compdef -d git # i'm smarter and faster
-
-# OPAM configuration
-. /home/e/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # shift-tab to force filename completions
 zle -C complete complete-word complete-files

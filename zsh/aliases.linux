@@ -95,7 +95,7 @@ alias clipp='xclip -o -selection primary'
 
 # space as a delimiter for xargs is too idiotic
 # also add -n 1 as a default, we're in no hurry
-alias xargs="xargs --delimiter '\n' -n 1"
+alias xargs="xargs --no-run-if-empty --delimiter '\n' -n 1"
 
 alias hexdump='od -Ax -tx1z -v'
 
@@ -168,5 +168,7 @@ ss() { ssh $1 -t "LC_ALL=en_US.UTF8 screen -RUDS ${2:-default}"}
 
 # tarz out.tgz folder
 tarz() { tar cvf - $2 | pigz -1 - > $1 }
+
+alias com='screen /dev/ttyACM0 115200,inlcr,onlret,echo'
 
 # vim: syn=zsh :

@@ -70,6 +70,8 @@ set sessionoptions-=winsize " no need for win size
 set sessionoptions-=help    " dont care for help windows
 set sessionoptions+=curdir  " curdir is important
 
+set clipboard^=unnamed,unnamedplus
+
 
 "set completeopt=menu,preview,noinsert,noselect
 set completeopt=menu

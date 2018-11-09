@@ -39,6 +39,7 @@ export VISUAL=nvim
 alias vim=nvim
 
 
+. /home/e/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 eval $(opam config env)
 
 source ~/dbus-information.auto.txt

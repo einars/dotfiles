@@ -6,57 +6,71 @@
 <menu id="root-menu" label="Openbox 3">
 
 <separator label="This is Sparta" />
-  <item label="Izslēgt mūziku">
-    <action name="Execute">
-      <command>tt music.off</command>
-    </action>
-  </item>
+  <menu id="radio" label="Rādio" icon="ICON">
+    <item label="Izslēgt mūziku">
+      <action name="Execute">
+        <command>tt music.off</command>
+      </action>
+    </item>
+    <separator />
+    <item label="Chromanova">
+      <action name="Execute">
+        <command>mpv-singleton 'http://176.31.123.212:8096/listen.pls?sid=1'</command>
+      </action>
+    </item>
+    <item label="Bluemars">
+      <action name="Execute">
+        <command>mpv-singleton 'http://streams.echoesofbluemars.org:8000/bluemars'</command>
+      </action>
+    </item>
+    <item label="Psyradio">
+      <action name="Execute">
+        <command>mpv-singleton 'http://stream.psyradio.com.ua:8000/128kbps'</command>
+      </action>
+    </item>
+    <item label="Cryosleep">
+      <action name="Execute">
+        <command>mpv-singleton 'http://streams.echoesofbluemars.org:8000/cryosleep'</command>
+      </action>
+    </item>
+    <item label="Soma fluid">
+      <action name="Execute">
+        <command>tt soma fluid</command>
+      </action>
+    </item>
+    <item label="Soma trip">
+      <action name="Execute">
+        <command>tt soma thetrip</command>
+      </action>
+    </item>
+    <item label="Soma beatblender">
+      <action name="Execute">
+        <command>tt soma beatblender</command>
+      </action>
+    </item>
+  </menu>
 
-  <item label="Chromanova">
-    <action name="Execute">
-      <command>mpv-singleton 'http://176.31.123.212:8096/listen.pls?sid=1'</command>
-    </action>
-  </item>
-  <item label="Bluemars">
-    <action name="Execute">
-      <command>mpv-singleton 'http://streams.echoesofbluemars.org:8000/bluemars'</command>
-    </action>
-  </item>
-  <item label="Psyradio">
-    <action name="Execute">
-      <command>mpv-singleton 'http://stream.psyradio.com.ua:8000/128kbps'</command>
-    </action>
-  </item>
-  <item label="Cryosleep">
-    <action name="Execute">
-      <command>mpv-singleton 'http://streams.echoesofbluemars.org:8000/cryosleep'</command>
-    </action>
-  </item>
-  <item label="Soma fluid">
-    <action name="Execute">
-      <command>tt soma fluid</command>
-    </action>
-  </item>
-  <item label="Soma trip">
-    <action name="Execute">
-      <command>tt soma thetrip</command>
-    </action>
-  </item>
-  <item label="Soma beatblender">
-    <action name="Execute">
-      <command>tt soma beatblender</command>
-    </action>
-  </item>
+  <menu id="monitor" label="Labais monitors" icon="ICON">
+    <item label="On">
+      <action name="Execute">
+        <command>t randr.hh</command>
+      </action>
+    </item>
+    <item label="Off">
+      <action name="Execute">
+        <command>t randr.hx</command>
+      </action>
+    </item>
+    <item label="On/vert">
+      <action name="Execute">
+        <command>t randr.hv</command>
+      </action>
+    </item>
+  </menu>
 
   <item label="Torenti">
     <action name="Execute">
       <command>thunar /home/e/torrents/current</command>
-    </action>
-  </item>
-
-  <item label="Mainkrafts">
-    <action name="Execute">
-      <command>/home/e/bin/minecraft</command>
     </action>
   </item>
 
@@ -77,12 +91,6 @@
     </action>
   </item>
 
-
-  <item label="Chrome">
-    <action name="Execute">
-        <command>google-chrome</command>
-    </action>
-  </item>
 
   <item label="Zīmēšana — inkscape">
     <action name="Execute">
