@@ -19,9 +19,6 @@ function c() {
     CDPATH= cd $1
 }
 
-alias ppp="cd ~/.wine/drive_c/Program\ Files\ \(x86\)/"
-alias of='ocamlbuild -use-ocamlfind'
-
 if ( false ) {
  echo '########'
  echo '########'
@@ -38,8 +35,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 alias vim=nvim
 
-
-. /home/e/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+. /home/e/.opam/opam-init/init.zsh &> /dev/null || true
 eval $(opam config env)
 
 source ~/dbus-information.auto.txt

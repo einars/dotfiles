@@ -1,10 +1,10 @@
 set background=light
-colors PaperColor
-"Guifont Iosevka Term:h12
+colors PaperColorPatched
 
-Guifont Go Mono:h11
-" Go Mono is fat and looks bad flushed so close to the side of screen
-" set signcolumn=yes
+Guifont Iosevka Term:h10
+GuiLinespace 4
 
-GuiLinespace 6
+"Guifont Go Mono:h11
+"GuiLinespace 6
+
 set mouse=a

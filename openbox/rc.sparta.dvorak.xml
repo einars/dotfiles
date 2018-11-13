@@ -489,17 +489,17 @@
     </keybind>
     <keybind key="C-S-F12">
       <action name="Execute">
-        <command>tt randr.hx</command>
+        <command>tt randr.vx</command>
       </action>
     </keybind>
     <keybind key="C-F12">
       <action name="Execute">
-        <command>tt randr.hv</command>
+        <command>tt randr.vv</command>
       </action>
     </keybind>
     <keybind key="W-F12">
       <action name="Execute">
-        <command>tt randr.hh</command>
+        <command>tt randr.vh</command>
       </action>
     </keybind>
     <keybind key="XF86Launch9">
@@ -918,7 +918,7 @@
     <application name="nvim-qt">
       <size>
         <width>100%</width>
-        <height>95%</height>
+        <height>98%</height>
       </size>
       <position force="yes">
         <monitor>primary</monitor>
@@ -936,6 +936,7 @@
       <!-- decor>no</decor -->
       <size>
         <width>100%</width>
+        <height>70%</height>
       </size>
       <position force="yes">
         <!-- monitor>mouse</monitor -->

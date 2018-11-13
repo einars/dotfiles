@@ -1,6 +1,21 @@
+snippet r
+options indent
+    return (
+      ${0}
+    )
+
+snippet rd
+alias return
+options indent
+    return (
+      <div>
+        ${0}
+      </div>
+    )
+
+
 snippet ccc
-abbr ReactClassComponent
-options word
+options head indent
     import React from 'react'
     import { connect } from 'react-redux'
 
@@ -28,8 +43,7 @@ options word
     export default connect(mapState)($1)
 
 snippet ccp
-abbr ReactPageComponent
-options word
+options head indent
     import React from 'react'
     import { connect } from 'react-redux'
 

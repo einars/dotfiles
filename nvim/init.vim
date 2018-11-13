@@ -42,6 +42,7 @@ set nostartofline
 set shiftround          " shift in mod 4
 set nojoinspaces        " with joinspaces, two spaces are entered after . / ? / !
 set splitright          " split on the correct side
+set splitbelow          " split on the correct side
 set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab
 set smartindent
 set wildchar=<Tab>
@@ -149,7 +150,7 @@ let g:tabprefix = ""
 Plugin 'tpope/vim-flagship'
 " Plugin 'othree/yajs.vim' " ES6
 
-Plugin 'NLKNguyen/papercolor-theme'
+" Plugin 'NLKNguyen/papercolor-theme'
 " Plugin 'junegunn/seoul256.vim' " paper beats seoul
 
 if has('nvim')

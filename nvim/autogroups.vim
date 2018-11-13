@@ -75,6 +75,12 @@ augroup FocusLostSave
   autocmd FocusLost * silent! wa
 augroup END
 
+augroup ft_yaml
+  autocmd!
+  "au Syntax yaml syn region Type start="^table:" end="$" oneline
+  au Syntax yaml syn region javaScriptFunction start="^name:" end="$" oneline
+augroup END
+
 
 " Don't screw up folds when inserting text that might affect them
 " http://stackoverflow.com/questions/5521408/my-vim-and-gvim-are-far-too-slow
