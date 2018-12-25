@@ -165,10 +165,14 @@ alias mc='mc --nosubshell'
 #ss() { ssh $1 -t screen -URd -S ${2:-default}}
 # ss() { ssh $1 -t bash --login -c screen -RUDS ${2:-default}}
 ss() { ssh $1 -t "LC_ALL=en_US.UTF8 screen -RUDS ${2:-default}"}
+alias sc='screen -RUDS'
 
 # tarz out.tgz folder
 tarz() { tar cvf - $2 | pigz -1 - > $1 }
 
 alias com='screen /dev/ttyACM0 115200,inlcr,onlret,echo'
+
+# watson with 'report' as default
+ww() { test -z "$1" && watson report --day || watson $@ }
 
 # vim: syn=zsh :

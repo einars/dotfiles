@@ -15,37 +15,42 @@
     <separator />
     <item label="Chromanova">
       <action name="Execute">
-        <command>mpv-singleton 'http://176.31.123.212:8096/listen.pls?sid=1'</command>
+        <command>mpv-singleton-headless 'http://176.31.123.212:8096/listen.pls?sid=1'</command>
       </action>
     </item>
     <item label="Bluemars">
       <action name="Execute">
-        <command>mpv-singleton 'http://streams.echoesofbluemars.org:8000/bluemars'</command>
+        <command>mpv-singleton-headless 'http://streams.echoesofbluemars.org:8000/bluemars'</command>
       </action>
     </item>
     <item label="Psyradio">
       <action name="Execute">
-        <command>mpv-singleton 'http://stream.psyradio.com.ua:8000/128kbps'</command>
+        <command>mpv-singleton-headless 'http://stream.psyradio.com.ua:8000/128kbps'</command>
       </action>
     </item>
     <item label="Cryosleep">
       <action name="Execute">
-        <command>mpv-singleton 'http://streams.echoesofbluemars.org:8000/cryosleep'</command>
+        <command>mpv-singleton-headless 'http://streams.echoesofbluemars.org:8000/cryosleep'</command>
+      </action>
+    </item>
+    <item label="Russian Red">
+      <action name="Execute">
+        <command>t shuffle_path '/storage/music/Russian Red'</command>
       </action>
     </item>
     <item label="Soma fluid">
       <action name="Execute">
-        <command>tt soma fluid</command>
+        <command>tt soma fluid --headless</command>
       </action>
     </item>
     <item label="Soma trip">
       <action name="Execute">
-        <command>tt soma thetrip</command>
+        <command>tt soma thetrip --headless</command>
       </action>
     </item>
     <item label="Soma beatblender">
       <action name="Execute">
-        <command>tt soma beatblender</command>
+        <command>tt soma beatblender --headless</command>
       </action>
     </item>
   </menu>

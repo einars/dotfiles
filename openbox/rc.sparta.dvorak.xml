@@ -487,7 +487,7 @@
         <dialog>list</dialog>
       </action>
     </keybind>
-    <keybind key="C-S-F12">
+    <!-- keybind key="C-S-F12">
       <action name="Execute">
         <command>tt randr.vx</command>
       </action>
@@ -501,7 +501,7 @@
       <action name="Execute">
         <command>tt randr.vh</command>
       </action>
-    </keybind>
+    </keybind -->
     <keybind key="XF86Launch9">
       <action name="ToggleShowDesktop"/>
     </keybind>
@@ -533,6 +533,11 @@
     <keybind key="W-w">
       <action name="Execute">
         <!-- command>xmonad-refresh-opera</command -->
+        <command>firefox-refresh-current</command>
+      </action>
+    </keybind>
+    <keybind key="W-S-w">
+      <action name="Execute">
         <command>chrome-refresh-current</command>
       </action>
     </keybind>
@@ -542,51 +547,44 @@
         <command>dmenu_run -sb '#e63' -sf '#111' -fn "Ubuntu Mono-14" -f -i -dim 0.6 -h 40 -p Run: </command>
       </action>
     </keybind>
+
+    <keybind key="W-Left">
+      <action name="Unmaximize"/>
+      <action name="MaximizeVert"/>
+      <action name="MoveToEdgeWest"/>
+      <action name="MoveResizeTo">
+        <width>50%</width>
+      </action>
+    </keybind>
+    <keybind key="W-Right">
+      <action name="Unmaximize"/>
+      <action name="MaximizeVert"/>
+      <action name="MoveToEdgeEast"/>
+      <action name="MoveResizeTo">
+        <width>50%</width>
+      </action>
+    </keybind>
+
     <keybind key="W-S-Left">
       <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>0</x>
-        <y>0</y>
-        <width>40%</width>
-        <height>100%</height>
+        <monitor>all</monitor>
       </action>
     </keybind>
     <keybind key="W-S-Right">
       <action name="Unmaximize"/>
       <action name="MoveResizeTo">
-        <x>-0</x>
-        <y>0</y>
-        <width>60%</width>
-        <height>100%</height>
-      </action>
-    </keybind>
-    <keybind key="W-C-Left">
-      <action name="Unmaximize"/>
-      <action name="MoveResizeTo">
-        <x>0</x>
+        <x>1200</x>
         <monitor>all</monitor>
       </action>
     </keybind>
-    <keybind key="W-C-Right">
-      <action name="Unmaximize"/>
-      <action name="MoveResizeTo">
-        <x>1600</x>
-        <monitor>all</monitor>
-      </action>
+
+    <keybind key="W-Up">
+      <action name="Maximize"/>
     </keybind>
-    <keybind key="W-S-Up">
+    <keybind key="W-Down">
       <action name="Unmaximize"/>
-      <action name="MoveResizeTo">
-        <width>100%</width>
-        <height>100%</height>
-      </action>
-    </keybind>
-    <keybind key="W-S-Down">
-      <action name="Unmaximize"/>
-      <action name="MoveResizeTo">
-        <width>100%</width>
-        <height>60%</height>
-      </action>
     </keybind>
   </keyboard>
   <mouse>

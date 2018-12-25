@@ -1,0 +1,17 @@
+#!/bin/sh
+
+#set -e
+
+searchmode=classname
+classname="Navigator"
+
+#searchmode=class
+#classname=Firefox
+
+focused_window=$(xdotool getwindowfocus)
+## desktop=$(xdotool get_desktop)
+
+## xdotool search --desktop $desktop --onlyvisible --$searchmode $classname windowfocus &&\
+xdotool search --onlyvisible --$searchmode "$classname" windowfocus --sync key --clearmodifiers "ctrl+r"
+
+xdotool windowfocus $focused_window

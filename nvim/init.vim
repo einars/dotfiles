@@ -131,6 +131,8 @@ Plugin 'einars/vim-phpfold'
 let g:translit_toggle_keymap = '<S-F1>'
 Plugin 'einars/translit.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'ElmCast/elm-vim'
+Plugin 'carmonw/elm-vim'
 
 Plugin 'digitaltoad/vim-pug'
 " Plugin 'kchmck/vim-coffee-script'
