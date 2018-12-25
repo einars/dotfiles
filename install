@@ -11,14 +11,17 @@ git submodule init
 git submodule update
 
 nvim/install
+zsh/install
 
 ln -sfn $install_source/gitconfig ~/.gitconfig
 ln -sfn $install_source/dunst ~/.config/dunst
 ln -sfn $install_source/ptconfig.toml ~/.ptconfig.toml
 
+ln -sfn $install_source/bin ~/bin
+
 ln -sfn $install_source/xresources ~/.Xresources
 
-ln -sfn $install_source/zsh ~/.zsh
+#ln -sfn $install_source/zsh ~/.zsh
 ln -sfn $install_source/zsh/zshrc ~/.zshrc
 ln -sfn $install_source/bin ~/bin
 

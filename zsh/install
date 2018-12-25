@@ -1,0 +1,20 @@
+#!/bin/sh
+
+mkdir -p ~/.zsh
+
+pwd=$(readlink -f $(dirname $0))
+
+for f in $pwd/*; do
+	bf=$(basename $f)
+	if [ $bf != "install" ]; then
+		ln -sfn $f ~/.zsh/$bf
+	fi
+done
+
+touch ~/.zsh/aliases.private
+
+[ -d ~/.zsh/zsh-syntax-highlighting ] || {
+	cd ~/.zsh
+	git clone git://github.com/zsh-users/zsh-syntax-highlighting
+}
+
