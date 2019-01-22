@@ -1,9 +1,15 @@
 #!/bin/sh
 
 time=$(date '+%a %-d. %b %-H:%M')
-task=''
+task=
+stuff=
 
 if test -f ~/.config/watson/state; then
+  # stuff=$(watson log --day --current --no-pager | tail -n +2 | sed 's/^\t.........//g')
+  stuff="
+
+$stuff"
+
   project=$(jq --raw-output .project ~/.config/watson/state)
   if test "null" != $project; then
     started=$(jq --raw-output .start ~/.config/watson/state)
@@ -16,5 +22,5 @@ if test -f ~/.config/watson/state; then
 fi
 
 
-notify "~ $time$task"
+notify "~ $time$task$stuff"
 

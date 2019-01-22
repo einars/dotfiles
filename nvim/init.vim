@@ -142,6 +142,8 @@ Plugin 'derekwyatt/vim-scala'
 Plugin 'junegunn/goyo.vim'
 Plugin 'stephpy/vim-yaml'
 
+Plugin 'fatih/vim-go'
+
 let g:colorizer_auto_filetype='css,scss,sass'
 let g:colorizer_skip_comments=1
 Plugin 'chrisbra/Colorizer'

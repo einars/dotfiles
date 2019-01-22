@@ -173,6 +173,7 @@ tarz() { tar cvf - $2 | pigz -1 - > $1 }
 alias com='screen /dev/ttyACM0 115200,inlcr,onlret,echo'
 
 # watson with 'report' as default
-ww() { test -z "$1" && watson report --day || watson $@ }
+ww() { test -z "$1" && watson log --current || watson $@ }
+wa() { test -z "$1" && watson log --current || watson $@ }
 
 # vim: syn=zsh :

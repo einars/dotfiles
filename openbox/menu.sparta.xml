@@ -55,6 +55,46 @@
     </item>
   </menu>
 
+  <menu id="wa" label="Watson" icon="ICON">
+    <item label="wa stop">
+      <action name="Execute">
+        <command>tt watson-notify stop</command>
+      </action>
+    </item>
+    <separator />
+    <item label="wa restart">
+      <action name="Execute">
+        <command>tt watson-notify restart</command>
+      </action>
+    </item>
+    <separator />
+    <item label="wa start bvu">
+      <action name="Execute">
+        <command>tt watson-notify start bvu</command>
+      </action>
+    </item>
+    <item label="wa start dl">
+      <action name="Execute">
+        <command>tt watson-notify start dl</command>
+      </action>
+    </item>
+    <item label="wa start serviteh">
+      <action name="Execute">
+        <command>tt watson-notify start serviteh</command>
+      </action>
+    </item>
+    <item label="wa start meteo">
+      <action name="Execute">
+        <command>tt watson-notify start meteo</command>
+      </action>
+    </item>
+    <item label="wa start postdoc">
+      <action name="Execute">
+        <command>tt watson-notify start postdoc</command>
+      </action>
+    </item>
+  </menu>
+
   <menu id="monitor" label="Labais monitors" icon="ICON">
     <item label="On">
       <action name="Execute">

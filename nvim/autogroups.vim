@@ -13,7 +13,7 @@ autocmd VimEnter,BufEnter,BufWinEnter * silent! iunmap <buffer> <M-">
 augroup broken_indents
     autocmd!
     " autocmd FileType yaml,coffee,pug setlocal indentexpr= nosmartindent autoindent ts=8 sts=2 sw=2
-    autocmd FileType go,golang setlocal ts=4 sts=4 sw=4
+    autocmd FileType go,golang setlocal noet ts=8 sts=8 sw=8
 augroup END
 
 augroup latex
