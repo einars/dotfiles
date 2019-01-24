@@ -2,7 +2,14 @@
 <?php
 
 // run in background, monitor watson (https://github.com/TailorDev/Watson)
-// and notify every 15 min 
+// and notify every X min 
+
+
+monitor_watson(
+    17, 
+    getenv('HOME') . '/.config/watson/state'
+);
+
 
 function watson_state($state_file)
 {
@@ -24,30 +31,53 @@ function watson_state($state_file)
 
 }
 
+function say($message)
+{
+    printf("%s %s\n", date('Y-m-d H:i'), $message);
+}
+
+function format_time($m)
+{
+    $h = (int)($m / 60);
+    $m = $m % 60;
+
+    if ($h) {
+        return sprintf('%d %s and %d %s'
+            , $h
+            , $h === 1 ? 'hour' : 'hours'
+            , $m
+            , ($m % 10 === 1 && $m % 100 !== 11 ? 'minute' : 'minutes')
+        );
+    } else {
+        return sprintf('%d %s'
+            , $m
+            , ($m % 10 === 1 && $m % 100 !== 11 ? 'minute' : 'minutes')
+        );
+
+    }
+}
+
 function tell_about($project, $time_elapsed)
 {
     if ( $project ) {
-        $message = sprintf('Working on %s for %d %s.', $project, $time_elapsed, ($time_elapsed % 10 === 1 && $time_elapsed % 100 !== 11 ? 'minute' : 'minutes'));
+        $message = sprintf('Working on %s for %s.', $project, format_time($time_elapsed));
     } else {
         $message = 'Doing nothing, just chill.';
     }
-    printf("%s %s\n", date('Y-m-d H:i'), $message);
+    say($message);
 }
 
 function watson_notify($project, $time_elapsed)
 {
 
-    $message = sprintf('Working on %s for %d %s.', $project, $time_elapsed, ($time_elapsed % 10 === 1 && $time_elapsed % 100 !== 11 ? 'minute' : 'minutes'));
-    printf("%s\n", $message);
+    $message = sprintf('Working on %s for %s.', $project, format_time($time_elapsed));
 
+    say($message);
     system(sprintf('notify-send -u normal %s', escapeshellarg("Watson\n$message")));
 }
 
-function main()
+function monitor_watson($notification_interval_min, $watson_state)
 {
-
-    $notification_interval_min = 15;
-    $watson_state = getenv('HOME') . '/.config/watson/state';
 
     if ( ! file_exists($watson_state) ) {
         die("No watson state file $watson_state found.\n");
@@ -56,7 +86,7 @@ function main()
     $current_proj = null;
     $current_time = null;
 
-    printf("Watson now takes some vicodin.\n");
+    say("Watson now takes some vicodin.");
 
     $first = true;
 
@@ -84,5 +114,3 @@ function main()
         sleep(30);
     }
 }
-
-main();
