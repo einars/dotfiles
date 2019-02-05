@@ -1,4 +1,5 @@
 #!/bin/sh
 
-cd /storage/izklaide/Terraria
-./start.sh
+notify --urgency=critical "Nē, pietiek, šis vairs nebūs spēļu dators."
+#cd /storage/izklaide/Terraria
+#./start.sh

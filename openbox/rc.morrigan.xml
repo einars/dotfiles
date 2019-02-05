@@ -473,7 +473,8 @@
     <keybind key="W-r">
       <action name="Execute">
         <!-- command>dmenu_run -f -b -i -p Run: </command-->
-        <command>dmenu_run -sb '#e63' -sf '#111' -fn "Monaco-14" -f -b -i -p Run: </command>
+        <!-- command>dmenu_run -sb '#e63' -sf '#111' -fn "Monaco-14" -f -b -i -p Run: </command -->
+        <command>rofi -show run</command>
       </action>
     </keybind>
     <keybind key="W-S-Left">
@@ -969,6 +970,7 @@
       <!-- decor>no</decor -->
       <size>
         <width>100%</width>
+        <height>80%</height>
       </size>
       <position force="yes">
         <!-- monitor>mouse</monitor -->
