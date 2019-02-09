@@ -36,6 +36,12 @@ function say($message)
   printf("%s %s\n", date('Y-m-d H:i'), $message);
 }
 
+function say_and_notify($message)
+{
+  say($message);
+  system(sprintf('notify-send -u normal %s', escapeshellarg("Watson\n$message")));
+}
+
 function format_time($m)
 {
   $h = (int)($m / 60);
@@ -57,6 +63,17 @@ function format_time($m)
   }
 }
 
+
+function kill_watson_if_idle()
+{
+  $idle_s = exec('xprintidle') / 1000;
+  // 8 minutes idle threshold
+  if ($idle_s > 8 * 60) {
+    exec('watson stop');
+    say_and_notify("crit: idle stopping watson");
+  }
+}
+
 function tell_about($project, $time_elapsed)
 {
   if ( $project ) {
@@ -69,11 +86,7 @@ function tell_about($project, $time_elapsed)
 
 function watson_notify($project, $time_elapsed)
 {
-
-  $message = sprintf('Working on %s for %s.', $project, format_time($time_elapsed));
-
-  say($message);
-  system(sprintf('notify-send -u normal %s', escapeshellarg("Watson\n$message")));
+  say_and_notify( sprintf('Working on %s for %s.', $project, format_time($time_elapsed)));
 }
 
 function monitor_watson($notification_interval_min, $watson_state)
@@ -91,6 +104,9 @@ function monitor_watson($notification_interval_min, $watson_state)
   $first = true;
 
   while (true) {
+
+    if ($current_proj) kill_watson_if_idle();
+
     list($proj, $time) = watson_state($watson_state);
 
     if ($proj !== $current_proj) {
@@ -112,5 +128,6 @@ function monitor_watson($notification_interval_min, $watson_state)
     }
 
     sleep(30);
+    // sleep(5);
   }
 }
