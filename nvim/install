@@ -14,13 +14,19 @@ for f in $pwd/*.vim; do
 done
 ln -sfn $pwd/init.vim ~/.vimrc
 
-[ -d ~/.vim/bundle/Vundle.vim ] || {
-  mkdir -p ~/.vim/bundle
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+[ -f ~/.vim/autoload/plug.vim ] || {
+  mkdir -p ~/.vim/autoload
+  curl --create-dirs \
+    --location \
+    --output ~/.vim/autoload/plug.vim \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 }
-[ -d ~/.config/nvim/bundle/Vundle.vim ] || {
-  mkdir -p ~/.config/nvim/bundle
-  cp -r ~/.vim/bundle/Vundle.vim ~/.config/nvim/bundle/
-  # git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
+
+[ -f ~/.config/nvim/autoload/plug.vim ] || {
+  mkdir -p ~/.vim/autoload
+  curl --create-dirs \
+    --location \
+    --output ~/.config/nvim/autoload/plug.vim \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 }
 

@@ -43,7 +43,7 @@ set shiftround          " shift in mod 4
 set nojoinspaces        " with joinspaces, two spaces are entered after . / ? / !
 set splitright          " split on the correct side
 set splitbelow          " split on the correct side
-set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab
+set tabstop=8 shiftwidth=2 softtabstop=0 expandtab smarttab
 set smartindent
 set wildchar=<Tab>
 set laststatus=2        " good statusline is good
@@ -103,78 +103,8 @@ function! EditorRoot()
   endif
 endfunction
 
-filetype off
-let &rtp = &rtp . ',' . EditorRoot() . '/bundle/Vundle.vim/'
-call vundle#begin(EditorRoot() . '/bundle')
+exec 'source ' . EditorRoot() . '/plugins.vim'
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'airblade/vim-rooter'
-
-" adds Wipeout command to cleanup buffers
-Plugin 'artnez/vim-wipeout' 
-
-
-" vim-surround: do not use C-s / C-g s
-let g:surround_no_insert_mappings = 1
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-sleuth'
-
-Plugin 'einars/vim-phpfold'
-
-
-"let g:templates_directory = '/dotfiles/nvim/templates/'
-"let g:templates_no_builtin_templates = 1
-"let g:templates_global_name_prefix = 't-'
-"Plugin 'aperezdc/vim-template'
-
-let g:translit_toggle_keymap = '<S-F1>'
-Plugin 'einars/translit.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-"Plugin 'ElmCast/elm-vim'
-Plugin 'carmonw/elm-vim'
-
-Plugin 'digitaltoad/vim-pug'
-" Plugin 'kchmck/vim-coffee-script'
-Plugin 'rgrinberg/vim-ocaml'
-Plugin 'derekwyatt/vim-scala'
-
-Plugin 'junegunn/goyo.vim'
-Plugin 'stephpy/vim-yaml'
-
-Plugin 'fatih/vim-go'
-
-let g:colorizer_auto_filetype='css,scss,sass'
-let g:colorizer_skip_comments=1
-Plugin 'chrisbra/Colorizer'
-
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'neoclide/vim-jsx-improve'
-let g:tabprefix = ""
-Plugin 'tpope/vim-flagship'
-" Plugin 'othree/yajs.vim' " ES6
-
-" Plugin 'NLKNguyen/papercolor-theme'
-" Plugin 'junegunn/seoul256.vim' " paper beats seoul
-
-if has('nvim')
-  Plugin 'equalsraf/neovim-gui-shim'
-  let g:deoplete#enable_at_startup = 1
-  Plugin 'Shougo/deoplete.nvim'
-
-  let g:neosnippet#disable_runtime_snippets = { '_': 1 }
-  let g:neosnippet#snippets_directory = "/dotfiles/nvim/snippets"
-  " Plugin 'Shougo/neosnippet-snippets'
-  Plugin 'Shougo/neosnippet.vim'
-endif
-
-
-call vundle#end()
-
-"let g:loaded_sql_completion = 0
-
-filetype plugin indent on  " detect filetypes
-syntax on                  " colors
 
 "colors sorcerer
 if ! has('nvim')

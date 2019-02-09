@@ -3,50 +3,20 @@
 #DECAY=/services/web/decay.spicausis.lv
 DECAY=minerva:decay/
 
-#mkdir -p $DECAY
-#find $DECAY -type f -mtime +2 -delete
-
-opt_link=0
-
 function usage()
 {
     cat <<EOF
-usage: `basename $0` [-l] file1 [file2] [...fileN] 
-
-  -l    link instead of copying
+usage: `basename $0` file1 [file2] [...fileN] 
 
 EOF
     exit -1
 }
 
 
-while getopts "l" opt; do
-    case $opt in 
-    (l)
-        opt_link=1
-        ;;
-    (*)
-        usage
-        ;;
-    esac
-done
-
 (( $# == 0 )) && usage
 
-(( OPTIND > 1 )) && shift $(( OPTIND - 1 ))
-
-
-if (( $opt_link == 1 )); then
-    if [[ $# > 1 ]]; then
-        echo Cannot link more than 1 file
-        exit -2
-    else
-        ln -t $DECAY -s `pwd`/$@
-    fi
-else
-    #cp -r -t $DECAY $@
-    scp $@ $DECAY
-    url="https://decay.spicausis.lv/$(basename $@)"
-    echo $url | xclip 
-    echo $url
-fi
+rsync -vaxe ssh $@ $DECAY
+#scp $@ $DECAY
+url="https://decay.spicausis.lv/$(basename $@)"
+echo $url | xclip 
+echo $url

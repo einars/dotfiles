@@ -6,111 +6,111 @@
 
 
 monitor_watson(
-    17, 
-    getenv('HOME') . '/.config/watson/state'
+  15, 
+  getenv('HOME') . '/.config/watson/state'
 );
 
 
 function watson_state($state_file)
 {
-    $s = json_decode(file_get_contents($state_file), true);
+  $s = json_decode(file_get_contents($state_file), true);
 
-    if ( ! isset($s['project']) ) {
-        return array(null, null);
-    }
+  if ( ! isset($s['project']) ) {
+    return array(null, null);
+  }
 
-    $tags = '';
-    if (isset($s['tags'])) {
-        $tags = ' +' . implode(' +', $s['tags']);
-    }
+  $tags = '';
+  if (isset($s['tags'])) {
+    $tags = ' +' . implode(' +', $s['tags']);
+  }
 
-    return [
-        $s['project'] . $tags,
-        (int)((time() - $s['start']) / 60),
-    ];
+  return [
+    $s['project'] . $tags,
+    (int)((time() - $s['start']) / 60),
+  ];
 
 }
 
 function say($message)
 {
-    printf("%s %s\n", date('Y-m-d H:i'), $message);
+  printf("%s %s\n", date('Y-m-d H:i'), $message);
 }
 
 function format_time($m)
 {
-    $h = (int)($m / 60);
-    $m = $m % 60;
+  $h = (int)($m / 60);
+  $m = $m % 60;
 
-    if ($h) {
-        return sprintf('%d %s and %d %s'
-            , $h
-            , $h === 1 ? 'hour' : 'hours'
-            , $m
-            , ($m % 10 === 1 && $m % 100 !== 11 ? 'minute' : 'minutes')
-        );
-    } else {
-        return sprintf('%d %s'
-            , $m
-            , ($m % 10 === 1 && $m % 100 !== 11 ? 'minute' : 'minutes')
-        );
+  if ($h) {
+    return sprintf('%d %s and %d %s'
+      , $h
+      , $h === 1 ? 'hour' : 'hours'
+      , $m
+      , ($m % 10 === 1 && $m % 100 !== 11 ? 'minute' : 'minutes')
+    );
+  } else {
+    return sprintf('%d %s'
+      , $m
+      , ($m % 10 === 1 && $m % 100 !== 11 ? 'minute' : 'minutes')
+    );
 
-    }
+  }
 }
 
 function tell_about($project, $time_elapsed)
 {
-    if ( $project ) {
-        $message = sprintf('Working on %s for %s.', $project, format_time($time_elapsed));
-    } else {
-        $message = 'Doing nothing, just chill.';
-    }
-    say($message);
+  if ( $project ) {
+    $message = sprintf('Working on %s for %s.', $project, format_time($time_elapsed));
+  } else {
+    $message = 'Doing nothing, just chill.';
+  }
+  say($message);
 }
 
 function watson_notify($project, $time_elapsed)
 {
 
-    $message = sprintf('Working on %s for %s.', $project, format_time($time_elapsed));
+  $message = sprintf('Working on %s for %s.', $project, format_time($time_elapsed));
 
-    say($message);
-    system(sprintf('notify-send -u normal %s', escapeshellarg("Watson\n$message")));
+  say($message);
+  system(sprintf('notify-send -u normal %s', escapeshellarg("Watson\n$message")));
 }
 
 function monitor_watson($notification_interval_min, $watson_state)
 {
 
-    if ( ! file_exists($watson_state) ) {
-        die("No watson state file $watson_state found.\n");
+  if ( ! file_exists($watson_state) ) {
+    die("No watson state file $watson_state found.\n");
+  }
+
+  $current_proj = null;
+  $current_time = null;
+
+  say("Watson now takes some vicodin.");
+
+  $first = true;
+
+  while (true) {
+    list($proj, $time) = watson_state($watson_state);
+
+    if ($proj !== $current_proj) {
+      tell_about($proj, $time);
     }
 
-    $current_proj = null;
-    $current_time = null;
-
-    say("Watson now takes some vicodin.");
-
-    $first = true;
-
-    while (true) {
-            list($proj, $time) = watson_state($watson_state);
-
-            if ($proj !== $current_proj) {
-                tell_about($proj, $time);
-            }
-
-            if ( ! $proj ) {
-                $current_proj = null;
-                $current_time = null;
-            }
-            else {
-
-                if (($current_time !== $time) and ($time !== 0) and ($time % $notification_interval_min === 0)) {
-                    watson_notify($proj, $time);
-                }
-
-                $current_time = $time;
-                $current_proj = $proj;
-            }
-
-        sleep(30);
+    if ( ! $proj ) {
+      $current_proj = null;
+      $current_time = null;
     }
+    else {
+
+      if (($current_time !== $time) and ($time !== 0) and ($time % $notification_interval_min === 0)) {
+        watson_notify($proj, $time);
+      }
+
+      $current_time = $time;
+      $current_proj = $proj;
+    }
+
+    sleep(30);
+  }
 }
