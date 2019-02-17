@@ -5,28 +5,86 @@
 // and notify every X min 
 
 
-monitor_watson(
-  15, 
-  getenv('HOME') . '/.config/watson/state'
-);
+monitor_watson([
+  'notify-interval-mins' => 15,
+  'nudge-threshold-mins' => 7,
+  'idle-interval-break-mins' => 4,
+  'state-file' => getenv('HOME') . '/.config/watson/state',
+  'projs-dont-break-when-idle' => [ 'edx' ],
+  'tags-dont-break-when-idle' => [ 'video' ],
+]);
 
+function xorg_idle_s()
+{
+  return exec('xprintidle') / 1000;
+}
+
+function work_nudge($state, $opts)
+{
+  // when no project is happening, but I'm doing something, nudge me
+
+  $in_project = $state['is_running'];
+  $nudge_threshold_mins = opt('nudge-threshold-mins', $opts, 5);
+
+  static $active_since = null;
+  static $is_nudged = false;
+
+  if ($in_project) {
+    $active_since = null;
+    $is_nudged = false;
+    return;
+  }
+
+  $idle = xorg_idle_s();
+  if ($idle > 120) {
+    if ($active_since) {
+      say('Idle detected: resetting nudge timer.');
+      $active_since = null;
+      $is_nudged = false;
+    }
+    return;
+  }
+
+  if ($is_nudged) return;
+
+  if ( ! $active_since ) {
+    $active_since = time();
+    return;
+  }
+
+  $active_for_s = (time() - $active_since);
+  say(sprintf('Messing around without a project for %s.', format_time($active_for_s / 60)));
+  if ($active_for_s > 60 * $nudge_threshold_mins ) {
+    say_and_notify('You might want to do something meaningful instead, you know.');
+    $is_nudged = true;
+  }
+}
 
 function watson_state($state_file)
 {
   $s = json_decode(file_get_contents($state_file), true);
 
   if ( ! isset($s['project']) ) {
-    return array(null, null);
+    return [
+      'is_running' => false,
+      'project' => null,
+      'tags' => [],
+      'elapsed' => null,
+    ];
   }
 
   $tags = '';
   if (isset($s['tags'])) {
-    $tags = ' +' . implode(' +', $s['tags']);
+    $tags = $s['tags'];
+  } else {
+    $tags = [];
   }
 
   return [
-    $s['project'] . $tags,
-    (int)((time() - $s['start']) / 60),
+    'is_running' => true,
+    'project' => $s['project'],
+    'tags' => $tags,
+    'elapsed' => (int)((time() - $s['start']) / 60),
   ];
 
 }
@@ -64,18 +122,20 @@ function format_time($m)
 }
 
 
-function kill_watson_if_idle()
+function kill_watson_if_idle($opts)
 {
-  $idle_s = exec('xprintidle') / 1000;
-  // 8 minutes idle threshold
-  if ($idle_s > 8 * 60) {
+  $idle_interval_break_mins = opt('idle-interval-break-mins', $opts, 8);
+  $idle_s = xorg_idle_s();
+  if ($idle_s > $idle_interval_break_mins * 60) {
     exec('watson stop');
     say_and_notify("crit: idle stopping watson");
   }
 }
 
-function tell_about($project, $time_elapsed)
+function tell_about($state)
 {
+  $project = $state['project'];
+  $time_elapsed = $state['elapsed'];
   if ( $project ) {
     $message = sprintf('Working on %s for %s.', $project, format_time($time_elapsed));
   } else {
@@ -84,50 +144,80 @@ function tell_about($project, $time_elapsed)
   say($message);
 }
 
-function watson_notify($project, $time_elapsed)
+function watson_notify($state)
 {
-  say_and_notify( sprintf('Working on %s for %s.', $project, format_time($time_elapsed)));
+  say_and_notify( sprintf('Working on %s for %s.', $state['project'], format_time($state['elapsed'])));
 }
 
-function monitor_watson($notification_interval_min, $watson_state)
+function tag_match($state, $test_against)
+{
+  foreach($state['tags'] as $t) {
+    if (in_array($t, $test_against)) return true;
+  }
+  return false;
+}
+
+function proj_match($state, $test_against)
+{
+  if (in_array($state['project'], $test_against)) return true;
+  return false;
+}
+
+function monitor_watson($opts)
 {
 
-  if ( ! file_exists($watson_state) ) {
-    die("No watson state file $watson_state found.\n");
+  $notification_interval_min = opt('notify-interval-mins', $opts, 15);
+  $state_file                = opt('state-file', $opts, 'state');
+  $no_idle_kill_projs        = opt('projs-dont-break-when-idle', $opts, []);
+  $no_idle_kill_tags         = opt('tags-dont-break-when-idle', $opts, []);
+  // $nudge_threshold_mins = opt('nudge-threshold-mins', $opts, 5);
+  // $idle_interval_break_mins = opt('idle-interval-break-mins', $opts, 8);
+
+  if ( ! file_exists($state_file  ) ) {
+    die("No watson state file $state_file   found.\n");
   }
 
-  $current_proj = null;
-  $current_time = null;
 
   say("Watson now takes some vicodin.");
 
-  $first = true;
+  $current = watson_state($state_file);
+  tell_about($current);
 
   while (true) {
 
-    if ($current_proj) kill_watson_if_idle();
-
-    list($proj, $time) = watson_state($watson_state);
-
-    if ($proj !== $current_proj) {
-      tell_about($proj, $time);
+    if ($current['is_running']
+      and ! proj_match($current, $no_idle_kill_projs)
+      and ! tag_match($current, $no_idle_kill_tags)
+    ) {
+      kill_watson_if_idle($opts);
     }
 
-    if ( ! $proj ) {
-      $current_proj = null;
-      $current_time = null;
-    }
-    else {
+    $s = watson_state($state_file);
 
-      if (($current_time !== $time) and ($time !== 0) and ($time % $notification_interval_min === 0)) {
-        watson_notify($proj, $time);
+    if ($s['project'] !== $current['project']) {
+      tell_about($s);
+    }
+
+    work_nudge($s, $opts);
+
+
+    if ($s['is_running'] ) {
+      if (($current['elapsed'] !== $s['elapsed']) and ($s['elapsed'] !== 0) and ($s['elapsed'] % $notification_interval_min === 0)) {
+        watson_notify($s);
       }
-
-      $current_time = $time;
-      $current_proj = $proj;
     }
+
+    $current = $s;
 
     sleep(30);
     // sleep(5);
   }
+}
+
+function opt($opt, $opts, $default = null)
+{
+  if (array_key_exists($opt, $opts)) {
+    return $opts[$opt];
+  }
+  return $default;
 }
