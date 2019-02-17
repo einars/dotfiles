@@ -1,6 +1,7 @@
 #!/bin/sh
 
-export AUDIODRIVER=alsa
-play --no-show-progress -n synth 0.06 sin 1408 vol 0.5
-play --no-show-progress -n synth 0.06 sin 1674 vol 0.5
-play --no-show-progress -n synth 0.06 sin 2109 vol 0.5
+aplay ~/bin/chime.wav &
+#export AUDIODRIVER=alsa
+#play --no-show-progress -n synth 0.06 sin 1408 vol 0.5
+#play --no-show-progress -n synth 0.06 sin 1674 vol 0.5
+#play --no-show-progress -n synth 0.06 sin 2109 vol 0.5

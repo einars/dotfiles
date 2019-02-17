@@ -212,6 +212,11 @@
         <execute>tt screenshot</execute>
       </action>
     </keybind>
+    <keybind key="C-Scroll_Lock">
+      <action name="Execute">
+        <execute>tt screenshot.nocrop</execute>
+      </action>
+    </keybind>
     <keybind key="S-Scroll_Lock">
       <action name="Execute">
         <execute>gcolor2</execute>

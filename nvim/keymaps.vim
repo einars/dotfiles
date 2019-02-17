@@ -50,18 +50,18 @@ nnoremap <leader>em :e ~/.config/openbox/menu.xml<Cr>
 
 if has('nvim')
   " deoplete
-  inoremap <silent> <Cr> <C-r>=<SID>deoplete_cr()<Cr>
-  function! s:deoplete_cr()
-    return deoplete#mappings#close_popup() . "\<Cr>"
-  endfunction
+  " inoremap <silent> <Cr> <C-r>=<SID>deoplete_cr()<Cr>
+  " function! s:deoplete_cr()
+    " return deoplete#mappings#close_popup() . "\<Cr>"
+  " endfunction
 
   " ncm2
 
-  "inoremap <expr> <Cr> (pumvisible() ? "\<c-y>\<Cr>" : "\<Cr>")
-  "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-  "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-  "autocmd BufEnter * call ncm2#enable_for_buffer()
-  "set completeopt=noinsert,menuone,noselect
+  inoremap <expr> <Cr> (pumvisible() ? "\<c-y>\<Cr>" : "\<Cr>")
+  inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  autocmd BufEnter * call ncm2#enable_for_buffer()
+  set completeopt=noinsert,menuone,noselect
 
 
   " neosnippet

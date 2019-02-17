@@ -28,7 +28,7 @@ ln -sfn $install_source/tmux.conf ~/.tmux.conf
 ln -sfn $install_source/mpv ~/.config/mpv
 
 mkdir -p ~/.config/tint2
-ls -sfn $install_source/tint2rc ~/.config/tint2/tint2rc
+ln -sfn $install_source/tint2rc ~/.config/tint2/tint2rc
 
 
 mkdir -p ~/node/modules

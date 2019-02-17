@@ -49,13 +49,15 @@ let g:tabprefix = ""
 if has('nvim')
   Plug 'equalsraf/neovim-gui-shim'
 
-  let g:deoplete#enable_at_startup = 1
-  Plug 'Shougo/deoplete.nvim'
+  " adjust keymaps.vim manually as well
+  
+  "let g:deoplete#enable_at_startup = 1
+  "Plug 'Shougo/deoplete.nvim'
 
-  "Plug 'ncm2/ncm2'
-  "Plug 'roxma/nvim-yarp'
-  "Plug 'ncm2/ncm2-bufword'
-  "Plug 'ncm2/ncm2-path'
+  Plug 'ncm2/ncm2'
+  Plug 'roxma/nvim-yarp'
+  Plug 'ncm2/ncm2-bufword'
+  Plug 'ncm2/ncm2-path'
 
   let g:neosnippet#disable_runtime_snippets = { '_': 1 }
   let g:neosnippet#snippets_directory = "/dotfiles/nvim/snippets"
