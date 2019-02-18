@@ -1,3 +1,0 @@
-#!/usr/bin/env zsh
-
-notify "$(mpc | head -n 1)"
