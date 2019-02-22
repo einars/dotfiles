@@ -22,3 +22,6 @@ export EGAR=/usr/bin/arm-none-eabi-ar
 #export EGROOT=/proj/stm/emgo-test/
 export EGROOT=/proj/go/src/github.com/ziutek/emgo/egroot
 export EGPATH=/proj/go/src/github.com/ziutek/emgo/egpath
+
+export MSBuildSDKsPath=/opt/dotnet/sdk/2.2.102/Sdks
+try_path $MSBuildSDKsPath

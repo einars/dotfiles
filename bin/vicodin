@@ -19,6 +19,11 @@ function xorg_idle_s()
   return exec('xprintidle') / 1000;
 }
 
+function xorg_active_title()
+{
+  return exec('xdotool getwindowfocus getwindowname');
+}
+
 function work_nudge($state, $opts)
 {
   // when no project is happening, but I'm doing something, nudge me
@@ -28,10 +33,12 @@ function work_nudge($state, $opts)
 
   static $active_since = null;
   static $is_nudged = false;
+  static $last_title = null;
 
   if ($in_project) {
     $active_since = null;
     $is_nudged = false;
+    $last_title = null;
     return;
   }
 
@@ -48,12 +55,17 @@ function work_nudge($state, $opts)
   if ($is_nudged) return;
 
   if ( ! $active_since ) {
-    $active_since = time();
+    $active_since = time() - $idle;
     return;
   }
 
   $active_for_s = (time() - $active_since);
-  say(sprintf('Messing around without a project for %s.', format_time($active_for_s / 60)));
+  say(sprintf('Messing around for %s', format_time_s($active_for_s)));
+  $title = xorg_active_title();
+  if ($title && $title != $last_title) {
+    say(sprintf('Messing around: %s', xorg_active_title()));
+    $last_title = $title;
+  }
   if ($active_for_s > 60 * $nudge_threshold_mins ) {
     say_and_notify('You might want to do something meaningful instead, you know.');
     $is_nudged = true;
@@ -119,6 +131,15 @@ function format_time($m)
     );
 
   }
+}
+
+
+function format_time_s($s)
+{
+  $m = (int)($s / 60);
+  $s = $s % 60;
+  return sprintf('%dm %02ds', $m, $s);
+
 }
 
 

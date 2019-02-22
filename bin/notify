@@ -5,6 +5,6 @@
 if [[ $DISPLAY == "" ]]; then
     echo $@
 else
-    echo "$@"
+    echo "Notify: $@"
     notify-send -t 10000 -u normal -h int:x:1810 -h int:y:0 "$@"
 fi

@@ -4,6 +4,9 @@ export GOPATH=/proj/go
 try_path $GOPATH/bin
 try_path /opt/android-sdk/platform-tools/
 
+export MSBuildSDKsPath=/opt/dotnet/sdk/2.2.102/Sdks
+try_path $MSBuildSDKsPath
+
 # emgo
 export EGCC=/usr/bin/arm-none-eabi-gcc
 export EGLD=/usr/bin/arm-none-eabi-ld
@@ -38,3 +41,4 @@ alias vim=nvim
 eval $(opam config env)
 
 source ~/dbus-information.auto.txt
+
