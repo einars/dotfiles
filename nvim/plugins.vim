@@ -45,6 +45,8 @@ let g:tabprefix = ""
 
 " Plug 'NLKNguyen/papercolor-theme'
 " Plug 'junegunn/seoul256.vim' " paper beats seoul
+Plug 'dracula/vim'
+
 
 if has('nvim')
   Plug 'equalsraf/neovim-gui-shim'

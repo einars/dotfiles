@@ -55,7 +55,7 @@ set suffixes-=.h
 set virtualedit=block
 set shortmess+=c  " fuck completion message spam
 
-set mouse= " don't care for specific mouse support, neovim and gvim-qt guis provide enough pizzazz
+set mouse=a
 
 " no need for backups, swaps, nothing
 set backupdir= 
@@ -157,3 +157,25 @@ if filereadable(local_init)
   exec 'source ' . local_init
 endif
 
+
+function! Dark()
+  set background=dark
+endfunction
+
+function! Light()
+  set background=light
+endfunction
+
+function! Relight()
+  if strftime("%H") > 8 && strftime("%H") < 19
+    Light
+  else
+    Dark
+  endif
+endfunction
+
+command! Dark :call Dark()
+command! Light :call Light()
+command! Relight :call Relight()
+
+Relight

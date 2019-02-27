@@ -1,11 +1,18 @@
-set background=light
 colors PaperColorPatched
 
-"Guifont Iosevka Term:h10
-Guifont Go Mono:h9
 GuiLinespace 4
 
-"Guifont Go Mono:h11
-"GuiLinespace 6
+function! Dark()
+  set background=dark
+  colors PaperColorPatched
+  Guifont xos4 Terminus:h9
+endfunction
 
-set mouse=a
+function! Light()
+  set background=light
+  colors PaperColorPatched
+  "Guifont Iosevka Term:h10
+  Guifont Go Mono:h9
+endfunction
+
+Relight
