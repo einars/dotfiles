@@ -23,6 +23,9 @@ augroup latex
 augroup END
 
 
+augroup Indent4
+  autocmd FileType php setlocal sts=4 sw=4
+augroup END
 
 if has('nvim')
   augroup PHP

@@ -32,12 +32,12 @@ function work_nudge($state, $opts)
   $nudge_threshold_mins = opt('nudge-threshold-mins', $opts, 5);
 
   static $active_since = null;
-  static $is_nudged = false;
+  static $last_nudged = null;
   static $last_title = null;
 
   if ($in_project) {
     $active_since = null;
-    $is_nudged = false;
+    $last_nudged = null;
     $last_title = null;
     return;
   }
@@ -47,12 +47,13 @@ function work_nudge($state, $opts)
     if ($active_since) {
       say('Idle detected: resetting nudge timer.');
       $active_since = null;
-      $is_nudged = false;
+      $last_nudged = null;
     }
     return;
   }
 
-  if ($is_nudged) return;
+  // re-nudge every N min
+  if ($last_nudged && (time() - $last_nudged) < 27*60) return;
 
   if ( ! $active_since ) {
     $active_since = time() - $idle;
@@ -67,8 +68,23 @@ function work_nudge($state, $opts)
     $last_title = $title;
   }
   if ($active_for_s > 60 * $nudge_threshold_mins ) {
-    say_and_notify('You might want to do something meaningful instead, you know.');
-    $is_nudged = true;
+    nudge($title);
+    $last_nudged = time();
+  }
+}
+
+function nudge($title)
+{
+  $is_firefox = !! strpos($title, 'Mozilla Firefox');
+  $hour = date('H');
+  if ($hour > 22 || $hour < 5) {
+    say_and_notify(sprintf("It's %s.", date('H:i')));
+  } else {
+    if ($is_firefox)  {
+      say_and_notify("I hope that's not a total junk you're browsing.");
+    } else {
+      say_and_notify("Don't drift away.");
+    }
   }
 }
 

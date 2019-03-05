@@ -176,4 +176,6 @@ alias com='screen /dev/ttyACM0 115200,inlcr,onlret,echo'
 ww() { test -z "$1" && watson log --current || watson $@ }
 wa() { test -z "$1" && watson log --current || watson $@ }
 
+alias sageweb='sage -c "notebook(automatic_login=True)"'
+
 # vim: syn=zsh :

@@ -18,7 +18,3 @@ keycode 135 = Control_R
         ' | xmodmap -
 
 t compton
-
-###tt randr.hv
-
-
