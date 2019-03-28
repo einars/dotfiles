@@ -95,6 +95,19 @@
     </item>
   </menu>
 
+  <menu id="kbd" label="Klaviatūra" icon="ICON">
+    <item label="Klaviatūra atslēgta">
+      <action name="Execute">
+        <command>xinput disable "Metadot - Das Keyboard Das Keyboard"</command>
+      </action>
+    </item>
+    <item label="Klaviatūra darbojas">
+      <action name="Execute">
+        <command>xinput enable "Metadot - Das Keyboard Das Keyboard"</command>
+      </action>
+    </item>
+  </menu>
+
   <menu id="monitor" label="Labais monitors" icon="ICON">
     <item label="On">
       <action name="Execute">

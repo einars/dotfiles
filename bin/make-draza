@@ -9,8 +9,6 @@ month=$(date +%m)
 
 drazapath="/storage/draza/$year/$month"
 
-mkdir -p $drazapath/sync
-
 mkdir -p "/home/e/dokumenti/Gramatvediba/accounting/$year-$month"
 mkdir -p "/home/e/dokumenti/Gramatvediba/rekini-out/$year-$month"
 mkdir -p "/storage/torrents/$year-$month"

@@ -55,21 +55,21 @@ augroup Text
 augroup END
 
 
-augroup Fugitive
-    autocmd User fugitive
-        \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-        \   nnoremap <buffer> .. :edit %:h<CR> |
-        \ endif
-    autocmd BufReadPost fugitive://* setlocal bufhidden=delete
-augroup END
-
 " Soft text limiter
 """autocmd BufRead,BufNew *.* call matchadd('Error', '\%80v.')
 
 " Diff-adds/deletes have a tendency to have nice backgrounds
 " Whitespace (ignored) followed by one or multiple TK — TK, TKTKTK etc
-autocmd BufRead,BufNew *.* call matchadd('DiffDelete', '\v( )@<=(TK)+')
-autocmd BufRead,BufNew *.* call matchadd('DiffAdd', '\v(!!!|///|###|;;;|---) .*$')
+""augroup Flourish
+  ""autocmd BufRead,BufNew * call matchadd('DiffDelete', '\v( )@<=(TK|TODO|HACK)+')
+  ""autocmd BufRead,BufNew * call matchadd('DiffAdd', '\v(!!!|///|###|;;;|---) .*$')
+  " good in theory, but slows down everything:
+  ""autocmd BufEnter,BufNew * call matchadd('ColorColumn', '\%81v.\{1,40\}')
+  ""autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\%81v..\?.\?')
+  ""autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\%>120v.\+')
+""augroup END
+
+
 
 """ let's try the autosave on focus lost magic
 """ single active window:

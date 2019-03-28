@@ -136,7 +136,7 @@
     # Show age of message if message is older than show_age_threshold
     # seconds.
     # Set to -1 to disable.
-    show_age_threshold = 60
+    show_age_threshold = -1
 
     # Split notifications into multiple lines if they don't fit into
     # geometry.
@@ -289,10 +289,13 @@
     summary = "*crit*"
     urgency = critical
 
-[watson_beep]
-    summary = "*Working on *"
+[tag_beep]
+    summary = "<beep>"
     script = /home/e/bin/beep
-    urgency = normal
+
+[tag_nudge]
+    summary = "*<nudge>*"
+    script = /home/e/bin/beep2
 
 [defaults_low]
     msg_urgency = low

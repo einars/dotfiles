@@ -6,11 +6,15 @@
 args=$@
 
 eval $@
+runtime=$SECONDS
+runtime_min=$(echo "$runtime / 60" | bc)
+runtime_sec=$(echo "$runtime % 60" | bc)
+rt=$(printf "%02d:%02d" $runtime_min $runtime_sec)
 
 if [ $? -eq 0 ]; then
-  text="done: $@"
+  text="$1 done in $rt"
 else
-  text="crit: failed: $@"
+  text="crit: $1 failed in $rt"
 fi
 notify "$text"
   

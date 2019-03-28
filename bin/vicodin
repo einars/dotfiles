@@ -10,7 +10,7 @@ monitor_watson([
   'nudge-threshold-mins' => 7,
   'idle-interval-break-mins' => 4,
   'state-file' => getenv('HOME') . '/.config/watson/state',
-  'projs-dont-break-when-idle' => [ 'edx' ],
+  'projs-dont-break-when-idle' => [ 'edx', 'draw' ],
   'tags-dont-break-when-idle' => [ 'video' ],
 ]);
 
@@ -53,7 +53,7 @@ function work_nudge($state, $opts)
   }
 
   // re-nudge every N min
-  if ($last_nudged && (time() - $last_nudged) < 27*60) return;
+  if ($last_nudged && (time() - $last_nudged) < $nudge_threshold_mins*60) return;
 
   if ( ! $active_since ) {
     $active_since = time() - $idle;
@@ -77,15 +77,19 @@ function nudge($title)
 {
   $is_firefox = !! strpos($title, 'Mozilla Firefox');
   $hour = date('H');
+  $time = sprintf("<nudge>It's %s.", date('H:i'));
+  say_and_notify($time);
+  /*
   if ($hour > 22 || $hour < 5) {
-    say_and_notify(sprintf("It's %s.", date('H:i')));
+    say_and_notify($time);
   } else {
     if ($is_firefox)  {
-      say_and_notify("I hope that's not a total junk you're browsing.");
+      say_and_notify($time . " I hope that's not a total junk you're browsing.");
     } else {
-      say_and_notify("Don't drift away.");
+      say_and_notify($time . " Don't drift away.");
     }
   }
+   */
 }
 
 function watson_state($state_file)
@@ -183,7 +187,7 @@ function tell_about($state)
 
 function watson_notify($state)
 {
-  say_and_notify( sprintf('Working on %s for %s.', $state['project'], format_time($state['elapsed'])));
+  say_and_notify( sprintf('<beep>Working on %s for %s.', $state['project'], format_time($state['elapsed'])));
 }
 
 function tag_match($state, $test_against)

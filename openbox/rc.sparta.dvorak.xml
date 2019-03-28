@@ -439,7 +439,8 @@
     <keybind key="A-Tab">
       <action name="NextWindow">
         <dialog>list</dialog>
-        <bar>no</bar>
+        <bar>yes</bar>
+        <raise>no</raise>
       </action>
     </keybind>
     <keybind key="W-S-Tab">

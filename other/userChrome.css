@@ -1,0 +1,15 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* hide icons for bookmark items */
+/*#personal-bookmarks .bookmark-item[container="true"] .toolbarbutton-icon { */
+#personal-bookmarks .bookmark-item.bookmark-item[container="false"] .toolbarbutton-icon {
+ display: none !important;
+}
+
+#personal-bookmarks .bookmark-item {
+  color: #444;
+  font-family: Iosevka Term;
+  font-size: 11px;
+  cursor: pointer;
+}
+

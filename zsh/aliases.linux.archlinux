@@ -28,7 +28,7 @@ function run-pacman {
 
 # http://www.reddit.com/r/linux/comments/8pmss/alias_iddqdsudo_su/
 alias canhaz='run-pacman -S --needed'
-alias drop='run-pacman -R'
+alias drop='run-pacman --cascade -R'
 alias isthere='run-pacman -Ss'
 alias current='$pacman -Q | grep '
 
