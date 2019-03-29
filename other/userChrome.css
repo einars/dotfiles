@@ -2,7 +2,7 @@
 
 /* hide icons for bookmark items */
 /*#personal-bookmarks .bookmark-item[container="true"] .toolbarbutton-icon { */
-#personal-bookmarks .bookmark-item.bookmark-item[container="false"] .toolbarbutton-icon {
+#personal-bookmarks .bookmark-item:not([container="true"]) .toolbarbutton-icon {
  display: none !important;
 }
 
@@ -13,3 +13,9 @@
   cursor: pointer;
 }
 
+#tabbrowser-tabs .tabbrowser-tab .tab-close-button { 
+  display: none; 
+}
+#tabbrowser-tabs .tabbrowser-tab:hover .tab-close-button { 
+  display: block !important;
+}
