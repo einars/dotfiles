@@ -1,4 +1,4 @@
-urxvt*font: xft:Iosevka Term Light:size=9
+urxvt*font: xft:Iosevka Term Light:size=11
 xterm*font: xft:Iosevka Term:size=13
 !urxvt*font: xft:Ubuntu Mono:size=11
 

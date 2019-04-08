@@ -1,2 +1,2 @@
-colors PaperColorPatched
+colors PaperColor
 

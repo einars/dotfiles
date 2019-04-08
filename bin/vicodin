@@ -77,8 +77,8 @@ function nudge($title)
 {
   $is_firefox = !! strpos($title, 'Mozilla Firefox');
   $hour = date('H');
-  $time = sprintf("<nudge>It's %s.", date('H:i'));
-  say_and_notify($time);
+  $time = sprintf("It's %s.", date('H:i'));
+  say_and_notify($time, $category='nudge');
   /*
   if ($hour > 22 || $hour < 5) {
     say_and_notify($time);
@@ -126,10 +126,10 @@ function say($message)
   printf("%s %s\n", date('Y-m-d H:i'), $message);
 }
 
-function say_and_notify($message)
+function say_and_notify($message, $category='default', $urgency='normal')
 {
   say($message);
-  system(sprintf('notify-send -u normal %s', escapeshellarg("Watson\n$message")));
+  system(sprintf('notify-send --category %s --urgency %s %s', $category, $urgency, escapeshellarg("Watson\n$message")));
 }
 
 function format_time($m)
@@ -169,7 +169,7 @@ function kill_watson_if_idle($opts)
   $idle_s = xorg_idle_s();
   if ($idle_s > $idle_interval_break_mins * 60) {
     exec('watson stop');
-    say_and_notify("crit: idle stopping watson");
+    say_and_notify("idle stopping watson", $category='default', $urgency='critical');
   }
 }
 
@@ -187,7 +187,7 @@ function tell_about($state)
 
 function watson_notify($state)
 {
-  say_and_notify( sprintf('<beep>Working on %s for %s.', $state['project'], format_time($state['elapsed'])));
+  say_and_notify( sprintf('Working on %s for %s.', $state['project'], format_time($state['elapsed'])), $category='chime');
 }
 
 function tag_match($state, $test_against)

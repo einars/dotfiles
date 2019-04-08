@@ -128,7 +128,8 @@ alias d2u='dos2unix'
 #alias u2d = 'dos2unix --u2d' who needs that anyway
 
 alias cal='cal --monday -3'
-alias calc=octave-cli
+#alias calc=octave-cli
+alias calc=sage
 
 alias clamscan="clamscan --max-scansize=512M --max-filesize=512M"
 

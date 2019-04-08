@@ -114,7 +114,8 @@
     #
     # It's important to note that markup inside the format option will be parsed
     # regardless of what this is set to.
-    markup = full
+    # markup = full
+    markup = no
 
     # The format of the message.  Possible variables are:
     #   %a  appname
@@ -156,7 +157,7 @@
     hide_duplicate_count = false
 
     # Display indicators for URLs (U) and actions (A).
-    show_indicators = yes
+    show_indicators = no
 
     ### Icons ###
 
@@ -290,18 +291,25 @@
     urgency = critical
 
 [tag_beep]
-    summary = "<beep>"
+    category = "beep"
     script = /home/e/bin/beep
+    timeout = 10
+
+[tag_chime]
+    category = "chime"
+    script = /home/e/bin/beep
+    timeout = 10
 
 [tag_nudge]
-    summary = "*<nudge>*"
+    category = "nudge"
     script = /home/e/bin/beep2
+    timeout = 20
 
 [defaults_low]
     msg_urgency = low
     background = "#222222"
     foreground = "#aaaaaa"
-    timeout = 10
+    timeout = 20
 
 [defaults_normal]
     msg_urgency = normal
