@@ -6,8 +6,10 @@
 
 # -name allows the use of different Xresources
 identifier=urxvt.terminal
-cmd_to_exec="urxvt -name $identifier"
+cmd_to_exec="urxvt -name $identifier -e"
 
+## identifier=st-256color
+## cmd_to_exec="st -e"
 
 
 # parallel execution/frequent switching sometimes fails with
@@ -19,7 +21,7 @@ until $(echo $wid | grep -v failed &>/dev/null); do
 done
 if [ -z "$wid" ]; then
   #echo "exec $cmd_to_exec -e ~/bin/tmux-attach-or-create global &"
-  exec $cmd_to_exec -e tmux-attach-or-create global &
+  exec $cmd_to_exec tmux-attach-or-create global &
   sleep 0.05
   xdotool search --classname $identifier windowactivate
 else

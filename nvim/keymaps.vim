@@ -1,9 +1,17 @@
-" navigate buffers with ^z and ^c
 
-imap <C-z> <Esc>:bp<Cr>
-imap <C-c> <Esc>:bn<Cr>
-map  <C-z> :bp<Cr>
-map  <C-c> :bn<Cr>
+"" For something esoteric: use chtn (dvorak) cluster for arrows 
+""" (it's ijkl on qwerty)
+noremap <C-h> h
+noremap <C-t> j
+noremap <C-c> k
+" lost the prev-search
+noremap <C-n> l
+" I'm never using s command
+noremap <C-s> l
+
+map <C-Space> <C-w><C-w>
+
+
 map  <S-Cr> <Cr>
 
 " c-b as an alias for c-w, window cmds

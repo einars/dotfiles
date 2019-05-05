@@ -30,17 +30,11 @@ init_common()
 
 init_morrigan()
 {
-    if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && type dbus-launch >/dev/null; then
-        eval $(dbus-launch --sh-syntax --exit-with-session)
-    fi
 }
 
 init_sparta()
 {
-    logger "init_sparta"
-    #export QT_PLUGIN_PATH=/opt/lib32/usr/lib/qt/plugins
     export BROWSER=firefox
-
     xset m 4 1 # mouse
 }
 

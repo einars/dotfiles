@@ -10,7 +10,7 @@ monitor_watson([
   'nudge-threshold-mins' => 7,
   'idle-interval-break-mins' => 4,
   'state-file' => getenv('HOME') . '/.config/watson/state',
-  'projs-dont-break-when-idle' => [ 'edx', 'draw' ],
+  'projs-dont-break-when-idle' => [ 'edx', 'coursera', 'draw' ],
   'tags-dont-break-when-idle' => [ 'video' ],
 ]);
 
