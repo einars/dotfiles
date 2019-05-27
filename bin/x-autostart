@@ -10,11 +10,7 @@ tint2 &
 volumeicon &
 parcellite &
 
-setxkbmap lv_custom -variant dvp
-echo '
-clear Lock
-keycode 0x42 = Escape
-keycode 135 = Control_R
-        ' | xmodmap -
+setxkbmap lv_custom -variant dvp -option caps:escape
+xset r rate 200 30
 
 t compton

@@ -14,6 +14,6 @@
 #tabbrowser-tabs .tabbrowser-tab .tab-close-button { 
   display: none; 
 }
-#tabbrowser-tabs .tabbrowser-tab:hover .tab-close-button { 
+#tabbrowser-tabs .tabbrowser-tab:not([pinned="true"]):hover .tab-close-button { 
   display: block !important;
 }

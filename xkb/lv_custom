@@ -1,4 +1,12 @@
 partial alphanumeric_keys modifier_keys
+xkb_symbols "qwerty" {
+
+	include "lv(basic)"
+
+	name[Group1]= "Latvian (qwerty)";
+};
+
+partial alphanumeric_keys modifier_keys
 xkb_symbols "dvp" {
 
 	include "lv(dvorak)"
@@ -31,15 +39,16 @@ xkb_symbols "dvp" {
 	key <AE07> {[ asterisk,		0,		degree,			copyright		]};
 	key <AE08> {[ parenright,	2,		endash,			emdash			]};
 	key <AE09> {[ plus,		4,		plusminus,		section			]};
-	key <AE10> {[ bracketright,	6,		registered,		trademark		]};
+	// key <AE10> {[ bracketright,	6,		registered,		trademark		]};
+	key <AE10> {[ bracketright,	6,		oe,                     OE		        ]};
 	key <AE11> {[ exclam,		8,		exclam,			exclamdown		]};
 	key <AE12> {[ numbersign,	grave,		Greek_alpha,		Greek_beta		]};
 
 
-	key <AD01> {[ semicolon,	colon,		semicolon,		colon			]};
-	key <AD12> {[ at,		asciicircum,	at,			asciicircum		]};
+	key <AD01> {[ semicolon,	colon,		aring,		Aring		]};
+	key <AD12> {[ at,		asciicircum,	oslash,		Oslash		]};
 
-	key <AB01> {[ apostrophe,	quotedbl,	leftdoublequotemark,	doublelowquotemark	]};
+	key <AB01> {[ apostrophe,	quotedbl,	ae,	AE	]};
 
         key <AC11> {[ minus, underscore, emdash, emdash  ]};
 

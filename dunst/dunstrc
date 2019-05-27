@@ -302,7 +302,7 @@
 
 [tag_nudge]
     category = "nudge"
-    script = /home/e/bin/beep2
+    #script = /home/e/bin/beep2
     timeout = 20
 
 [defaults_low]

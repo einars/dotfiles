@@ -1,10 +1,9 @@
-colors PaperColorPatched
-
+colors miniblergh
 
 function! Dark()
   GuiLinespace 4
   set background=dark
-  colors PaperColorPatched
+  colors miniblergh
   """ I need dark font to be bolder and larger
   " "Guifont Iosevka Term Medium:h10
   Guifont xos4 Terminus:h9
@@ -19,4 +18,5 @@ function! Light()
   Guifont xos4 Terminus:h9
 endfunction
 
-Relight
+"Relight
+Dark

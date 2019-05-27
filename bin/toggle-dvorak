@@ -6,17 +6,19 @@
 #current=$(setxkbmap -query  | grep layout | awk '{print $2}')
 #if [ "$current" = "lv" ]; then
 if setxkbmap -query  | grep dvp; then
-        ~/bin/rekey
+        setxkbmap lv -option caps:escape
 else
-        setxkbmap lv_custom -variant dvp
+        setxkbmap lv_custom -variant dvp -option caps:escape
         echo '
-clear Lock
-keycode 0x42 = Escape
+! clear Lock
+! keycode 0x42 = Escape
 ! altgr , = ×□
 keycode 59 = w W w W multiply U25A1
 ! altgr . = ·■
 keycode 60 = v V w W periodcentered U25A0
         ' | xmodmap -
 fi
+
+xset r rate 200 30
 
 layout-notify

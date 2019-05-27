@@ -7,7 +7,7 @@
 
 monitor_watson([
   'notify-interval-mins' => 15,
-  'nudge-threshold-mins' => 7,
+  'nudge-threshold-mins' => 20,
   'idle-interval-break-mins' => 4,
   'state-file' => getenv('HOME') . '/.config/watson/state',
   'projs-dont-break-when-idle' => [ 'edx', 'coursera', 'draw' ],

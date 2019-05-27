@@ -398,11 +398,6 @@
         <command>notify-datetime</command>
       </action>
     </keybind>
-    <keybind key="s-0xc5">
-      <action name="Execute">
-        <command>~/bin/rekey</command>
-      </action>
-    </keybind>
     <keybind key="W-f">
       <action name="ToggleMaximize"/>
     </keybind>

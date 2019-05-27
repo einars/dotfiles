@@ -119,3 +119,15 @@ function! CleanDeleteBuffer()
 endfunction
 
 
+
+map <f10> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name") . " ". synIDattr(v:val, "bg#") . "/" . synIDattr(v:val, "fg#")')
+endfunc
+
+map <S-F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
