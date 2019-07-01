@@ -5,67 +5,187 @@
 
 <menu id="root-menu" label="Openbox 3">
 
-  <separator label="morrigan" />
+<separator label="This is Sparta" />
+  <menu id="radio" label="Rādio" icon="ICON">
+    <item label="Izslēgt mūziku">
+      <action name="Execute">
+        <command>tt music.off</command>
+      </action>
+    </item>
+    <separator />
+    <item label="Chromanova">
+      <action name="Execute">
+        <command>mpv-singleton-headless 'http://176.31.123.212:8096/listen.pls?sid=1'</command>
+      </action>
+    </item>
+    <item label="Bluemars">
+      <action name="Execute">
+        <command>mpv-singleton-headless 'http://streams.echoesofbluemars.org:8000/bluemars'</command>
+      </action>
+    </item>
+    <item label="Psyradio">
+      <action name="Execute">
+        <command>mpv-singleton-headless 'http://stream.psyradio.com.ua:8000/128kbps'</command>
+      </action>
+    </item>
+    <item label="Cryosleep">
+      <action name="Execute">
+        <command>mpv-singleton-headless 'http://streams.echoesofbluemars.org:8000/cryosleep'</command>
+      </action>
+    </item>
+    <item label="Russian Red">
+      <action name="Execute">
+        <command>t shuffle_path '/storage/music/Russian Red'</command>
+      </action>
+    </item>
+    <item label="Soma fluid">
+      <action name="Execute">
+        <command>tt soma fluid --headless</command>
+      </action>
+    </item>
+    <item label="Soma trip">
+      <action name="Execute">
+        <command>tt soma thetrip --headless</command>
+      </action>
+    </item>
+    <item label="Soma beatblender">
+      <action name="Execute">
+        <command>tt soma beatblender --headless</command>
+      </action>
+    </item>
+  </menu>
 
-  <menu id="ob-calendar" label="Kalendārs" execute="ob-date-menu" /-->
+  <menu id="wa" label="Watson" icon="ICON">
+    <item label="wa stop">
+      <action name="Execute">
+        <command>tt watson-notify stop</command>
+      </action>
+    </item>
+    <separator />
+    <item label="wa restart">
+      <action name="Execute">
+        <command>tt watson-notify restart</command>
+      </action>
+    </item>
+    <separator />
+    <item label="wa start bvu">
+      <action name="Execute">
+        <command>tt watson-notify start bvu</command>
+      </action>
+    </item>
+    <item label="wa start dl">
+      <action name="Execute">
+        <command>tt watson-notify start dl</command>
+      </action>
+    </item>
+    <item label="wa start serviteh">
+      <action name="Execute">
+        <command>tt watson-notify start serviteh</command>
+      </action>
+    </item>
+    <item label="wa start meteo">
+      <action name="Execute">
+        <command>tt watson-notify start meteo</command>
+      </action>
+    </item>
+    <item label="wa start postdoc">
+      <action name="Execute">
+        <command>tt watson-notify start postdoc</command>
+      </action>
+    </item>
+  </menu>
 
-  <item label="Chrome">
+  <menu id="monitor" label="Labais monitors" icon="ICON">
+    <item label="On">
+      <action name="Execute">
+        <command>t randr.hh</command>
+      </action>
+    </item>
+    <item label="Off">
+      <action name="Execute">
+        <command>t randr.hx</command>
+      </action>
+    </item>
+    <item label="On/vert">
+      <action name="Execute">
+        <command>t randr.hv</command>
+      </action>
+    </item>
+  </menu>
+
+  <menu id="Apps" label="Apps" execute="/usr/bin/obmenu-generator">
+  </menu>
+
+    <item label="Torenti">
     <action name="Execute">
-      <command>chromium</command>
+      <command>thunar /home/e/torrents/current</command>
     </action>
   </item>
 
-  <item label="Faili">
+  <item label="Noskanēt lapu">
     <action name="Execute">
-      <command>thunar /home/e/draza</command>
+        <command>tt action.scan</command>
     </action>
   </item>
+  <item label="Skaneris">
+    <action name="Execute">
+      <command>simple-scan</command>
+    </action>
+  </item>
+
+  <item label="Pārstartēt chrome">
+    <action name="Execute">
+      <command>restart-chrome</command>
+    </action>
+  </item>
+
+
+  <item label="Zīmēšana — inkscape">
+    <action name="Execute">
+        <command>inkscape</command>
+    </action>
+  </item>
+  <item label="Zīmēšana — gimp">
+    <action name="Execute">
+        <command>gimp</command>
+    </action>
+  </item>
+  <item label="Zīmēšana — krita">
+    <action name="Execute">
+        <command>krita</command>
+    </action>
+  </item>
+
 
   <item label="Terminālis">
     <action name="Execute">
         <command>urxvt</command>
     </action>
   </item>
-
   <item label="Taimeris">
     <action name="Execute">
         <command>gnome-clocks</command>
     </action>
   </item>
 
-  <item label="Terraria">
-    <action name="Execute">
-      <command>/home/e/bin/terraria</command>
-    </action>
-  </item>
-
-  <separator />
-
-  <item label="Izslēgt mūziku">
-    <action name="Execute">
-      <command>tt music.off</command>
-    </action>
-  </item>
-
-
-  <item label="Chromanova">
-    <action name="Execute">
-      <command>mpv-singleton 'http://176.31.123.212:8096/listen.pls?sid=1'</command>
-    </action>
-  </item>
-  <item label="Soma fluid">
-    <action name="Execute">
-      <command>tt soma fluid</command>
-    </action>
-  </item>
-  <item label="Soma trip">
-    <action name="Execute">
-      <command>tt soma thetrip</command>
-    </action>
-  </item>
-
   <!-- separator label="Applications" / -->
   <!-- menu id="xdg-apps" label="Applications" execute="openbox-xdgmenu /etc/xdg/menus/xfce-applications.menu" /-->
+  <separator label="System" />
+  <!-- item label="Openbox Configuration Manager">
+    <action name="Execute">
+      <command>obconf</command>
+      <startupnotify><enabled>yes</enabled></startupnotify>
+    </action>
+  </item -->
+  <item label="Reconfigure Openbox">
+    <action name="Reconfigure" />
+  </item>
+  <separator />
+  <item label="Log Out">
+    <action name="Exit">
+      <prompt>yes</prompt>
+    </action>
+  </item>
 </menu>
 
 </openbox_menu>

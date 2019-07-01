@@ -1,5 +1,7 @@
 #!/bin/sh
 
+desktop=openbox
+
 run_system_scripts()
 {
     if [ -d /etc/X11/xinit/xinitrc.d ] ; then                                                                                                                                                                          
@@ -13,13 +15,13 @@ run_system_scripts()
 
 init_common()
 {
-    test -d $HOME/bin && export PATH=$HOME/bin:$PATH
-    test -d $HOME/bin/private && export PATH=$HOME/bin/private:$PATH
+    test -d /home/e/bin && export PATH=/home/e/bin:$PATH
+    test -d /home/e/bin/private && export PATH=/home/e/bin/private:$PATH
     
     xsetroot -cursor_name left_ptr
     numlockx
 
-    xrdb -merge $HOME/.Xresources
+    xrdb -merge /home/e/.Xresources
 
     # to hell with screensaver
     xset s off
@@ -30,13 +32,40 @@ init_common()
 
 init_morrigan()
 {
-  true
+    if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && type dbus-launch >/dev/null; then
+        eval $(dbus-launch --sh-syntax --exit-with-session)
+    fi
+    # desktop=mate
 }
 
 init_sparta()
 {
-    export BROWSER=firefox
+    logger "init_sparta"
+    test -d /home/e/bin && export PATH=/home/e/bin:$PATH
+    test -d /home/e/bin/private && export PATH=/home/e/bin/private:$PATH
+
+    export QT_PLUGIN_PATH=/opt/lib32/usr/lib/qt/plugins
+    # export WINEARCH=win32
+    # export BROWSER=google-chrome
+    export BROWSER=chromium
+
+    # swap scrollwheel direction
+    #xmodmap -e "pointer = 1 2 3 5 4"
+
+    # set up latvian keymap and apple kbd customizations
+    rekey
+
+    # nvidia-settings --load-config-only
+
+    # ~/bin/nv fast
+
     xset m 4 1 # mouse
+
+    #eval $(dbus-launch --sh-syntax --exit-with-session 2>&1 | tee -a /tmp/dbus-launch.log)
+
+
+    #start-pulseaudio-x11
+
 }
 
 init_common
@@ -47,10 +76,12 @@ run_system_scripts
 
 ulimit -c unlimited
 
-### if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && type dbus-launch >/dev/null; then
-###   #eval $(dbus-launch --sh-syntax --exit-with-session 2>&1 | tee -a /tmp/dbus-launch.log)
-###   eval $(dbus-launch --sh-syntax 2>&1 | tee -a /tmp/dbus-launch.log)
-### fi
+#eval $(dbus-launch --sh-syntax --exit-with-session 2>&1 | tee -a /tmp/dbus-launch.log)
 eval $(dbus-launch --sh-syntax 2>&1 | tee -a /tmp/dbus-launch.log)
 
-exec ssh-agent /usr/bin/openbox --startup ~/.config/openbox/autostart
+if [ "$desktop" = "openbox" ]; then
+  exec ssh-agent /usr/bin/openbox --startup ~/.config/openbox/autostart
+elif [ "$desktop" = "mate" ]; then
+  exec /usr/bin/mate-session
+fi
+#exec ssh-agent /usr/bin/lxdm
