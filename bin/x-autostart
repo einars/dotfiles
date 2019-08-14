@@ -1,16 +1,19 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 dump-dbus-information
 
 #xinput --set-ptr-feedback "Logitech M570" 20 5 1
-xinput --set-ptr-feedback "Logitech M570" 15 20 1
-xinput set-button-map "Logitech M570" 1 2 3 4 5 6 7 1 1 11 12 13 14 15 16
+(
+  xinput --set-ptr-feedback "Logitech M570" 15 20 1
+  xinput set-button-map "Logitech M570" 1 2 3 4 5 6 7 1 1 11 12 13 14 15 16
 
-tint2 &
-volumeicon &
-parcellite &
+  setxkbmap lv_custom -variant dvp -option caps:escape
+  xset r rate 200 30
+) &
 
-setxkbmap lv_custom -variant dvp -option caps:escape
-xset r rate 200 30
+( sleep 1 && tint2 ) &
+( sleep 2 && volumeicon ) &
+( sleep 3 && parcellite ) &
+( sleep 4 && keepassxc ) &
 
-t compton
+#t compton

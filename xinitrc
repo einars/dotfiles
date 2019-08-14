@@ -76,12 +76,9 @@ run_system_scripts
 
 ulimit -c unlimited
 
-#eval $(dbus-launch --sh-syntax --exit-with-session 2>&1 | tee -a /tmp/dbus-launch.log)
+### if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && type dbus-launch >/dev/null; then
+###   #eval $(dbus-launch --sh-syntax --exit-with-session 2>&1 | tee -a /tmp/dbus-launch.log)
+###   eval $(dbus-launch --sh-syntax 2>&1 | tee -a /tmp/dbus-launch.log)
+### fi
 eval $(dbus-launch --sh-syntax 2>&1 | tee -a /tmp/dbus-launch.log)
-
-if [ "$desktop" = "openbox" ]; then
-  exec ssh-agent /usr/bin/openbox --startup ~/.config/openbox/autostart
-elif [ "$desktop" = "mate" ]; then
-  exec /usr/bin/mate-session
-fi
-#exec ssh-agent /usr/bin/lxdm
+exec ssh-agent /usr/bin/openbox --startup ~/.config/openbox/autostart 2>/tmp/x.$USER.stderr.log > /tmp/x.$USER.stdout.log

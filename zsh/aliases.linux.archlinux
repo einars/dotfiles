@@ -7,13 +7,12 @@ function get_pacman {
     #     return
     # fi;
 
-    which pacman-color >/dev/null
-    if [[ $! != 0 ]]; then
-        echo pacman-color
+    if test -f /usr/bin/pacaur; then
+        echo pacaur
         return
     fi;
 
-    echo pacman
+    echo sudo pacman
 }
 
 
@@ -23,7 +22,7 @@ pacman=$(get_pacman)
 alias edalias.arch='vim ~/.zsh/aliases.linux.archlinux; source ~/.zsh/aliases.linux.archlinux'
 
 function run-pacman {
-    S $pacman $@ && rehash
+    $pacman $@ && rehash
 }
 
 # http://www.reddit.com/r/linux/comments/8pmss/alias_iddqdsudo_su/
@@ -36,21 +35,13 @@ alias current='$pacman -Q | grep '
 
 function inside { $pacman -Ql $1 | grep -v '/$' }
 function binside { $pacman -Ql $1 | grep -v '/$' | grep --color=never bin }
-function aurget {
-  package=$1
-  if [[ $package != "" ]]; then
-    chpwd_functions= cd /proj/build/aur/
-    yaourt --getpkgbuild $package
-    test -d $package && cd $package && cat PKGBUILD
-  fi
-}
 
 alias whohas='$pacman -Qo'
 alias whose='$pacman -Qo'
-alias y='yaourt'
 
-alias suy='clear; S $pacman -Suy'
-alias syu='clear; S $pacman -Suy'
+# pacaur doesn't like sudo, so use pacman directly
+alias suy='clear; sudo pacman -Suy'
+alias syu='clear; sudo pacman -Suy'
 
 
 alias crapdirs="comm -23 <(sudo find / \( -path '/dev' -o -path '/sys' -o -path '/run' -o -path '/tmp' -o -path '/mnt' -o -path '/srv' -o -path '/proc' -o -path '/boot' -o -path '/home' -o -path '/root' -o -path '/media' -o -path '/var/lib/pacman' -o -path '/var/cache/pacman' \) -prune -o -type d -print | sed 's/\([^/]\)$/\1\//' | sort -u) <(pacman -Qlq | sort -u)"

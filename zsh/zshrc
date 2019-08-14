@@ -26,6 +26,7 @@ try_path /usr/lib/ccache/bin # ccache
 try_path ~/.opam/system/bin  # opam
 try_path ~/.cargo/bin        # rust
 try_path ~/.yarn/bin         # yarn
+try_path ~/.local/bin         # yarn
 
 if type nvim &> /dev/null; then
   export EDITOR=nvim
@@ -220,6 +221,8 @@ function setup_cd_autols()
 
 # g+w
 umask 0002
+
+disable r
 
 setup_prompt
 setup_keyboard

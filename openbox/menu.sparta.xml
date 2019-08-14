@@ -18,6 +18,11 @@
         <command>mpv-singleton-headless 'http://176.31.123.212:8096/listen.pls?sid=1'</command>
       </action>
     </item>
+    <item label="triple j">
+      <action name="Execute">
+        <command>mpv-singleton-headless 'https://abcradiolivehls-lh.akamaihd.net/i/triplejnsw_1@327300/master.m3u8?sd=10'</command>
+      </action>
+    </item>
     <item label="Bluemars">
       <action name="Execute">
         <command>mpv-singleton-headless 'http://streams.echoesofbluemars.org:8000/bluemars'</command>
@@ -43,6 +48,11 @@
         <command>tt soma fluid --headless</command>
       </action>
     </item>
+    <item label="Soma dronezone">
+      <action name="Execute">
+        <command>tt soma dronezone --headless</command>
+      </action>
+    </item>
     <item label="Soma trip">
       <action name="Execute">
         <command>tt soma thetrip --headless</command>
@@ -51,6 +61,11 @@
     <item label="Soma beatblender">
       <action name="Execute">
         <command>tt soma beatblender --headless</command>
+      </action>
+    </item>
+    <item label="Viking/Danheim">
+      <action name="Execute">
+        <command>mpv-singleton-headless 'http://radio.fimbulrecords.com:8000/listen.pls?sid=1'</command>
       </action>
     </item>
   </menu>
@@ -68,29 +83,24 @@
       </action>
     </item>
     <separator />
-    <item label="wa start bvu">
+    <item label="wa start vide">
       <action name="Execute">
-        <command>tt watson-notify start bvu</command>
-      </action>
-    </item>
-    <item label="wa start dl">
-      <action name="Execute">
-        <command>tt watson-notify start dl</command>
-      </action>
-    </item>
-    <item label="wa start serviteh">
-      <action name="Execute">
-        <command>tt watson-notify start serviteh</command>
-      </action>
-    </item>
-    <item label="wa start meteo">
-      <action name="Execute">
-        <command>tt watson-notify start meteo</command>
+        <command>tt watson-notify start vide</command>
       </action>
     </item>
     <item label="wa start postdoc">
       <action name="Execute">
         <command>tt watson-notify start postdoc</command>
+      </action>
+    </item>
+    <item label="wa start bvu">
+      <action name="Execute">
+        <command>tt watson-notify start bvu</command>
+      </action>
+    </item>
+    <item label="wa start serviteh">
+      <action name="Execute">
+        <command>tt watson-notify start serviteh</command>
       </action>
     </item>
   </menu>

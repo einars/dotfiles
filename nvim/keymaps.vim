@@ -54,6 +54,7 @@ nnoremap <leader>ev :e ~/.config/nvim/init.vim<Cr>
 nnoremap <leader>ep :e ~/.config/nvim/plugins.vim<Cr>
 nnoremap <leader>eo :e ~/.config/openbox/rc.xml<Cr>
 nnoremap <leader>em :e ~/.config/openbox/menu.xml<Cr>
+nnoremap <leader>ea :e ~/.config/openbox/autostart<Cr>
 
 
 if has('nvim')

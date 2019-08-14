@@ -17,9 +17,9 @@ hi CursorColumn ctermbg=234 cterm=NONE guifg=NONE guibg=#44475a gui=NONE
 hi ColorColumn ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#3d3f49 gui=NONE
 hi LineNr ctermfg=60 ctermbg=NONE cterm=NONE guifg=#909194 guibg=#282a36 gui=NONE
 hi CursorLineNr ctermfg=228 ctermbg=234 cterm=NONE guifg=#f1fa8c guibg=#44475a gui=NONE
-hi VertSplit ctermfg=231 ctermbg=236 cterm=bold guifg=#64666d guibg=#64666d gui=bold
+hi VertSplit ctermfg=231 ctermbg=236 cterm=NONE guifg=#64666d guibg=#64666d gui=NONE
 hi MatchParen ctermfg=212 ctermbg=NONE cterm=underline guifg=#ff79c6 guibg=NONE gui=underline
-hi StatusLine ctermfg=231 ctermbg=236 cterm=bold guifg=#f8f8f2 guibg=#64666d gui=bold
+hi StatusLine ctermfg=231 ctermbg=236 cterm=NONE guifg=#f8f8f2 guibg=#64666d gui=NONE
 hi StatusLineNC ctermfg=231 ctermbg=236 cterm=NONE guifg=#f8f8f2 guibg=#64666d gui=NONE
 hi Pmenu ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
 hi PmenuSel ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#44475a gui=NONE
@@ -41,6 +41,7 @@ hi Normal guifg=#babdb6 guibg=#222222
 let s:string = 'guifg=#4e9a06'
 let s:string_interp = 'guifg=#73d216'
 let s:identifier = 'guifg=#729fcf'
+let s:comment = 'guifg=#f57900'
 
 hi Comment guifg=#f57900
 exec 'hi String ' . s:string
@@ -52,11 +53,18 @@ hi link jsDestructuringPropertyValue jsVariableDef
 hi link jsClassFuncName jsVariableDef
 hi link jsClassDefinition jsVariableDef
 
+hi jsxTagName guifg=#ffffff
+hi jsxTag guifg=#ffffff
+hi jsxEndTag guifg=#ffffff
+hi jsxEndString guifg=#ffffff
+
+
 hi link javascriptFunction jsVariableDef
 
 exec 'hi phpFunctionDef ' . s:identifier
 exec 'hi phpPrintfSpecifier ' . s:string_interp
 exec 'hi phpIdentifierInString ' . s:string_interp
+""hi phpIdentifier guifg=#eeeeec
 
 exec 'hi scalaNameDefinition ' . s:identifier
 exec 'hi scalaInterpolationBrackets ' . s:string
@@ -74,6 +82,9 @@ exec 'hi cssPseudoClass ' . s:identifier
 exec 'hi cssNoise ' . s:identifier
 exec 'hi cssPseudoClassId ' . s:identifier
 exec 'hi cssSelectorOp2 ' . s:identifier
+
+exec 'hi rustFuncName ' . s:identifier
+exec 'hi rustCommentLineDoc ' . s:comment
 
 hi link pugJavascriptString clear
 hi pugJavascriptString guifg=#ffffff
@@ -115,5 +126,3 @@ hi! link Debug Normal
 hi! link Error Normal
 hi! link Title Normal
 hi! link Global Normal
-" }}}
-

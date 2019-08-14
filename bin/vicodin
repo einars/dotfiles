@@ -6,79 +6,81 @@
 
 
 monitor_watson([
-  'notify-interval-mins' => 15,
-  'nudge-threshold-mins' => 20,
-  'idle-interval-break-mins' => 4,
-  'state-file' => getenv('HOME') . '/.config/watson/state',
-  'projs-dont-break-when-idle' => [ 'edx', 'coursera', 'draw' ],
-  'tags-dont-break-when-idle' => [ 'video' ],
+    'notify-interval-mins' => 15,
+    'nudge-threshold-mins' => 20,
+    'idle-interval-break-mins' => 7,
+    'state-file' => getenv('HOME') . '/.config/watson/state',
+    'history-file' => getenv('HOME') . '/.config/watson/frames',
+    'projs-dont-break-when-idle' => [ 'edx', 'coursera', 'draw', 'read' ],
+    'tags-dont-break-when-idle' => [ 'video' ],
+    'aggregate-tags' => ['s1', 's2', 's3', 'work', 'draw', 'study'], // shibasaki experiment
 ]);
 
 function xorg_idle_s()
 {
-  return exec('xprintidle') / 1000;
+    return exec('xprintidle') / 1000;
 }
 
 function xorg_active_title()
 {
-  return exec('xdotool getwindowfocus getwindowname');
+    return exec('xdotool getwindowfocus getwindowname');
 }
 
 function work_nudge($state, $opts)
 {
-  // when no project is happening, but I'm doing something, nudge me
+    // when no project is happening, but I'm doing something, nudge me
 
-  $in_project = $state['is_running'];
-  $nudge_threshold_mins = opt('nudge-threshold-mins', $opts, 5);
+    $in_project = $state['is_running'];
+    $nudge_threshold_mins = opt('nudge-threshold-mins', $opts, 5);
 
-  static $active_since = null;
-  static $last_nudged = null;
-  static $last_title = null;
+    static $active_since = null;
+    static $last_nudged = null;
+    static $last_title = null;
 
-  if ($in_project) {
-    $active_since = null;
-    $last_nudged = null;
-    $last_title = null;
-    return;
-  }
-
-  $idle = xorg_idle_s();
-  if ($idle > 120) {
-    if ($active_since) {
-      say('Idle detected: resetting nudge timer.');
-      $active_since = null;
-      $last_nudged = null;
+    if ($in_project) {
+        $active_since = null;
+        $last_nudged = null;
+        $last_title = null;
+        return;
     }
-    return;
-  }
 
-  // re-nudge every N min
-  if ($last_nudged && (time() - $last_nudged) < $nudge_threshold_mins*60) return;
+    $idle = xorg_idle_s();
+    if ($idle > 120) {
+        if ($active_since) {
+            say('Idle detected: resetting nudge timer.');
+            $active_since = null;
+            $last_nudged = null;
+        }
+        return;
+    }
 
-  if ( ! $active_since ) {
-    $active_since = time() - $idle;
-    return;
-  }
+    // re-nudge every N min
+    if ($last_nudged && (time() - $last_nudged) < $nudge_threshold_mins*60) return;
 
-  $active_for_s = (time() - $active_since);
-  say(sprintf('Messing around for %s', format_time_s($active_for_s)));
-  $title = xorg_active_title();
-  if ($title && $title != $last_title) {
-    say(sprintf('Messing around: %s', xorg_active_title()));
-    $last_title = $title;
-  }
-  if ($active_for_s > 60 * $nudge_threshold_mins ) {
-    nudge($title);
-    $last_nudged = time();
-  }
+    if ( ! $active_since ) {
+        $active_since = time() - $idle;
+        return;
+    }
+
+    $active_for_s = (time() - $active_since);
+    say(sprintf('Messing around for %s', format_time_s($active_for_s)));
+    $title = xorg_active_title();
+    if ($title && $title != $last_title) {
+        say(sprintf('Messing around: %s', xorg_active_title()));
+        $last_title = $title;
+    }
+    if ($active_for_s > 60 * $nudge_threshold_mins ) {
+        nudge($title);
+        $last_nudged = time();
+    }
 }
 
 function nudge($title)
 {
-  $is_firefox = !! strpos($title, 'Mozilla Firefox');
-  $hour = date('H');
-  $time = sprintf("It's %s.", date('H:i'));
-  say_and_notify($time, $category='nudge');
+    $is_firefox = !! strpos($title, 'Mozilla Firefox');
+    $hour = date('H');
+    $time = sprintf("It's %s.", date('H:i'));
+    say_and_notify($time, $category='nudge');
   /*
   if ($hour > 22 || $hour < 5) {
     say_and_notify($time);
@@ -92,173 +94,219 @@ function nudge($title)
    */
 }
 
-function watson_state($state_file)
+function watson_state($state_file, $opts)
 {
-  $s = json_decode(file_get_contents($state_file), true);
+    $s = json_decode(file_get_contents($state_file), true);
 
-  if ( ! isset($s['project']) ) {
-    return [
-      'is_running' => false,
-      'project' => null,
-      'tags' => [],
-      'elapsed' => null,
+    if ( ! isset($s['project']) ) {
+        return [
+            'is_running' => false,
+            'project' => null,
+            'tags' => [],
+            'elapsed' => null,
+            'opts' => $opts,
+        ];
+    }
+
+    $tags = '';
+    if (isset($s['tags'])) {
+        $tags = $s['tags'];
+    } else {
+        $tags = [];
+    }
+
+
+    $st = [
+        'is_running' => true,
+        'project' => $s['project'],
+        'tags' => $tags,
+        // 'elapsed' => (int)(() / 60),
+        'opts' => $opts,
     ];
-  }
 
-  $tags = '';
-  if (isset($s['tags'])) {
-    $tags = $s['tags'];
-  } else {
-    $tags = [];
-  }
+    $aggregate_tag = get_aggregate_tag($st);
 
-  return [
-    'is_running' => true,
-    'project' => $s['project'],
-    'tags' => $tags,
-    'elapsed' => (int)((time() - $s['start']) / 60),
-  ];
+    $elapsed = 0;
+
+    if ($aggregate_tag) {
+        $frames = json_decode(file_get_contents($opts['history-file']), true);
+        $ts_min = strtotime("today 00:00");
+        $ts_max = strtotime("tomorrow 00:00");
+        foreach($frames as $f) {
+            list($ts_from, $ts_to, $project, $id, $tags) = $f;
+            if ((in_array($aggregate_tag, $tags) || $project === $aggregate_tag) and $ts_from >= $ts_min && $ts_to < $ts_max ) {
+                $elapsed += ($ts_to - $ts_from);
+            }
+        }
+    }
+
+    $elapsed += time() - $s['start'];
+
+    $st['elapsed'] = (int)($elapsed / 60);
+    return $st;
 
 }
 
 function say($message)
 {
-  printf("%s %s\n", date('Y-m-d H:i'), $message);
+    printf("%s %s\n", date('Y-m-d H:i'), $message);
 }
 
 function say_and_notify($message, $category='default', $urgency='normal')
 {
-  say($message);
-  system(sprintf('notify-send --category %s --urgency %s %s', $category, $urgency, escapeshellarg("Watson\n$message")));
+    say($message);
+    system(sprintf('notify-send --category %s --urgency %s %s', $category, $urgency, escapeshellarg("Watson\n$message")));
 }
 
 function format_time($m)
 {
-  $h = (int)($m / 60);
-  $m = $m % 60;
+    $h = (int)($m / 60);
+    $m = $m % 60;
 
-  if ($h) {
-    return sprintf('%d %s and %d %s'
-      , $h
-      , $h === 1 ? 'hour' : 'hours'
-      , $m
-      , ($m % 10 === 1 && $m % 100 !== 11 ? 'minute' : 'minutes')
-    );
-  } else {
-    return sprintf('%d %s'
-      , $m
-      , ($m % 10 === 1 && $m % 100 !== 11 ? 'minute' : 'minutes')
-    );
+    if ($h) {
+        return sprintf('%d %s and %d %s'
+            , $h
+            , $h === 1 ? 'hour' : 'hours'
+            , $m
+            , ($m % 10 === 1 && $m % 100 !== 11 ? 'minute' : 'minutes')
+        );
+    } else {
+        return sprintf('%d %s'
+            , $m
+            , ($m % 10 === 1 && $m % 100 !== 11 ? 'minute' : 'minutes')
+        );
 
-  }
+    }
 }
 
 
 function format_time_s($s)
 {
-  $m = (int)($s / 60);
-  $s = $s % 60;
-  return sprintf('%dm %02ds', $m, $s);
+    $m = (int)($s / 60);
+    $s = $s % 60;
+    return sprintf('%dm %02ds', $m, $s);
 
 }
 
 
 function kill_watson_if_idle($opts)
 {
-  $idle_interval_break_mins = opt('idle-interval-break-mins', $opts, 8);
-  $idle_s = xorg_idle_s();
-  if ($idle_s > $idle_interval_break_mins * 60) {
-    exec('watson stop');
-    say_and_notify("idle stopping watson", $category='default', $urgency='critical');
-  }
+    $idle_interval_break_mins = opt('idle-interval-break-mins', $opts, 8);
+    $idle_s = xorg_idle_s();
+    if ($idle_s > $idle_interval_break_mins * 60) {
+        exec('watson stop');
+        say_and_notify("idle stopping watson", $category='default', $urgency='critical');
+    }
 }
+
+
+
+function get_aggregate_tag($state)
+{
+    $aggregate_tag = null;
+    if (in_array($state['project'], $state['opts']['aggregate-tags'])) {
+        return $state['project'];
+    }
+    foreach($state['tags'] as $t) {
+        if (in_array($t, $state['opts']['aggregate-tags'])) {
+            $aggregate_tag = $t;
+            break;
+        }
+    }
+    return $aggregate_tag;
+}
+
 
 function tell_about($state)
 {
-  $project = $state['project'];
-  $time_elapsed = $state['elapsed'];
-  if ( $project ) {
-    $message = sprintf('Working on %s for %s.', $project, format_time($time_elapsed));
-  } else {
-    $message = 'Doing nothing, just chill.';
-  }
-  say($message);
+    $project = $state['project'];
+    $time_elapsed = $state['elapsed'];
+    if ( $project ) {
+        if ($state['tags']) {
+            $message = sprintf('Working on %s (%s) for %s.', $project, implode(', ', $state['tags']), format_time($time_elapsed));
+        } else {
+            $message = sprintf('Working on %s for %s.', $project, format_time($time_elapsed));
+        }
+    } else {
+        $message = 'Doing nothing, just chill.';
+    }
+    say($message);
 }
 
 function watson_notify($state)
 {
-  say_and_notify( sprintf('Working on %s for %s.', $state['project'], format_time($state['elapsed'])), $category='chime');
+    say_and_notify( sprintf('Working on %s for %s.', $state['project'], format_time($state['elapsed'])), $category='chime');
 }
 
 function tag_match($state, $test_against)
 {
-  foreach($state['tags'] as $t) {
-    if (in_array($t, $test_against)) return true;
-  }
-  return false;
+    foreach($state['tags'] as $t) {
+        if (in_array($t, $test_against)) return true;
+    }
+    return false;
 }
 
 function proj_match($state, $test_against)
 {
-  if (in_array($state['project'], $test_against)) return true;
-  return false;
+    if (in_array($state['project'], $test_against)) return true;
+    return false;
 }
 
 function monitor_watson($opts)
 {
 
-  $notification_interval_min = opt('notify-interval-mins', $opts, 15);
-  $state_file                = opt('state-file', $opts, 'state');
-  $no_idle_kill_projs        = opt('projs-dont-break-when-idle', $opts, []);
-  $no_idle_kill_tags         = opt('tags-dont-break-when-idle', $opts, []);
-  // $nudge_threshold_mins = opt('nudge-threshold-mins', $opts, 5);
-  // $idle_interval_break_mins = opt('idle-interval-break-mins', $opts, 8);
+    $notification_interval_min = opt('notify-interval-mins', $opts, 15);
+    $state_file                = opt('state-file', $opts, 'state');
+    $no_idle_kill_projs        = opt('projs-dont-break-when-idle', $opts, []);
+    $no_idle_kill_tags         = opt('tags-dont-break-when-idle', $opts, []);
+    // $nudge_threshold_mins = opt('nudge-threshold-mins', $opts, 5);
+    // $idle_interval_break_mins = opt('idle-interval-break-mins', $opts, 8);
 
-  if ( ! file_exists($state_file  ) ) {
-    die("No watson state file $state_file   found.\n");
-  }
-
-
-  say("Watson now takes some vicodin.");
-
-  $current = watson_state($state_file);
-  tell_about($current);
-
-  while (true) {
-
-    if ($current['is_running']
-      and ! proj_match($current, $no_idle_kill_projs)
-      and ! tag_match($current, $no_idle_kill_tags)
-    ) {
-      kill_watson_if_idle($opts);
+    if ( ! file_exists($state_file  ) ) {
+        die("No watson state file $state_file   found.\n");
     }
 
-    $s = watson_state($state_file);
 
-    if ($s['project'] !== $current['project']) {
-      tell_about($s);
+    say("Watson now takes some vicodin.");
+
+    $current = watson_state($state_file, $opts);
+    tell_about($current);
+
+    while (true) {
+
+        if ($current['is_running']
+            and ! proj_match($current, $no_idle_kill_projs)
+            and ! tag_match($current, $no_idle_kill_tags)
+        ) {
+            kill_watson_if_idle($opts);
+        }
+
+        $s = watson_state($state_file, $opts);
+
+        if ($s['project'] !== $current['project']) {
+            tell_about($s);
+        }
+
+        work_nudge($s, $opts);
+
+
+        if ($s['is_running'] ) {
+            if (($current['elapsed'] !== $s['elapsed']) and ($s['elapsed'] !== 0) and ($s['elapsed'] % $notification_interval_min === 0)) {
+                watson_notify($s);
+            }
+        }
+
+        $current = $s;
+
+        sleep(30);
+        // sleep(5);
     }
-
-    work_nudge($s, $opts);
-
-
-    if ($s['is_running'] ) {
-      if (($current['elapsed'] !== $s['elapsed']) and ($s['elapsed'] !== 0) and ($s['elapsed'] % $notification_interval_min === 0)) {
-        watson_notify($s);
-      }
-    }
-
-    $current = $s;
-
-    sleep(30);
-    // sleep(5);
-  }
 }
 
 function opt($opt, $opts, $default = null)
 {
-  if (array_key_exists($opt, $opts)) {
-    return $opts[$opt];
-  }
-  return $default;
+    if (array_key_exists($opt, $opts)) {
+        return $opts[$opt];
+    }
+    return $default;
 }
