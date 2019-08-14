@@ -10,7 +10,7 @@ function c() {
 export EDITOR=nvim
 export VISUAL=nvim
 
-cdpath=(. ~ /proj /services/web /storage)
+cdpath=(. ~ /kira /proj /services/web /storage)
 
 try_path ~/.opam/system/bin
 try_path ~/node/modules/bin
