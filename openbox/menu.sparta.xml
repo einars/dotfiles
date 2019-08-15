@@ -53,6 +53,11 @@
         <command>tt soma dronezone --headless</command>
       </action>
     </item>
+    <item label="Soma missioncontrol">
+      <action name="Execute">
+        <command>tt soma missioncontrol --headless</command>
+      </action>
+    </item>
     <item label="Soma trip">
       <action name="Execute">
         <command>tt soma thetrip --headless</command>
@@ -61,11 +66,6 @@
     <item label="Soma beatblender">
       <action name="Execute">
         <command>tt soma beatblender --headless</command>
-      </action>
-    </item>
-    <item label="Viking/Danheim">
-      <action name="Execute">
-        <command>mpv-singleton-headless 'http://radio.fimbulrecords.com:8000/listen.pls?sid=1'</command>
       </action>
     </item>
   </menu>

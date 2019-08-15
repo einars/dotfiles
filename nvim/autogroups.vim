@@ -1,5 +1,3 @@
-autocmd BufEnter *.ml,*.c,*.h,*.cpp,*.php,*.go,*.scala :Rooter
-
 " neovim broken map with auto-pairs
 autocmd VimEnter,BufEnter,BufWinEnter * silent! iunmap <buffer> <M-">
 
