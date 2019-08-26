@@ -9,3 +9,4 @@ endif
 map  <silent>  <S-Insert>  "+p
 imap <silent>  <S-Insert>  <Esc>"+pa
 
+set mouse=a

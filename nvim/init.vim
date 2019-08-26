@@ -58,7 +58,6 @@ set shortmess+=c  " fuck completion message spam
 
 set lazyredraw
 
-set mouse=a
 
 " no need for backups, swaps, nothing
 set backupdir= 
