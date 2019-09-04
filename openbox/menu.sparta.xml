@@ -18,11 +18,6 @@
         <command>mpv-singleton-headless 'http://176.31.123.212:8096/listen.pls?sid=1'</command>
       </action>
     </item>
-    <item label="triple j">
-      <action name="Execute">
-        <command>mpv-singleton-headless 'https://abcradiolivehls-lh.akamaihd.net/i/triplejnsw_1@327300/master.m3u8?sd=10'</command>
-      </action>
-    </item>
     <item label="Bluemars">
       <action name="Execute">
         <command>mpv-singleton-headless 'http://streams.echoesofbluemars.org:8000/bluemars'</command>
