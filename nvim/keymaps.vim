@@ -1,3 +1,4 @@
+noremap <C-z> <nop>
 
 "" For something esoteric: use chtn (dvorak) cluster for arrows 
 """ (it's ijkl on qwerty)
