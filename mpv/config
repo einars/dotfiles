@@ -6,7 +6,7 @@ msg-color                               # color log messages on terminal
 term-osd-bar                            # display a progress bar on the terminal
 #pause                                   # no autoplay
 #keep-open                               # keep the player open when a file's end is reached
-ao=alsa
+#ao=alsa
 audio-display=no
 volume=64
 

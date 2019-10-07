@@ -29,6 +29,7 @@ set resolution       300
 set hires_resolution 1200
 set raw              no
 set preview          yes
+set format           jpg
 set scale '1600x'
 set shave '10x10'
 
@@ -70,6 +71,11 @@ while test -n $argv[$paramidx]
         set color_matrix
     end
 
+    if [ $argv[$paramidx] = 'png' ]
+        set format "png"
+    end
+
+
     if [ $argv[$paramidx] = 'nopreview' ]
         set preview no
     end
@@ -105,13 +111,19 @@ end
 if test -z $filename
     echo Usage: $0 output.jpg
 else
-    set basename (basename $filename .jpg)
+    set ext (echo $filename | sed -E 's/^.*[.]//')
+    if [ $ext != "" -a $ext != $filename ]
+       echo Using format $ext
+       set format $ext
+    end
+
+    set basename (basename $filename .$format)
     if [ $raw = 'yes' ]
         set tiffname (printf_filename "$basename.tiff")
         echo $tiffname
     else
-        set jpgname (printf_filename "$basename.jpg")
-        set tiffname (basename $jpgname .jpg).tiff
+        set jpgname (printf_filename "$basename.$format")
+        set tiffname (basename $jpgname .$format).tiff
         echo $jpgname
     end
 

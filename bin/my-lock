@@ -4,7 +4,7 @@ touch /tmp/desktop-lock
 sys-before-lock
 
 #i3lock --nofork --color 222222 --pointer default --image /storage/draza/images/random-crap/lock-tiling.png --tiling
-~/bin/private/xtrlock
+~/bin/private/xtrlock > /tmp/xtrlock.log
 
 sys-after-unlock
 rm -f /tmp/desktop-lock

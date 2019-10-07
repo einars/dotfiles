@@ -23,11 +23,6 @@
         <command>mpv-singleton-headless 'http://streams.echoesofbluemars.org:8000/bluemars'</command>
       </action>
     </item>
-    <item label="Psyradio">
-      <action name="Execute">
-        <command>mpv-singleton-headless 'http://stream.psyradio.com.ua:8000/128kbps'</command>
-      </action>
-    </item>
     <item label="Cryosleep">
       <action name="Execute">
         <command>mpv-singleton-headless 'http://streams.echoesofbluemars.org:8000/cryosleep'</command>

@@ -1,6 +1,3 @@
 #!/bin/sh
 
 ~/bin/x-autostart &
-
-#t randr.hx
-t randr.hh

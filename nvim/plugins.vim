@@ -2,7 +2,8 @@ let loaded_matchparen = 1 " no need for paren matching
 
 call plug#begin(EditorRoot() . '/plugged')
 
-" Plug 'airblade/vim-rooter'
+let g:rooter_manual_only = 1
+Plug 'airblade/vim-rooter'
 
 " adds Wipeout command to cleanup buffers
 Plug 'artnez/vim-wipeout' 
