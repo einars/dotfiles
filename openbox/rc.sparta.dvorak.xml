@@ -138,9 +138,9 @@
   </desktops>
   <resize>
     <drawContents>yes</drawContents>
-    <popupShow>Never</popupShow>
+    <popupShow>Always</popupShow>
     <!-- 'Always', 'Never', or 'Nonpixel' (xterms and such) -->
-    <popupPosition>Center</popupPosition>
+    <popupPosition>Top</popupPosition>
     <!-- 'Center', 'Top', or 'Fixed' -->
     <popupFixedPosition>
       <!-- these are used if popupPosition is set to 'Fixed' -->
@@ -236,26 +236,35 @@
 
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
-        <execute>pactl -- set-sink-volume 0 +2%</execute>
-      </action>
-      <action name="Execute">
-        <execute>pactl -- set-sink-volume 1 +2%</execute>
+        <execute>tt set-volume +2%</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
-        <execute>pactl -- set-sink-volume 0 -2%</execute>
+        <execute>tt set-volume -2%</execute>
       </action>
+    </keybind>
+    <keybind key="XF86AudioPlay">
       <action name="Execute">
-        <execute>pactl -- set-sink-volume 1 -2%</execute>
+        <execute>tt set-volume 75%</execute>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioPrev">
+      <action name="Execute">
+        <execute>tt set-volume 50%</execute>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioNext">
+      <action name="Execute">
+        <execute>tt set-volume 100%</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioMute">
       <action name="Execute">
-        <execute>pactl -- set-sink-mute 0 toggle</execute>
+        <execute>pactl -- set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo toggle</execute>
       </action>
       <action name="Execute">
-        <execute>pactl -- set-sink-mute 1 toggle</execute>
+        <execute>pactl -- set-sink-mute alsa_output.pci-0000_01_00.1.hdmi-stereo-extra1 toggle</execute>
       </action>
     </keybind>
 
@@ -544,26 +553,26 @@
     <keybind key="W-Left">
       <action name="Unmaximize" />
       <action name="MoveResizeTo">
-        <width>33%</width>
-        <height>100%</height>
         <x>0</x>
         <y>0</y>
+        <width>1280</width>
+        <height>100%</height>
       </action>
     </keybind>
     <keybind key="W-Right">
       <action name="Unmaximize" />
       <action name="MoveResizeTo">
-        <width>33%</width>
-        <height>100%</height>
-        <x>67%</x>
+        <x>2160</x>
         <y>0</y>
+        <width>1280</width>
+        <height>100%</height>
       </action>
     </keybind>
 
     <keybind key="W-S-Left">
       <action name="Unmaximize" />
       <action name="MoveResizeTo">
-        <width>67%</width>
+        <width>2160</width>
         <height>100%</height>
         <x>0</x>
         <y>0</y>
@@ -572,9 +581,9 @@
     <keybind key="W-S-Right">
       <action name="Unmaximize" />
       <action name="MoveResizeTo">
-        <width>67%</width>
+        <width>2160</width>
         <height>100%</height>
-        <x>33%</x>
+        <x>1280</x>
         <y>0</y>
       </action>
     </keybind>
@@ -602,19 +611,19 @@
     <keybind key="W-Up">
       <action name="Unmaximize" />
       <action name="MoveResizeTo">
-        <width>34%</width>
-        <height>100%</height>
-        <x>33%</x>
+        <width>880</width>
+        <height>50%</height>
+        <x>1280</x>
         <y>0</y>
       </action>
     </keybind>
     <keybind key="W-Down">
       <action name="Unmaximize" />
       <action name="MoveResizeTo">
-        <width>34%</width>
-        <height>100%</height>
-        <x>33%</x>
-        <y>0</y>
+        <width>880</width>
+        <height>50%</height>
+        <x>1280</x>
+        <y>50%</y>
       </action>
     </keybind>
 
@@ -940,26 +949,25 @@
   <applications>
     <application name="nvim-qt">
       <size>
-        <width>67%</width>
+        <width>2160</width>
         <height>98%</height>
       </size>
       <position force="yes">
-        <monitor>primary</monitor>
         <x>0</x>
         <y>0</y>
       </position>
     </application>
 
     <application name="urxvt.terminal">
-      <!-- decor>no</decor -->
+      <decor>no</decor>
       <size>
-        <width>67%</width>
+        <width>2160</width>
         <height>70%</height>
       </size>
       <position force="yes">
         <!-- monitor>mouse</monitor -->
         <monitor>primary</monitor>
-        <x>0</x>
+        <x>640</x>
         <y>0</y>
       </position>
       <desktop>all</desktop>

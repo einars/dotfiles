@@ -2,6 +2,8 @@
 
 dump-dbus-information
 
+nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
+
 (
   #xinput --set-ptr-feedback "Logitech M570" 15 20 1
   #xinput set-button-map "Logitech M570" 1 2 3 4 5 6 7 1 1 11 12 13 14 15 16
@@ -18,3 +20,5 @@ dump-dbus-information
 
 t wallpaper
 t compton
+
+t pulseaudio-latency

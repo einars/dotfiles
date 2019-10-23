@@ -113,7 +113,6 @@ if test -z $filename
 else
     set ext (echo $filename | sed -E 's/^.*[.]//')
     if [ $ext != "" -a $ext != $filename ]
-       echo Using format $ext
        set format $ext
     end
 
@@ -129,7 +128,7 @@ else
 
 
     # --buffer-size=1M
-    scanimage -v \
+    scanimage \
         --resolution $resolution \
         --mode $mode \
         --format=tiff \
