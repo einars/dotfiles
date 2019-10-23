@@ -25,6 +25,10 @@ augroup Indent4
   autocmd FileType php setlocal sts=4 sw=4
 augroup END
 
+augroup MarkdownAll
+  autocmd FileType text setlocal syntax=markdown
+augroup END
+
 if has('nvim')
   augroup PHP
       autocmd FileType php setlocal keywordprg=:Phpdoc
@@ -47,9 +51,8 @@ augroup Latex
 augroup END
 
 augroup Text
-    autocmd!
     " autoflow paragrpahs
-    autocmd FileType txt setlocal formatoptions +=wa
+    autocmd FileType text setlocal formatoptions +=wa
 augroup END
 
 

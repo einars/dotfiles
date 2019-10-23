@@ -68,6 +68,8 @@ if has('nvim')
   let g:neosnippet#snippets_directory = "/dotfiles/nvim/snippets"
   " Plug 'Shougo/neosnippet-snippets'
   Plug 'Shougo/neosnippet.vim'
+
+  Plug 'masukomi/vim-markdown-folding'
 endif
 
 
