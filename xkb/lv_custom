@@ -46,7 +46,8 @@ xkb_symbols "dvp" {
 
 
 	key <AD01> {[ semicolon,	colon,		aring,		Aring		]};
-	key <AD12> {[ at,		asciicircum,	oslash,		Oslash		]};
+	key <AD11> {[ slash,		question,	oslash,		Oslash		]};
+	key <AD12> {[ at,		asciicircum,	endash,		emdash		]};
 
 	key <AB01> {[ apostrophe,	quotedbl,	ae,	AE	]};
 
