@@ -50,6 +50,8 @@ let g:tabprefix = ""
 " Plug 'junegunn/seoul256.vim' " paper beats seoul
 Plug 'dracula/vim'
 
+let g:markdown_enable_spell_checking = 0
+Plug 'gabrielelana/vim-markdown'
 
 if has('nvim')
   Plug 'equalsraf/neovim-gui-shim'
@@ -69,7 +71,7 @@ if has('nvim')
   " Plug 'Shougo/neosnippet-snippets'
   Plug 'Shougo/neosnippet.vim'
 
-  Plug 'masukomi/vim-markdown-folding'
+  " Plug 'masukomi/vim-markdown-folding'
 endif
 
 

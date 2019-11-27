@@ -31,5 +31,5 @@ mkdir -p ~/.config/tint2
 ln -sfn $install_source/tint2rc ~/.config/tint2/tint2rc
 
 
-mkdir -p ~/node/modules
+#mkdir -p ~/node/modules
 ln -sfn $install_source/npmrc ~/.npmrc

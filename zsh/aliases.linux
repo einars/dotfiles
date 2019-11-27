@@ -146,8 +146,7 @@ alias ssh='TERM=screen ssh'
 alias sx="xinit /home/e/.xinitrc -- /etc/X11/xinit/xserverrc :0"
 
 # platinum searcher
-alias aa=pt
-alias aa0='pt -A 0 -B 0'
+alias aa=rg
 
 alias h2j='=html2jade --noemptypipe --noattrcomma --donotencode --bodyless --double'
 alias coffee2js='coffee --bare --compile --no-header --'

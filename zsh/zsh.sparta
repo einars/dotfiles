@@ -15,7 +15,7 @@ export EGROOT=/proj/go/src/github.com/ziutek/emgo/egroot
 export EGPATH=/proj/go/src/github.com/ziutek/emgo/egpath
 
 
-cdpath=(. ~ /proj /services/web /storage /storage/studijas /services/web/dev.spicausis.lv /proj/go/src)
+try_cdpath /services/web/dev.spicausis.lv
 
 function c() {
     CDPATH= cd $1

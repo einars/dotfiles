@@ -54,7 +54,7 @@
       D: omnipresent (on all desktops).
   -->
     <keepBorder>yes</keepBorder>
-    <animateIconify>yes</animateIconify>
+    <animateIconify>no</animateIconify>
     <font place="ActiveWindow">
       <name>Liberation Sans</name>
       <size>9</size>
@@ -236,27 +236,32 @@
 
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
-        <execute>tt set-volume +2%</execute>
+        <execute>tt set-volume +1%</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
-        <execute>tt set-volume -2%</execute>
+        <execute>tt set-volume -1%</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioPlay">
       <action name="Execute">
-        <execute>tt set-volume 75%</execute>
+        <execute>tt set-volume 50%</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioPrev">
       <action name="Execute">
-        <execute>tt set-volume 50%</execute>
+        <execute>tt set-volume -7%</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioNext">
       <action name="Execute">
-        <execute>tt set-volume 100%</execute>
+        <execute>tt set-volume +7%</execute>
+      </action>
+    </keybind>
+    <keybind key="C-XF86AudioMute">
+      <action name="Execute">
+        <execute>tt pulseaudio.swap</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioMute">
@@ -401,11 +406,6 @@
       <action name="SendToDesktop">
         <to>9</to>
         <follow>no</follow>
-      </action>
-    </keybind>
-    <keybind key="W-S-Return">
-      <action name="Execute">
-        <command>nvim-qt -- ~/dokumenti/passwords.txt</command>
       </action>
     </keybind>
     <keybind key="W-C-Return">
@@ -611,13 +611,23 @@
     <keybind key="W-Up">
       <action name="Unmaximize" />
       <action name="MoveResizeTo">
+        <width>50%</width>
+        <height>100%</height>
+        <x>25%</x>
+        <y>0</y>
+      </action>
+    </keybind>
+
+    <keybind key="W-C-Up">
+      <action name="Unmaximize" />
+      <action name="MoveResizeTo">
         <width>880</width>
         <height>50%</height>
         <x>1280</x>
         <y>0</y>
       </action>
     </keybind>
-    <keybind key="W-Down">
+    <keybind key="W-C-Down">
       <action name="Unmaximize" />
       <action name="MoveResizeTo">
         <width>880</width>
@@ -949,11 +959,11 @@
   <applications>
     <application name="nvim-qt">
       <size>
-        <width>2160</width>
+        <width>2360</width>
         <height>98%</height>
       </size>
-      <position force="yes">
-        <x>0</x>
+      <position force="no">
+        <!-- x>540</x -->
         <y>0</y>
       </position>
     </application>

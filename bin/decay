@@ -20,3 +20,4 @@ rsync -vaxe ssh $@ $DECAY
 url="https://decay.spicausis.lv/$(basename $@)"
 echo $url | xclip 
 echo $url
+t beep

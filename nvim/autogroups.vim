@@ -58,6 +58,7 @@ augroup END
 
 " Soft text limiter
 """autocmd BufRead,BufNew *.* call matchadd('Error', '\%80v.')
+autocmd BufRead,BufNew *.md call matchadd('DiffAdd', '\v^---.*$')
 
 " Diff-adds/deletes have a tendency to have nice backgrounds
 " Whitespace (ignored) followed by one or multiple TK — TK, TKTKTK etc

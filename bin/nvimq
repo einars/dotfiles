@@ -10,6 +10,12 @@ until echo $wid | grep -v failed; do
   wid=$(xdotool search --all --classname $classname 2>&1)
 done
 
+
+cmd_on=windowactivate
+cmd_off=windowminimize
+#cmd_on=windowmap
+#cmd_off=windowunmap
+
 found=
 for f in ${wid}; do
     echo Testing $f...
@@ -17,16 +23,17 @@ for f in ${wid}; do
 
     if echo $window_name | grep -q $classname; then
         found=$f
+        state=$(xwininfo -id $f | grep 'Map State' | awk '{ print $3 }')
         if [ "$1" == "--hide" ]; then
             echo 'Force hide'
-            xdotool windowunmap $f
+            xdotool $cmd_off $f
         else
-          if wmctrl -l -p | grep -q $(printf '%08x' $f); then
-              echo 'Visible, bringing down'
-              xdotool windowunmap $f
+          if [ $state == 'IsViewable' ]; then
+              echo "$state, bringing down"
+              xdotool $cmd_off $f
           else
-              echo 'Iconic, bringing up'
-              xdotool windowmap $f
+              echo "$state, bringing up"
+              #xdotool $cmd_on $f
               xdotool windowactivate $f
           fi
         fi

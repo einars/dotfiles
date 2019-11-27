@@ -13,19 +13,18 @@ urxvt*print-pipe: "cat > /dev/null"
 !xterm*termName: rxvt-256color
 
 !urxvt*cutchars: '"'&()*,;<=>?@[]{|}
-urxvt*cutchars: "()*,<>[]{}|''?@│"
+!urxvt*cutchars: "()*,<>[]{}|''?@│"
+urxvt*cutchars: │,<>[]{}?!
 !urxvt*geometry: 140x35
 urxvt*pointerBlank: true
-
-! these are pretty, but reset back to block after vim/nvim
 
 urxvt*internalBorder: 2
 urxvt*loginShell: false
 !URxvt*pointerBlank: false
 urxvt*saveLines: 500
 urxvt*secondaryScroll: true
-urxvt*jumpScroll: true
-urxvt*skipScroll: true
+urxvt*jumpScroll: false
+urxvt*skipScroll: false
 
 urxvt*scrollBar: false
 
@@ -51,7 +50,7 @@ urxvt*underlineURLs: true
 
 ! no perl
 urxvt*perl-ext:
-urxvt*perl-ext-common:
+urxvt*perl-ext-common: selection
 
 Xcursor.theme: Human
 

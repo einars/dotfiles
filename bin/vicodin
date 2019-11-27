@@ -4,6 +4,7 @@
 // run in background, monitor watson (https://github.com/TailorDev/Watson)
 // and notify every X min 
 
+define('DEFAULT_BREAKPOINTS', [10, 25, 45, 80, 120, 150, 180, 210, 240, 270]);
 
 monitor_watson([
     'notify-interval-mins' => 15,
@@ -14,6 +15,7 @@ monitor_watson([
     'projs-dont-break-when-idle' => [ 'edx', 'coursera', 'draw', 'read' ],
     'tags-dont-break-when-idle' => [ 'video' ],
     'aggregate-tags' => ['s1', 's2', 's3', 'work', 'draw', 'study'], // shibasaki experiment
+    'breakpoints' => DEFAULT_BREAKPOINTS,
 ]);
 
 function xorg_idle_s()
@@ -259,6 +261,7 @@ function monitor_watson($opts)
     $state_file                = opt('state-file', $opts, 'state');
     $no_idle_kill_projs        = opt('projs-dont-break-when-idle', $opts, []);
     $no_idle_kill_tags         = opt('tags-dont-break-when-idle', $opts, []);
+    $breakpoints               = opt('breakpoints', $opts, DEFAULT_BREAKPOINTS);
     // $nudge_threshold_mins = opt('nudge-threshold-mins', $opts, 5);
     // $idle_interval_break_mins = opt('idle-interval-break-mins', $opts, 8);
 
@@ -291,7 +294,7 @@ function monitor_watson($opts)
 
 
         if ($s['is_running'] ) {
-            if (($current['elapsed'] !== $s['elapsed']) and ($s['elapsed'] !== 0) and ($s['elapsed'] % $notification_interval_min === 0)) {
+            if (($current['elapsed'] !== $s['elapsed']) and ($s['elapsed'] !== 0) and (in_array($s['elapsed'], $breakpoints))) {
                 watson_notify($s);
             }
         }

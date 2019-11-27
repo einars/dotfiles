@@ -7,7 +7,7 @@ mkdir -p ~/.vim
 mkdir -p ~/.config/nvim
 
 
-for f in $pwd/*.vim; do
+for f in $pwd/*.vim $pwd/after $pwd/colors $pwd/snippets $pwd/templates; do
 	bf=$(basename $f)
 	ln -sfn $f ~/.vim/$bf
 	ln -sfn $f ~/.config/nvim/$bf

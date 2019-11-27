@@ -124,7 +124,7 @@ let g:ctrlp_open_multiple_files = '1vir'
 
 let g:ctrlp_user_command = {
         \ 'types': {
-                \ 1: ['.git', 'cd %s && git ls-files | grep -v bower_components | grep -v build | grep -v "images/"'],
+                \ 1: ['.git', 'cd %s && git ls-files | grep -v bower_components | grep -v build | grep -v "images/" | grep -v "^protected/extensions" | grep -v "^framework/"' ],
                 \ 2: ['.hg', 'hg --cwd %s locate -I .'],
                 \ },
         \ 'fallback': 'find %s -type f'

@@ -16,6 +16,11 @@ function try_path
   test -d $1 && export PATH=$1:$PATH
 }
 
+function try_cdpath 
+{
+  test -d $1 && cdpath+=$1
+}
+
 
 try_path ~/bin
 try_path ~/node/node-latest/bin
@@ -27,6 +32,12 @@ try_path ~/.opam/system/bin  # opam
 try_path ~/.cargo/bin        # rust
 try_path ~/.yarn/bin         # yarn
 try_path ~/.local/bin         # yarn
+
+cdpath=(. ~)
+try_cdpath /proj
+try_cdpath /services/web
+try_cdpath ~/dokumenti
+
 
 if type nvim &> /dev/null; then
   export EDITOR=nvim
