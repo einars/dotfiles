@@ -1,1 +1,2 @@
-prefix=~/node/modules
+prefix=/home/e/node/modules
+ignore-scripts=false

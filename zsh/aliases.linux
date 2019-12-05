@@ -178,4 +178,7 @@ alias waa="watson aggregate --current --from $(date +'%Y-%m-%d')"
 
 alias dwdiff='dwdiff --punctuation --color'
 
+alias mig='diesel migration'
+alias migg='diesel migration generate'
+
 # vim: syn=zsh :

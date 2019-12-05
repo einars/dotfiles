@@ -40,5 +40,5 @@ alias vim=nvim
 . /home/e/.opam/opam-init/init.zsh &> /dev/null || true
 eval $(opam config env)
 
-source ~/dbus-information.auto.txt
+#source ~/dbus-information.auto.txt
 

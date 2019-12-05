@@ -56,7 +56,7 @@ set virtualedit=block
 set shortmess+=c  " fuck completion message spam
 
 
-set lazyredraw
+set nolazyredraw
 
 
 " no need for backups, swaps, nothing

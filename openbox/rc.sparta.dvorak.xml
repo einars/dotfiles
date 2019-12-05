@@ -236,12 +236,12 @@
 
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
-        <execute>tt set-volume +1%</execute>
+        <execute>tt set-volume +2%</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
-        <execute>tt set-volume -1%</execute>
+        <execute>tt set-volume -2%</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioPlay">

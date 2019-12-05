@@ -22,6 +22,10 @@ cd /storage/torrents
 rm current
 ln -sf "$year-$month" current
 
+cd /home/e/dokumenti/diary
+cp clean.md "$year-$month.md"
+git add .
+git commit -am "$year-$month"
 
 echo Created $drazapath
 echo Restarting smb...
