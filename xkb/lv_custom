@@ -1,3 +1,6 @@
+/// Base:
+/// /usr/share/X11/xkb/symbols/lv
+
 partial alphanumeric_keys modifier_keys
 xkb_symbols "qwerty" {
 
@@ -5,6 +8,7 @@ xkb_symbols "qwerty" {
 
 	name[Group1]= "Latvian (qwerty)";
 };
+
 
 partial alphanumeric_keys modifier_keys
 xkb_symbols "dvp" {
@@ -52,6 +56,10 @@ xkb_symbols "dvp" {
 	key <AB01> {[ apostrophe,	quotedbl,	ae,	AE	]};
 
         key <AC11> {[ minus, underscore, emdash, emdash  ]};
+
+        // swap l and f
+	key <AD06> {[ l,		L,		lcedilla,		Lcedilla		]};
+	key <AD10> {[ f,		F,		f,			F			]};
 
 	include "level3(ralt_switch)"
 };

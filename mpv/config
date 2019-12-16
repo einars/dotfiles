@@ -60,11 +60,11 @@ alang=en,eng,ru,rus     # automatically select these audio tracks (decreasing pr
 vo=gpu
 tscale=linear
 
-[protocol.https]
-user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:47.0) Gecko/20100101 Firefox/47.0'
-
-[protocol.http]
-user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:47.0) Gecko/20100101 Firefox/47.0'
+# [protocol.https]
+# user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:47.0) Gecko/20100101 Firefox/47.0'
+# 
+# [protocol.http]
+# user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:47.0) Gecko/20100101 Firefox/47.0'
 
 
 # [high-quality]

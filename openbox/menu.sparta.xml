@@ -18,6 +18,11 @@
         <command>mpv-singleton-headless 'http://176.31.123.212:8096/listen.pls?sid=1'</command>
       </action>
     </item>
+    <item label="Dark ambient">
+      <action name="Execute">
+        <command>mpv-singleton-headless 'http://s3.viastreaming.net:8835/listen.pls'</command>
+      </action>
+    </item>
     <item label="Bluemars">
       <action name="Execute">
         <command>mpv-singleton-headless 'http://streams.echoesofbluemars.org:8000/bluemars'</command>
