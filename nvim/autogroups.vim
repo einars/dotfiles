@@ -2,11 +2,11 @@
 autocmd VimEnter,BufEnter,BufWinEnter * silent! iunmap <buffer> <M-">
 
 "" the shit is slow"
-" augroup cursorline
-"   autocmd!
-"   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-"   autocmd WinLeave * setlocal nocursorline
-" augroup END
+augroup cursorline
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
 
 augroup broken_indents
     autocmd!

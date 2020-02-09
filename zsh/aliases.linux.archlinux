@@ -7,8 +7,8 @@ function get_pacman {
     #     return
     # fi;
 
-    if test -f /usr/bin/pacaur; then
-        echo pacaur
+    if test -f /usr/bin/yay; then
+        echo yay
         return
     fi;
 
@@ -28,7 +28,8 @@ function run-pacman {
 # http://www.reddit.com/r/linux/comments/8pmss/alias_iddqdsudo_su/
 alias canhaz='run-pacman -S --needed'
 alias drop='run-pacman --cascade -R'
-alias isthere='run-pacman -Ss'
+alias asthere='yay --aur --searchby name'
+alias isthere='pacman -Ss'
 alias current='$pacman -Q | grep '
 
 #alias inside='pacman -Ql'

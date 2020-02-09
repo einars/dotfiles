@@ -1,2 +1,2 @@
-colors PaperColor
+"colors PaperColor " (default)
 

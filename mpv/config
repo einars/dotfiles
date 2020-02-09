@@ -6,9 +6,18 @@ msg-color                               # color log messages on terminal
 term-osd-bar                            # display a progress bar on the terminal
 #pause                                   # no autoplay
 #keep-open                               # keep the player open when a file's end is reached
-#ao=alsa
+audio-device=pulse
 audio-display=no
 volume=64
+
+# latency stuff
+## opengl-glfinish=yes
+## opengl-swapinterval=0
+
+vo=gpu
+interpolation=yes
+video-sync=display-resample
+#tscale=linear
 
 cache=yes
 cache-default=8000000                   # size in KB
@@ -57,8 +66,6 @@ sub-spacing=0.5
 slang=enm,en,eng,ru,rus # automatically select these subtitles (decreasing priority)
 alang=en,eng,ru,rus     # automatically select these audio tracks (decreasing priority)
 
-vo=gpu
-tscale=linear
 
 # [protocol.https]
 # user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:47.0) Gecko/20100101 Firefox/47.0'

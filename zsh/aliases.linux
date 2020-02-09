@@ -105,7 +105,7 @@ alias tail='tail -n $[$LINES-2]'
 
 alias listen='sudo netstat -ltnup'
 
-alias here='cp -r -t .'
+alias here='cp -r --dereference -t .'
 
 alias sensors='sensors | \grep -E "CPU FAN|CPU Tem|MB Tem|Core"'
 
@@ -145,8 +145,8 @@ alias ssh='TERM=screen ssh'
 #alias sx=startx
 alias sx="xinit /home/e/.xinitrc -- /etc/X11/xinit/xserverrc :0"
 
-# platinum searcher
-alias aa=rg
+# ripgrep
+alias aa=rg -g '!{node_modules}/'
 
 alias h2j='=html2jade --noemptypipe --noattrcomma --donotencode --bodyless --double'
 alias coffee2js='coffee --bare --compile --no-header --'

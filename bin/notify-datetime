@@ -4,12 +4,12 @@ time=$(date '+%a %-d. %b %-H:%M')
 task=
 stuff=
 
-if test -f ~/.config/watson/state; then
-  # stuff=$(watson log --day --current --no-pager | tail -n +2 | sed 's/^\t.........//g')
+if test -f /tmp/mpv.txt; then
   stuff="
+$(cat /tmp/mpv.txt)"
+fi
 
-$stuff"
-
+if test -f ~/.config/watson/state; then
   project=$(jq --raw-output .project ~/.config/watson/state)
   if test "null" != $project; then
     started=$(jq --raw-output .start ~/.config/watson/state)

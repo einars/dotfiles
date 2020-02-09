@@ -19,6 +19,13 @@ Plug 'einars/vim-phpfold'
 let g:translit_toggle_keymap = '<S-F1>'
 Plug 'einars/translit.vim'
 
+let g:user_emmet_install_global=0
+let g:user_emmet_leader_key=','
+let g:user_emmet_settings = {  'javascript' : { 'extends' : 'jsx' }}
+Plug 'mattn/emmet-vim'
+autocmd FileType php,html,javascript,javascriptreact EmmetInstall
+autocmd FileType css,scss EmmetInstall
+
 Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'carmonw/elm-vim'
@@ -28,6 +35,7 @@ Plug 'digitaltoad/vim-pug'
 Plug 'rgrinberg/vim-ocaml'
 
 Plug 'derekwyatt/vim-scala'
+Plug 'dag/vim-fish'
 
 "Plug 'stephpy/vim-yaml'
 
@@ -41,7 +49,7 @@ let g:colorizer_disable_bufleave=1
 Plug 'chrisbra/Colorizer'
 
 Plug 'jiangmiao/auto-pairs'
-Plug 'neoclide/vim-jsx-improve'
+Plug 'MaxMEllon/vim-jsx-pretty'
 let g:tabprefix = ""
 "Plug 'tpope/vim-flagship'
 " Plug 'othree/yajs.vim' " ES6
@@ -67,13 +75,15 @@ if has('nvim')
   Plug 'ncm2/ncm2-path'
 
   let g:neosnippet#disable_runtime_snippets = { '_': 1 }
-  let g:neosnippet#snippets_directory = "/dotfiles/nvim/snippets"
+  let g:neosnippet#snippets_directory = EditorRoot() . "/snippets"
   " Plug 'Shougo/neosnippet-snippets'
   Plug 'Shougo/neosnippet.vim'
 
   " Plug 'masukomi/vim-markdown-folding'
 endif
 
+" the stock one freezes sometime
+Plug '2072/PHP-Indenting-for-VIm'
 
 call plug#end()
 

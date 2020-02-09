@@ -22,7 +22,7 @@ if ! has('nvim')
 endif
 
 if has('nvim')
-  set termguicolors
+  "set termguicolors
 endif
 
 " Disable cursor blinking
@@ -112,7 +112,6 @@ exec 'source ' . EditorRoot() . '/plugins.vim'
 if ! has('nvim')
   colors default
 else
-  set background=light
   colors PaperColor
 endif
 
@@ -171,16 +170,7 @@ function! Light()
   set background=light
 endfunction
 
-function! Relight()
-  if strftime("%H") > 8 && strftime("%H") < 19
-    Light
-  else
-    Dark
-  endif
-endfunction
-
 command! Dark :call Dark()
 command! Light :call Light()
-command! Relight :call Relight()
 
-Relight
+Dark

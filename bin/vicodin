@@ -13,7 +13,7 @@ monitor_watson([
     'state-file' => getenv('HOME') . '/.config/watson/state',
     'history-file' => getenv('HOME') . '/.config/watson/frames',
     'projs-dont-break-when-idle' => [ 'edx', 'coursera', 'draw', 'read' ],
-    'tags-dont-break-when-idle' => [ 'video' ],
+    'tags-dont-break-when-idle' => [ 'video', 'spo' ],
     'aggregate-tags' => ['s1', 's2', 's3', 'work', 'draw', 'study'], // shibasaki experiment
     'breakpoints' => DEFAULT_BREAKPOINTS,
 ]);
@@ -237,7 +237,11 @@ function tell_about($state)
 
 function watson_notify($state)
 {
-    say_and_notify( sprintf('Working on %s for %s.', $state['project'], format_time($state['elapsed'])), $category='chime');
+    if ($state['is_running'])  {
+        say_and_notify( sprintf('Working on %s for %s.', $state['project'], format_time($state['elapsed'])), $category='chime');
+    } else {
+        say_and_notify('Doing nothing, just chill.');
+    }
 }
 
 function tag_match($state, $test_against)
@@ -273,7 +277,8 @@ function monitor_watson($opts)
     say("Watson now takes some vicodin.");
 
     $current = watson_state($state_file, $opts);
-    tell_about($current);
+    #tell_about($current);
+    watson_notify($current);
 
     while (true) {
 

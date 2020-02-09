@@ -53,20 +53,20 @@
       S: shade (roll up/down)
       D: omnipresent (on all desktops).
   -->
-    <keepBorder>yes</keepBorder>
+    <keepBorder>no</keepBorder>
     <animateIconify>no</animateIconify>
     <font place="ActiveWindow">
-      <name>Liberation Sans</name>
-      <size>9</size>
+      <name>IOSevka Term Medium</name>
+      <size>2</size><!-- make title bar a thin, thin line -->
       <!-- font size in points -->
-      <weight>Bold</weight>
+      <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
       <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveWindow">
-      <name>Liberation Sans</name>
-      <size>9</size>
+      <name>IOSevka Term Medium</name>
+      <size>2</size><!-- make title bar a thin, thin line -->
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -251,12 +251,12 @@
     </keybind>
     <keybind key="XF86AudioPrev">
       <action name="Execute">
-        <execute>tt set-volume -7%</execute>
+        <execute>tt set-volume -5%</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioNext">
       <action name="Execute">
-        <execute>tt set-volume +7%</execute>
+        <execute>tt set-volume +5%</execute>
       </action>
     </keybind>
     <keybind key="C-XF86AudioMute">
@@ -555,16 +555,14 @@
       <action name="MoveResizeTo">
         <x>0</x>
         <y>0</y>
-        <width>1280</width>
         <height>100%</height>
       </action>
     </keybind>
     <keybind key="W-Right">
       <action name="Unmaximize" />
       <action name="MoveResizeTo">
-        <x>2160</x>
+        <x>-0</x>
         <y>0</y>
-        <width>1280</width>
         <height>100%</height>
       </action>
     </keybind>
@@ -602,11 +600,29 @@
       <action name="MoveResizeTo">
         <width>50%</width>
         <height>100%</height>
-        <x>50%</x>
+        <x>-0</x>
         <y>0</y>
       </action>
     </keybind>
 
+    <keybind key="W-C-S-Left">
+      <action name="Unmaximize" />
+      <action name="MoveResizeTo">
+        <width>33%</width>
+        <height>100%</height>
+        <x>0</x>
+        <y>0</y>
+      </action>
+    </keybind>
+    <keybind key="W-C-S-Right">
+      <action name="Unmaximize" />
+      <action name="MoveResizeTo">
+        <width>33%</width>
+        <height>100%</height>
+        <x>-0</x>
+        <y>0</y>
+      </action>
+    </keybind>
 
     <keybind key="W-Up">
       <action name="Unmaximize" />
@@ -963,7 +979,7 @@
         <height>98%</height>
       </size>
       <position force="no">
-        <!-- x>540</x -->
+        <x>540</x>
         <y>0</y>
       </position>
     </application>
