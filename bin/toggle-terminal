@@ -1,30 +1,19 @@
 #!/usr/bin/env bash
 
-# -name allows the use of different Xresources
 identifier=${1:-global}
 
-session=$identifier # tmux session name
-
 if [ "$identifier" = "global" ]; then
-  classname=urxvt.$identifier
-  cmd_to_exec="urxvt -name $classname -e tmux-attach-or-create global"
+  classname=urxvt.global
 else
+  # terminal.* has different styling in xresources
   classname=terminal.$identifier 
-  #tmux="tmux-attach-or-create $identififer"
-  # evilvte seems to have some issues with handling multiple params to executable
-  # cmd_to_exec="evilvte --name $classname -e tmux-attach-or-create-local"
-  #cmd_to_exec="kitty --name $classname tmux-attach-or-create-local"
-  cmd_to_exec="urxvt -name $classname -e tmux-attach-or-create local"
 fi
 
-log=/tmp/toggl.log
+cmd_to_exec="urxvt -name $classname -e tmux-attach-or-create $identifier"
 
 wid=$(xdotool search --classname $classname 2>&1)
-ret=$?
 
-echo $ret >> $log
-if [ $ret == 1 ]; then
-  # X request probably failed. good riddance
+if [ $? == 1 ]; then
   if echo $wid | grep 'X Error'; then
     exit -1
   fi
@@ -35,8 +24,6 @@ if [ -z "$wid" ]; then
   sleep 0.05
   xdotool search --classname $classname windowactivate
 else
-  # multiple windows? take first
-  # wid=$(echo $wid | awk '{print $1}')
   #if [ -z "$(xdotool search --onlyvisible --classname $classname)" ]; then
   if [ $(xwininfo -id $wid | grep 'Map State' | awk '{ print $3 }') = "IsUnMapped" ]; then
     xdotool \
