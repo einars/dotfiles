@@ -49,7 +49,9 @@ let g:colorizer_disable_bufleave=1
 Plug 'chrisbra/Colorizer'
 
 Plug 'jiangmiao/auto-pairs'
-Plug 'MaxMEllon/vim-jsx-pretty'
+"Plug 'yuezk/vim-js'
+"Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'neoclide/vim-jsx-improve'
 let g:tabprefix = ""
 "Plug 'tpope/vim-flagship'
 " Plug 'othree/yajs.vim' " ES6

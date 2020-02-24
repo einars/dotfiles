@@ -23,6 +23,7 @@ augroup END
 
 augroup Indent4
   autocmd FileType php setlocal sts=4 sw=4
+  " autocmd FileType javascript setlocal sts=4 sw=4
 augroup END
 
 augroup MarkdownAll

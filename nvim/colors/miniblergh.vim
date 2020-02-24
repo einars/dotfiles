@@ -33,7 +33,8 @@ hi FoldColmun ctermfg=246 ctermbg=235 cterm=NONE guifg=#909194 guibg=#44475a gui
 " the rest of this comes from me and tango palette
 
 ""hi Normal guifg=#d3d7cf guibg=#222222
-hi Normal guifg=#babdb6 guibg=#222222
+"hi Normal guifg=#babdb6 guibg=#222222
+hi Normal guifg=#cccccc guibg=#222222
 
 ""let s:string = 'guifg=#73d216'
 ""let s:string = 'guifg=#4e9a06 guibg=#193001'
@@ -52,11 +53,6 @@ hi link jsDestructuringBlock jsVariableDef
 hi link jsDestructuringPropertyValue jsVariableDef
 hi link jsClassFuncName jsVariableDef
 hi link jsClassDefinition jsVariableDef
-
-hi jsxTagName guifg=#ffffff
-hi jsxTag guifg=#ffffff
-hi jsxEndTag guifg=#ffffff
-hi jsxEndString guifg=#ffffff
 
 
 hi link javascriptFunction jsVariableDef
@@ -126,3 +122,20 @@ hi! link Debug Normal
 hi! link Error Normal
 hi! link Title Normal
 hi! link Global Normal
+
+" vim-jsx-pretty
+hi jsxTagName guifg=#ffffff
+hi jsxTag guifg=#ffffff
+hi jsxEndTag guifg=#ffffff
+hi jsxEndString guifg=#ffffff
+hi jsxClosePunct guifg=#ffffff
+hi jsxOpenPunct guifg=#ffffff
+hi jsxCloseTag guifg=#ffffff
+hi jsxOpenTag guifg=#ffffff
+hi jsxComponentName guifg=#ffffff
+hi jsxEndComponentName guifg=#ffffff
+hi link jsxBraces Comment
+
+" vim-jsx-improve
+hi link jsClassName jsVariableDef
+hi link jsxAttributeBraces Comment

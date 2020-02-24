@@ -1,40 +1,48 @@
 #!/usr/bin/env bash
 
-
-# evilvte ir foršs, bet nokonfigurēts ar maziem burtiem
-#cmd_to_exec="evilvte -T $identifier --name $identifier --class $identifier"
-
 # -name allows the use of different Xresources
-identifier=urxvt.terminal
-cmd_to_exec="urxvt -name $identifier -e"
+identifier=${1:-global}
 
-## identifier=st-256color
-## cmd_to_exec="st -e"
+session=$identifier # tmux session name
 
+if [ "$identifier" = "global" ]; then
+  classname=urxvt.$identifier
+  cmd_to_exec="urxvt -name $classname -e tmux-attach-or-create global"
+else
+  classname=terminal.$identifier 
+  #tmux="tmux-attach-or-create $identififer"
+  # evilvte seems to have some issues with handling multiple params to executable
+  # cmd_to_exec="evilvte --name $classname -e tmux-attach-or-create-local"
+  #cmd_to_exec="kitty --name $classname tmux-attach-or-create-local"
+  cmd_to_exec="urxvt -name $classname -e tmux-attach-or-create local"
+fi
 
-# parallel execution/frequent switching sometimes fails with
-#  X Error of failed request:  BadWindow (invalid Window parameter)
-#  Major opcode of failed request:  3 (X_GetWindowAttributes)
-wid=failed
-until $(echo $wid | grep -v failed &>/dev/null); do
-  wid=$(xdotool search --classname $identifier 2>&1)
-done
+log=/tmp/toggl.log
+
+wid=$(xdotool search --classname $classname 2>&1)
+ret=$?
+
+echo $ret >> $log
+if [ $ret == 1 ]; then
+  # X request probably failed. good riddance
+  if echo $wid | grep 'X Error'; then
+    exit -1
+  fi
+fi
+
 if [ -z "$wid" ]; then
-  #echo "exec $cmd_to_exec -e ~/bin/tmux-attach-or-create global &"
-  exec $cmd_to_exec tmux-attach-or-create global &
+  exec $cmd_to_exec &
   sleep 0.05
-  xdotool search --classname $identifier windowactivate
+  xdotool search --classname $classname windowactivate
 else
   # multiple windows? take first
-  wid=$(echo $wid | awk '{print $1}')
-  if [ "$1" == "--hide" ]; then
-    xdotool windowunmap $wid
+  # wid=$(echo $wid | awk '{print $1}')
+  #if [ -z "$(xdotool search --onlyvisible --classname $classname)" ]; then
+  if [ $(xwininfo -id $wid | grep 'Map State' | awk '{ print $3 }') = "IsUnMapped" ]; then
+    xdotool \
+      windowmap --sync $wid \
+      windowactivate --sync $wid
   else
-    if [ -z "$(xdotool search --onlyvisible --classname $identifier)" ]; then
-      xdotool windowmap $wid
-      xdotool windowactivate $wid
-    else
-      xdotool windowunmap $wid
-    fi
+    xdotool windowunmap --sync $wid
   fi
 fi
