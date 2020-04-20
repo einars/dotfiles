@@ -38,11 +38,6 @@ try_cdpath /proj
 try_cdpath /services/web
 try_cdpath ~/dokumenti
 
-# the bitch is SLOOOW
-#test -f /usr/share/nvm/init-nvm.sh && source /usr/share/nvm/init-nvm.sh
-alias nvm="unalias nvm; source /usr/share/nvm/init-nvm.sh; nvm"
-
-
 if type nvim &> /dev/null; then
   export EDITOR=nvim
   export VISUAL=nvim
