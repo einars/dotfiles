@@ -251,12 +251,14 @@
     </keybind>
     <keybind key="XF86AudioPlay">
       <action name="Execute">
-        <execute>tt set-volume 50%</execute>
+        <dis-execute>tt set-volume 50%</dis-execute>
+        <execute>pavucontrol --tab=3</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioPrev">
       <action name="Execute">
-        <execute>tt set-volume -5%</execute>
+        <dis-execute>tt set-volume -5%</dis-execute>
+        <execute>pavucontrol --tab=1</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioNext">
@@ -301,6 +303,16 @@
     <keybind key="F12">
       <action name="Execute">
         <execute>/home/e/bin/toggle-dvorak</execute>
+      </action>
+    </keybind>
+    <keybind key="S-F12">
+      <action name="Execute">
+        <execute>/home/e/bin/toggle-dvorak ru</execute>
+      </action>
+    </keybind>
+    <keybind key="C-F12">
+      <action name="Execute">
+        <execute>/home/e/bin/toggle-dvorak lv</execute>
       </action>
     </keybind>
     <keybind key="W-KP_1">
@@ -550,6 +562,7 @@
       <action name="MoveResizeTo">
         <x>0</x>
         <y>0</y>
+        <width>1202</width>
         <height>100%</height>
       </action>
     </keybind>
@@ -558,6 +571,7 @@
       <action name="MoveResizeTo">
         <x>-0</x>
         <y>0</y>
+        <width>1202</width>
         <height>100%</height>
       </action>
     </keybind>
@@ -565,7 +579,7 @@
     <keybind key="W-S-Left">
       <action name="Unmaximize" />
       <action name="MoveResizeTo">
-        <width>2160</width>
+        <width>2040</width>
         <height>100%</height>
         <x>0</x>
         <y>0</y>
@@ -574,9 +588,9 @@
     <keybind key="W-S-Right">
       <action name="Unmaximize" />
       <action name="MoveResizeTo">
-        <width>2160</width>
+        <width>1400</width>
         <height>100%</height>
-        <x>1280</x>
+        <x>-0</x>
         <y>0</y>
       </action>
     </keybind>
@@ -584,7 +598,7 @@
     <keybind key="W-C-Left">
       <action name="Unmaximize" />
       <action name="MoveResizeTo">
-        <width>50%</width>
+        <width>2239</width>
         <height>100%</height>
         <x>0</x>
         <y>0</y>
@@ -593,7 +607,7 @@
     <keybind key="W-C-Right">
       <action name="Unmaximize" />
       <action name="MoveResizeTo">
-        <width>50%</width>
+        <width>2238</width>
         <height>100%</height>
         <x>-0</x>
         <y>0</y>
@@ -622,9 +636,9 @@
     <keybind key="W-Up">
       <action name="Unmaximize" />
       <action name="MoveResizeTo">
-        <width>40%</width>
+        <width>1036</width>
         <height>100%</height>
-        <x>-34%</x>
+        <x>1202</x>
         <y>0</y>
       </action>
     </keybind>
@@ -632,18 +646,18 @@
     <keybind key="W-C-Up">
       <action name="Unmaximize" />
       <action name="MoveResizeTo">
-        <width>880</width>
+        <width>1036</width>
         <height>50%</height>
-        <x>1280</x>
+        <x>1202</x>
         <y>0</y>
       </action>
     </keybind>
     <keybind key="W-C-Down">
       <action name="Unmaximize" />
       <action name="MoveResizeTo">
-        <width>880</width>
+        <width>1036</width>
         <height>50%</height>
-        <x>1280</x>
+        <x>1202</x>
         <y>50%</y>
       </action>
     </keybind>
@@ -997,10 +1011,15 @@
       <skip_taskbar>yes</skip_taskbar>
     </application>
 
+    <application name="pavucontrol">
+      <desktop>all</desktop>
+      <layer>above</layer>
+    </application>
+
     <application name="terminal.local">
       <!-- decor>no</decor -->
       <size>
-        <width>33%</width>
+        <width>1300</width>
         <height>100%</height>
       </size>
       <position force="yes">

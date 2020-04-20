@@ -1,0 +1,8 @@
+{
+  "javascript": {
+    "extends": "jsx"
+  },
+  "html": {
+    "html:5": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title></title>\n<link rel=\"stylesheet\" href=\"style.css\">\n<script type=\"text/javascript\" src=\"scriptjs\"></script>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<meta name=\"theme-color\" content=\"#fafafa\">\n</head>\n<body>\n<div class=\"container\">\n</div>\n</body>\n</html>\n"
+  }
+}

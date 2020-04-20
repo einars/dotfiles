@@ -16,12 +16,16 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'einars/vim-phpfold'
 
-let g:translit_toggle_keymap = '<S-F1>'
-Plug 'einars/translit.vim'
+
+Plug 'mattn/webapi-vim'
+
 
 let g:user_emmet_install_global=0
 let g:user_emmet_leader_key=','
-let g:user_emmet_settings = {  'javascript' : { 'extends' : 'jsx' }}
+
+
+exec 'source ' . EditorRoot() . '/snippets/emmet.vim'
+
 Plug 'mattn/emmet-vim'
 autocmd FileType php,html,javascript,javascriptreact EmmetInstall
 autocmd FileType css,scss EmmetInstall

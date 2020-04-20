@@ -1,5 +1,5 @@
 urxvt*font: xft:Iosevka Term Light:size=11
-terminal.local*font: xft:Iosevka Term:size=6
+terminal.local*font: xft:Iosevka Term:size=8
 !terminal.local*font: xft:Ubuntu Mono:size=7
 !terminal.local*boldFont: xft:Iosevka Term:size=7
 

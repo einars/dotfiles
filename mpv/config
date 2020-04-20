@@ -20,8 +20,9 @@ video-sync=display-resample
 #tscale=linear
 
 cache=yes
-cache-default=8000000                   # size in KB
-cache-backbuffer=25000                  # size in KB
+demuxer-readahead-secs=20
+#cache-default=8000000                   # size in KB
+#cache-backbuffer=25000                  # size in KB
 #cache-initial=500                       # start playback when your cache is filled up with x kB
 cache-secs=5                           # how many seconds of audio/video to prefetch if the cache is active
 

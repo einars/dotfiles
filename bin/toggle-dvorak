@@ -1,13 +1,17 @@
 #!/bin/sh
 
-#notify "Unable to switch layouts"
-#exit -1
+set_lv()
+{
+  setxkbmap lv -option caps:escape
+}
 
-#current=$(setxkbmap -query  | grep layout | awk '{print $2}')
-#if [ "$current" = "lv" ]; then
-if setxkbmap -query  | grep dvp; then
-        setxkbmap lv -option caps:escape
-else
+set_ru()
+{
+  setxkbmap ru -variant phonetic_dvorak
+}
+
+set_lv_custom()
+{
         setxkbmap lv_custom -variant dvp -option caps:escape
         echo '
 ! clear Lock
@@ -17,6 +21,33 @@ keycode 59 = w W w W multiply U25A1
 ! altgr . = ·■
 keycode 60 = v V w W periodcentered U25A0
         ' | xmodmap -
+}
+
+layout=$(setxkbmap -query | grep layout | awk '{print $2}')
+
+set_auto()
+{
+  case $layout in
+    lv_custom)
+      set_lv
+      ;;
+    ru)
+      set_lv_custom
+      ;;
+    *)
+      set_lv_custom
+      ;;
+  esac
+}
+
+if [ "$1" != ""  ]; then
+  if [ "$1" == "$layout" ]; then
+    set_lv_custom # set back lv dvorak
+  else
+    set_$1
+  fi
+else
+  set_auto
 fi
 
 xset r rate 200 30

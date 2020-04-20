@@ -146,7 +146,7 @@ alias ssh='TERM=screen ssh'
 alias sx="xinit /home/e/.xinitrc -- /etc/X11/xinit/xserverrc :0"
 
 # ripgrep
-alias aa=rg -g '!{node_modules}/'
+alias aa="rg --smart-case -g '!{node_modules}/'"
 
 alias h2j='=html2jade --noemptypipe --noattrcomma --donotencode --bodyless --double'
 alias coffee2js='coffee --bare --compile --no-header --'
