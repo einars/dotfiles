@@ -56,7 +56,7 @@
     <keepBorder>no</keepBorder>
     <animateIconify>no</animateIconify>
     <font place="ActiveWindow">
-      <name>IOSevka Term Medium</name>
+      <name>Fira Sans Medium</name>
       <size>2</size><!-- make title bar a thin, thin line -->
       <!-- font size in points -->
       <weight>Normal</weight>
@@ -65,7 +65,7 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveWindow">
-      <name>IOSevka Term Medium</name>
+      <name>Fira Sans</name>
       <size>2</size><!-- make title bar a thin, thin line -->
       <!-- font size in points -->
       <weight>Normal</weight>
@@ -214,17 +214,22 @@
     </keybind>
     <keybind key="Scroll_Lock">
       <action name="Execute">
-        <execute>tt screenshot</execute>
+        <execute>tt screenshot.nocrop</execute>
       </action>
     </keybind>
     <keybind key="C-Scroll_Lock">
       <action name="Execute">
-        <execute>tt screenshot.nocrop</execute>
+        <execute>tt screenshot</execute>
       </action>
     </keybind>
     <keybind key="S-Scroll_Lock">
       <action name="Execute">
         <execute>gcolor2</execute>
+      </action>
+    </keybind>
+    <keybind key="W-n">
+      <action name="Execute">
+        <execute>/home/e/bin/notify-datetime</execute>
       </action>
     </keybind>
     <keybind key="Pause">
@@ -253,6 +258,11 @@
       <action name="Execute">
         <dis-execute>tt set-volume 50%</dis-execute>
         <execute>pavucontrol --tab=3</execute>
+      </action>
+    </keybind>
+    <keybind key="XF86Calculator">
+      <action name="Execute">
+        <execute>pavucontrol</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioPrev">
@@ -984,7 +994,7 @@
   <applications>
     <application name="nvim-qt">
       <size>
-        <width>2300</width>
+        <width>2040</width>
         <height>100%</height>
       </size>
       <position force="no">

@@ -153,6 +153,7 @@ alias coffee2js='coffee --bare --compile --no-header --'
 alias html2jade='echo Use h2j alias'
 
 alias curl='curl --location '
+alias xurl='curl --location --header "X-Requested-By: XMLHttpRequest"'
 
 alias wip='git add --all && git commit -am WIP'
 
@@ -178,5 +179,8 @@ alias dwdiff='dwdiff --punctuation --color'
 
 alias mig='diesel migration'
 alias migg='diesel migration generate'
+
+# interactive jq repl
+jqa() { echo '' | fzf --print-query --preview "cat $1 | jq {q}" }
 
 # vim: syn=zsh :

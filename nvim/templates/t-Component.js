@@ -10,7 +10,7 @@ class CCC extends PureComponent {
   }
 }
 
-const mapState = ({ self, tree, location }) => ({ self, tree, location })
+const mapState = ({ location }) => ({ location })
 
 export default connect(mapState)(CCC)
 

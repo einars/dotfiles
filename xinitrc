@@ -53,7 +53,8 @@ init_sparta()
     #xmodmap -e "pointer = 1 2 3 5 4"
 
     # set up latvian keymap and apple kbd customizations
-    rekey
+
+    xcape -e 'Caps_Lock=Escape'
 
     # nvidia-settings --load-config-only
 

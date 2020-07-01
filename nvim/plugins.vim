@@ -42,7 +42,6 @@ Plug 'derekwyatt/vim-scala'
 Plug 'dag/vim-fish'
 
 "Plug 'stephpy/vim-yaml'
-
 Plug 'fatih/vim-go'
 
 Plug 'cakebaker/scss-syntax.vim'

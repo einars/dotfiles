@@ -19,6 +19,6 @@ nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCom
 ( sleep 4 && keepassxc ) &
 
 t wallpaper
-t compton
+### t compton
 
 # t pulseaudio-latency
