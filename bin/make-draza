@@ -8,6 +8,7 @@ year=$(date +%Y)
 month=$(date +%m)
 
 drazapath="/storage/draza/$year/$month"
+drazapath_prev=/storage/draza/$(prev-month '%Y/%m')
 
 mkdir -p "$drazapath"
 mkdir -p "/home/e/dokumenti/Gramatvediba/accounting/$year-$month"
@@ -18,12 +19,17 @@ cd /storage/draza
 rm -f current
 ln -sf $drazapath current
 
+cd /storage/draza
+rm -f prev
+ln -sf $drazapath_prev prev
+
 cd /storage/torrents
 rm current
 ln -sf "$year-$month" current
 
 cd /home/e/dokumenti/diary
-cp clean.md "$year-$month.md"
+
+cp --no-clobber clean.md "$year-$month.md"
 git add .
 git commit -am "$year-$month"
 

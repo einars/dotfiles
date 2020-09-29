@@ -24,6 +24,9 @@ map <f5> <Esc>:syn sync fromstart<Cr>
 map <S-f5> <Esc>:EnableFastPHPFolds<Cr>
 " close buffer leaving splits intact
 map <leader>d <Esc>:call CleanDeleteBuffer()<Cr>
+ 
+" write + close buffer
+nmap <leader>h :w\|bd<Cr>
 
 nmap ; :
 

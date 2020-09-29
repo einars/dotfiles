@@ -10,16 +10,25 @@ set_ru()
   setxkbmap ru -variant phonetic_dvorak
 }
 
+fix_iso()
+{
+  echo '
+!! fix ISO layout dumbnesses
+! backslash to left shift pip, and make small button near enter an additional enter
+keycode 94 = backslash bar backslash bar grave breve grave breve
+  ' | xmodmap -
+}
+
 set_lv_custom()
 {
         setxkbmap lv_custom -variant dvp -option caps:ctrl_modifier
+
+        fix_iso
+
         echo '
 ! clear Lock
 ! keycode 0x42 = Escape
 
-!! fix ISO layout dumbnesses
-! backslash to left shift pip, and make small button near enter an additional enter
-keycode 94 = backslash bar backslash bar grave breve grave breve
 !!! keycode 51 = Return
 ! altgr , = ×□
 keycode 59 = w W w W multiply U25A1
@@ -55,6 +64,7 @@ else
   set_auto
 fi
 
-xset r rate 200 30
+#xset r rate 200 30
+xset r rate 400 15
 
 layout-notify

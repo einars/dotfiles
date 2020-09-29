@@ -7,7 +7,8 @@ function! Dark()
   colors miniblergh
   """ I need dark font to be bolder and larger
   " "Guifont Iosevka Term Medium:h10
-  Guifont xos4 Terminus:h10
+  "Guifont xos4 Terminus:h10
+  Guifont Go Mono:h11
 endfunction
 
 function! Light()
@@ -15,8 +16,8 @@ function! Light()
   set background=light
   colors PaperColor
   ""Guifont Iosevka Term:h9
-  ""Guifont Go Mono:h9
-  Guifont xos4 Terminus:h9
+  Guifont Go Mono:h10
+  "Guifont xos4 Terminus:h9
 endfunction
 
 Dark
