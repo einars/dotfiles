@@ -209,7 +209,8 @@
     </keybind>
     <keybind key="Print">
       <action name="Execute">
-        <execute>/home/e/bin/nvimq</execute>
+        <!-- execute>/home/e/bin/nvimq</execute -->
+        <execute>notify-datetime</execute>
       </action>
     </keybind>
     <keybind key="Scroll_Lock">

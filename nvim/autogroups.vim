@@ -2,11 +2,11 @@
 autocmd VimEnter,BufEnter,BufWinEnter * silent! iunmap <buffer> <M-">
 
 "" the shit is slow"
-augroup cursorline
-  autocmd!
-  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  autocmd WinLeave * setlocal nocursorline
-augroup END
+"augroup cursorline
+"  autocmd!
+"  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+"  autocmd WinLeave * setlocal nocursorline
+"augroup END
 
 augroup broken_indents
     autocmd!
@@ -60,17 +60,19 @@ augroup END
 " Soft text limiter
 """autocmd BufRead,BufNew *.* call matchadd('Error', '\%80v.')
 autocmd BufRead,BufNew *.md call matchadd('DiffAdd', '\v^---.*$')
+"let &colorcolumn="80," . join(range(120, 300), ",")
 
 " Diff-adds/deletes have a tendency to have nice backgrounds
 " Whitespace (ignored) followed by one or multiple TK — TK, TKTKTK etc
-""augroup Flourish
-  ""autocmd BufRead,BufNew * call matchadd('DiffDelete', '\v( )@<=(TK|TODO|HACK)+')
-  ""autocmd BufRead,BufNew * call matchadd('DiffAdd', '\v(!!!|///|###|;;;|---) .*$')
+augroup Flourish
+  "autocmd BufRead,BufNew * call matchadd('DiffDelete', '\v( )@<=(TK|TODO|HACK)+')
+  "autocmd BufRead,BufNew * call matchadd('DiffAdd', '\v(!!!|///|###|;;;|---) .*$')
+
   " good in theory, but slows down everything:
-  ""autocmd BufEnter,BufNew * call matchadd('ColorColumn', '\%81v.\{1,40\}')
+  " autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\%79v.')
   ""autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\%81v..\?.\?')
-  ""autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\%>120v.\+')
-""augroup END
+  autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\%95v.')
+augroup END
 
 
 

@@ -158,10 +158,6 @@ if filereadable(local_init)
   exec 'source ' . local_init
 endif
 
-" using autogroup Flourish in autogroups.vim instead
-" for a more subtle effect
-" let &colorcolumn="80," . join(range(120, 300), ",")
-
 function! Dark()
   set background=dark
 endfunction

@@ -1,12 +1,5 @@
 noremap <C-z> <nop>
 
-"" For something esoteric: use chtn (dvorak) cluster for arrows 
-""" (it's ijkl on qwerty)
-noremap <C-h> h
-noremap <C-t> j
-noremap <C-c> k
-" lost the prev-search
-noremap <C-n> l
 " I'm never using s command
 noremap <C-s> l
 
@@ -70,7 +63,13 @@ if has('nvim')
 
   " ncm2
 
+
+    " When the <Enter> key is pressed while the popup menu is visible, it only
+    " hides the menu. Use this mapping to close the menu and also start a new
+    " line.
   inoremap <expr> <Cr> (pumvisible() ? "\<c-y>\<Cr>" : "\<Cr>")
+  "inoremap <expr> <Cr> (pumvisible() ? "\<c-y> " : "\<Cr>")
+
   inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
   inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
   autocmd BufEnter * call ncm2#enable_for_buffer()

@@ -7,8 +7,9 @@ function! Dark()
   colors miniblergh
   """ I need dark font to be bolder and larger
   " "Guifont Iosevka Term Medium:h10
-  "Guifont xos4 Terminus:h10
-  Guifont Go Mono:h11
+  Guifont xos4 Terminus:h10
+  "Guifont Fira Mono:h11
+  "Guifont Go Mono:h10
 endfunction
 
 function! Light()
@@ -34,3 +35,7 @@ endfunction
 
 command! Large :call Large()
 command! Write :call Large()
+
+
+inoremap <C-G> <C-r>=Translit('greek')<cr>
+nnoremap <C-G> :exec Translit('greek')<cr>

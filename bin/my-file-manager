@@ -1,3 +1,4 @@
 #!/bin/sh
 
-exec thunar $@
+exec thunar "$@"
+

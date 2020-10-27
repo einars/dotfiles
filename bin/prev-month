@@ -1,4 +1,4 @@
 #!/bin/sh
 
 format=${1:-%Y-%m}
-date --date="$(date +%Y-%m-15) -1 month" +$format
+date --date="$(date +%Y-%m-15) -1 month" +"$format"

@@ -17,11 +17,11 @@ mkdir -p "/storage/torrents/$year-$month"
 
 cd /storage/draza
 rm -f current
-ln -sf $drazapath current
+ln -sf "$drazapath" current
 
 cd /storage/draza
 rm -f prev
-ln -sf $drazapath_prev prev
+ln -sf "$drazapath_prev" prev
 
 cd /storage/torrents
 rm current
@@ -33,7 +33,7 @@ cp --no-clobber clean.md "$year-$month.md"
 git add .
 git commit -am "$year-$month"
 
-echo Created $drazapath
+echo Created "$drazapath"
 echo Restarting smb...
 sudo systemctl restart smb
 echo Service restared
