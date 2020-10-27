@@ -1,0 +1,9 @@
+#!/bin/sh
+
+mako &
+
+waybar &
+
+alacritty &
+
+keepassxc &

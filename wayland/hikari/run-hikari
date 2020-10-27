@@ -1,0 +1,6 @@
+#!/bin/sh
+
+export MOZ_ENABLE_WAYLAND=1
+
+eval $(dbus-launch --sh-syntax 2>&1 | tee -a /tmp/dbus-launch.log)
+exec ssh-agent /sbin/hikari 2> ~/hikari.stderr.log > ~/hikari.stdout.log
