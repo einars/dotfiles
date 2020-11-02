@@ -23,6 +23,36 @@ function xorg_idle_s()
     return exec('xprintidle') / 1000;
 }
 
+
+function sway_idle_s()
+{
+    // sway hack
+    // ~/.config/sway/config
+    /*
+        exec swayidle -w \
+            timeout 60 'echo 60 > ~/.idle' \
+            timeout 120 'echo 120 > ~/.idle' \
+            timeout 180 'echo 180 > ~/.idle' \
+            timeout 240 'echo 240 > ~/.idle' \
+            timeout 300 'echo 300 > ~/.idle' \
+            timeout 360 'echo 360 > ~/.idle' \
+            timeout 420 'echo 420 > ~/.idle' \
+            timeout 480 'echo 480 > ~/.idle' \
+            timeout 540 'echo 540 > ~/.idle' \
+            timeout 600 'echo 600 > ~/.idle'
+     */
+
+    $idle_info = '~/.idle';
+    if (file_exists($idle_info)) {
+        $idle = file_get_contents($idle_info);
+        unlink($idle_info);
+        return $idle;
+    }
+    return null;
+    // return exec('xprintidle') / 1000;
+}
+
+
 function xorg_active_title()
 {
     return exec('xdotool getwindowfocus getwindowname');
@@ -194,7 +224,8 @@ function format_time_s($s)
 function kill_watson_if_idle($opts)
 {
     $idle_interval_break_mins = opt('idle-interval-break-mins', $opts, 8);
-    $idle_s = xorg_idle_s();
+    // $idle_s = xorg_idle_s();
+    $idle_s = sway_idle_s();
     if ($idle_s > $idle_interval_break_mins * 60) {
         exec('watson stop');
         say_and_notify("idle stopping watson", $category='default', $urgency='critical');
@@ -295,7 +326,7 @@ function monitor_watson($opts)
             tell_about($s);
         }
 
-        work_nudge($s, $opts);
+        // work_nudge($s, $opts);
 
 
         if ($s['is_running'] ) {

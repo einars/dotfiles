@@ -1,31 +1,14 @@
 # mostly taken from https://github.com/Argon-/mpv-config/blob/master/mpv.conf
 
 #no-border                               # no window title bar
-msg-module                              # prepend module name to log messages
-msg-color                               # color log messages on terminal
-no-term-osd-bar                            # display a progress bar on the terminal
+msg-module                               # prepend module name to log messages
+msg-color                                # color log messages on terminal
+no-term-osd-bar                          # display a progress bar on the terminal
 #pause                                   # no autoplay
 #keep-open                               # keep the player open when a file's end is reached
 audio-device=pulse
 audio-display=no
 volume=64
-
-# latency stuff
-## opengl-glfinish=yes
-## opengl-swapinterval=0
-
-vo=gpu
-interpolation=yes
-video-sync=display-resample
-#tscale=linear
-
-cache=yes
-demuxer-readahead-secs=20
-#cache-default=8000000                   # size in KB
-#cache-backbuffer=25000                  # size in KB
-#cache-initial=500                       # start playback when your cache is filled up with x kB
-cache-secs=5                           # how many seconds of audio/video to prefetch if the cache is active
-
 
 osd-level=1                             # enable osd and display --osd-status-msg on interaction
 osd-duration=2500                       # hide the osd after x ms
@@ -73,14 +56,3 @@ alang=en,eng,ru,rus     # automatically select these audio tracks (decreasing pr
 # [protocol.http]
 # user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:47.0) Gecko/20100101 Firefox/47.0'
 
-
-# [high-quality]
-scale=ewa_lanczossharp
-cscale=ewa_lanczossoft
-dscale=mitchell
-scale-antiring=0.7
-cscale-antiring=0.7
-dither-depth=auto
-correct-downscaling=yes
-sigmoid-upscaling=yes
-deband=yes

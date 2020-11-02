@@ -9,4 +9,4 @@ export SDL_VIDEODRIVER=wayland
 pkill dbus
 eval $(dbus-launch --sh-syntax 2>&1 | tee -a /tmp/dbus-launch.log)
 #dbus-update-activation-environment --systemd --all
-exec ssh-agent /sbin/hikari 2> ~/hikari.stderr.log > ~/hikari.stdout.log
+exec ssh-agent /usr/bin/sway 2> ~/sway.stderr.log | tee ~/sway.stdout.log
