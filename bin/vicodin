@@ -4,7 +4,20 @@
 // run in background, monitor watson (https://github.com/TailorDev/Watson)
 // and notify every X min 
 
-define('DEFAULT_BREAKPOINTS', [10, 25, 45, 80, 120, 150, 180, 210, 240, 270]);
+define('DEFAULT_BREAKPOINTS', [
+    // time => sound
+    10 => false,
+    30 => false,
+    45 => true,
+    60 => false,
+    90 => true,
+    120 => false,
+    150 => false,
+    180 => false,
+    210 => false,
+    240 => false,
+    270 => false,
+]);
 
 monitor_watson([
     'notify-interval-mins' => 15,
@@ -42,7 +55,7 @@ function sway_idle_s()
             timeout 600 'echo 600 > ~/.idle'
      */
 
-    $idle_info = '~/.idle';
+    $idle_info = '/home/e/.idle';
     if (file_exists($idle_info)) {
         $idle = file_get_contents($idle_info);
         unlink($idle_info);
@@ -266,10 +279,22 @@ function tell_about($state)
     say($message);
 }
 
-function watson_notify($state)
+
+function make_notification_sound()
 {
+    system('~/bin/subtle-beep');
+}
+
+function watson_notify($state, $sound = false)
+{
+    if ($sound) {
+        make_notification_sound();
+    }
     if ($state['is_running'])  {
-        say_and_notify( sprintf('Working on %s for %s.', $state['project'], format_time($state['elapsed'])), $category='chime');
+        say_and_notify( sprintf('Working on %s for %s.', $state['project'], format_time($state['elapsed'])), 
+            $category='chime',
+            $urgency=($sound ? 'critical' : 'normal')
+        );
     } else {
         say_and_notify('Doing nothing, just chill.');
     }
@@ -305,6 +330,8 @@ function monitor_watson($opts)
     }
 
 
+    make_notification_sound();
+
     say("Watson now takes some vicodin.");
 
     $current = watson_state($state_file, $opts);
@@ -313,12 +340,15 @@ function monitor_watson($opts)
 
     while (true) {
 
+        /*
+        // SWAY: idle killing done by external process on swayidle timeout
         if ($current['is_running']
             and ! proj_match($current, $no_idle_kill_projs)
             and ! tag_match($current, $no_idle_kill_tags)
         ) {
             kill_watson_if_idle($opts);
         }
+         */
 
         $s = watson_state($state_file, $opts);
 
@@ -330,8 +360,9 @@ function monitor_watson($opts)
 
 
         if ($s['is_running'] ) {
-            if (($current['elapsed'] !== $s['elapsed']) and ($s['elapsed'] !== 0) and (in_array($s['elapsed'], $breakpoints))) {
-                watson_notify($s);
+            if (($current['elapsed'] !== $s['elapsed']) and ($s['elapsed'] !== 0) and (isset($breakpoints[$s['elapsed']]))) {
+                printf("!!! %d %d %s\n",$current['elapsed'], $s['elapsed'], $breakpoints[$s['elapsed']] );
+                watson_notify($s, $sound = $breakpoints[$s['elapsed']]);
             }
         }
 
@@ -349,3 +380,4 @@ function opt($opt, $opts, $default = null)
     }
     return $default;
 }
+

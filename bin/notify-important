@@ -1,0 +1,10 @@
+#!/bin/sh
+
+
+
+if [[ $DISPLAY == "" ]]; then
+    echo $@
+else
+    echo "!!! Notify: $@"
+    notify-send --expire-time 0 --urgency critical "$@"
+fi

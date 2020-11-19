@@ -1,5 +1,9 @@
 font=fira code 10
 padding=16
 margin=24
-default-timeout=5000
+default-timeout=10000
 ignore-timeout=1
+
+[urgency=high]
+default-timeout=0
+background-color=#993300ff

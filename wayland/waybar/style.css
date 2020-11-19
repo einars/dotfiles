@@ -2,7 +2,7 @@
     border: none;
     border-radius: 0;
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: "Fira Code", Roboto, Helvetica, Arial, sans-serif;
+    font-family: "Iosevka Term Medium", Roboto, Helvetica, Arial, sans-serif;
     font-size: 14px;
     min-height: 0;
 }
@@ -139,8 +139,10 @@ label:focus {
 }
 
 #pulseaudio {
+  /*
     background-color: #f1c40f;
     color: #000000;
+    */
 }
 
 #pulseaudio.muted {
@@ -206,4 +208,16 @@ label:focus {
     padding: 0 5px;
     margin: 0 5px;
     min-width: 16px;
+}
+
+.task {
+    background-color: #64727D;
+}
+.task-idle {
+  color: #fff;
+}
+.task-running {
+  background-color: #c1f40f;
+  color: #000;
+
 }

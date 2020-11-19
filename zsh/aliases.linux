@@ -36,6 +36,7 @@ alias reh='sudo /etc/rc.d/httpd restart'
 alias relight='sudo /etc/rc.d/httpd restart'
 
 alias pss="ps -Adf | grep -i"
+alias psss="/bin/ps axfwh -eo pid,user,args | grep -A 3 -i"
 # "p -w" for unlimited width
 alias p="/bin/ps axfwh -eo pid,user,args"
 alias S='sudo'

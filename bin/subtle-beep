@@ -1,0 +1,3 @@
+#!/bin/sh
+
+mpg123 -q ~/bin/sound/subtle-beep.mp3 &
