@@ -71,7 +71,7 @@ augroup Flourish
   " good in theory, but slows down everything:
   " autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\%79v.')
   ""autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\%81v..\?.\?')
-  autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\%95v.')
+  autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\%101v.')
 augroup END
 
 
