@@ -8,11 +8,12 @@
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
-# Home row direction keys, like vim
-# set $left h
-# set $down j
-# set $up k
-# set $right l
+
+# Home row direction keys (dvorak)
+set $left h
+set $down t
+set $up n
+set $right s
 
 # Your preferred terminal emulator
 set $term termite
@@ -22,7 +23,6 @@ set $term termite
 #exec thunar --daemon
 
 set $files thunar
-set $files_alt nautilus
 
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
@@ -38,6 +38,7 @@ font pango:Fira Code Semibold 10
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 output * bg /home/e/wallpapers/uw.lake.png fill
+#output * max_render_time 5
 #
 # Example configuration:
 #
@@ -84,7 +85,6 @@ input * {
       xkb_variant "dvp"
       xkb_options "caps:ctrl_modifier"
       xkb_numlock enabled
-              
 }
 
 
@@ -101,14 +101,10 @@ bindsym --to-code {
     $mod+r      exec $menu
 
     $mod+q exec "$files /home/e/draza"
-    $mod+t exec "$files /home/e/torrents"
+    # $mod+t exec "$files /home/e/torrents"
+    $mod+o exec "$files /home/e/torrents"
     $mod+d exec "$files /home/e/dokumenti"
     $mod+b exec "$files /home/e/books"
-
-    $mod+Shift+q exec "$files_alt /home/e/draza"
-    $mod+Shift+t exec "$files_alt /home/e/torrents"
-    $mod+Shift+d exec "$files_alt /home/e/dokumenti"
-    $mod+Shift+b exec "$files_alt /home/e/books"
 
     Menu      exec "tt screenshot"
     Ctrl+Menu exec "tt screenshot.nocrop"
@@ -123,6 +119,15 @@ bindsym --to-code {
     $mod+Shift+Down  move down
     $mod+Shift+Up    move up
     $mod+Shift+Right move right
+
+    $mod+$left  focus left
+    $mod+$down  focus down
+    $mod+$up    focus up
+    $mod+$right focus right
+    $mod+shift+$left  move left
+    $mod+shift+$down  move down
+    $mod+shift+$up    move up
+    $mod+shift+$right move right
 
     $mod+Shift+c     reload
     $mod+f           fullscreen
@@ -251,10 +256,14 @@ mode "resize" {
 ##         inactive_workspace #32323200 #32323200 #999999
 ##     }
 ## }
+bar {
+  swaybar_command waybar
+}
 
 for_window [window_role="pop-up"] floating enable
 for_window [class="vlc"] floating enable
 for_window [app_id="org.gnome.Nautilus"] floating enable
+for_window [app_id="mpv"] floating enable
 for_window [app_id="Thunar"] floating enable
 for_window [app_id="thunar"] floating enable
 for_window [class="Caja"] floating enable

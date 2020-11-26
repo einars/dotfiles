@@ -8,7 +8,7 @@
      // "modules-center": ["sway/window"],
      // "modules-center": [],
      // "modules-right": [ "custom/task", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat2", "clock", "tray"],
-    "modules-right": ["custom/task", "pulseaudio", "clock", "tray"],
+    "modules-right": ["custom/task", "idle_inhibitor", "pulseaudio", "clock", "tray"],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,

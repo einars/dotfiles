@@ -71,7 +71,15 @@ augroup Flourish
   " good in theory, but slows down everything:
   " autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\%79v.')
   ""autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\%81v..\?.\?')
-  autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\%101v.')
+"  autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\%101v.')
+
+  " trailing whitespace
+  " autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\s\+$')
+  autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\s\+\%#\@<!$')
+  autocmd InsertLeave * redraw!
+  " \%# — current cursor
+  " \@<! - match zerowidth if preceding atom does not match at the current pos
+
 augroup END
 
 

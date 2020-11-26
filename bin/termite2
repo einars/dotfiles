@@ -1,0 +1,3 @@
+#!/bin/sh
+
+termite --config=$HOME/.config/termite/config.alt --exec="tmux new-session -A -s stuff"

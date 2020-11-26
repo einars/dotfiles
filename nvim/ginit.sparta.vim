@@ -2,12 +2,12 @@ colors miniblergh
 
 
 function! Dark()
-  GuiLinespace 4
+  GuiLinespace 1
   set background=dark
   colors miniblergh
   """ I need dark font to be bolder and larger
-  " "Guifont Iosevka Term Medium:h10
-  Guifont xos4 Terminus:h10
+  Guifont! Iosevka Term Light:h11
+  " Guifont xos4 Terminus:h10
   "Guifont Fira Mono:h11
   "Guifont Go Mono:h10
 endfunction

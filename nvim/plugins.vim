@@ -6,7 +6,7 @@ let g:rooter_manual_only = 1
 Plug 'airblade/vim-rooter'
 
 " adds Wipeout command to cleanup buffers
-Plug 'artnez/vim-wipeout' 
+Plug 'artnez/vim-wipeout'
 
 " vim-surround: do not use C-s / C-g s
 let g:surround_no_insert_mappings = 1
@@ -22,40 +22,22 @@ Plug 'mattn/webapi-vim'
 
 
 let g:user_emmet_install_global=0
-let g:user_emmet_leader_key=','
+let g:user_emmet_leader_key='<C-F>'
 
 
 exec 'source ' . EditorRoot() . '/snippets/emmet.vim'
 
-"Plug 'mattn/emmet-vim'
-"autocmd FileType php,html,javascript,javascriptreact EmmetInstall
-"autocmd FileType css,scss EmmetInstall
+Plug 'mattn/emmet-vim'
+autocmd FileType php,html,javascript,javascriptreact EmmetInstall
+autocmd FileType css,scss EmmetInstall
 
 Plug 'ctrlpvim/ctrlp.vim'
 
-Plug 'carmonw/elm-vim'
-
-Plug 'digitaltoad/vim-pug'
-
-Plug 'rgrinberg/vim-ocaml'
-
-Plug 'derekwyatt/vim-scala'
-Plug 'dag/vim-fish'
-
-"Plug 'stephpy/vim-yaml'
-Plug 'fatih/vim-go'
-
-Plug 'cakebaker/scss-syntax.vim'
-
-let g:colorizer_auto_filetype='css,scss,sass'
-let g:colorizer_skip_comments=1
-let g:colorizer_disable_bufleave=1
-Plug 'chrisbra/Colorizer'
-
 Plug 'jiangmiao/auto-pairs'
-"Plug 'yuezk/vim-js'
-"Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'neoclide/vim-jsx-improve'
+
+Plug 'sheerun/vim-polyglot'
+
+
 let g:tabprefix = ""
 "Plug 'tpope/vim-flagship'
 " Plug 'othree/yajs.vim' " ES6
@@ -64,14 +46,11 @@ let g:tabprefix = ""
 " Plug 'junegunn/seoul256.vim' " paper beats seoul
 Plug 'dracula/vim'
 
-"let g:markdown_enable_spell_checking = 0
-"Plug 'gabrielelana/vim-markdown'
-
 if has('nvim')
   Plug 'equalsraf/neovim-gui-shim'
 
   " adjust keymaps.vim manually as well
-  
+
   "let g:deoplete#enable_at_startup = 1
   "Plug 'Shougo/deoplete.nvim'
 

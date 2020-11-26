@@ -22,7 +22,7 @@ if ! has('nvim')
 endif
 
 if has('nvim')
-  "set termguicolors
+  set termguicolors
 endif
 
 " Disable cursor blinking
