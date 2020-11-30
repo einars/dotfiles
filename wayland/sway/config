@@ -1,12 +1,3 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
-
-### Variables
-#
-# Logo key. Use Mod1 for Alt.
 set $mod Mod4
 
 # Home row direction keys (dvorak)
@@ -15,70 +6,18 @@ set $down t
 set $up n
 set $right s
 
-# Your preferred terminal emulator
 set $term termite
-#set $files nautilus
-
-#set $files thunar
-#exec thunar --daemon
-
 set $files thunar
 
-# Your preferred application launcher
-# Note: it's recommended that you pass the final command to sway
-# set $menu dmenu_path | dmenu | xargs swaymsg exec
+
 set $menu rofi -show run | xargs swaymsg exec
-
-#default_border none
-
 font pango:Fira Code Semibold 10
-
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 output * bg /home/e/wallpapers/uw.lake.png fill
-#output * max_render_time 5
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
 
-### Idle configuration
-#
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' \
-#               resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
-
-# fuck sway/wayland for not being able to give me the idle time
 exec swayidle -w \
     timeout 300 "t kill.watson" \
     timeout 10 'if pgrep swaylock; then swaymsg "output * dpms off"; fi' \
     resume 'swaymsg "output * dpms on"'
-
-### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
 
 input * {
       xkb_layout "lv_custom"
@@ -89,7 +28,6 @@ input * {
 
 
 bindsym --to-code {
-
 
     $mod+Alt+BackSpace exec "swaylock --daemonize --image ~/wallpapers/h.grzegorz-rutkowski-dragons-breath.jpg"
     Ctrl+Alt+Delete    exec "swaylock --daemonize --image ~/wallpapers/h.grzegorz-rutkowski-dragons-breath.jpg"
@@ -234,28 +172,6 @@ mode "resize" {
 #   Ctrl+Alt+h exec clipman pick -t rofi
 # }
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-## bar {
-##     position top
-##     #mode hide
-## 
-##     # When the status_command prints a new line to stdout, swaybar updates.
-##     # The default just shows the current date and time.
-##     #status_command while date +'%a, %d. %b  %R'; do sleep 1; done
-## 
-##     #status_command while ~/.config/sway/status.sh; do sleep 5; done
-##     status_command ~/.config/sway/status.sh
-##     font pango:Fira Code Semibold 10
-## 
-##     colors {
-##         statusline #aaaaaa
-##         background #323232
-##         inactive_workspace #32323200 #32323200 #999999
-##     }
-## }
 bar {
   swaybar_command waybar
 }
@@ -273,5 +189,5 @@ for_window [app_id="gnumeric"] floating enable
 for_window [app_id="eog"] floating enable
 
 
-
 include /etc/sway/config.d/*
+include ~/.config/sway/$(hostname)/*

@@ -75,8 +75,8 @@ augroup Flourish
 
   " trailing whitespace
   " autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\s\+$')
-  autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\s\+\%#\@<!$')
-  autocmd InsertLeave * redraw!
+  """  autocmd BufEnter,BufNew * call matchadd('DiffDelete', '\s\+\%#\@<!$')
+  """  autocmd InsertLeave * redraw!
   " \%# — current cursor
   " \@<! - match zerowidth if preceding atom does not match at the current pos
 

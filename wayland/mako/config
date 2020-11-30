@@ -5,5 +5,5 @@ default-timeout=10000
 ignore-timeout=1
 
 [urgency=high]
-default-timeout=0
+default-timeout=180000
 background-color=#993300ff

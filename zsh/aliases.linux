@@ -175,7 +175,7 @@ tarz() { tar cvf - $2 | pigz -1 - > $1 }
 
 alias com='screen /dev/ttyACM0 115200,inlcr,onlret,echo'
 
-alias waa="watson aggregate --current --from $(date +'%Y-%m-%d')"
+alias waa="watson aggregate --current"
 
 alias dwdiff='dwdiff --punctuation --color'
 

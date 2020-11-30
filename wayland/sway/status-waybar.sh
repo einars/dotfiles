@@ -15,8 +15,11 @@ if test -f ~/.config/watson/state; then
     #task="<span color=\"#33ff33\">$project ${elapsed}m  --  </span>"
     tags=$(jq --raw-output '.tags | join (", +")' ~/.config/watson/state)
     heart=
-    if (( $elapsed_m > 44 )); then
-      heart="❤️  "
+    if (( $elapsed > 44 )); then
+      heart="💚"
+    fi
+    if (( $elapsed > 89 )); then
+      heart="❤️"
     fi
     if [ "$elapsed_h" = "0" ]; then
       task=$(printf '%s %s +%s %dm' "$heart" "$project" "$tags" "$elapsed_m")
