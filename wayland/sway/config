@@ -9,6 +9,11 @@ set $right s
 set $term termite
 set $files thunar
 
+focus_wrapping no
+
+
+smart_borders on
+smart_gaps on
 
 set $menu rofi -show run | xargs swaymsg exec
 font pango:Fira Code Semibold 10
@@ -34,6 +39,7 @@ bindsym --to-code {
     $mod+Ctrl+q        exec swaynag -t warning -m 'Exit sway?' -b 'Yes, exit sway' 'swaymsg exit'
 
     $mod+Tab           exec ~/.config/sway/window-list.sh
+    $mod+w             exec ~/bin/refresh-firefox
 
     $mod+Return exec $term
     $mod+r      exec $menu
@@ -69,8 +75,8 @@ bindsym --to-code {
 
     $mod+Shift+c     reload
     $mod+f           fullscreen
-    $mod+Shift+space floating toggle
     $mod+space       focus mode_toggle
+    $mod+Shift+space floating toggle
     Alt+F4           kill
 
 
@@ -179,7 +185,7 @@ bar {
 for_window [window_role="pop-up"] floating enable
 for_window [class="vlc"] floating enable
 for_window [app_id="org.gnome.Nautilus"] floating enable
-for_window [app_id="mpv"] floating enable
+for_window [app_id="mpv"] floating enable; sticky enable
 for_window [app_id="Thunar"] floating enable
 for_window [app_id="thunar"] floating enable
 for_window [class="Caja"] floating enable
@@ -187,6 +193,7 @@ for_window [class="Gimp"] floating enable
 for_window [class="Audacious"] floating enable
 for_window [app_id="gnumeric"] floating enable
 for_window [app_id="eog"] floating enable
+for_window [app_id="zoom"] floating enable
 
 
 include /etc/sway/config.d/*

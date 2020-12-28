@@ -60,6 +60,10 @@ while test -n $argv[$paramidx]
         set shave '10x15'
     end
 
+    if [ $argv[$paramidx] = 'nocrop' ]
+        set shave '1x1'
+    end
+
 
     # white = whitening
     if [ $argv[$paramidx] = 'white' ]
@@ -138,7 +142,8 @@ else
     if [ $raw = 'yes' ]
         echo "Raw mode, not processing"
     else
-        convert \
+
+        gm convert \
             -shave $shave \
             -quality 85 \
             -scale $scale \

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+set -e
+set -x
+
 identifier=${1:-global}
 
 if [ "$identifier" = "global" ]; then
@@ -11,7 +14,7 @@ fi
 
 cmd_to_exec="urxvt -name $classname -e tmux-attach-or-create $identifier"
 
-wid=$(xdotool search --classname $classname 2>&1)
+wid=$(xdotool search --classname $classname 2>&1 || true)
 
 if [ $? == 1 ]; then
   if echo $wid | grep 'X Error'; then

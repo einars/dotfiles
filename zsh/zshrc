@@ -31,7 +31,8 @@ try_path /usr/lib/ccache/bin # ccache
 try_path ~/.opam/system/bin  # opam
 try_path ~/.cargo/bin        # rust
 try_path ~/.yarn/bin         # yarn
-try_path ~/.local/bin         # yarn
+try_path ~/.local/bin
+try_path ~/.emacs.d/bin      # doom emacs
 
 cdpath=(. ~)
 try_cdpath /proj

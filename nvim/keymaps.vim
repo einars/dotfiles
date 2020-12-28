@@ -57,36 +57,17 @@ nnoremap <leader>es :e ~/.config/sway/config<Cr>
 
 
 if has('nvim')
-  " deoplete
-  " inoremap <silent> <Cr> <C-r>=<SID>deoplete_cr()<Cr>
-  " function! s:deoplete_cr()
-    " return deoplete#mappings#close_popup() . "\<Cr>"
-  " endfunction
-
   " ncm2
-
-
-    " When the <Enter> key is pressed while the popup menu is visible, it only
-    " hides the menu. Use this mapping to close the menu and also start a new
-    " line.
   inoremap <expr> <Cr> (pumvisible() ? "\<c-y>\<Cr>" : "\<Cr>")
-  "inoremap <expr> <Cr> (pumvisible() ? "\<c-y> " : "\<Cr>")
-
   inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
   inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
   autocmd BufEnter * call ncm2#enable_for_buffer()
   set completeopt=noinsert,menuone,noselect
 
-
   " neosnippet
   imap <C-k>     <Plug>(neosnippet_expand_or_jump)
   smap <C-k>     <Plug>(neosnippet_expand_or_jump)
   xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-  " imap <expr><TAB>
-  "   \ pumvisible() ? "\<C-n>" :
-  "   \ neosnippet#expandable_or_jumpable() ?
-  "   \    "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
 endif
 
 

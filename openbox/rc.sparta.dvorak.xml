@@ -57,7 +57,7 @@
     <animateIconify>no</animateIconify>
     <font place="ActiveWindow">
       <name>Fira Sans</name>
-      <size>2</size><!-- make title bar a thin, thin line -->
+      <size>12</size><!-- make title bar a thin, thin line -->
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -66,7 +66,7 @@
     </font>
     <font place="InactiveWindow">
       <name>Fira Sans</name>
-      <size>2</size><!-- make title bar a thin, thin line -->
+      <size>12</size><!-- make title bar a thin, thin line -->
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -469,7 +469,7 @@
       <action name="ToggleAlwaysOnTop"/>
       <action name="ToggleOmnipresent"/>
     </keybind>
-    <keybind key="W-S-l">
+    <keybind key="W-S-c">
       <action name="Reconfigure"/>
       <action name="Execute">
         <command>notify '~ Openbox reconfigured'</command>

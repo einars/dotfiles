@@ -41,7 +41,7 @@ alias psss="/bin/ps axfwh -eo pid,user,args | grep -A 3 -i"
 alias p="/bin/ps axfwh -eo pid,user,args"
 alias S='sudo'
 
-alias tree="ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+#alias tree="ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 
 # git
 alias gitd="git diff"
@@ -131,7 +131,8 @@ alias d2u='dos2unix'
 
 alias cal='cal --monday -3'
 #alias calc=octave-cli
-alias calc=sage
+#alias calc=sage
+alias calc=python
 
 alias clamscan="clamscan --max-scansize=512M --max-filesize=512M"
 
@@ -181,6 +182,9 @@ alias dwdiff='dwdiff --punctuation --color'
 
 alias mig='diesel migration'
 alias migg='diesel migration generate'
+
+alias tarpig="tar --use-compress-program='pigz --fast | pv' -cf "
+alias pigtar="tar --use-compress-program='pigz --fast' -cvf "
 
 # interactive jq repl
 jqa() { echo '' | fzf --print-query --preview "cat $1 | jq {q}" }

@@ -8,7 +8,7 @@ no-term-osd-bar                          # display a progress bar on the termina
 #keep-open                               # keep the player open when a file's end is reached
 audio-device=pulse
 audio-display=no
-volume=64
+volume=100
 
 osd-level=1                             # enable osd and display --osd-status-msg on interaction
 osd-duration=2500                       # hide the osd after x ms

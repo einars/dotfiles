@@ -1,0 +1,6 @@
+#!/bin/sh
+
+swaymsg mark retret
+swaymsg '[app_id=firefox] focus'
+sudo ydotool key 'f5'
+swaymsg '[con_mark="retret"] focus'

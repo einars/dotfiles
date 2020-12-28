@@ -1,0 +1,9 @@
+snippet sh
+options head indent
+    #!/bin/sh
+
+    set -o pipefail -o errexit -o nounset
+
+    cd "$(dirname "\$0")"
+
+    $0

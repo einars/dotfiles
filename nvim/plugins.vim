@@ -14,19 +14,17 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 "Plug 'tpope/vim-sleuth'
 
+
+Plug 'sirtaj/vim-openscad'
+
 Plug 'einars/vim-phpfold'
 "Plug 'einars/translit.vim'
 
-
 Plug 'mattn/webapi-vim'
-
 
 let g:user_emmet_install_global=0
 let g:user_emmet_leader_key='<C-F>'
-
-
 exec 'source ' . EditorRoot() . '/snippets/emmet.vim'
-
 Plug 'mattn/emmet-vim'
 autocmd FileType php,html,javascript,javascriptreact EmmetInstall
 autocmd FileType css,scss EmmetInstall
@@ -37,13 +35,15 @@ Plug 'jiangmiao/auto-pairs'
 
 Plug 'sheerun/vim-polyglot'
 
+"let g:lightline = { 'colorscheme': 'seoul256' }
+"Plug 'itchyny/lightline.vim'
 
-let g:tabprefix = ""
-"Plug 'tpope/vim-flagship'
-" Plug 'othree/yajs.vim' " ES6
+Plug 'vifm/vifm.vim'
+map <Leader>v :Vifm<CR>
 
-" Plug 'NLKNguyen/papercolor-theme'
-" Plug 'junegunn/seoul256.vim' " paper beats seoul
+Plug 'NLKNguyen/papercolor-theme'
+"let g:seoul256_background = 234
+"Plug 'junegunn/seoul256.vim' " paper beats seoul
 Plug 'dracula/vim'
 
 if has('nvim')

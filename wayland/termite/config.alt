@@ -6,7 +6,8 @@
 #cell_width_scale = 1.0
 #clickable_url = true
 #dynamic_title = true
-font = Iosevka Term Medium 9
+# font = Iosevka Term 10
+font = Rec Mono Linear 7
 #fullscreen = true
 #icon_name = terminal
 #mouse_autohide = false
@@ -23,7 +24,7 @@ scrollback_lines = 10000
 #browser = xdg-open
 
 # "system", "on" or "off"
-#cursor_blink = system
+cursor_blink = off
 
 # "block", "underline" or "ibeam"
 #cursor_shape = block
@@ -41,7 +42,6 @@ cursor_shape = block
 # "off", "left" or "right"
 #scrollbar = off
 
-[colors]
 # If both of these are unset, cursor falls back to the foreground color,
 # and cursor_foreground falls back to the background color.
 #cursor = #dcdccc
@@ -51,29 +51,49 @@ cursor_shape = block
 #foreground_bold = #ffffff
 #background = #3f3f3f
 
-# 20% background transparency (requires a compositor)
-#background = rgba(63, 63, 63, 0.8)
+[colors]
 
-# If unset, will reverse foreground and background
-highlight = #2f2f2f
+# special
+foreground      = #333333
+foreground_bold = #6d727e
+cursor          = #ee6633
+#background      = #fef9ec
+background      = #ffffff
 
-# Colors from color0 to color254 can be set
-color0 = #3f3f3f
-color1 = #705050
-color2 = #60b48a
-color3 = #dfaf8f
-color4 = #506070
-color5 = #dc8cc3
-color6 = #8cd0d3
-color7 = #dcdccc
-color8 = #709080
-color9 = #dca3a3
-color10 = #c3bf9f
-color11 = #f0dfaf
-color12 = #94bff3
-color13 = #ec93d3
-color14 = #93e0e3
-color15 = #ffffff
+# black
+color0  = #c5c1b4
+color8  = #a1a6b2
+
+# red
+color1  = #e75c58
+color9  = #b22b31
+
+# green
+color2  = #00a250
+color10 = #007427
+
+# yellow
+color3  = #a08a00
+color11 = #715f00
+
+# blue
+color4  = #208ffb
+color12 = #0065ca
+
+# magenta
+color5  = #d160c4
+color13 = #a03196
+
+# cyan
+color6  = #00a4c1
+color14 = #007693
+
+# white
+color7  = #3e424d
+color15 = #282c36
+
+
+[colors]
 
 [hints]
 #font = Monospace 12

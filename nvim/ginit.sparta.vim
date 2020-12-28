@@ -16,12 +16,13 @@ function! Light()
   GuiLinespace 1
   set background=light
   colors PaperColor
-  ""Guifont Iosevka Term:h9
-  Guifont Go Mono:h10
+  "Guifont! Iosevka Term:h10
+  Guifont Rec Mono Linear:h9
+  "Guifont Go Mono:h10
   "Guifont xos4 Terminus:h9
 endfunction
 
-Dark
+Light
 
 
 

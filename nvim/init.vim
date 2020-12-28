@@ -31,8 +31,6 @@ set guicursor+=a:blinkon0
 
 set nocursorline
 set noundofile
-set linespace=5
-" set cryptmethod=blowfish
 set noshowmatch         " jump to matching paren quickly
 set nrformats=hex       " c-a, c-x won't treat 05 as octal
 set wildmenu            " filename etc completion on tab
@@ -85,6 +83,7 @@ au FocusGained * :checktime " nvim autoread workaround
 
 " show or hide whitespace warnings
 set nolist
+set noshowcmd " no need for keystroke echo
 " set nolist """ coprogrammers
 set listchars=tab:·\ ,trail:.,extends:#,nbsp:▮
 
@@ -169,4 +168,4 @@ endfunction
 command! Dark :call Dark()
 command! Light :call Light()
 
-Dark
+Light

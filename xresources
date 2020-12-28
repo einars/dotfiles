@@ -1,4 +1,4 @@
-urxvt*font: xft:Iosevka Term Light:size=11
+urxvt*font: xft:Rec Mono Linear:size=7
 terminal.local*font: xft:Iosevka Term:size=8
 !terminal.local*font: xft:Ubuntu Mono:size=7
 !terminal.local*boldFont: xft:Iosevka Term:size=7
@@ -22,7 +22,7 @@ urxvt*cutchars: │,<>[]{}?!
 !urxvt*geometry: 140x35
 urxvt*pointerBlank: true
 
-urxvt*internalBorder: 5
+urxvt*internalBorder: 1
 urxvt*borderless: true
 urxvt*loginShell: false
 !URxvt*pointerBlank: false
@@ -36,7 +36,7 @@ urxvt*scrollBar: false
 urxvt*scrollTtyKeypress: true
 urxvt*scrollTtyOutput: false
 urxvt*scrollWithBuffer: true
-urxvt*lineSpace: 4
+urxvt*lineSpace: 2
 
 ! no more ctrl-shift crap!
 urxvt*iso14755: false
@@ -69,27 +69,49 @@ Xft.hinting: 0
 Xft.antialias: 1
 !Xft.rgba: rgb
 
-!###########################################################
-*.foreground:   #dddddd
-*.background:   #1f1f1f
-*.cursorColor:  #f1ebeb
-
+!### colors for dark bg
 ! monokai from terminal.sexy with adjusted fg/bg
+!  *.foreground:   #dddddd
+!  *.background:   #1f1f1f
+!  *.cursorColor:  #f1ebeb
+!  
+!  *.color0:       #48483e
+!  *.color8:       #76715e
+!  *.color1:       #dc2566
+!  *.color9:       #fa2772
+!  *.color2:       #8fc029
+!  *.color10:      #a7e22e
+!  *.color3:       #d4c96e
+!  *.color11:      #e7db75
+!  *.color4:       #55bcce
+!  *.color12:      #66d9ee
+!  *.color5:       #9358fe
+!  *.color13:      #ae82ff
+!  *.color6:       #56b7a5
+!  *.color14:      #66efd5
+!  *.color7:       #acada1
+!  *.color15:      #cfd0c2
 
- *.color0:       #48483e
- *.color8:       #76715e
- *.color1:       #dc2566
- *.color9:       #fa2772
- *.color2:       #8fc029
- *.color10:      #a7e22e
- *.color3:       #d4c96e
- *.color11:      #e7db75
- *.color4:       #55bcce
- *.color12:      #66d9ee
- *.color5:       #9358fe
- *.color13:      #ae82ff
- *.color6:       #56b7a5
- *.color14:      #66efd5
- *.color7:       #acada1
- *.color15:      #cfd0c2
+!## colors for light bg
+
+*.foreground      : #333333
+*.foreground_bold : #6d727e
+*.cursor          : #ee6633
+*.background      : #ffffff
+*.color0  : #c5c1b4
+*.color8  : #a1a6b2
+*.color1  : #e75c58
+*.color9  : #b22b31
+*.color2  : #00a250
+*.color10 : #007427
+*.color3  : #a08a00
+*.color11 : #715f00
+*.color4  : #208ffb
+*.color12 : #0065ca
+*.color5  : #d160c4
+*.color13 : #a03196
+*.color6  : #00a4c1
+*.color14 : #007693
+*.color7  : #3e424d
+*.color15 : #282c36
 
