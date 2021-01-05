@@ -1,0 +1,71 @@
+#!/usr/bin/env fish
+
+function check_folder
+  set name $argv[1]
+  set source_path $argv[2]
+  cd $source_path
+
+  if test -f ../.ignore-(basename $source_path)
+    return
+  end
+
+  printf ">>> %16s: " $name
+
+  if test -d .git
+    true
+  else
+    printf "no git\n"
+    return
+  end
+
+  if grep remote .git/config > /dev/null
+    true
+  else
+    printf "no remote\n"
+    return
+  end
+
+  if git diff-files --quiet --ignore-submodules --
+    #printf "ok\n"
+    true
+  else
+    printf "unstaged changes\n"
+    return
+  end
+
+  git fetch --prune --quiet
+
+  set remote (git rev-parse '@{u}')
+  set local  (git rev-parse '@')
+  set base   (git merge-base '@' '@{u}')
+
+  if test "$local" = "$remote"
+    printf "ok\n"
+    true
+  else if test "$local" = "$base"
+
+    printf "pull needed, pulling\n"
+    git pull --ff-only --quiet
+    git log $local..HEAD --oneline
+
+  else if test "$remote" = "$base"
+    printf "push needed, pushing\n"
+    git push --quiet
+  else
+    printf "merge needed\n"
+  end
+
+end
+
+clear
+
+if [ "$argv[1]" = "" ]
+  check_folder dotfiles /home/e/dotfiles
+
+  for f in (find /proj -maxdepth 1 -type d | grep -v Trash)
+    check_folder (basename $f)   $f
+  end
+else 
+  check_folder (basename $argv[1]) $argv[1]
+end
+
