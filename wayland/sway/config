@@ -74,6 +74,7 @@ bindsym --to-code {
     $mod+shift+$right move right
 
     $mod+Shift+c     reload
+    $mod+Shift+a     sticky toggle
     $mod+f           fullscreen
     $mod+space       focus mode_toggle
     $mod+Shift+space floating toggle
@@ -184,12 +185,14 @@ bar {
 
 for_window [window_role="pop-up"] floating enable
 for_window [class="vlc"] floating enable
-for_window [app_id="org.gnome.Nautilus"] floating enable
-for_window [app_id="mpv"] floating enable; sticky enable
+for_window [app_id="org.gnome.Nautilus"] floating enable; sticky enable
+for_window [app_id="mpv"] floating enable
 for_window [app_id="Thunar"] floating enable
 for_window [app_id="thunar"] floating enable
 for_window [class="Caja"] floating enable
 for_window [class="Gimp"] floating enable
+for_window [class="VirtualBox Machine"] floating enable
+for_window [class="VirtualBox Manager"] floating enable
 for_window [class="Audacious"] floating enable
 for_window [app_id="gnumeric"] floating enable
 for_window [app_id="eog"] floating enable

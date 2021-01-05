@@ -23,8 +23,6 @@ function try_cdpath
 
 
 try_path ~/bin
-try_path ~/node/node-latest/bin
-try_path ~/node/modules/bin
 try_path ~/bin/private
 try_path ~/.pub-cache/bin    # dart
 try_path /usr/lib/ccache/bin # ccache
