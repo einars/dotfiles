@@ -25,8 +25,8 @@ exec swayidle -w \
     resume 'swaymsg "output * dpms on"'
 
 input * {
-      xkb_layout "lv_custom"
-      xkb_variant "dvp"
+      xkb_layout "lv_custom,lv"
+      xkb_variant "dvp,"
       xkb_options "caps:ctrl_modifier"
       xkb_numlock enabled
 }
@@ -75,9 +75,11 @@ bindsym --to-code {
 
     $mod+Shift+c     reload
     $mod+Shift+a     sticky toggle
+    $mod+Shift+m     minimize
     $mod+f           fullscreen
     $mod+space       focus mode_toggle
     $mod+Shift+space floating toggle
+    $mod+Ctrl+space  exec /home/e/bin/sway-next-keyboard-layout
     Alt+F4           kill
 
 
@@ -155,12 +157,9 @@ bindsym --to-code {
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
 
-    # Move the currently focused window to the scratchpad
-    $mod+Shift+minus move scratchpad
-
-    # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    $mod+minus scratchpad show
+    $mod+ctrl+c scratchpad show
+    $mod+shift+ctrl+c move scratchpad
 }
 
 
@@ -189,6 +188,7 @@ for_window [app_id="org.gnome.Nautilus"] floating enable; sticky enable
 for_window [app_id="mpv"] floating enable
 for_window [app_id="Thunar"] floating enable
 for_window [app_id="thunar"] floating enable
+for_window [app_id="org.zealdocs.Zeal"] move scratchpad; scratchpad show
 for_window [class="Caja"] floating enable
 for_window [class="Gimp"] floating enable
 for_window [class="VirtualBox Machine"] floating enable
