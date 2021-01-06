@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+# either specify on command-line, or use K860 as the default
+keybd="${1:-K860}"
+
+entry=$(swaymsg -t get_inputs --raw | jq '.[] | select((.identifier | contains("'$keybd'")) and.type == "keyboard")')
+
+# echo $entry
+
+identifier=$(echo $entry | jq '.identifier')
+idx_layout=$(echo $entry | jq ".xkb_active_layout_index")
+n_layouts=$(echo $entry | jq '.xkb_layout_names | length')
+
+new_layout=$((($idx_layout + 1) % $n_layouts))
+new_layout_name=$(echo $entry | jq ".xkb_layout_names[$new_layout]")
+
+notify-send "Switching to $new_layout_name"
+
+swaymsg input $identifier xkb_switch_layout $new_layout
+
+
+
