@@ -62,7 +62,7 @@ clear
 if [ "$argv[1]" = "" ]
   check_folder dotfiles /home/e/dotfiles
 
-  for f in (find /proj -maxdepth 1 -type d | grep -v Trash)
+  for f in (find /proj -maxdepth 1 -type d | grep -v Trash | sort)
     check_folder (basename $f)   $f
   end
 else 
