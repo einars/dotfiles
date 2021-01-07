@@ -38,7 +38,7 @@ bindsym --to-code {
     Ctrl+Alt+Delete    exec "swaylock --daemonize --image ~/wallpapers/h.grzegorz-rutkowski-dragons-breath.jpg"
     $mod+Ctrl+q        exec swaynag -t warning -m 'Exit sway?' -b 'Yes, exit sway' 'swaymsg exit'
 
-    $mod+Tab           exec ~/.config/sway/window-list.sh
+    Alt+Tab            exec ~/.config/sway/window-list.sh
     $mod+w             exec ~/bin/refresh-firefox
 
     $mod+Return exec $term
@@ -73,7 +73,7 @@ bindsym --to-code {
     $mod+shift+$up    move up
     $mod+shift+$right move right
 
-    $mod+Shift+c     reload
+    $mod+Ctrl+r      reload
     $mod+Shift+a     sticky toggle
     $mod+Shift+m     minimize
     $mod+f           fullscreen
@@ -158,8 +158,8 @@ bindsym --to-code {
     # You can send windows there and get them back later.
 
     # If there are multiple scratchpad windows, this command cycles through them.
-    $mod+ctrl+c scratchpad show
-    $mod+shift+ctrl+c move scratchpad
+    $mod+c scratchpad show
+    $mod+shift+c move scratchpad
 }
 
 
