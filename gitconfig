@@ -3,18 +3,13 @@
         email = einars@spicausis.lv
 	signingkey = 6C60FD4A
 [alias]
-    co = checkout
-    ec = config --global -e
-    up = !git pull --rebase --prune $@ && git submodule update --init --recursive
-    cob = checkout -b
-    cm = !git add -A && git commit
     save = !git add -A && git commit -m 'SAVEPOINT'
     wip = !git add -A && git commit -m 'WIP'
     undo = reset HEAD~1 --mixed
     amend = commit -a --amend
     wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
 
-    bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
+    bclean = "!f() { git branch --merged ${1-master} | grep -v  ${1-master}$ | xargs -r git branch -d; }; f"
     bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
 
     stat = status --short
@@ -22,24 +17,17 @@
     lstat = log -n 1 --stat
     lst = log -n 1 --stat
 
-    s = status --short
-    d = diff -U1 --ignore-all-space
-
-    co = checkout
     la = log --pretty=\"format:%ad %h (%an): %s\" --date=short
     last = log -n 1
     ls = ls-files
-    ign = ls-files -o -i --exclude-standard
-    changes = diff --name-status -r
-    ch = diff --name-status -r
 
     diffstat = diff --stat -r
     #l = log --all --oneline --graph --abbrev-commit --decorate
     l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 
-    assume   = update-index --assume-unchanged
+    assume = update-index --assume-unchanged
     unassume = update-index --no-assume-unchanged
-    assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
+    assumed = !git ls-files -v | grep ^h | cut -c 3-
 
 [core]
   commentchar = %
@@ -88,3 +76,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[init]
+	defaultBranch = master
