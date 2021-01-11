@@ -80,12 +80,12 @@ host=$(uname -n)
 function setup_prompt() #{{{
 {
     # http://www.acm.uiuc.edu/workshops/zsh/prompt/escapes.html
-    fg_red=%{$'\e[0;31m'%}
-    fg_green=%{$'\e[0;32m'%}
-    fg_yellowish=%{$'\e[0;33m'%}
-    fg_brownish=%{$'\e[0;35m'%}
-    fg_bluish=%{$'\e[0;34m'%}
-    reset_color=%{$'\e[0m'%}
+    local prompt_red=%{$'\e[0;31m'%}                                                                                                            
+    local prompt_green=%{$'\e[0;32m'%}                                                                                                          
+    local prompt_yellowish=%{$'\e[0;33m'%}                                                                                                      
+    local prompt_brownish=%{$'\e[0;35m'%}                                                                                                       
+    local prompt_bluish=%{$'\e[0;34m'%}                                                                                                         
+    local prompt_reset=%{$'\e[0m'%} 
 
     git_branch() {
       GIT_PS1_SHOWDIRTYSTATE=1 \
@@ -108,7 +108,7 @@ function setup_prompt() #{{{
     }
 
     prefix_sc_branch() {
-        (( $+SCHROOT_USER )) && echo -n ${fg_green}arch32 $reset_color
+        (( $+SCHROOT_USER )) && echo -n ${prompt_green}arch32 $prompt_reset
         [ -z $BRANCH ] && [ -d .svn ] && BRANCH=`svn info 2>/dev/null| grep Revision | awk '{print "svn:"$2}'`
         # writable and inaccessible git branches need different treatments
         [ -z $BRANCH ] && [ -d .git ] && [ -w .git/config ] && BRANCH=$(git_branch)
@@ -117,7 +117,7 @@ function setup_prompt() #{{{
         [ -z $BRANCH ] && [ -d .git ] && [ ! -w .git/config ] && BRANCH=$(alien_git_branch)
         [ -z $BRANCH ] && [ -d ../.git ] && [ ! -w ../.git/config ] && BRANCH=$(alien_git_branch)
         [ -z $BRANCH ] && [ -d ../../.git ] && [ ! -w ../../.git/config ] && BRANCH=$(alien_git_branch)
-        [ -z $BRANCH ] || echo "${fg_bluish}${BRANCH} "
+        [ -z $BRANCH ] || echo "${prompt_bluish}${BRANCH} "
     }
 
 
@@ -136,7 +136,7 @@ function setup_prompt() #{{{
             USER_PART=
         }
         if [[ $HOST_PART != '' || $USER_PART != '' ]] {
-            echo -n $fg_brownish
+            echo -n $prompt_brownish
             if [[ $USER_PART != '' ]] {
                 echo -n $USER_PART
             }
@@ -146,20 +146,20 @@ function setup_prompt() #{{{
             if [[ $HOST_PART != '' ]] {
                 echo -n $HOST_PART
             }
-            echo -n "$reset_color "
+            echo -n "$prompt_reset "
         }
     }
 
     prefix_pwd() {
         if [[ `id -u` == "0" ]] {
-            echo -n $fg_red;
+            echo -n $prompt_red;
         }
         pwd
     }
 
     setopt PROMPT_SUBST
-    export PROMPT="`prefix_user_host`\`prefix_pwd\` \`prefix_sc_branch\`%(?,$fg_green,$fg_red)%#$reset_color "
-    export RPROMPT="%(?,,$fg_red( %? %)$reset_color"
+    export PROMPT="`prefix_user_host`\`prefix_pwd\` \`prefix_sc_branch\`%(?,$prompt_green,$prompt_red)%#$prompt_reset "
+    export RPROMPT="%(?,,$prompt_red( %? %)$prompt_reset"
 } #}}}
 
 function setup_keyboard() 

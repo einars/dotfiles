@@ -1,5 +1,6 @@
 #!/usr/bin/env fish
 
+
 function check_folder
   set name $argv[1]
   set source_path $argv[2]
@@ -29,7 +30,9 @@ function check_folder
     #printf "ok\n"
     true
   else
+    set_color --bold red
     printf "unstaged changes\n"
+    set_color normal
     return
   end
 
