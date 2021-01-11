@@ -39,6 +39,7 @@ bindsym --to-code {
     $mod+Ctrl+q        exec swaynag -t warning -m 'Exit sway?' -b 'Yes, exit sway' 'swaymsg exit'
 
     Alt+Tab            exec ~/.config/sway/window-list.sh
+    $mod+Tab            exec ~/.config/sway/window-list.sh
     $mod+w             exec ~/bin/refresh-firefox
 
     $mod+Return exec $term
@@ -50,9 +51,9 @@ bindsym --to-code {
     $mod+d exec "$files /home/e/dokumenti"
     $mod+b exec "$files /home/e/books"
 
-    Menu      exec "tt screenshot"
-    Ctrl+Menu exec "tt screenshot.nocrop"
-    $mod+Menu exec "tt screenshot.nocrop"
+    Menu            exec "tt screenshot.window"
+    $mod+Menu       exec "tt screenshot"
+    $mod+Shift+Menu exec "tt screenshot.trimmed"
 
     $mod+Left  focus left
     $mod+Down  focus down
@@ -132,9 +133,6 @@ bindcode {
     $mod+Shift+80 move container to workspace 8
     $mod+Shift+81 move container to workspace 9
 
-    # mod + tilde/dollar on number row
-    $mod+49 workspace back_and_forth
-
 }
 
 
@@ -160,7 +158,10 @@ bindsym --to-code {
     # If there are multiple scratchpad windows, this command cycles through them.
     $mod+c scratchpad show
     $mod+shift+c move scratchpad
+    # mod + tilde/dollar
+
 }
+bindcode $mod+49 scratchpad show
 
 
 bindsym --to-code $mod+Shift+r mode "resize"

@@ -3,16 +3,16 @@
 case $(uname) in
     Linux)
 
-        maybe_source ~/.zsh/aliases.linux
+        try_source ~/.zsh/aliases.linux
 
         cat /etc/issue | grep Arch >/dev/null
         if [[ $? == 0 ]]; then
-            maybe_source ~/.zsh/aliases.linux.archlinux
+            try_source ~/.zsh/aliases.linux.archlinux
         fi
 
         cat /etc/issue | grep Ubuntu >/dev/null
         if [[ $? == 0 ]]; then
-            maybe_source ~/.zsh/aliases.linux.ubuntu
+            try_source ~/.zsh/aliases.linux.ubuntu
         fi
 
         ;;
@@ -20,5 +20,5 @@ case $(uname) in
 esac
 
 
-maybe_source ~/.zsh/aliases.private
+try_source ~/.zsh/aliases.private
 

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+subs=$(mkvmerge --identify "$1" | grep subtitles | awk '{print $3}' | sed 's/:/\n/')
+
+idx=1
+for track in $subs; do
+  out=${1%.*}.$(printf '%02d' $idx).srt
+  echo $track: $out
+  mkvextract tracks "$1" "$track:$out"
+  idx=$(($idx + 1))
+done
+

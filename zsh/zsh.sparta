@@ -1,11 +1,7 @@
 #!/bin/sh
 
 export GOPATH=/proj/go
-try_path $GOPATH/bin
 try_path /opt/android-sdk/platform-tools/
-
-export MSBuildSDKsPath=/opt/dotnet/sdk/2.2.102/Sdks
-try_path $MSBuildSDKsPath
 
 # emgo
 export EGCC=/usr/bin/arm-none-eabi-gcc
@@ -15,6 +11,9 @@ export EGROOT=/proj/go/src/github.com/ziutek/emgo/egroot
 export EGPATH=/proj/go/src/github.com/ziutek/emgo/egpath
 
 
+try_cdpath /proj
+#try_cdpath /services/web
+try_cdpath /home/e/dokumenti
 try_cdpath /services/web/dev.spicausis.lv
 
 function c() {
