@@ -14,6 +14,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 "Plug 'tpope/vim-sleuth'
 
+"Plug 'evanleck/vim-svelte', { 'branch': 'main' }
+Plug 'leafOfTree/vim-svelte-plugin'
 
 Plug 'sirtaj/vim-openscad'
 

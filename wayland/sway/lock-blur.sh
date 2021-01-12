@@ -15,10 +15,5 @@ grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') ${ima
 # and then blur
 gm convert ${image} -scale 25% -blur 0x3 -scale 400% -fill black -colorize 10% ${image}
 
-[[ -f $1 ]] && convert ${image} $1 \
-                  -gravity center   \
-                  -composite        \
-                  -matte ${image}
-
 gm convert ${image} ${text} -gravity center -geometry +0+200 -composite ${image}
 swaylock -s fill -i ${image}
