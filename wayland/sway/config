@@ -201,5 +201,8 @@ for_window [app_id="eog"] floating enable
 for_window [app_id="zoom"] floating enable
 
 
+# telegram "save image" gets buggy w/o floating
+for_window [app_id="telegramdesktop" title="^Media viewer$"] fullscreen disable
+
 include /etc/sway/config.d/*
 include ~/.config/sway/$(hostname)/*
