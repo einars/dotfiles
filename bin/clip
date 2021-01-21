@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [[ "$WAYLAND_DISPLAY" != "" ]]; then
+  wl-copy --primary
+elif [[ "$DISPLAY" != "" ]]; then
+  xclip -o -selection primary
+else
+  cat
+fi

@@ -92,9 +92,6 @@ alias cflagged='CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe" CXXFLAGS="-march
 
 alias m='clear; make -s'
 
-alias clip='xclip -o -selection clipboard'
-alias clipp='xclip -o -selection primary'
-
 # space as a delimiter for xargs is too idiotic
 # also add -n 1 as a default, we're in no hurry
 alias xargs="xargs --no-run-if-empty --delimiter '\n' -n 1"
