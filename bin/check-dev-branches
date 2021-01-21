@@ -38,13 +38,20 @@ function check_folder
 
   git fetch --prune --quiet
 
+  set branch (git branch --show-current)
+  if string match --quiet 'einars/*' $branch
+    printf "local: $branch\n"
+    return
+  end
+
   set remote (git rev-parse '@{u}')
   set local  (git rev-parse '@')
   set base   (git merge-base '@' '@{u}')
 
   if test "$local" = "$remote"
     printf "ok\n"
-    true
+    return
+
   else if test "$local" = "$base"
 
     printf "pull needed, pulling\n"
