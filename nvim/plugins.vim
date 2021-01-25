@@ -35,7 +35,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'jiangmiao/auto-pairs'
 
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 
 "let g:lightline = { 'colorscheme': 'seoul256' }
 "Plug 'itchyny/lightline.vim'

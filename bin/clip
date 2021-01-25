@@ -1,9 +1,9 @@
 #!/bin/sh
 
 if [[ "$WAYLAND_DISPLAY" != "" ]]; then
-  wl-copy --primary
+  wl-copy
 elif [[ "$DISPLAY" != "" ]]; then
-  xclip -o -selection primary
+  xclip -o -selection clipboard
 else
   cat
 fi
