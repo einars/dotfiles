@@ -30,22 +30,7 @@ if ( false ) {
  
 # clear
 
-### NVM
-[ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
-load_nvm () {
-    unalias node
-    unalias npm
-    unalias nvm
-    source /usr/share/nvm/nvm.sh
-    source /usr/share/nvm/install-nvm-exec
-}
-alias nnn=load_nvm
-alias node="echo Use load_nvm to init node stuff"
-alias npm="echo Use load_nvm to init node stuff"
-alias nvm="echo Use load_nvm to init node stuff"
-
-
-
+eval $(fnm env)
 
 ssh-add -l > /dev/null || ssh-add
 
