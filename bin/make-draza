@@ -19,6 +19,10 @@ cd /storage/draza
 rm -f current
 ln -sf "$drazapath" current
 
+cd /storage/draza/current
+rm -f Blender
+ln /storage/nobackup/Blender -s
+
 cd /storage/draza
 rm -f prev
 ln -sf "$drazapath_prev" prev
