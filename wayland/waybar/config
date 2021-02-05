@@ -138,7 +138,6 @@
     },
     "custom/task": {
         "return-type": "json",
-        "interval": 5,
-        "exec": "/home/e/.config/sway/status-waybar.sh"
+        "exec": "/home/e/.config/sway/waybar-status-watson.sh"
     }
 }
