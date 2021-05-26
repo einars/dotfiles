@@ -1,67 +1,60 @@
 /// Base:
 /// /usr/share/X11/xkb/symbols/lv
 
+// keycodes
+// /usr/share/X11/xkb/keycodes/evdev
+
 partial alphanumeric_keys modifier_keys
 xkb_symbols "qwerty" {
 
-	include "lv(basic)"
+ include "lv(basic)"
 
-	name[Group1]= "Latvian (qwerty)";
+ name[Group1]= "Latvian (qwerty)";
 };
 
 
 partial alphanumeric_keys modifier_keys
 xkb_symbols "dvp" {
 
-	include "lv(dvorak)"
+ include "lv(dvorak)"
 
-	name[Group1]= "Latvian (programmer US Dvorak)";
+ name[Group1]= "Latvian (programmer US Dvorak)";
 
-        //// human numbers
-	// key <TLDE> {[ dollar,		asciitilde,	EuroSign,		cent			]};
-	// key <AE01> {[ ampersand,	1,	acute,			asciitilde		]};
-	// key <AE02> {[ bracketleft,	2,		onesuperior,		twosuperior		]};
-	// key <AE03> {[ braceleft,	3,		guillemotleft,		leftdoublequotemark	]};
-	// key <AE04> {[ braceright,	4,		guillemotright,		rightdoublequotemark	]};
-	// key <AE05> {[ parenleft,	5,		onehalf,		threeeighths		]};
-	// key <AE06> {[ equal,		6,		threequarters,		fiveeighths		]};
-	// key <AE07> {[ asterisk,		7,		degree,			copyright		]};
-	// key <AE08> {[ parenright,	8,		endash,			emdash			]};
-	// key <AE09> {[ plus,		9,		plusminus,		section			]};
-	// key <AE10> {[ bracketright,	0,		registered,		trademark		]};
-	// key <AE11> {[ exclam,		percent,	exclam,			exclamdown		]};
-	// key <AE12> {[ numbersign,	grave,		Greek_alpha,		Greek_beta		]};
+ //// programmer dvorak numbers
+ //// u25CC − unused
+ key <TLDE> {[ dollar,  asciitilde, EuroSign,  cent   ]};
+ key <AE01> {[ ampersand, percent, acute,   U25CC  ]};
+ key <AE02> {[ bracketleft, 7,  U25CC,  U25CC  ]};
+ key <AE03> {[ braceleft, 5,  U25CC,  U25CC ]};
+ key <AE04> {[ braceright, 3,  onethird, threesuperior ]};
+ key <AE05> {[ parenleft, 1,  onehalf,  onesuperior  ]};
+ key <AE06> {[ equal,  9,  U25CC,  U25CC  ]};
+ key <AE07> {[ asterisk,  0,  degree,   copyright  ]};
+ key <AE08> {[ parenright, 2,  onehalf,   twosuperior   ]};
+ key <AE09> {[ plus,  4,  onequarter,  section   ]};
+ key <AE10> {[ bracketright, 6,  registered,  trademark  ]};
+ key <AE11> {[ exclam,  8,  U25CC,   U25CC  ]};
+ key <AE12> {[ numbersign, grave,  U25CC,  U25CC  ]};
 
-        //// programmer dvorak numbers
-	key <TLDE> {[ dollar,		asciitilde,	EuroSign,		cent			]};
-	key <AE01> {[ ampersand,	percent,	acute,			asciitilde		]};
-	key <AE02> {[ bracketleft,	7,		onesuperior,		twosuperior		]};
-	key <AE03> {[ braceleft,	5,		guillemotleft,		leftdoublequotemark	]};
-	key <AE04> {[ braceright,	3,		guillemotright,		rightdoublequotemark	]};
-	key <AE05> {[ parenleft,	1,		onehalf,		threeeighths		]};
-	key <AE06> {[ equal,		9,		threequarters,		fiveeighths		]};
-	key <AE07> {[ asterisk,		0,		degree,			copyright		]};
-	key <AE08> {[ parenright,	2,		endash,			emdash			]};
-	key <AE09> {[ plus,		4,		plusminus,		section			]};
-	// key <AE10> {[ bracketright,	6,		registered,		trademark		]};
-	key <AE10> {[ bracketright,	6,		oe,                     OE		        ]};
-	key <AE11> {[ exclam,		8,		exclam,			exclamdown		]};
-	key <AE12> {[ numbersign,	grave,		Greek_alpha,		Greek_beta		]};
+ key <AC08> {[ t, T, trademark, U25CC]};
 
+ // dumb pc105 bottom bar <> left of z
+ // various apple chars
+ key <LSGT> {[ U21e7, U2325, U2303, U2318 ]};
 
-	key <AD01> {[ semicolon,	colon,		aring,		Aring		]};
-	key <AD11> {[ slash,		question,	oslash,		Oslash		]};
-	key <AD12> {[ at,		asciicircum,	endash,		emdash		]};
+ key <AD01> {[ semicolon, colon,  U25CC,  U25CC  ]};
+ key <AD02> {[ comma, less, leftdoublequotemark, leftsinglequotemark]};
+ key <AD03> {[ period, greater, rightdoublequotemark, rightsinglequotemark]};
 
-	key <AB01> {[ apostrophe,	quotedbl,	ae,	AE	]};
+ key <AD11> {[ slash,  question, leftarrow,  rightarrow  ]};
+ key <AD12> {[ at,  asciicircum, uparrow,  downarrow  ]};
 
-        key <AC11> {[ minus, underscore, emdash, emdash  ]};
+ key <AB01> {[ apostrophe, quotedbl, U25CC, U25CC ]};
 
-        // swap l and f
-	// key <AD06> {[ l,		L,		lcedilla,		Lcedilla		]};
-	// key <AD10> {[ f,		F,		f,			F			]};
+ // minus underscore emdash typog.minus
+ key <AC11> {[ minus, underscore, emdash, U2212  ]};
 
-	include "level3(ralt_switch)"
+ include "level3(ralt_switch)"
 };
 
 
