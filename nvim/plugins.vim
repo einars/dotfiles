@@ -29,7 +29,7 @@ Plug 'mattn/emmet-vim'
 autocmd FileType php,html,javascript,javascriptreact EmmetInstall
 autocmd FileType css,scss EmmetInstall
 
-Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'dracula/vim'
@@ -51,6 +51,12 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 
+" dependencies
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+" telescope
+Plug 'nvim-telescope/telescope.nvim'
+
 call plug#end()
 
 lua <<EOF
@@ -62,3 +68,9 @@ require'nvim-treesitter.configs'.setup {
 EOF
 "set foldmethod=expr
 "set foldexpr=nvim_treesitter#foldexpr()
+
+nnoremap <C-p> <cmd>Telescope find_files<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
