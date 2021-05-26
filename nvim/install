@@ -4,23 +4,16 @@ pwd=$(readlink -f $(dirname $0))
 #echo $pwd
 
 mkdir -p ~/.vim
-mkdir -p ~/.config/nvim
+ln -sfn $pwd/init.vi ~/.vimrc
 
+
+
+mkdir -p ~/.config/nvim
 
 for f in $pwd/*.vim $pwd/after $pwd/colors $pwd/snippets $pwd/templates; do
 	bf=$(basename $f)
-	ln -sfn $f ~/.vim/$bf
 	ln -sfn $f ~/.config/nvim/$bf
 done
-ln -sfn $pwd/init.vim ~/.vimrc
-
-[ -f ~/.vim/autoload/plug.vim ] || {
-  mkdir -p ~/.vim/autoload
-  curl --create-dirs \
-    --location \
-    --output ~/.vim/autoload/plug.vim \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-}
 
 [ -f ~/.config/nvim/autoload/plug.vim ] || {
   mkdir -p ~/.vim/autoload

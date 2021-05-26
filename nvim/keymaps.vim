@@ -51,24 +51,18 @@ nnoremap <leader>ev :e ~/.config/nvim/init.vim<Cr>
 nnoremap <leader>ep :e ~/.config/nvim/plugins.vim<Cr>
 nnoremap <leader>es :e ~/.config/sway/config<Cr>
 
-" nnoremap <leader>eo :e ~/.config/openbox/rc.xml<Cr>
-" noremap <leader>em :e ~/.config/openbox/menu.xml<Cr>
-" noremap <leader>ea :e ~/.config/openbox/autostart<Cr>
 
+" ncm2
+inoremap <expr> <Cr> (pumvisible() ? "\<c-y>\<Cr>" : "\<Cr>")
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
 
-if has('nvim')
-  " ncm2
-  inoremap <expr> <Cr> (pumvisible() ? "\<c-y>\<Cr>" : "\<Cr>")
-  inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-  autocmd BufEnter * call ncm2#enable_for_buffer()
-  set completeopt=noinsert,menuone,noselect
-
-  " neosnippet
-  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k>     <Plug>(neosnippet_expand_target)
-endif
+" neosnippet
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 
 " Arrow key remapping: Left/Right = indent/unindent
@@ -118,3 +112,13 @@ endfunc
 map <S-F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+" auto-expanding
+inoremap (; (<CR>);<C-c>O
+inoremap (<CR> (<CR>)<C-c>O
+inoremap (, (<CR>),<C-c>O
+inoremap {; {<CR>};<C-c>O
+inoremap {<CR> {<CR>}<C-c>O
+inoremap {, {<CR>},<C-c>O
+inoremap [; [<CR>];<C-c>O
+inoremap [, [<CR>],<C-c>O

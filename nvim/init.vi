@@ -1,6 +1,25 @@
+" init.vi, used only for oldschool vim
+" no plugins. settings or anything
+
 let g:loaded_matchparen=1             " die, slow and needless matching paren highlighting
 
 let mapleader=","
+
+set ttyfast
+set cryptmethod=blowfish
+set t_md=               " no bold fonts in terminal
+" remove bell
+set noerrorbells novisualbell t_vb=
+if has('gui_running')
+  set guioptions+=c       """ use console dialogs
+  set guioptions-=T       """ show the toolbar
+  set guioptions-=m       """ show the menu
+  set guioptions+=r       """ right scrollbar
+  set guioptions-=L       """ left scrollbar
+  set guioptions-=e       """ tab menu
+  " set guifont=xos4\ Terminus\ 10
+  set guifont=Iosevka\ Term\ 12
+endif
 
 " Disable cursor blinking
 set guicursor+=a:blinkon0
@@ -31,10 +50,6 @@ set virtualedit=block
 set shortmess+=c  " fuck completion message spam
 
 
-"set nolazyredraw
-
-
-" no need for backups, swaps, nothing
 set backupdir= 
 set nobackup
 set nowritebackup
@@ -51,14 +66,11 @@ set sessionoptions+=curdir  " curdir is important
 set clipboard^=unnamed,unnamedplus
 
 
-"set completeopt=menu,preview,noinsert,noselect
 set completeopt=menu
 
 set hidden              " suddenly, magically, buffers get usable
 set autoread            " don't care about ext-modified files, just reload them
-au FocusGained * :checktime " nvim autoread workaround
 
-" show or hide whitespace warnings
 set nolist
 set noshowcmd " no need for keystroke echo
 " set nolist """ coprogrammers
@@ -73,66 +85,8 @@ set smartcase
 set nowrap
 set nonumber
 
-function! EditorRoot()
-  return expand("~/.config/nvim")
-endfunction
+colors default
 
-exec 'source ' . EditorRoot() . '/plugins.vim'
+syn on
 
-
-colors PaperColor
-
-let g:searchEmptyLinesPostfixing = 3
-
-" open multiple files in current tab
-let g:ctrlp_open_multiple_files = '1vir'
-
-let g:ctrlp_user_command = {
-        \ 'types': {
-                \ 1: ['.git', 'cd %s && git ls-files | grep -v bower_components | grep -v build | grep -v "images/" | grep -v "^protected/extensions" | grep -v "^framework/"' ],
-                \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-                \ },
-        \ 'fallback': 'find %s -type f'
-        \ }
-
-
-
-
-
-function! Phpdoc(word)
-  " let word = expand('<cword>')
-  enew!
-  exe 'r !phpdoc '.a:word
-  setlocal nomod
-  setf txt
-  normal gg
-endfunction
-
-command! -nargs=* Phpdoc call Phpdoc(<f-args>)
-
-
-exec 'source ' . EditorRoot() . '/keymaps.vim'
-exec 'source ' . EditorRoot() . '/autogroups.vim'
-exec 'source ' . EditorRoot() . '/sessions.vim'
-
-" source host-specific init.$hostname.vim
-let hostname = substitute(system('hostname'), '\n', '', '')
-let local_init = EditorRoot() . '/init.' . hostname . '.vim'
-if filereadable(local_init)
-  exec 'source ' . local_init
-endif
-
-function! Dark()
-  set background=dark
-endfunction
-
-function! Light()
-  set background=light
-endfunction
-
-command! Dark :call Dark()
-command! Light :call Light()
-
-Light
-
-
+" vim: set syn=vim :

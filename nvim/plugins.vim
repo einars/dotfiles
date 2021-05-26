@@ -20,9 +20,6 @@ Plug 'leafOfTree/vim-svelte-plugin'
 
 Plug 'sirtaj/vim-openscad'
 
-Plug 'einars/vim-phpfold'
-"Plug 'einars/translit.vim'
-
 Plug 'mattn/webapi-vim'
 
 let g:user_emmet_install_global=0
@@ -34,48 +31,34 @@ autocmd FileType css,scss EmmetInstall
 
 Plug 'ctrlpvim/ctrlp.vim'
 
-Plug 'jiangmiao/auto-pairs'
-
-Plug 'sheerun/vim-polyglot'
-
-"let g:lightline = { 'colorscheme': 'seoul256' }
-"Plug 'itchyny/lightline.vim'
-
-Plug 'vifm/vifm.vim'
-map <Leader>v :Vifm<CR>
-
 Plug 'NLKNguyen/papercolor-theme'
-"let g:seoul256_background = 234
-"Plug 'junegunn/seoul256.vim' " paper beats seoul
 Plug 'dracula/vim'
 
-if has('nvim')
-  Plug 'equalsraf/neovim-gui-shim'
+Plug 'equalsraf/neovim-gui-shim'
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
 
-  " adjust keymaps.vim manually as well
+let g:neosnippet#disable_runtime_snippets = { '_': 1 }
+let g:neosnippet#snippets_directory = EditorRoot() . "/snippets"
+" Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neosnippet.vim'
 
-  "let g:deoplete#enable_at_startup = 1
-  "Plug 'Shougo/deoplete.nvim'
 
-  Plug 'ncm2/ncm2'
-  Plug 'roxma/nvim-yarp'
-  Plug 'ncm2/ncm2-bufword'
-  Plug 'ncm2/ncm2-path'
-
-  let g:neosnippet#disable_runtime_snippets = { '_': 1 }
-  let g:neosnippet#snippets_directory = EditorRoot() . "/snippets"
-  " Plug 'Shougo/neosnippet-snippets'
-  Plug 'Shougo/neosnippet.vim'
-
-  " Plug 'masukomi/vim-markdown-folding'
-endif
-
-" the stock one freezes sometime
-Plug '2072/PHP-Indenting-for-VIm'
+"Plug 'RishabhRD/popfix'
+"Plug 'RishabhRD/nvim-lsputils'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 
 call plug#end()
 
-augroup csssyn
-  autocmd!
-  autocmd FileType css,scss setlocal iskeyword+=-
-augroup end
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "c", "php", "javascript", "scala", "svelte", "python", "rust", "scss", "css" },
+  highlight = { enable = true },
+  indent = { enable = true },
+}
+EOF
+"set foldmethod=expr
+"set foldexpr=nvim_treesitter#foldexpr()
