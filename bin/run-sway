@@ -7,8 +7,9 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export CLUTTER_BACKEND=wayland
 export SDL_VIDEODRIVER=wayland
 
-pkill dbus
+pkill -u $USER dbus
 eval $(dbus-launch --sh-syntax 2>&1 | tee -a /tmp/dbus-launch.log)
 #dbus-update-activation-environment --systemd --all
 exec ssh-agent /usr/bin/sway 2> ~/sway.stderr.log | tee ~/sway.stdout.log
-tail -20 ~/sway.stderr.log
+## exec ssh-agent /usr/bin/sway
+tail -n 20 ~/sway.stderr.log

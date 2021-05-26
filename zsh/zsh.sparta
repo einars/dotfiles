@@ -2,6 +2,7 @@
 
 export GOPATH=/proj/go
 try_path /opt/android-sdk/platform-tools/
+try_path /proj/proks/docker-inv/utils
 
 # emgo
 export EGCC=/usr/bin/arm-none-eabi-gcc
@@ -9,6 +10,7 @@ export EGLD=/usr/bin/arm-none-eabi-ld
 export EGAR=/usr/bin/arm-none-eabi-ar
 export EGROOT=/proj/go/src/github.com/ziutek/emgo/egroot
 export EGPATH=/proj/go/src/github.com/ziutek/emgo/egpath
+
 
 
 try_cdpath /proj
@@ -32,7 +34,9 @@ if ( false ) {
 
 eval $(fnm env)
 
-ssh-add -l > /dev/null || ssh-add
+if [ "$SSH_AGENT_PID" != "" ]; then
+  ssh-add -l > /dev/null || ssh-add
+fi
 
 export EDITOR=nvim
 export VISUAL=nvim

@@ -1,0 +1,29 @@
+#!/usr/bin/env php
+<?php
+
+date_default_timezone_set('Europe/Riga');
+
+$minutes = +$argv[1];
+if ( ! $minutes ) {
+    echo "wa-adjust: adjust minutes for td-watson current frames.", "\n";
+    echo "  wa-adjust minutes_working", "\n";
+    die;
+}
+
+$time = time() - $minutes * 60;
+
+$watson_file = getenv('HOME'). '/.config/watson/state';
+
+assert(file_exists($watson_file), "Missing $watson_file");
+
+$state = json_decode(file_get_contents($watson_file), true);
+
+assert(@$state['start'], "Watson isnt active right now\n");
+
+$new_start = time() - $minutes * 60;
+
+$state['start'] = $new_start;
+
+file_put_contents($watson_file, json_encode($state));
+
+echo "Adjusted to " . date('r', $new_start) . "\n";

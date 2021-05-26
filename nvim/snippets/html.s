@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<link rel="stylesheet" href="style.css">
-		<script type="text/javascript" src="script.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="theme-color" content="#fafafa">
-	</head>
-	<body>
-		<div class="container">
-		<div>
-	</body>
-</html>
+<html lang="lv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
 
+  <title>XXX</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <meta name="description" content="Page description">
+
+  <!-- link rel="icon" href="/favicon.svg" type="image/svg+xml" -->
+  <style type="text/css">
+  </style>
+</head>
+
+<body>
+</body>
+</html>

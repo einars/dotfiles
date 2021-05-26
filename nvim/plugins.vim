@@ -12,6 +12,7 @@ Plug 'artnez/vim-wipeout'
 let g:surround_no_insert_mappings = 1
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-eunuch'
 "Plug 'tpope/vim-sleuth'
 
 "Plug 'evanleck/vim-svelte', { 'branch': 'main' }
@@ -35,7 +36,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'jiangmiao/auto-pairs'
 
-"Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 
 "let g:lightline = { 'colorscheme': 'seoul256' }
 "Plug 'itchyny/lightline.vim'

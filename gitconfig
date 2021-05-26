@@ -1,5 +1,5 @@
 [user]
-        name = Einar Lielmanis\n
+        name = Einārs Lielmanis
         email = einars@spicausis.lv
 	signingkey = 6C60FD4A
 [alias]
@@ -77,4 +77,4 @@
 	process = git-lfs filter-process
 	required = true
 [init]
-	defaultBranch = master
+	defaultBranch = main

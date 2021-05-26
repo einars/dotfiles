@@ -31,7 +31,6 @@ input * {
       xkb_numlock enabled
 }
 
-
 bindsym --to-code {
 
     $mod+Alt+BackSpace exec "swaylock --daemonize --image ~/wallpapers/h.grzegorz-rutkowski-dragons-breath.jpg"
@@ -48,13 +47,15 @@ bindsym --to-code {
 
     $mod+q exec "$files /home/e/draza"
     # $mod+t exec "$files /home/e/torrents"
-    $mod+o exec "$files /home/e/torrents"
+    $mod+o exec "$files /storage/torrents"
     $mod+d exec "$files /home/e/dokumenti"
-    $mod+b exec "$files /home/e/books"
+    $mod+b exec "$files /storage/books"
 
     Menu            exec "tt screenshot.window"
     $mod+Menu       exec "tt screenshot"
     $mod+Shift+Menu exec "tt screenshot.trimmed"
+
+    XF86Calculator exec "tt wa.flow"
 
     $mod+Left  focus left
     $mod+Down  focus down
@@ -83,6 +84,8 @@ bindsym --to-code {
     $mod+Shift+space floating toggle
     $mod+Ctrl+space  exec /home/e/bin/sway-next-keyboard-layout
     Alt+F4           kill
+
+    $mod+less exec swaymsg [app_id="org.zealdocs.Zeal"] scratchpad show || exec zeal
 
 
 }
@@ -162,7 +165,8 @@ bindsym --to-code {
     # mod + tilde/dollar
 
 }
-bindcode $mod+49 scratchpad show
+bindcode $mod+49 [app_id="^((?!org.zealdocs.Zeal).)*$"] scratchpad show
+#bindcode $mod+49 scratchpad show
 
 
 bindsym --to-code $mod+Shift+r mode "resize"
@@ -190,7 +194,8 @@ for_window [app_id="org.gnome.Nautilus"] floating enable; sticky enable
 for_window [app_id="mpv"] floating enable
 for_window [app_id="Thunar"] floating enable
 for_window [app_id="thunar"] floating enable
-for_window [app_id="org.zealdocs.Zeal"] move scratchpad; scratchpad show
+for_window [app_id="zenity"] floating enable
+for_window [app_id="firefoxdeveloperedition" title="Picture-in-Picture"] floating enable
 for_window [class="Caja"] floating enable
 for_window [class="Gimp"] floating enable
 for_window [class="VirtualBox Machine"] floating enable
@@ -199,7 +204,8 @@ for_window [class="Audacious"] floating enable
 for_window [app_id="gnumeric"] floating enable
 for_window [app_id="eog"] floating enable
 for_window [app_id="zoom"] floating enable
-
+for_window [app_id="zoom"] floating enable
+for_window [app_id="org.zealdocs.Zeal"] floating enable, move scratchpad, scratchpad show
 
 # telegram "save image" gets buggy w/o floating
 for_window [app_id="telegramdesktop" title="^Media viewer$"] fullscreen disable

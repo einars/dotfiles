@@ -4,7 +4,7 @@
 msg-module                               # prepend module name to log messages
 msg-color                                # color log messages on terminal
 no-term-osd-bar                          # display a progress bar on the terminal
-#pause                                   # no autoplay
+pause=no                                 # do not save pause
 #keep-open                               # keep the player open when a file's end is reached
 audio-device=pulse
 audio-display=no
@@ -29,7 +29,8 @@ sub-use-margins
 sub-ass-force-margins
 
 demuxer-mkv-subtitle-preroll            # try to correctly show embedded subs when seeking
-sub-auto=fuzzy                          # external subs don't have to match the file name exactly to autoload
+#sub-auto=fuzzy                          # external subs don't have to match the file name exactly to autoload
+sub-auto=all
 sub-file-paths=ass:srt:sub:subs   # search for external subs in the listed subdirectories
 embeddedfonts=yes                       # use embedded fonts for SSA/ASS subs
 sub-fix-timing=no                       # do not try to fix gaps (which might make it worse in some cases)
@@ -56,3 +57,4 @@ alang=en,eng,ru,rus     # automatically select these audio tracks (decreasing pr
 # [protocol.http]
 # user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:47.0) Gecko/20100101 Firefox/47.0'
 
+save-position-on-quit

@@ -22,7 +22,7 @@ if ! has('nvim')
 endif
 
 if has('nvim')
-  set termguicolors
+  "set termguicolors
 endif
 
 " Disable cursor blinking
@@ -54,7 +54,7 @@ set virtualedit=block
 set shortmess+=c  " fuck completion message spam
 
 
-set nolazyredraw
+"set nolazyredraw
 
 
 " no need for backups, swaps, nothing
@@ -107,7 +107,6 @@ endfunction
 exec 'source ' . EditorRoot() . '/plugins.vim'
 
 
-"colors sorcerer
 if ! has('nvim')
   colors default
 else
