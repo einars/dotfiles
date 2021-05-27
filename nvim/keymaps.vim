@@ -115,6 +115,7 @@ map <S-F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> tra
 
 " auto-expanding
 inoremap (; (<CR>);<C-c>O
+inoremap ({ ({  })<C-c>hhi
 inoremap (<CR> (<CR>)<C-c>O
 inoremap (, (<CR>),<C-c>O
 inoremap {; {<CR>};<C-c>O
