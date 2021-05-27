@@ -52,7 +52,14 @@ xkb_symbols "dvp" {
  key <AB01> {[ apostrophe, quotedbl, U25CC, U25CC ]};
 
  // minus underscore emdash typog.minus
- key <AC11> {[ minus, underscore, emdash, U2212  ]};
+ key <AC11> {[ minus, underscore, emdash, U2212 ]};
+
+ // add Norwegian characters to some unused lev3
+ key <AD04> {[ p, P, ae, AE ]};
+ key <AD05> {[ y, Y, oe, OE ]};
+ key <AB03> {[ j, J, aring, Aring ]};
+ key <AB05> {[ x, X, oslash, Oslash ]};
+
 
  include "level3(ralt_switch)"
 };

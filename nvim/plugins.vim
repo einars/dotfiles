@@ -63,7 +63,7 @@ lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = { "c", "php", "javascript", "scala", "svelte", "python", "rust", "scss", "css" },
   highlight = { enable = true },
-  indent = { enable = true },
+  indent = { enable = true, disable_filetype = { "python" } },
 }
 EOF
 "set foldmethod=expr

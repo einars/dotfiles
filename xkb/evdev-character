@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+
+# find matching evdev code,
+#
+# ./evdev-character f
+# 29         0x0066 (f)      0x0046 (F)      0x0079 (y)      0x0059 (Y)      0x0066 (f)      0x0046 (F)      0x0079 (y)      0x0059 (Y)
+# <AD06> = 29;
+#
+# ./evdev-character dollar
+# 13         0x007d (braceright)     0x0033 (3)      0x0034 (4)      0x0024 (dollar) 0x0ab0 (onethird)       0x00b3 (threesuperior)  0x20ac (EuroSign)       0x00a2 (cent)
+# <AE04> = 13;
+
+
+
+import sys
+import subprocess
+
+ch = sys.argv[1]
+xmodmap = subprocess.run(['xmodmap', '-pk'], capture_output=True, text=True).stdout
+check_for = " (%s)\t" % ch
+for r in xmodmap.split("\n"):
+    if check_for in r:
+        print(r.replace("\t", " "))
+        keycodes = r.split("\t")
+        keycode = keycodes[0].strip()
+        print(subprocess.run(['grep', ' = ' + keycode + ';', '/usr/share/X11/xkb/keycodes/evdev'], capture_output=True, text=True).stdout.strip())
+        
