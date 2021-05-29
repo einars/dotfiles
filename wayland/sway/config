@@ -85,7 +85,7 @@ bindsym --to-code {
     $mod+Ctrl+space  exec /home/e/bin/sway-next-keyboard-layout
     Alt+F4           kill
 
-    $mod+less exec swaymsg [app_id="org.zealdocs.Zeal"] scratchpad show || exec zeal
+    $mod+comma exec swaymsg [app_id="org.zealdocs.zeal"] scratchpad show || exec zeal
 
 
 }
@@ -165,7 +165,7 @@ bindsym --to-code {
     # mod + tilde/dollar
 
 }
-bindcode $mod+49 [app_id="^((?!org.zealdocs.Zeal).)*$"] scratchpad show
+bindcode $mod+49 [app_id="^((?!org.zealdocs.zeal).)*$"] scratchpad show
 #bindcode $mod+49 scratchpad show
 
 
@@ -205,7 +205,7 @@ for_window [app_id="gnumeric"] floating enable
 for_window [app_id="eog"] floating enable
 for_window [app_id="zoom"] floating enable
 for_window [app_id="zoom"] floating enable
-for_window [app_id="org.zealdocs.Zeal"] floating enable, move scratchpad, scratchpad show
+for_window [app_id="org.zealdocs.zeal"] floating enable, move scratchpad, scratchpad show
 
 # telegram "save image" gets buggy w/o floating
 for_window [app_id="telegramdesktop" title="^Media viewer$"] fullscreen disable
