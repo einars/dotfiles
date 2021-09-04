@@ -11,6 +11,7 @@ export EGAR=/usr/bin/arm-none-eabi-ar
 export EGROOT=/proj/go/src/github.com/ziutek/emgo/egroot
 export EGPATH=/proj/go/src/github.com/ziutek/emgo/egpath
 
+export WINEARCH=win64
 
 
 try_cdpath /proj
@@ -45,3 +46,5 @@ alias vim=nvim
 . /home/e/.opam/opam-init/init.zsh &> /dev/null || true
 eval $(opam config env)
 
+
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dsun.java2d.opengl=true"

@@ -17,12 +17,11 @@ watson_notify () {
         (( elapsed_m = $elapsed % 60 ))
         #task="<span color=\"#33ff33\">$project ${elapsed}m  --  </span>"
         tags=$(jq --raw-output '.tags | join (", +")' ~/.config/watson/state)
-        heart=
-        if (( $elapsed > 44 )); then
-          heart="💚"
-        fi
-        if (( $elapsed > 89 )); then
-          heart="❤️"
+        heart=$(printf '❤️%.0s' $(seq 1 $elapsed_h))
+        if (( $elapsed_m >= 40 )); then
+          heart="$heart❤️"
+        elif (( $elapsed_m >= 20 )); then
+          heart="$heart🤍"
         fi
         if [ "$elapsed_h" = "0" ]; then
           task=$(printf '%s %s +%s %dm' "$heart" "$project" "$tags" "$elapsed_m")
@@ -43,7 +42,8 @@ EOF
 mode=${1:-watch}
 
 if [ "$mode" == "watch" ]; then
-  watchexec --postpone --restart --watch ~/.config/watson/ $0 notify &
+  pkill -f "WAYBAR_WATSON_TAG"
+  watchexec --ignore WAYBAR_WATSON_TAG --postpone --restart --watch ~/.config/watson/ $0 notify &
   while true; do
     test -f ~/.config/watson/state && watson_notify
     sleep 10

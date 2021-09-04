@@ -6,17 +6,10 @@
 
 define('DEFAULT_BREAKPOINTS', [
     // time => sound
-    10 => false,
-    30 => false,
+    25 => false,
     45 => true,
-    60 => false,
-    90 => true,
-    120 => false,
-    150 => false,
-    180 => false,
-    210 => false,
-    240 => false,
-    270 => false,
+    85 => true,
+    105 => true,
 ]);
 
 monitor_watson([
@@ -25,7 +18,7 @@ monitor_watson([
     'idle-interval-break-mins' => 7,
     'state-file' => getenv('HOME') . '/.config/watson/state',
     'history-file' => getenv('HOME') . '/.config/watson/frames',
-    'projs-dont-break-when-idle' => [ 'edx', 'coursera', 'draw', 'read' ],
+    'projs-dont-break-when-idle' => [ 'edx', 'coursera', 'draw', 'read', 'norsk' ],
     'tags-dont-break-when-idle' => [ 'video', 'spo', 'evening' ],
     // 'aggregate-tags' => ['s1', 's2', 's3', 'work', 'draw', 'study'], // shibasaki experiment
     'aggregate-tags' => [],

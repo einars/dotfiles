@@ -31,7 +31,7 @@ xkb_symbols "dvp" {
  key <AE06> {[ equal,  9,  U25CC,  U25CC  ]};
  key <AE07> {[ asterisk,  0,  degree,   copyright  ]};
  key <AE08> {[ parenright, 2,  onehalf,   twosuperior   ]};
- key <AE09> {[ plus,  4,  onequarter,  section   ]};
+ key <AE09> {[ plus,  4,  onequarter,  plusminus   ]};
  key <AE10> {[ bracketright, 6,  registered,  trademark  ]};
  key <AE11> {[ exclam,  8,  U25CC,   U25CC  ]};
  key <AE12> {[ numbersign, grave,  U25CC,  U25CC  ]};

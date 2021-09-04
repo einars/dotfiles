@@ -19,6 +19,10 @@ set $menu rofi -show run | xargs swaymsg exec
 font pango:Fira Code Semibold 10
 output * bg /home/e/wallpapers/uw.lake.png fill
 
+set $volume_up pamixer --unmute --increase 5 && sleep 0.01 && pamixer --get-volume > $SWAYSOCK.wob
+set $volume_dn pamixer --unmute --decrease 5 && sleep 0.01 && pamixer --get-volume > $SWAYSOCK.wob
+set $volume_toggle pactl set-sink-mute @DEFAULT_SINK@ toggle; sleep 0.01 && pamixer --get-mute && echo 0 > $SWAYSOCK.wob
+
 exec swayidle -w \
     timeout 300 "t kill.watson" \
     timeout 10 'if pgrep swaylock; then swaymsg "output * dpms off"; fi' \
@@ -51,9 +55,12 @@ bindsym --to-code {
     $mod+d exec "$files /home/e/dokumenti"
     $mod+b exec "$files /storage/books"
 
-    Menu            exec "tt screenshot.window"
-    $mod+Menu       exec "tt screenshot"
-    $mod+Shift+Menu exec "tt screenshot.trimmed"
+    #$mod+Menu       exec "tt screenshot"
+    #$mod+Menu       exec "true"
+    $mod+Menu       exec $volume_up
+    Menu            exec "tt screenshot.trimmed"
+    Shift+Menu exec "tt screenshot"
+    Ctrl+Menu exec "tt screenshot.window"
 
     XF86Calculator exec "tt wa.flow"
 
@@ -85,10 +92,14 @@ bindsym --to-code {
     $mod+Ctrl+space  exec /home/e/bin/sway-next-keyboard-layout
     Alt+F4           kill
 
-    $mod+comma exec swaymsg [app_id="org.zealdocs.zeal"] scratchpad show || exec zeal
+    #F1  seat '*' cursor press button1
+    #Shift+F1 seat '*' cursor release button1
 
-
+    $mod+apostrophe exec swaymsg [app_id="org.zealdocs.zeal"] scratchpad show || exec zeal
 }
+
+## mod-lsgt
+bindcode $mod+94 exec swaymsg [app_id="org.zealdocs.zeal"] scratchpad show || exec zeal
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -100,13 +111,13 @@ floating_modifier $mod normal
 
 exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
 bindsym --to-code {
-    XF86AudioLowerVolume exec pamixer --unmute --increase 5 | pamixer --get-volume > $SWAYSOCK.wob
-    XF86AudioRaiseVolume exec pamixer --unmute --increase 5 | pamixer --get-volume > $SWAYSOCK.wob
-    XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle | pamixer --get-mute && echo 0 > $SWAYSOCK.wob
+    XF86AudioLowerVolume exec $volume_dn
+    XF86AudioRaiseVolume exec $volume_up
+    XF86AudioMute        exec $volume_toggle
 
-    $mod+F11 exec pamixer --unmute --decrease 5 | pamixer --get-volume > $SWAYSOCK.wob
-    $mod+F12 exec pamixer --unmute --increase 5 | pamixer --get-volume > $SWAYSOCK.wob
-    $mod+F10 exec pactl set-sink-mute @DEFAULT_SINK@ toggle | pamixer --get-mute && echo 0 > $SWAYSOCK.wob
+    $mod+F11 exec pamixer --unmute --decrease 5 && sleep 0.01 && pamixer --get-volume > $SWAYSOCK.wob
+    $mod+F12 exec pamixer --unmute --increase 5 && sleep 0.01 && pamixer --get-volume > $SWAYSOCK.wob
+    $mod+F10 exec pactl set-sink-mute @DEFAULT_SINK@ toggle && sleep 0.01 && pamixer --get-mute && echo 0 > $SWAYSOCK.wob
 }
 
 bindcode {
@@ -150,6 +161,7 @@ bindsym --to-code {
     $mod+Ctrl+s layout stacking
     $mod+Ctrl+t layout tabbed
     $mod+Ctrl+e layout toggle split
+    $mod+Ctrl+l layout toggle all
 
     # move focus to the parent container
     # $mod+a focus parent
@@ -198,14 +210,17 @@ for_window [app_id="zenity"] floating enable
 for_window [app_id="firefoxdeveloperedition" title="Picture-in-Picture"] floating enable
 for_window [class="Caja"] floating enable
 for_window [class="Gimp"] floating enable
+#for_window [class="Gimp" window_type="utility"] sticky enable
 for_window [class="VirtualBox Machine"] floating enable
 for_window [class="VirtualBox Manager"] floating enable
 for_window [class="Audacious"] floating enable
 for_window [app_id="gnumeric"] floating enable
 for_window [app_id="eog"] floating enable
 for_window [app_id="zoom"] floating enable
-for_window [app_id="zoom"] floating enable
+for_window [app_id="anki"] floating enable
 for_window [app_id="org.zealdocs.zeal"] floating enable, move scratchpad, scratchpad show
+
+for_window [class="slide in the woods.exe"] floating enable
 
 # telegram "save image" gets buggy w/o floating
 for_window [app_id="telegramdesktop" title="^Media viewer$"] fullscreen disable

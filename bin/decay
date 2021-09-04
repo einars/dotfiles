@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
-#DECAY=/services/web/decay.spicausis.lv
-DECAY=minerva:decay/
+DECAY=/services/web/dev.spicausis.lv/decay
+#DECAY=minerva:decay/
 
 function usage()
 {
@@ -15,9 +15,10 @@ EOF
 
 (( $# == 0 )) && usage
 
-rsync -vaxe ssh $@ $DECAY
+#rsync -vaxe ssh $@ $DECAY
 #scp $@ $DECAY
-url="https://decay.spicausis.lv/$(basename $@)"
-echo $url | xclip 
+cp $@ $DECAY
+url="https://dev.spicausis.lv/decay/$(basename $@)"
+echo $url | clip 
 echo $url
 t beep

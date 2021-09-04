@@ -9,6 +9,7 @@ pause=no                                 # do not save pause
 audio-device=pulse
 audio-display=no
 volume=100
+volume-max=100
 
 osd-level=1                             # enable osd and display --osd-status-msg on interaction
 osd-duration=2500                       # hide the osd after x ms

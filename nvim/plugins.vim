@@ -16,7 +16,7 @@ Plug 'tpope/vim-eunuch'
 "Plug 'tpope/vim-sleuth'
 
 "Plug 'evanleck/vim-svelte', { 'branch': 'main' }
-Plug 'leafOfTree/vim-svelte-plugin'
+"Plug 'leafOfTree/vim-svelte-plugin'
 
 Plug 'sirtaj/vim-openscad'
 
@@ -28,8 +28,6 @@ exec 'source ' . EditorRoot() . '/snippets/emmet.vim'
 Plug 'mattn/emmet-vim'
 autocmd FileType php,html,javascript,javascriptreact EmmetInstall
 autocmd FileType css,scss EmmetInstall
-
-"Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'dracula/vim'
@@ -61,13 +59,24 @@ call plug#end()
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "c", "php", "javascript", "scala", "svelte", "python", "rust", "scss", "css" },
+  ensure_installed = { "c", "php", "javascript", "scala", "svelte", "python", "rust", "scss", "css", "zig" },
   highlight = { enable = true },
-  indent = { enable = true, disable_filetype = { "python" } },
+  indent = { enable = true, disable = { "php" } },
 }
 EOF
+
 "set foldmethod=expr
 "set foldexpr=nvim_treesitter#foldexpr()
+
+lua <<EOF
+require('telescope').setup{ defaults = { file_ignore_patterns = {
+  "node_modules",
+  #"protected/lib/",
+  "protected/test/",
+  "protected/plugins/",
+  "protected/vendor/",
+  } } }
+EOF
 
 nnoremap <C-p> <cmd>Telescope find_files<cr>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>

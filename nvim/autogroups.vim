@@ -8,21 +8,25 @@ autocmd VimEnter,BufEnter,BufWinEnter * silent! iunmap <buffer> <M-">
 "  autocmd WinLeave * setlocal nocursorline
 "augroup END
 
-augroup broken_indents
-    autocmd!
-    " autocmd FileType yaml,coffee,pug setlocal indentexpr= nosmartindent autoindent ts=8 sts=2 sw=2
-    autocmd FileType go,golang setlocal noet ts=8 sts=8 sw=8
-augroup END
-
-augroup Indent4
-  autocmd FileType php setlocal sts=4 sw=4
-  " autocmd FileType javascript setlocal sts=4 sw=4
-augroup END
-
 augroup PHP
+  autocmd!
   autocmd FileType php setlocal keywordprg=:Phpdoc
 augroup END
 
+
+augroup broken_indents
+    autocmd!
+    " autocmd FileType yaml,coffee,pug setlocal indentexpr= nosmartindent autoindent ts=8 sts=2 sw=2
+    autocmd FileType go,golang setlocal noexpandtab ts=8 sts=8 sw=8
+    autocmd FileType php setlocal expandtab sts=4 sw=4
+
+    autocmd FileType php syn on # use php.vim instead of messy treesitter
+augroup END
+
+augroup PHP
+  autocmd!
+  autocmd FileType php setlocal keywordprg=:Phpdoc
+augroup END
 
 
 
@@ -34,3 +38,4 @@ augroup FocusLostSave
   autocmd FocusLost * silent! wa
 augroup END
 
+au BufRead,BufNewFile *.zig set filetype=zig

@@ -7,8 +7,10 @@ export HISTSIZE=1000
 export SAVEHIST=1000
 export LESS=eFX
 
+export PGUSER=postgres
+
 #eval "`dircolors -b`" 2>/dev/null
-#export LS_COLORS="ow=4" # all-writable folders are unreadable, so remove the formatting, leaving just underline
+export LS_COLORS="ow=4" # all-writable folders are unreadable, so remove the formatting, leaving just underline
 
 
 function try_path 

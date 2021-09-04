@@ -25,7 +25,7 @@ alias cx="chmod +x"
 alias rdesktop='rdesktop -xb -z -a16 -rsound:off -r clipboard:PRIMARYCLIPBOARD -0 -g1200x900'
 
 alias ls='ls  --time-style=+        --color=tty --si -l --group-directories-first'
-alias lss='ls --time-style=+        --color=tty --si -l --group-directories-first --sort=size'
+alias lss='ls --time-style=+        --color=tty --si -l --group-directories-first --sort=size --reverse'
 alias ll='ls  --time-style=long-iso --color=tty --si -l --group-directories-first --almost-all'
 alias l=ls
 
@@ -114,8 +114,6 @@ function dirsizes {
     \du --max-depth=1 | \sort -nr | \head -n 30 | \sed 's/^.*\t//' | \xargs --delimiter=\\n -n 1 \du -sh --si
 }
 
-#alias psql='PAGER="less -RSX" psql -P pager=always'
-
 # mkdir + cd
 function mkd {
     mkdir -p $1 && cd $1
@@ -183,4 +181,3 @@ alias pigtar="tar --use-compress-program='pigz --fast' -cvf "
 # interactive jq repl
 jqa() { echo '' | fzf --print-query --preview "cat $1 | jq {q}" }
 
-# vim: syn=zsh :
