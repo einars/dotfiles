@@ -1,0 +1,3 @@
+#!/bin/sh
+
+grim - | gm convert - -scale 25% -blur 0x3 -fill '#013d48' -colorize 50% -quality 50 -

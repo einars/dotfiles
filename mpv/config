@@ -1,5 +1,9 @@
 # mostly taken from https://github.com/Argon-/mpv-config/blob/master/mpv.conf
 
+target-prim=bt.2020
+target-trc=srgb
+tone-mapping=bt.2390
+
 #no-border                               # no window title bar
 msg-module                               # prepend module name to log messages
 msg-color                                # color log messages on terminal
@@ -11,31 +15,34 @@ audio-display=no
 volume=100
 volume-max=100
 
+audio-channels=stereo
+
+audio-file-auto=fuzzy
+
 osd-level=1                             # enable osd and display --osd-status-msg on interaction
 osd-duration=2500                       # hide the osd after x ms
 
-osd-font='Roboto Light'
+osd-font='Roboto Medium'
 osd-bold=no
-osd-font-size=32
-osd-color='#CCFFFFFF'                   # ARGB format
-osd-border-color='#DD322640'            # ARGB format
+osd-font-size=26
+osd-color='#ffffffff'                   # ARGB format
+#osd-border-color='#DD322640'            # ARGB format
 #osd-shadow-offset=1                    # pixel width for osd text and progress bar
 osd-bar-align-y=0                       # progress bar y alignment (-1 top, 0 centered, 1 bottom)
-osd-border-size=2                       # size for osd text and progress bar
+osd-border-size=1                       # size for osd text and progress bar
 osd-bar-h=2                             # height of osd bar as a fractional percentage of your screen height
 osd-bar-w=60                            # width of osd bar
 
 
-sub-use-margins
-sub-ass-force-margins
+## sub-use-margins
+## sub-ass-force-margins
 
-demuxer-mkv-subtitle-preroll            # try to correctly show embedded subs when seeking
+### demuxer-mkv-subtitle-preroll            # try to correctly show embedded subs when seeking
 #sub-auto=fuzzy                          # external subs don't have to match the file name exactly to autoload
 sub-auto=all
 sub-file-paths=ass:srt:sub:subs   # search for external subs in the listed subdirectories
 embeddedfonts=yes                       # use embedded fonts for SSA/ASS subs
 sub-fix-timing=no                       # do not try to fix gaps (which might make it worse in some cases)
-sub-ass-force-style=Kerning=yes         # allows you to override style parameters of ASS scripts
 
 # the following options only apply to subtitles without own styling (i.e. not ASS but e.g. SRT)
 sub-font="Roboto"
@@ -50,12 +57,5 @@ sub-spacing=0.5
 
 slang=enm,en,eng,ru,rus # automatically select these subtitles (decreasing priority)
 alang=en,eng,ru,rus     # automatically select these audio tracks (decreasing priority)
-
-
-# [protocol.https]
-# user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:47.0) Gecko/20100101 Firefox/47.0'
-# 
-# [protocol.http]
-# user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:47.0) Gecko/20100101 Firefox/47.0'
 
 save-position-on-quit

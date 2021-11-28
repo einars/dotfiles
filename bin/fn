@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-find . -type f -iname "*$1*" $2 $3 $4 $5 $6

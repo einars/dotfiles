@@ -1,15 +1,16 @@
 #!/bin/sh
 
 show_coffee () {
-  icon_style='task-idle'
-  if test -s /etc/dnscrypt-proxy/whitelist.txt; then
-    icon_style='task-running'
+  icon_style='coffee--idle'
+  if test -f /etc/dnscrypt-proxy/unblocked; then
+    icon_style='coffee--active'
   fi
 
   text='☕'
+  text=''
 
   cat << EOF
-    { "text": "  $text  ", "alt": "", "class": ["task", "$icon_style"] }
+    { "text": "$text", "alt": "", "class": ["coffee", "$icon_style"] }
 EOF
 }
 
@@ -24,7 +25,7 @@ if [ "$mode" == "watch" ]; then
 
   while true; do
     show_coffee
-    sleep 10
+    sleep 30
   done
 else
   show_coffee

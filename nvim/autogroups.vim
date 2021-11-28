@@ -1,7 +1,7 @@
 " neovim broken map with auto-pairs
 autocmd VimEnter,BufEnter,BufWinEnter * silent! iunmap <buffer> <M-">
 
-"" the shit is slow"
+"" the shit is slow
 "augroup cursorline
 "  autocmd!
 "  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
@@ -20,7 +20,6 @@ augroup broken_indents
     autocmd FileType go,golang setlocal noexpandtab ts=8 sts=8 sw=8
     autocmd FileType php setlocal expandtab sts=4 sw=4
 
-    autocmd FileType php syn on # use php.vim instead of messy treesitter
 augroup END
 
 augroup PHP

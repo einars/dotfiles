@@ -119,10 +119,12 @@
     },
     "pulseaudio": {
         "scroll-step": 4, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
+        "format": "{volume}%",
+        // "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
+        // "format-muted": " {format_source}",
+        "format-muted": "muted",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
@@ -138,12 +140,12 @@
     },
     "custom/watson": {
         "return-type": "json",
-        "exec": "/home/e/.config/sway/waybar-status-watson.sh",
+        "exec": "/home/e/bin/sway/waybar-status-watson",
         "on-click": "tt wa.flow",
     },
     "custom/coffee": {
         "return-type": "json",
-        "exec": "/home/e/.config/sway/waybar-status-coffee.sh",
+        "exec": "/home/e/bin/sway/waybar-status-coffee",
         "on-click": "tt toggle-block",
     }
 }

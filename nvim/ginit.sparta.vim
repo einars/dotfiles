@@ -22,17 +22,5 @@ Light
 
 
 
-" single-file writing mode
-function! Large()
-  GuiLinespace 4
-  set background=light
-  colors PaperColor
-  Guifont Iosevka Term Medium:h16
-endfunction
-
-command! Large :call Large()
-command! Write :call Large()
-
-
-inoremap <C-G> <C-r>=Translit('greek')<cr>
-nnoremap <C-G> :exec Translit('greek')<cr>
+"" inoremap <C-G> <C-r>=Translit('greek')<cr>
+"" nnoremap <C-G> :exec Translit('greek')<cr>

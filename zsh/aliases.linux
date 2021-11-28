@@ -3,6 +3,7 @@
 alias restart='sudo systemctl restart'
 alias mysql='mysql --pager=less'
 
+alias less='less --RAW-CONTROL-CHARS '
 
 # temp workaround with a tmux character issue
 alias tmux='LC_CTYPE=en_US.UTF-8 tmux'
@@ -133,6 +134,8 @@ alias clamscan="clamscan --max-scansize=512M --max-filesize=512M"
 
 alias gpr='git pull --rebase --prune'
 
+alias grep='grep --color=always'
+
 alias aag='grep -Ri -A 5 -B 2'
 
 
@@ -144,7 +147,7 @@ alias phpp='php -d xdebug.profiler_output_dir=. -d xdebug.profiler_enable=1 -d x
 alias sx="xinit /home/e/.xinitrc -- /etc/X11/xinit/xserverrc :0"
 
 # ripgrep
-alias aa="rg --smart-case -g '!{node_modules}/'"
+alias aa="rg --sort=path --color=always --smart-case -g '!{node_modules}/'"
 
 alias h2j='=html2jade --noemptypipe --noattrcomma --donotencode --bodyless --double'
 alias coffee2js='coffee --bare --compile --no-header --'

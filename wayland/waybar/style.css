@@ -8,8 +8,7 @@
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+    background-color: #2d3436;
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
@@ -27,15 +26,6 @@ window#waybar.solo {
     background-color: #FFFFFF;
 }
 */
-
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
-}
 
 #workspaces button {
     background-color: transparent;
@@ -77,13 +67,13 @@ window#waybar.chromium {
 #mode,
 #idle_inhibitor,
 #mpd {
-    padding: 0 10px;
-    margin: 0 4px;
+    padding: 0 14px;
     color: #ffffff;
 }
 
 #clock {
-    background-color: #64727D;
+    /* background-color: #64727D; */
+    background-color: #2d3436;
 }
 
 #battery {
@@ -173,11 +163,11 @@ label:focus {
 }
 
 #tray {
-    background-color: #2980b9;
+    /* background-color: #2980b9; */
 }
 
 #idle_inhibitor {
-    background-color: #2d3436;
+    /* background-color: #2d3436; */
 }
 
 #idle_inhibitor.activated {
@@ -211,13 +201,21 @@ label:focus {
 }
 
 .task {
-    background-color: #64727D;
+  padding: 0 16px;
 }
-.task-idle {
+.task--active {
+  color: #51f37a;
+}
+.task--idle {
   color: #fff;
 }
-.task-running {
-  background-color: #c1f40f;
-  color: #000;
-
+.coffee {
+  padding: 0 16px;
+}
+.coffee--idle {
+  /* background-color: #64727d; */
+}
+.coffee--active {
+  background-color: white;
+  color: #64727d;
 }

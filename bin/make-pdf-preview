@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+basename=$(basename --suffix .pdf $1)
+out=$(basename --suffix .pdf $1).jpg
+#gm convert "$1" --resize 768x768 $out
+pdftocairo "$1" -jpeg -singlefile -scale-to 768 "$basename"
+
+echo $out
+
+eog $out &

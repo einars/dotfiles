@@ -2,5 +2,5 @@
 
 fs=$(find . -type f -iname "*$1*" $2 $3 $4 $5 $6)
 test -z "$fs" || echo $fs
-test -z "$fs" || echo $fs | xclip
+test -z "$fs" || echo $fs | clip
 test -z "$fs" || $EDITOR $fs

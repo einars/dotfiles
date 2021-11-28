@@ -87,6 +87,4 @@ set nonumber
 
 colors default
 
-syn on
-
 " vim: set syn=vim :

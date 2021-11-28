@@ -13,7 +13,6 @@ map  <C-b> <C-w>
 map  <C-b><C-b> <C-w><C-w>
 
 " resync colors on f5
-map <f5> <Esc>:syn sync fromstart<Cr>
 map <S-f5> <Esc>:EnableFastPHPFolds<Cr>
 " close buffer leaving splits intact
 map <leader>d <Esc>:call CleanDeleteBuffer()<Cr>
@@ -123,3 +122,9 @@ inoremap {<CR> {<CR>}<C-c>O
 inoremap {, {<CR>},<C-c>O
 inoremap [; [<CR>];<C-c>O
 inoremap [, [<CR>],<C-c>O
+
+" move through wrapped lines
+noremap <silent> k gk
+noremap <silent> j gj
+noremap <silent> 0 g0
+"noremap <silent> $ g$

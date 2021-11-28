@@ -1,0 +1,13 @@
+#!/bin/sh
+
+trap cleanup 0 1 2 3 6
+
+image="/tmp/lock_sway_image-$$.jpg"
+
+function cleanup {
+  rm ${image}
+}
+
+grim - | gm convert - -scale 25% -blur 0x2 -fill '#013d48' -colorize 70% -scale 400% -quality 50 ${image}
+
+swaylock --show-keyboard-layout --scaling fill --image ${image}

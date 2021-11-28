@@ -10,3 +10,19 @@ map  <silent>  <S-Insert>  "+p
 imap <silent>  <S-Insert>  <Esc>"+pa
 
 set mouse=a
+
+function! s:goyo_enter()
+  GuiLinespace 8
+  set background=dark
+  "colors PaperColor
+  Guifont! Go Mono:h16
+  set wrap linebreak
+endfunction
+
+function! s:goyo_leave()
+  Light
+  set nowrap nolinebreak
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()

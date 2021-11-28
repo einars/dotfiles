@@ -5,133 +5,21 @@
 // and notify every X min 
 
 define('DEFAULT_BREAKPOINTS', [
-    // time => sound
-    25 => false,
-    45 => true,
-    85 => true,
-    105 => true,
+    // time, min => sound
+    25 => 'sound_pomodoro_complete.ogg',
+    50 => 'sound_rank_earned.ogg',
+    75 => 'sound_rank_earned.ogg',
+    100 => 'sound_rank_earned.ogg',
 ]);
 
 monitor_watson([
-    'notify-interval-mins' => 15,
-    'nudge-threshold-mins' => 20,
-    'idle-interval-break-mins' => 7,
+    'break-time' => 7,
     'state-file' => getenv('HOME') . '/.config/watson/state',
     'history-file' => getenv('HOME') . '/.config/watson/frames',
-    'projs-dont-break-when-idle' => [ 'edx', 'coursera', 'draw', 'read', 'norsk' ],
-    'tags-dont-break-when-idle' => [ 'video', 'spo', 'evening' ],
-    // 'aggregate-tags' => ['s1', 's2', 's3', 'work', 'draw', 'study'], // shibasaki experiment
-    'aggregate-tags' => [],
     'breakpoints' => DEFAULT_BREAKPOINTS,
+    'aggregate-tags' => [],
 ]);
 
-function xorg_idle_s()
-{
-    return exec('xprintidle') / 1000;
-}
-
-
-function sway_idle_s()
-{
-    // sway hack
-    // ~/.config/sway/config
-    /*
-        exec swayidle -w \
-            timeout 60 'echo 60 > ~/.idle' \
-            timeout 120 'echo 120 > ~/.idle' \
-            timeout 180 'echo 180 > ~/.idle' \
-            timeout 240 'echo 240 > ~/.idle' \
-            timeout 300 'echo 300 > ~/.idle' \
-            timeout 360 'echo 360 > ~/.idle' \
-            timeout 420 'echo 420 > ~/.idle' \
-            timeout 480 'echo 480 > ~/.idle' \
-            timeout 540 'echo 540 > ~/.idle' \
-            timeout 600 'echo 600 > ~/.idle'
-     */
-
-    $idle_info = '/home/e/.idle';
-    if (file_exists($idle_info)) {
-        $idle = file_get_contents($idle_info);
-        unlink($idle_info);
-        return $idle;
-    }
-    return null;
-    // return exec('xprintidle') / 1000;
-}
-
-
-function xorg_active_title()
-{
-    return exec('xdotool getwindowfocus getwindowname');
-}
-
-function work_nudge($state, $opts)
-{
-    // when no project is happening, but I'm doing something, nudge me
-
-    $in_project = $state['is_running'];
-    $nudge_threshold_mins = opt('nudge-threshold-mins', $opts, 5);
-
-    static $active_since = null;
-    static $last_nudged = null;
-    static $last_title = null;
-
-    if ($in_project) {
-        $active_since = null;
-        $last_nudged = null;
-        $last_title = null;
-        return;
-    }
-
-    $idle = xorg_idle_s();
-    if ($idle > 120) {
-        if ($active_since) {
-            say('Idle detected: resetting nudge timer.');
-            $active_since = null;
-            $last_nudged = null;
-        }
-        return;
-    }
-
-    // re-nudge every N min
-    if ($last_nudged && (time() - $last_nudged) < $nudge_threshold_mins*60) return;
-
-    if ( ! $active_since ) {
-        $active_since = time() - $idle;
-        return;
-    }
-
-    $active_for_s = (time() - $active_since);
-    say(sprintf('Messing around for %s', format_time_s($active_for_s)));
-    $title = xorg_active_title();
-    if ($title && $title != $last_title) {
-        say(sprintf('Messing around: %s', xorg_active_title()));
-        $last_title = $title;
-    }
-    if ($active_for_s > 60 * $nudge_threshold_mins ) {
-        nudge($title);
-        $last_nudged = time();
-    }
-}
-
-function nudge($title)
-{
-    $is_firefox = !! strpos($title, 'Mozilla Firefox');
-    $hour = date('H');
-    $time = sprintf("It's %s.", date('H:i'));
-    say_and_notify($time, $category='nudge');
-  /*
-  if ($hour > 22 || $hour < 5) {
-    say_and_notify($time);
-  } else {
-    if ($is_firefox)  {
-      say_and_notify($time . " I hope that's not a total junk you're browsing.");
-    } else {
-      say_and_notify($time . " Don't drift away.");
-    }
-  }
-   */
-}
 
 function watson_state($state_file, $opts)
 {
@@ -228,18 +116,6 @@ function format_time_s($s)
 }
 
 
-function kill_watson_if_idle($opts)
-{
-    $idle_interval_break_mins = opt('idle-interval-break-mins', $opts, 8);
-    // $idle_s = xorg_idle_s();
-    $idle_s = sway_idle_s();
-    if ($idle_s > $idle_interval_break_mins * 60) {
-        exec('watson stop');
-        say_and_notify("idle stopping watson", $category='default', $urgency='critical');
-    }
-}
-
-
 
 function get_aggregate_tag($state)
 {
@@ -274,20 +150,21 @@ function tell_about($state)
 }
 
 
-function make_notification_sound()
+function make_notification_sound($sound)
 {
-    system('~/bin/subtle-beep');
+    system('tt play.global.sound ~/bin/sound/' . $sound);
 }
 
 function watson_notify($state, $sound = false)
 {
     if ($sound) {
-        make_notification_sound();
+        make_notification_sound($sound);
     }
     if ($state['is_running'])  {
         say_and_notify( sprintf('Working on %s for %s.', $state['project'], format_time($state['elapsed'])), 
             $category='chime',
-            $urgency=($sound ? 'critical' : 'normal')
+            // $urgency=($sound ? 'critical' : 'normal')
+            $urgency='normal'
         );
     } else {
         say_and_notify('Doing nothing, just chill.');
@@ -311,38 +188,26 @@ function proj_match($state, $test_against)
 function monitor_watson($opts)
 {
 
-    $notification_interval_min = opt('notify-interval-mins', $opts, 15);
-    $state_file                = opt('state-file', $opts, 'state');
-    $no_idle_kill_projs        = opt('projs-dont-break-when-idle', $opts, []);
-    $no_idle_kill_tags         = opt('tags-dont-break-when-idle', $opts, []);
-    $breakpoints               = opt('breakpoints', $opts, DEFAULT_BREAKPOINTS);
-    // $nudge_threshold_mins = opt('nudge-threshold-mins', $opts, 5);
-    // $idle_interval_break_mins = opt('idle-interval-break-mins', $opts, 8);
+    $state_file   = opt('state-file', $opts, 'state');
+    $breakpoints  = opt('breakpoints', $opts, DEFAULT_BREAKPOINTS);
+    $break_time   = opt('break-time', $opts, 7);
 
     if ( ! file_exists($state_file  ) ) {
         die("No watson state file $state_file   found.\n");
     }
 
 
-    make_notification_sound();
+    make_notification_sound('sound_pomodoro_almost_complete.ogg');
 
     say("Watson now takes some vicodin.");
 
     $current = watson_state($state_file, $opts);
-    #tell_about($current);
     watson_notify($current);
 
-    while (true) {
+    $last_seen_working = filemtime(getenv('HOME') . '/.config/watson/frames');
+    $slacking_notified = false;
 
-        /*
-        // SWAY: idle killing done by external process on swayidle timeout
-        if ($current['is_running']
-            and ! proj_match($current, $no_idle_kill_projs)
-            and ! tag_match($current, $no_idle_kill_tags)
-        ) {
-            kill_watson_if_idle($opts);
-        }
-         */
+    while (true) {
 
         $s = watson_state($state_file, $opts);
 
@@ -350,7 +215,21 @@ function monitor_watson($opts)
             tell_about($s);
         }
 
-        // work_nudge($s, $opts);
+        if ($s['is_running']) {
+            $last_seen_working = time();
+            $slacking_notified = false;
+        } else {
+
+            $slacking_for = (time() - $last_seen_working) / 60;
+            if ($slacking_for > $break_time && ! $slacking_notified) {
+                say(sprintf("Slacking for %.1d mins", $slacking_for));
+                $slacking_notified = true;
+                say_and_notify('Enough slacking, back to work!', $category='whatever', $urgency='critical');
+                make_notification_sound('sound_break_complete.ogg');
+            }
+
+
+        }
 
 
         if ($s['is_running'] ) {

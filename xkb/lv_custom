@@ -23,7 +23,7 @@ xkb_symbols "dvp" {
  //// programmer dvorak numbers
  //// u25CC − unused
  key <TLDE> {[ dollar,  asciitilde, EuroSign,  cent   ]};
- key <AE01> {[ ampersand, percent, acute,   U25CC  ]};
+ key <AE01> {[ ampersand, percent, acute,   U00B7  ]};
  key <AE02> {[ bracketleft, 7,  U25CC,  U25CC  ]};
  key <AE03> {[ braceleft, 5,  U25CC,  U25CC ]};
  key <AE04> {[ braceright, 3,  onethird, threesuperior ]};
@@ -33,7 +33,7 @@ xkb_symbols "dvp" {
  key <AE08> {[ parenright, 2,  onehalf,   twosuperior   ]};
  key <AE09> {[ plus,  4,  onequarter,  plusminus   ]};
  key <AE10> {[ bracketright, 6,  registered,  trademark  ]};
- key <AE11> {[ exclam,  8,  U25CC,   U25CC  ]};
+ key <AE11> {[ exclam,  8,  multiply,   U25CC  ]};
  key <AE12> {[ numbersign, grave,  U25CC,  U25CC  ]};
 
  key <AC08> {[ t, T, trademark, U25CC]};
@@ -49,7 +49,7 @@ xkb_symbols "dvp" {
  key <AD11> {[ slash,  question, leftarrow,  rightarrow  ]};
  key <AD12> {[ at,  asciicircum, uparrow,  downarrow  ]};
 
- key <AB01> {[ apostrophe, quotedbl, U25CC, U25CC ]};
+ key <AB01> {[ apostrophe, quotedbl, guillemotleft, guillemotright ]};
 
  // minus underscore emdash typog.minus
  key <AC11> {[ minus, underscore, emdash, U2212 ]};

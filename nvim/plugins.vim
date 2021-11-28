@@ -55,13 +55,15 @@ Plug 'nvim-lua/plenary.nvim'
 " telescope
 Plug 'nvim-telescope/telescope.nvim'
 
+Plug 'junegunn/goyo.vim'
+
 call plug#end()
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = { "c", "php", "javascript", "scala", "svelte", "python", "rust", "scss", "css", "zig" },
   highlight = { enable = true },
-  indent = { enable = true, disable = { "php" } },
+  indent = { enable = true },
 }
 EOF
 
@@ -83,3 +85,5 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+

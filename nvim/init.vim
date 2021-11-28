@@ -7,6 +7,7 @@ set guicursor+=a:blinkon0
 
 
 set nocursorline
+
 set noundofile
 set noshowmatch         " jump to matching paren quickly
 set nrformats=hex       " c-a, c-x won't treat 05 as octal
