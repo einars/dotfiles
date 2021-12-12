@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+
+# take a random screenshot from the video
+# requires mediainfo and ffmpeg
+#
+# take-random-shot --output out.jpg /some/video/file.mp4
+
+import argparse, subprocess, time, sys
+import json
+import random
+#sys.path.append(os.path.normpath(os.path.join(os.path.dirname(__file__))))
+
+def run(args):
+    t0 = time.time()
+    res = subprocess.run(args, check=True, capture_output=True)
+    #print('[', round((time.time() - t0) * 1000), 'ms', ']', ' '.join(args))
+    return res.stdout.decode('utf-8')
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--output', default='random-shot.jpg')
+    parser.add_argument('--start-offset', default='60')
+    parser.add_argument('--end-offset', default='60')
+    (args, rest) = parser.parse_known_args()
+
+    video = rest[0]
+    j = json.loads(run(["mediainfo", "--Output=JSON", video]))
+    dur_s = float(j['media']['track'][0]['Duration'])
+
+    random_time = random.randint(int(args.start_offset), int(dur_s) - int(args.end_offset)) * 1.0 + (random.randint(0, 1000) / 1000.0)
+
+    sys.stderr.write('Taking a screenshot at {} to {}\n'.format(random_time, args.output))
+
+    run(['ffmpeg', '-y', '-ss', "{}".format(random_time), '-i', video, '-vframes', '1', '-q:v', '2', args.output])
+
+
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

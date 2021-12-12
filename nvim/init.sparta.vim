@@ -1,6 +1,6 @@
 "colors PaperColor " (default)
 
-if exists('$WAYLAND_DISPLAY')
+if 1 == 0 " exists('$WAYLAND_DISPLAY')
     " clipboard on wayland with newline fix
     let g:clipboard = {
         \   'name': 'WL-Clipboard with ^M Trim',

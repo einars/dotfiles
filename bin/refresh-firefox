@@ -1,6 +1,6 @@
 #!/bin/sh
 
 swaymsg mark retret
-swaymsg '[app_id=firefox] focus'
+swaymsg '[app_id=firefox workspace=__focused__] focus'
 sudo ydotool key 'f5'
 swaymsg '[con_mark="retret"] focus'

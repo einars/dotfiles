@@ -1,9 +1,0 @@
-#!/bin/sh
-
-mako &
-
-waybar &
-
-alacritty --command tmux &
-
-keepassxc &

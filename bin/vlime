@@ -1,0 +1,3 @@
+#!/bin/sh
+
+sbcl --load ~/.config/nvim/plugged/vlime/lisp/start-vlime.lisp

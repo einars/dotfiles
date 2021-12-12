@@ -29,8 +29,14 @@ Plug 'mattn/emmet-vim'
 autocmd FileType php,html,javascript,javascriptreact EmmetInstall
 autocmd FileType css,scss EmmetInstall
 
+" color themes
+" papercolor - fav white
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'dracula/vim'
+" gruvbok - very nice dark
+Plug 'morhetz/gruvbox'
+Plug 'kyazdani42/blue-moon'
+Plug 'embark-theme/vim'
+Plug 'EdenEast/nightfox.nvim'
 
 Plug 'equalsraf/neovim-gui-shim'
 Plug 'ncm2/ncm2'
@@ -49,6 +55,8 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 
+Plug 'clojure-vim/async-clj-omni'
+
 " dependencies
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -56,6 +64,10 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'junegunn/goyo.vim'
+
+Plug 'tpope/vim-fireplace'
+
+Plug 'vlime/vlime'
 
 call plug#end()
 
@@ -86,4 +98,16 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
+
+au User Ncm2Plugin call ncm2#register_source({
+        \ 'name' : 'css',
+        \ 'priority': 5,
+        \ 'scope': ['css','scss'],
+        \ 'word_pattern': '[\w\-]+',
+        \ 'complete_pattern': ':\s*',
+        \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+        \ })
+
+
+au User Ncm2Plugin call  ncm2#override_source('async_clj_omni', { 'complete_length': 3 })
 
