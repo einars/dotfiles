@@ -31,7 +31,7 @@ def main():
 
     sys.stderr.write('Taking a screenshot at {} to {}\n'.format(random_time, args.output))
 
-    run(['ffmpeg', '-y', '-ss', "{}".format(random_time), '-i', video, '-vframes', '1', '-q:v', '2', args.output])
+    run(['ffmpeg', '-y', '-ss', "{}".format(random_time), '-i', video, '-vframes', '1', args.output])
 
 
     return 0
