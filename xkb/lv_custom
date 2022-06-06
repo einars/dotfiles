@@ -24,8 +24,8 @@ xkb_symbols "dvp" {
  //// u25CC − unused
  key <TLDE> {[ dollar,  asciitilde, EuroSign,  cent   ]};
  key <AE01> {[ ampersand, percent, acute,   U00B7  ]};
- key <AE02> {[ bracketleft, 7,  U25CC,  U25CC  ]};
- key <AE03> {[ braceleft, 5,  U25CC,  U25CC ]};
+ key <AE02> {[ bracketleft, 7,  U2705,  U274c  ]};
+ key <AE03> {[ braceleft, 5,  U2605,  U2606 ]};
  key <AE04> {[ braceright, 3,  onethird, threesuperior ]};
  key <AE05> {[ parenleft, 1,  onehalf,  onesuperior  ]};
  key <AE06> {[ equal,  9,  U25CC,  U25CC  ]};
@@ -34,7 +34,8 @@ xkb_symbols "dvp" {
  key <AE09> {[ plus,  4,  onequarter,  plusminus   ]};
  key <AE10> {[ bracketright, 6,  registered,  trademark  ]};
  key <AE11> {[ exclam,  8,  multiply,   U25CC  ]};
- key <AE12> {[ numbersign, grave,  U25CC,  U25CC  ]};
+ key <AE12> {[ numbersign, grave,  U2b50,  U25CC  ]};
+
 
  key <AC08> {[ t, T, trademark, U25CC]};
 
@@ -42,7 +43,7 @@ xkb_symbols "dvp" {
  // various apple chars
  key <LSGT> {[ U21e7, U2325, U2303, U2318 ]};
 
- key <AD01> {[ semicolon, colon,  U25CC,  U25CC  ]};
+ key <AD01> {[ semicolon, colon,  U2610,  U2611  ]};
  key <AD02> {[ comma, less, leftdoublequotemark, leftsinglequotemark]};
  key <AD03> {[ period, greater, rightdoublequotemark, rightsinglequotemark]};
 

@@ -5,6 +5,7 @@ regular_windows=$(swaymsg -t get_tree | jq -r '.nodes[1].nodes[].nodes[] | .. | 
 
 # Get floating windows
 floating_windows=$(swaymsg -t get_tree | jq '.nodes[1].nodes[].floating_nodes[] | (.id|tostring) + " " + .name?'| grep -e "[0-9]* ." | tr -d '"')
+#floating_windows=
 
 enter=$'\n'
 if [[ $regular_windows && $floating_windows ]]; then
@@ -16,6 +17,7 @@ else
 fi
 
 
+#echo "$all_windows"
 lines=$(echo "$all_windows" | wc -l)
-selected=$(echo "$all_windows" | rofi -lines $lines -hide-scrollbar -width -80 -dmenu -i | awk '{print $1}')
+selected=$(echo "$all_windows" | rofi -dmenu -fixed-num-lines false | awk '{print $1}')
 swaymsg [con_id="$selected"] focus

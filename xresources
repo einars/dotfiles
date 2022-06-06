@@ -1,4 +1,4 @@
-urxvt*font: xft:Rec Mono Linear:size=7
+urxvt*font: xft:Terminus:size=7
 terminal.local*font: xft:Iosevka Term:size=8
 !terminal.local*font: xft:Ubuntu Mono:size=7
 !terminal.local*boldFont: xft:Iosevka Term:size=7

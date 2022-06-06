@@ -74,5 +74,16 @@ augroup Calm
                     \ | hi! link TSProperty TSVariable
 augroup END
 
+augroup z80
+  autocmd!
+  autocmd FileType asm setlocal sw=16 ts=16
+augroup END
+
+
+augroup Lint
+  au! 
+  au BufWritePost * lua require('lint').try_lint()
+augroup end
+
 
 au BufRead,BufNewFile *.zig set filetype=zig

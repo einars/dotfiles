@@ -44,6 +44,9 @@ Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 
+Plug 'rickhowe/diffchar.vim'
+let g:DiffUnit="Word2"
+
 let g:neosnippet#disable_runtime_snippets = { '_': 1 }
 let g:neosnippet#snippets_directory = EditorRoot() . "/snippets"
 " Plug 'Shougo/neosnippet-snippets'
@@ -66,8 +69,15 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'junegunn/goyo.vim'
 
 Plug 'tpope/vim-fireplace'
+Plug 'mfussenegger/nvim-lint'
+
 
 Plug 'vlime/vlime'
+" do not optimize
+let g:vlime_compiler_policy = {"DEBUG": 3}
+" misc settings
+let g:vlime_enable_autodoc = v:true
+let g:vlime_window_settings = {'sldb': {'pos': 'belowright', 'vertical': v:true}, 'inspector': {'pos': 'belowright', 'vertical': v:true}, 'preview': {'pos': 'belowright', 'size': v:null, 'vertical': v:true}}
 
 call plug#end()
 
@@ -78,6 +88,21 @@ require'nvim-treesitter.configs'.setup {
   indent = { enable = true },
 }
 EOF
+
+lua <<EOF
+require'nvim-treesitter.highlight'.set_custom_captures {
+  ["keyword"] = "TSFunction",
+  ["keyword.function"] = "TSFunction",
+  ["repeat"] = "TSFuncBuiltin",
+  ["type.builtin"] = "TSFuncBuiltin",
+
+  -- Type is contrasty enough, even if not that semantic
+  ["function_definition_name"] = "Type",
+  ["method_declaration_name"] = "Type",
+  ["class_declaration_name"] = "Type",
+}
+EOF
+
 
 "set foldmethod=expr
 "set foldexpr=nvim_treesitter#foldexpr()
@@ -90,6 +115,11 @@ require('telescope').setup{ defaults = { file_ignore_patterns = {
   "protected/plugins/",
   "protected/vendor/",
   } } }
+
+require("lint").linters_by_ft = {
+  clojure = {"clj-kondo"},
+}
+
 EOF
 
 nnoremap <C-p> <cmd>Telescope find_files<cr>
@@ -97,7 +127,6 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
 
 au User Ncm2Plugin call ncm2#register_source({
         \ 'name' : 'css',

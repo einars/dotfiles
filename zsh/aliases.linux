@@ -147,6 +147,7 @@ alias sx="xinit /home/e/.xinitrc -- /etc/X11/xinit/xserverrc :0"
 
 # ripgrep
 alias aa="rg --sort=path --color=always --smart-case -g '!{node_modules}/'"
+alias caa="clear; rg --sort=path --color=always --smart-case -g '!{node_modules}/'"
 
 alias h2j='=html2jade --noemptypipe --noattrcomma --donotencode --bodyless --double'
 alias coffee2js='coffee --bare --compile --no-header --'
@@ -170,8 +171,6 @@ tarz() { tar cvf - $2 | pigz -1 - > $1 }
 
 alias com='screen /dev/ttyACM0 115200,inlcr,onlret,echo'
 
-alias waa="watson aggregate --current"
-
 alias dwdiff='dwdiff --punctuation --color'
 
 alias mig='diesel migration'
@@ -179,6 +178,8 @@ alias migg='diesel migration generate'
 
 alias tarpig="tar --use-compress-program='pigz --fast | pv' -cf "
 alias pigtar="tar --use-compress-program='pigz --fast' -cvf "
+
+alias load_nvm='fnm use v16'
 
 # interactive jq repl
 jqa() { echo '' | fzf --print-query --preview "cat $1 | jq {q}" }

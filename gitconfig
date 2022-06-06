@@ -78,3 +78,25 @@
 	required = true
 [init]
 	defaultBranch = main
+[commit]
+	verbose = true
+	template = ~/.gitmessage
+[rebase]
+	autostash = true
+
+
+[diff]
+  tool = difftastic
+
+[difftool]
+  prompt = false
+
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+  difftool = true
+
+[alias]
+  d = difftool
+  difft = difftool

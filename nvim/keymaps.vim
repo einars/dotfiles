@@ -49,6 +49,8 @@ nnoremap <leader>r :retab<Cr>:call StripTrailingWhitespace()<Cr>
 nnoremap <leader>ev :e ~/.config/nvim/init.vim<Cr>
 nnoremap <leader>ep :e ~/.config/nvim/plugins.vim<Cr>
 nnoremap <leader>es :e ~/.config/sway/config<Cr>
+nnoremap <leader>em :e ~/.config/mpv/config<Cr>
+nnoremap <leader>ei :e ~/.config/mpv/input.conf<Cr>
 
 
 " ncm2

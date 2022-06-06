@@ -1,9 +1,12 @@
 let g:loaded_matchparen=1             " die, slow and needless matching paren highlighting
 
 let mapleader=","
+let maplocalleader=","
 
 " Disable cursor blinking
 set guicursor+=a:blinkon0
+
+set nomore
 
 
 set nocursorline
@@ -125,11 +128,19 @@ endif
 
 function! Dark()
   set background=dark
+  :call ColorCrap()
 endfunction
 
 function! Light()
   set background=light
+  :call ColorCrap()
 endfunction
+
+function! ColorCrap()
+  hi link TSType TSKeyword
+  "hi link TSKeywordFunction TSString
+endfunction
+
 
 command! Dark :call Dark()
 command! Light :call Light()
