@@ -30,13 +30,8 @@ autocmd FileType php,html,javascript,javascriptreact EmmetInstall
 autocmd FileType css,scss EmmetInstall
 
 " color themes
-" papercolor - fav white
+" papercolor is enough for everything
 Plug 'NLKNguyen/papercolor-theme'
-" gruvbok - very nice dark
-Plug 'morhetz/gruvbox'
-Plug 'kyazdani42/blue-moon'
-Plug 'embark-theme/vim'
-Plug 'EdenEast/nightfox.nvim'
 
 Plug 'equalsraf/neovim-gui-shim'
 Plug 'ncm2/ncm2'
@@ -83,7 +78,7 @@ call plug#end()
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "c", "php", "javascript", "scala", "svelte", "python", "rust", "scss", "css", "zig" },
+  ensure_installed = { "c", "clojure", "php", "javascript", "scala", "svelte", "python", "rust", "scss", "css", "zig" },
   highlight = { enable = true },
   indent = { enable = true },
 }
@@ -91,15 +86,46 @@ EOF
 
 lua <<EOF
 require'nvim-treesitter.highlight'.set_custom_captures {
-  ["keyword"] = "TSFunction",
-  ["keyword.function"] = "TSFunction",
-  ["repeat"] = "TSFuncBuiltin",
-  ["type.builtin"] = "TSFuncBuiltin",
+  -- kill all the rainbow
+  ["boolean"] = "normal",
+  ["conditional"] = "normal",
+  ["constructor"] = "normal",
+  ["float"] = "normal",
+  ["function"] = "normal",
+  ["function.builtin"] = "normal",
+  ["function.macro"] = "normal",
+  ["keyword.function"] = "normal",
+  ["keyword"] = "normal",
+  ["keyword.operator"] = "normal",
+  ["keyword.return"] = "normal",
+  ["method"] = "normal",
+  ["number"] = "normal",
+  ["operator"] = "normal",
+  ["property"] = "normal",
+  ["punctuation.special"] = "normal",
+  ["punctuation.bracket"] = "normal",
+  ["punctuation.delimiter"] = "normal",
+  ["repeat"] = "normal",
+  ["type.builtin"] = "normal",
+  ["type"] = "normal",
+  ["variable"] = "normal",
 
-  -- Type is contrasty enough, even if not that semantic
-  ["function_definition_name"] = "Type",
-  ["method_declaration_name"] = "Type",
-  ["class_declaration_name"] = "Type",
+  -- svelte, js
+  ["tag"] = "normal",
+  ["include"] = "normal",
+  ["namespace"] = "normal",
+  ["tag.delimiter"] = "normal",
+
+  -- choose something contrasty enough, even if not that semantic
+  ["def_function_name"] = "Constant",
+  ["def_method_name"] = "Constant",
+  ["def_class_name"] = "Constant",
+  ["def_object_name"] = "Constant",
+  ["def_trait_name"] = "Constant",
+
+  ["def_variable_name"] = "Exception",
+  ["def_val_name"] = "Exception",
+  ["none"] = "Exception",
 }
 EOF
 

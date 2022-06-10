@@ -128,19 +128,11 @@ endif
 
 function! Dark()
   set background=dark
-  :call ColorCrap()
 endfunction
 
 function! Light()
   set background=light
-  :call ColorCrap()
 endfunction
-
-function! ColorCrap()
-  hi link TSType TSKeyword
-  "hi link TSKeywordFunction TSString
-endfunction
-
 
 command! Dark :call Dark()
 command! Light :call Light()
