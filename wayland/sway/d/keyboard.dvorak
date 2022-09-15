@@ -1,0 +1,11 @@
+input * {
+      # xkb_layout "lv_custom,lv,ru"
+      # xkb_variant "dvp,,phonetic_dvorak"
+      xkb_layout "lv_custom,lv"
+      xkb_variant "dvp,"
+      xkb_options "caps:ctrl_modifier"
+      xkb_numlock enabled
+      scroll_method "on_button_down"
+      scroll_button BTN_EXTRA
+      middle_emulation enabled
+}

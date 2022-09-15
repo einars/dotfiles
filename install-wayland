@@ -1,0 +1,19 @@
+#!/bin/sh
+
+install_source=$(readlink -f $(dirname "$0"))/wayland
+
+mkdir -p ~/.config/sway
+ln -sfn $install_source/sway/d ~/.config/sway/d
+ln -sfn $install_source/sway/security.d ~/.config/sway/security.d
+# idea: maybe create default config.$(hostname) if it does not exist
+
+mkdir -p ~/.config/mako
+ln -sfn $install_source/mako/config ~/.config/mako/config
+
+mkdir -p ~/.config/termite
+ln -sfn $install_source/termite/config ~/.config/termite/config
+ln -sfn $install_source/termite/config.alt ~/.config/termite/config.alt
+
+mkdir -p ~/.config/waybar
+ln -sfn $install_source/waybar/config ~/.config/waybar/config
+ln -sfn $install_source/waybar/style.css ~/.config/waybar/style.css

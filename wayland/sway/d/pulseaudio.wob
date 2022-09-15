@@ -1,0 +1,17 @@
+exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
+
+set $volume_up pamixer --unmute --increase 5 && sleep 0.01 && pamixer --get-volume > $SWAYSOCK.wob
+set $volume_dn pamixer --unmute --decrease 5 && sleep 0.01 && pamixer --get-volume > $SWAYSOCK.wob
+set $volume_toggle pactl set-sink-mute @DEFAULT_SINK@ toggle; sleep 0.01 && pamixer --get-mute && echo 0 > $SWAYSOCK.wob
+
+
+bindsym --to-code {
+    XF86AudioLowerVolume exec $volume_dn
+    XF86AudioRaiseVolume exec $volume_up
+    XF86AudioMute        exec $volume_toggle
+
+    $mod+Menu exec $volume_up
+    $mod+F11 exec $volume_down
+    $mod+F12 exec $volume_up
+    $mod+F10 exec $volume_toggle
+}
