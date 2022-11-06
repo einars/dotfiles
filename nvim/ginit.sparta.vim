@@ -1,17 +1,18 @@
 function! Dark()
-  GuiLinespace 1
+  GuiLinespace 0
   set background=dark
   """ I need dark font to be bolder and larger
-  Guifont! Iosevka Term Medium:h12
+  Guifont! Iosevka Term Medium:h11
 endfunction
 
 function! Light()
-  GuiLinespace 1
+  GuiLinespace 0
   set background=light
   Guifont! Iosevka Term:h10
 endfunction
 
-Light
+colors nord
+Dark
 
 
 "" inoremap <C-G> <C-r>=Translit('greek')<cr>

@@ -32,6 +32,7 @@ autocmd FileType css,scss EmmetInstall
 " color themes
 " papercolor is enough for everything
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'morhetz/gruvbox'
 
 Plug 'equalsraf/neovim-gui-shim'
 Plug 'ncm2/ncm2'
@@ -52,6 +53,8 @@ Plug 'Shougo/neosnippet.vim'
 "Plug 'RishabhRD/nvim-lsputils'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
+
+Plug 'arcticicestudio/nord-vim'
 
 Plug 'clojure-vim/async-clj-omni'
 
@@ -126,6 +129,7 @@ require'nvim-treesitter.highlight'.set_custom_captures {
   ["def_variable_name"] = "Exception",
   ["def_val_name"] = "Exception",
   ["none"] = "Exception",
+
 }
 EOF
 

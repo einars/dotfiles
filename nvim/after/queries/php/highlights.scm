@@ -1,3 +1,7 @@
+[(string_value)
+ (encapsed_string)
+ ] @string
+
 (class_declaration
   name: (name) @def_class_name)
 

@@ -50,6 +50,7 @@
         threads = 0
 [push]
         default = upstream
+	autoSetupRemote = true
 [gui]
         spellingdictionary = none
 	tabsize = 4
@@ -77,7 +78,7 @@
 	process = git-lfs filter-process
 	required = true
 [init]
-	defaultBranch = main
+	defaultBranch = master
 [commit]
 	verbose = true
 	template = ~/.gitmessage
@@ -100,3 +101,5 @@
 [alias]
   d = difftool
   difft = difftool
+[http]
+	sslVerify = false

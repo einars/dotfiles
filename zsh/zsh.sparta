@@ -1,6 +1,7 @@
 #!/bin/sh
 
 export GOPATH=/proj/go
+try_path /proj/go/bin
 try_path /opt/android-sdk/platform-tools/
 try_path /proj/proks/docker-inv/utils
 

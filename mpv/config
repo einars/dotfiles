@@ -14,7 +14,7 @@ pause=no                                 # do not save pause
             # at the end on subsequent plays, thx to save-position-on-quit
 audio-device=pulse
 audio-display=no
-volume=100
+volume=40
 volume-max=100
 
 audio-channels=stereo
@@ -59,4 +59,8 @@ sub-file-paths=sub:subs   # search for external subs in the listed subdirectorie
 slang=enm,en,eng,ru,rus # automatically select these subtitles (decreasing priority)
 alang=en,eng,ru,rus     # automatically select these audio tracks (decreasing priority)
 
+#demuxer-lavf-probesize=2147483647
+#demuxer-lavf-probe-info=no
 ### save-position-on-quit
+
+video-sync=display-resample

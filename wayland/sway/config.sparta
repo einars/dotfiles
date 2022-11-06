@@ -1,5 +1,6 @@
 set $mod Mod4
 
+
 # Home row direction keys (dvorak)
 set $left h
 set $down t
@@ -15,9 +16,13 @@ focus_wrapping no
 smart_borders on
 smart_gaps on
 
+
 set $menu rofi -show run | xargs swaymsg exec
 font pango:Fira Code Semibold 10
 output * bg /home/e/wallpapers/uw.lake.png fill
+
+output * max_render_time 4
+#output DP-4 max_render_time off
 
 set $volume_up pamixer --unmute --increase 5 && sleep 0.01 && pamixer --get-volume > $SWAYSOCK.wob
 set $volume_dn pamixer --unmute --decrease 5 && sleep 0.01 && pamixer --get-volume > $SWAYSOCK.wob
@@ -33,7 +38,7 @@ input * {
       # xkb_variant "dvp,,phonetic_dvorak"
       xkb_layout "lv_custom,lv"
       xkb_variant "dvp,"
-      xkb_options "caps:ctrl_modifier"
+      xkb_options "caps:hyper"
       xkb_numlock enabled
       scroll_method "on_button_down"
       scroll_button BTN_EXTRA
@@ -60,7 +65,8 @@ bindsym --to-code {
     Alt+Tab            exec ~/bin/sway/window-list
     $mod+Tab            exec ~/bin/sway/window-list
 
-    $mod+w             exec ~/bin/refresh-firefox
+    # $mod+w             exec ~/bin/refresh-firefox
+    $mod+w             exec $files ~/focus
 
     $mod+Return exec $term
     $mod+r      exec $menu
@@ -80,7 +86,7 @@ bindsym --to-code {
 
     $mod+XF86Calculator exec "tt wa.flow"
     Shift+XF86Calculator exec "tt wa.flow"
-    XF86Calculator exec "tt wa.restart"
+    XF86Calculator exec "tt wa.flow"
 
     $mod+Left  focus left
     $mod+Down  focus down
@@ -108,6 +114,7 @@ bindsym --to-code {
     $mod+space       focus mode_toggle
     $mod+Shift+space floating toggle
     $mod+Ctrl+space  exec /home/e/bin/sway/next-keyboard-layout
+    $mod+Ctrl+Shift+space  exec /home/e/bin/sway/default-keyboard-layout
     Alt+F4           kill
 
     #F1  seat '*' cursor press button1
@@ -226,8 +233,10 @@ for_window [app_id="Thunar"] floating enable
 for_window [app_id="thunar"] floating enable
 for_window [app_id="zenity"] floating enable
 for_window [app_id="firefoxdeveloperedition" title="Picture-in-Picture"] floating enable
+for_window [app_id="firefoxdeveloperedition" title="Firefox Developer Edition — Sharing Indicator"] floating enable
+for_window [class="lv.euso.signanywhere.SignAnywhere" title="Signing"] floating enable
 for_window [class="Caja"] floating enable
-for_window [class="Gimp"] floating enable
+#for_window [class="Gimp"] floating enable
 #for_window [class="Gimp" window_type="utility"] sticky enable
 for_window [class="VirtualBox Machine"] floating enable
 for_window [class="VirtualBox Manager"] floating enable

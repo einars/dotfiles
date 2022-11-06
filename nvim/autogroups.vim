@@ -64,14 +64,14 @@ augroup Calm
                     \ | hi! link TSFuncBuiltin TSKeyword
                     \ | hi! link TSConditional TSKeyword
                     \ | hi! link TSConstructor TSKeyword
-                    \ | hi! link TSBoolean TSVariable
-                    \ | hi! link TSNumber TSVariable
-                    \ | hi! link TSFloat TSVariable
                     \ | hi! link TSConstant TSVariable
                     \ | hi! link TSConstBuiltin TSVariable
                     \ | hi! link TSVariableBuiltin TSVariable
                     \ | hi! link TSParameter TSVariable
                     \ | hi! link TSProperty TSVariable
+                    "\ | hi! link TSBoolean TSVariable
+                    "\ | hi! link TSNumber TSVariable
+                    "\ | hi! link TSFloat TSVariable
 augroup END
 
 augroup z80

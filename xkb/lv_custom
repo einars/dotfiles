@@ -20,8 +20,7 @@ xkb_symbols "dvp" {
 
  name[Group1]= "Latvian (programmer US Dvorak)";
 
- //// programmer dvorak numbers
- //// u25CC − unused
+ //// programmer dvorak numbers // u25CC − unused
  key <TLDE> {[ dollar,  asciitilde, EuroSign,  cent   ]};
  key <AE01> {[ ampersand, percent, acute,   U00B7  ]};
  key <AE02> {[ bracketleft, 7,  U2705,  U274c  ]};
