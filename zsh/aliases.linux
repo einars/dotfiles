@@ -146,7 +146,8 @@ alias phpp='php -d xdebug.profiler_output_dir=. -d xdebug.profiler_enable=1 -d x
 alias sx="xinit /home/e/.xinitrc -- /etc/X11/xinit/xserverrc :0"
 
 # ripgrep
-alias aa="rg --sort=path --color=always --smart-case -g '!{node_modules}/'"
+#alias aa="rg --sort=path --color=always --smart-case -g '!{node_modules}/'"
+alias aa="rg --sort=path --color=auto --smart-case -g '!{node_modules}/'"
 alias caa="clear; rg --sort=path --color=always --smart-case -g '!{node_modules}/'"
 
 alias h2j='=html2jade --noemptypipe --noattrcomma --donotencode --bodyless --double'
