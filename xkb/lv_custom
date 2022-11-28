@@ -54,6 +54,11 @@ xkb_symbols "dvp" {
  // minus underscore emdash typog.minus
  key <AC11> {[ minus, underscore, emdash, U2212 ]};
 
+ // original
+ // key <BKSL> {[ backslash, bar, grave, breve]};
+ // backslash bar hyphen XXX
+ key <BKSL> {[ backslash, bar, U2010, U25CC ]};
+
  // add Norwegian characters to some unused lev3
  key <AD04> {[ p, P, ae, AE ]};
  key <AD05> {[ y, Y, oe, OE ]};
