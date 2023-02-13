@@ -46,8 +46,8 @@ xkb_symbols "dvp" {
  key <AD02> {[ comma, less, leftdoublequotemark, leftsinglequotemark]};
  key <AD03> {[ period, greater, rightdoublequotemark, rightsinglequotemark]};
 
- key <AD11> {[ slash,  question, leftarrow,  rightarrow  ]};
- key <AD12> {[ at,  asciicircum, uparrow,  downarrow  ]};
+ key <AD11> {[ slash,  question, rightarrow,  leftarrow  ]};
+ key <AD12> {[ at,  asciicircum, downarrow,  uparrow  ]};
 
  key <AB01> {[ apostrophe, quotedbl, guillemotleft, guillemotright ]};
 
