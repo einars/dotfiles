@@ -1,5 +1,5 @@
 {
- "auto_complete": false,
+ "auto_complete": false, // autocomplete eats esc in vintage mode
  "auto_complete_commit_on_tab": true,
  "auto_match_enabled": true,
  // "block_caret": true,
@@ -10,7 +10,7 @@
  "color_scheme": "Alabaster BG.sublime-color-scheme",
  // "color_scheme": "Mariana.sublime-color-scheme",
  "control_character_style": "names",
- "dark_color_scheme": "Alabaster Dark Mono.sublime-color-scheme",
+ "dark_color_scheme": "Breakers.sublime-color-scheme",
  "drag_text": false,
  "draw_indent_guides": false,
  "draw_white_space": ["all_tabs"],
@@ -18,10 +18,10 @@
  "fold_buttons": false,
  "folder_exclude_patterns": [".svn", ".git", ".hg", "CVS", ".Trash", ".Trash-*", ".cpcache", "target", "classes"],
  // "font_face": "Fira Code",
- "font_face": "IOSevka Term",
- // "font_face": "iA Writer Quattro",
- // "font_face": "iA Writer Quattro",
+// "font_face": "IOSevka Type Light",
+ "font_face": "IOSevka Light",
  "font_size": 10,
+ "font_options": ["gray_antialias", "dlig"],
  "git_diff_target": "head",
  "hardware_acceleration": "opengl",
  "hide_new_tab_button": true,
@@ -29,7 +29,7 @@
  "highlight_line": false,
  "indent_subsequent_lines": true,
  "indent_to_bracket": false,
- "light_color_scheme": "Alabaster Dark Mono.sublime-color-scheme",
+ "light_color_scheme": "Breakers.sublime-color-scheme",
  "line_numbers": true,
  "line_padding_bottom": 2,
  "line_padding_top": 2,
@@ -41,19 +41,43 @@
  "show_sidebar_button": false,
  "tab_completion": true,
  "tab_size": 2,
- "theme": "Adaptive.sublime-theme",
+ "theme": "auto",
+
+ "ensure_newline_at_eof_on_save": true,
 
  "translate_tabs_to_spaces": true,
- "word_wrap": true,
+ "word_wrap": "auto",
  "ignored_packages":
  [
   "Rust",
   // "Vintage",
 /*"SublimeLinter-contrib-clj-kondo",*/
 /*"SublimeLinter",*/
+/*"Rust",*/
+/*"Rust",*/
+/*"Rust",*/
+/*"Rust",*/
+/*"Rust",*/
+/*"Rust",*/
+/*"Z80 Assembly",*/
+/*"SublimeLinter",*/
+/*"SublimeREPL",*/
+/*"SublimeSBT",*/
+/*"Rust",*/
+/*"Rust",*/
+/*"SCSS",*/
+/*"Rust",*/
+/*"Rust",*/
+/*"SublimeREPL",*/
+/*"SublimeSBT",*/
+/*"SublimeLinter",*/
+/*"SublimeLinter",*/
+/*"SublimeLinter",*/
+/*"SublimeLinter",*/
 ],
  "vintage_start_in_command_mode": true,
  "vintage_use_clipboard": true,
  "dark_theme": "Default Dark.sublime-theme",
  "light_theme": "Adaptive.sublime-theme",
+ "ui_scale": 1.0,
 }

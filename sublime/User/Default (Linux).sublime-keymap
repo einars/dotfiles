@@ -7,26 +7,20 @@
    "command": "focus_neighboring_group"
  },
 
- {"keys": ["ctrl+w"],
-    // it's deep in the fingers,
-    // not expecting to close the window
-    "command": "delete_word",
-    "args": { "forward": false }
-  },
+  // ctrl-w deep in the vim fingers,
+  // not expecting to close the window
+ {"keys": ["ctrl+w"], "command": "delete_word", "args": { "forward": false } },
+ {"keys": ["ctrl+shift+w"], "command": "close_file" },
+ {"keys": ["ctrl+alt+shift+w"], "command": "close" },
+ {"keys": ["ctrl+alt+w"], "command": "close" },
+  
+
   {"keys": ["ctrl+r"],
    "command": "redo_or_repeat",
  },
  { "keys": ["ctrl+d"], "command": "move", "args": {"by": "pages", "forward": true} },
  { "keys": ["ctrl+u"], "command": "move", "args": {"by": "pages", "forward": false} },
 
- {"keys": ["ctrl+alt+z"],
-   "command": "close",
- },
- { "keys": ["ctrl+alt+z"], "command": "close_transient", "context":
-  [
-    { "key": "group_has_transient_sheet", "operator": "equal", "operand": true }
-  ]
-},
 {
     // vintage: enter moves to the _beginning_ of the next line,
     // not just directly down
@@ -46,14 +40,75 @@
         {
           "command": "set_motion", 
           "args": {
-            "motion": "move",
-            "motion_args": {"by": "stops", "word_begin": true, "forward": true, "extend": true, "separators": "" },
-            "clip_to_line": true,
+            "motion": "move_to",
+            "motion_args": {"to": "bol", "extend": true},
           }
         },
       ]
     }
   },
+
+
+// vintage won't replace keypad numbers
+{"keys": ["r", "keypad0"], 
+  "command": "replace_character",
+  "args": {"character": "0"},
+  "context": [{"key": "setting.command_mode"}]
+},
+{"keys": ["r", "keypad1"], 
+  "command": "replace_character",
+  "args": {"character": "1"},
+  "context": [{"key": "setting.command_mode"}]
+},
+{"keys": ["r", "keypad2"], 
+  "command": "replace_character",
+  "args": {"character": "2"},
+  "context": [{"key": "setting.command_mode"}]
+},
+{"keys": ["r", "keypad3"], 
+  "command": "replace_character",
+  "args": {"character": "3"},
+  "context": [{"key": "setting.command_mode"}]
+},
+{"keys": ["r", "keypad4"], 
+  "command": "replace_character",
+  "args": {"character": "4"},
+  "context": [{"key": "setting.command_mode"}]
+},
+{"keys": ["r", "keypad5"], 
+  "command": "replace_character",
+  "args": {"character": "5"},
+  "context": [{"key": "setting.command_mode"}]
+},
+{"keys": ["r", "keypad6"], 
+  "command": "replace_character",
+  "args": {"character": "6"},
+  "context": [{"key": "setting.command_mode"}]
+},
+{"keys": ["r", "keypad7"], 
+  "command": "replace_character",
+  "args": {"character": "7"},
+  "context": [{"key": "setting.command_mode"}]
+},
+{"keys": ["r", "keypad8"], 
+  "command": "replace_character",
+  "args": {"character": "8"},
+  "context": [{"key": "setting.command_mode"}]
+},
+{"keys": ["r", "keypad9"], 
+  "command": "replace_character",
+  "args": {"character": "9"},
+  "context": [{"key": "setting.command_mode"}]
+},
+
+ {"keys": ["ctrl+t"],
+   "command": "clojure_sublimed_eval_code",
+   "args": {"code":  "(let [{:keys [fail error] :as res} (clojure.test/run-tests)] (str (when (or (pos? fail) (pos? error)) \"🚨🚨🚨🚨🚨🚨🚨🚨 \") res))"},
+   "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
+ {"keys": ["ctrl+alt+t"],
+   "command": "clojure_sublimed_eval_code",
+   "args": {"code":  "(let [{:keys [fail error] :as res} (clojure.test/run-tests)] (str (when (or (pos? fail) (pos? error)) \"🚨🚨🚨🚨🚨🚨🚨🚨 \") res))"},
+   "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
 
  // // Evaluate
  {"keys": ["ctrl+alt+enter"],
@@ -87,30 +142,30 @@
   "command": "clojure_sublimed_toggle_trace",
   "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
 
- // // Toggle Symbol Info
- // {"keys": ["ctrl+alt+d"],
- //  "command": "clojure_sublimed_lookup_symbol",
- //  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
+ // Toggle Symbol Info
+ {"keys": ["ctrl+alt+d"],
+  "command": "clojure_sublimed_toggle_symbol",
+  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
 
- // // Copy Evaluation Result
- // {"keys": ["ctrl+c"],
- //  "command": "clojure_sublimed_copy",
- //  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
+ // Copy Evaluation Result
+ {"keys": ["ctrl+c"],
+  "command": "clojure_sublimed_copy",
+  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
 
  // // Require Namespace
  // {"keys": ["ctrl+alt+r"],
  //  "command": "clojure_sublimed_require_namespace",
  //  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
  
- // // Reindent Lines
- // {"keys": ["ctrl+alt+f"],
- //  "command": "clojure_sublimed_reindent_lines",
- //  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
+ // Reindent Lines
+ {"keys": ["ctrl+alt+f"],
+  "command": "clojure_sublimed_reindent_lines",
+  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
 
- // // Reindent Buffer
- // {"keys": ["ctrl+alt+shift+f"],
- //  "command": "clojure_sublimed_reindent_buffer",
- //  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
+ // Reindent Buffer
+ {"keys": ["ctrl+alt+shift+f"],
+  "command": "clojure_sublimed_reindent_buffer",
+  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
 
  // // Insert New Line
  // {"keys": ["enter"],
