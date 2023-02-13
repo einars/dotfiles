@@ -30,15 +30,16 @@ set $volume_toggle pactl set-sink-mute @DEFAULT_SINK@ toggle; sleep 0.01 && pami
 
 exec swayidle -w \
     timeout 300 "t kill.watson" \
-    timeout 10 'if pgrep swaylock; then swaymsg "output * dpms off"; fi' \
-    resume 'swaymsg "output * dpms on"'
+    timeout 10 'if pgrep swaylock; then swaymsg "output * power off"; fi' \
+    resume 'swaymsg "output * power on"'
 
 input * {
       # xkb_layout "lv_custom,lv,ru"
       # xkb_variant "dvp,,phonetic_dvorak"
       xkb_layout "lv_custom,lv"
       xkb_variant "dvp,"
-      xkb_options "caps:hyper"
+      # numpad:mac disables numpad, yes yes yes yes
+      xkb_options "caps:escape,numpad:mac"
       xkb_numlock enabled
       scroll_method "on_button_down"
       scroll_button BTN_EXTRA
@@ -65,8 +66,8 @@ bindsym --to-code {
     Alt+Tab            exec ~/bin/sway/window-list
     $mod+Tab            exec ~/bin/sway/window-list
 
-    # $mod+w             exec ~/bin/refresh-firefox
-    $mod+w             exec $files ~/focus
+    $mod+w             exec ~/bin/refresh-firefox
+    #$mod+w             exec $files ~/focus
 
     $mod+Return exec $term
     $mod+r      exec $menu
@@ -84,9 +85,11 @@ bindsym --to-code {
     Shift+Menu exec "tt screenshot"
     Ctrl+Menu exec "tt screenshot.window"
 
-    $mod+XF86Calculator exec "tt wa.flow"
-    Shift+XF86Calculator exec "tt wa.flow"
-    XF86Calculator exec "tt wa.flow"
+    $mod+XF86Calculator exec "tt wa.flow +45"
+    Shift+XF86Calculator exec "tt wa.flow +45"
+    XF86Calculator exec "tt wa.flow +25"
+
+    Ctrl+Shift+XF86Calculator exec "gnome-clocks"
 
     $mod+Left  focus left
     $mod+Down  focus down
@@ -240,12 +243,15 @@ for_window [class="Caja"] floating enable
 #for_window [class="Gimp" window_type="utility"] sticky enable
 for_window [class="VirtualBox Machine"] floating enable
 for_window [class="VirtualBox Manager"] floating enable
+for_window [class="VirtualBox"] floating enable
 for_window [class="Audacious"] floating enable
 for_window [app_id="gnumeric"] floating enable
 for_window [app_id="eog"] floating enable
 for_window [app_id="qimgv"] floating enable
 for_window [app_id="zoom"] floating enable
 for_window [app_id="anki"] floating enable
+for_window [app_id="cap32"] floating enable
+for_window [app_id="org.gnome.clocks"] floating enable
 for_window [class="Fuse"] floating enable
 for_window [class="jetbrains-idea-ce"] floating enable
 for_window [app_id="org.zealdocs.zeal"] floating enable, move scratchpad, scratchpad show

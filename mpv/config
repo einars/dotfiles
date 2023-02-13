@@ -63,4 +63,9 @@ alang=en,eng,ru,rus     # automatically select these audio tracks (decreasing pr
 #demuxer-lavf-probe-info=no
 ### save-position-on-quit
 
-video-sync=display-resample
+#video-sync=display-resample
+video-sync=audio
+
+vo=gpu-next
+## wayland-disable-vsync=yes
+## video-sync=display-desync
