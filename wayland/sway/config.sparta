@@ -21,6 +21,8 @@ set $menu rofi -show run | xargs swaymsg exec
 font pango:Fira Code Semibold 10
 output * bg /home/e/wallpapers/uw.lake.png fill
 
+exec way-displays
+
 output * max_render_time 4
 #output DP-4 max_render_time off
 
@@ -34,10 +36,12 @@ exec swayidle -w \
     resume 'swaymsg "output * power on"'
 
 input * {
-      # xkb_layout "lv_custom,lv,ru"
-      # xkb_variant "dvp,,phonetic_dvorak"
       xkb_layout "lv_custom,lv"
       xkb_variant "dvp,"
+
+      #xkb_layout "lv"
+      #xkb_variant "
+
       # numpad:mac disables numpad, yes yes yes yes
       xkb_options "caps:escape,numpad:mac"
       xkb_numlock enabled
@@ -85,11 +89,11 @@ bindsym --to-code {
     Shift+Menu exec "tt screenshot"
     Ctrl+Menu exec "tt screenshot.window"
 
-    $mod+XF86Calculator exec "tt wa.flow +45"
-    Shift+XF86Calculator exec "tt wa.flow +45"
     XF86Calculator exec "tt wa.flow +25"
-
-    Ctrl+Shift+XF86Calculator exec "gnome-clocks"
+    Shift+XF86Calculator exec "tt wa.flow +45"
+    $mod+XF86Calculator exec "tt wa.flow +45"
+    Ctrl+XF86Calculator exec "tt wa.flow +50"
+    Ctrl+Shift+XF86Calculator exec "tt wa.flow +50"
 
     $mod+Left  focus left
     $mod+Down  focus down
@@ -254,14 +258,19 @@ for_window [app_id="cap32"] floating enable
 for_window [app_id="org.gnome.clocks"] floating enable
 for_window [class="Fuse"] floating enable
 for_window [class="jetbrains-idea-ce"] floating enable
+for_window [app_id="gnurobbo"] floating enable
 for_window [app_id="org.zealdocs.zeal"] floating enable, move scratchpad, scratchpad show
+for_window [app_id="mpv-double"] sticky enable, border none
+for_window [app_id="firefoxdeveloperedition"] sticky enable
 
-for_window [class="slide in the woods.exe"] floating enable
+for_window [class="ghidra-Ghidra"] floating enable
+for_window [class="ZEsarUX"] floating enable
+for_window [class="file-png"] floating enable
 
 for_window [shell="xwayland"] title_format "%title [XWayland]"
 
 # telegram "save image" gets buggy w/o floating
-for_window [app_id="telegramdesktop" title="^Media viewer$"] fullscreen disable
+for_window [app_id="telegramdesktop" title="^Media viewer$"] fullscreen disable floating enable
 
 include /etc/sway/config.d/*
 include ~/.config/sway/$(hostname)/*

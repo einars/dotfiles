@@ -1,9 +1,7 @@
 {
 	"extensions":
 	[
-		"cljs",
 		"clj",
+		"cljs",
 	],
-	"save_on_focus_lost": true,
-	"word_separators": "./\\()\"':,.;<>~!@#$%^&*|+=[]{}`~?",
 }

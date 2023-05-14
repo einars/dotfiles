@@ -84,7 +84,7 @@ alias ocaml='rlwrap --prompt-colour=green --multi-line --remember --complete-fil
 alias ocamldebug='rlwrap ocamldebug'
 alias sbcl='rlwrap sbcl'
 alias arc='cd ~/arc; rlwrap mzscheme -m -f as.scm'
-alias clojure='rlwrap java -cp $CLOJURE_HOME/clojure.jar clojure.lang.Repl'
+#alias clojure='rlwrap java -cp $CLOJURE_HOME/clojure.jar clojure.lang.Repl'
 alias octave='octave --silent'
 
 
@@ -127,7 +127,7 @@ alias d2u='dos2unix'
 alias cal='cal --monday -3'
 #alias calc=octave-cli
 #alias calc=sage
-alias calc=python
+alias calc=bpython
 
 alias clamscan="clamscan --max-scansize=512M --max-filesize=512M"
 

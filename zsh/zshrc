@@ -50,13 +50,9 @@ fi
 
 
 autoload -Uz compinit colors
-# https://gist.github.com/ctechols/ca1035271ad134841284
-for dump in ~/.zcompdump(N.mh+24); do
-  compinit
-done
+compinit
+#compdef -d git
 
-compinit -C
-compdef -d git # i'm smarter and faster
 
 # remove \0 from IFS
 #export IFS=${IFS/$'\0'}
@@ -240,6 +236,8 @@ complete-files () { compadd - $PREFIX* }
 
 try_source ~/.zsh/zsh.$host
 
-if test -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; then
-    source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+try_source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+try_source /usr/share/fzf/completion.zsh
+try_source /usr/share/fzf/key-bindings.zsh
+

@@ -22,6 +22,8 @@ Plug 'sirtaj/vim-openscad'
 
 Plug 'mattn/webapi-vim'
 
+" expand snippet: ctrl-f ,
+" html snippet: !
 let g:user_emmet_install_global=0
 let g:user_emmet_leader_key='<C-F>'
 exec 'source ' . EditorRoot() . '/snippets/emmet.vim'
@@ -56,7 +58,7 @@ Plug 'nvim-treesitter/playground'
 
 Plug 'arcticicestudio/nord-vim'
 
-Plug 'clojure-vim/async-clj-omni'
+"Plug 'clojure-vim/async-clj-omni'
 
 " dependencies
 Plug 'nvim-lua/popup.nvim'
@@ -87,51 +89,51 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
-lua <<EOF
-require'nvim-treesitter.highlight'.set_custom_captures {
-  -- kill all the rainbow
-  ["boolean"] = "normal",
-  ["conditional"] = "normal",
-  ["constructor"] = "normal",
-  ["float"] = "normal",
-  ["function"] = "normal",
-  ["function.builtin"] = "normal",
-  ["function.macro"] = "normal",
-  ["keyword.function"] = "normal",
-  ["keyword"] = "normal",
-  ["keyword.operator"] = "normal",
-  ["keyword.return"] = "normal",
-  ["method"] = "normal",
-  ["number"] = "normal",
-  ["operator"] = "normal",
-  ["property"] = "normal",
-  ["punctuation.special"] = "normal",
-  ["punctuation.bracket"] = "normal",
-  ["punctuation.delimiter"] = "normal",
-  ["repeat"] = "normal",
-  ["type.builtin"] = "normal",
-  ["type"] = "normal",
-  ["variable"] = "normal",
-
-  -- svelte, js
-  ["tag"] = "normal",
-  ["include"] = "normal",
-  ["namespace"] = "normal",
-  ["tag.delimiter"] = "normal",
-
-  -- choose something contrasty enough, even if not that semantic
-  ["def_function_name"] = "Constant",
-  ["def_method_name"] = "Constant",
-  ["def_class_name"] = "Constant",
-  ["def_object_name"] = "Constant",
-  ["def_trait_name"] = "Constant",
-
-  ["def_variable_name"] = "Exception",
-  ["def_val_name"] = "Exception",
-  ["none"] = "Exception",
-
-}
-EOF
+"lua <<EOF
+"require'nvim-treesitter.highlight'.set_custom_captures {
+"  -- kill all the rainbow
+"  ["boolean"] = "normal",
+"  ["conditional"] = "normal",
+"  ["constructor"] = "normal",
+"  ["float"] = "normal",
+"  ["function"] = "normal",
+"  ["function.builtin"] = "normal",
+"  ["function.macro"] = "normal",
+"  ["keyword.function"] = "normal",
+"  ["keyword"] = "normal",
+"  ["keyword.operator"] = "normal",
+"  ["keyword.return"] = "normal",
+"  ["method"] = "normal",
+"  ["number"] = "normal",
+"  ["operator"] = "normal",
+"  ["property"] = "normal",
+"  ["punctuation.special"] = "normal",
+"  ["punctuation.bracket"] = "normal",
+"  ["punctuation.delimiter"] = "normal",
+"  ["repeat"] = "normal",
+"  ["type.builtin"] = "normal",
+"  ["type"] = "normal",
+"  ["variable"] = "normal",
+"
+"  -- svelte, js
+"  ["tag"] = "normal",
+"  ["include"] = "normal",
+"  ["namespace"] = "normal",
+"  ["tag.delimiter"] = "normal",
+"
+"  -- choose something contrasty enough, even if not that semantic
+"  ["def_function_name"] = "Constant",
+"  ["def_method_name"] = "Constant",
+"  ["def_class_name"] = "Constant",
+"  ["def_object_name"] = "Constant",
+"  ["def_trait_name"] = "Constant",
+"
+"  ["def_variable_name"] = "Exception",
+"  ["def_val_name"] = "Exception",
+"  ["none"] = "Exception",
+"
+"}
+"EOF
 
 
 "set foldmethod=expr

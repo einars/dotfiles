@@ -8,9 +8,10 @@
  "caret_extra_top": 2,
  "caret_extra_bottom": 2,
  "color_scheme": "Alabaster BG.sublime-color-scheme",
- // "color_scheme": "Mariana.sublime-color-scheme",
  "control_character_style": "names",
  "dark_color_scheme": "Breakers.sublime-color-scheme",
+ "default_line_encoding": "unix",
+ "detect_indentation": false,
  "drag_text": false,
  "draw_indent_guides": false,
  "draw_white_space": ["all_tabs"],
@@ -34,6 +35,7 @@
  "line_padding_bottom": 2,
  "line_padding_top": 2,
  "margin": 10,
+ "open_tabl_after_current": false,
  "save_on_focus_lost": true,
  "shift_tab_unindent": true,
  "show_definitions": false,
@@ -42,42 +44,40 @@
  "tab_completion": true,
  "tab_size": 2,
  "theme": "auto",
+ "update_system_recent_files": false,
 
  "ensure_newline_at_eof_on_save": true,
 
  "translate_tabs_to_spaces": true,
- "word_wrap": "auto",
+ "word_wrap": false,
  "ignored_packages":
  [
-  "Rust",
-  // "Vintage",
-/*"SublimeLinter-contrib-clj-kondo",*/
-/*"SublimeLinter",*/
-/*"Rust",*/
-/*"Rust",*/
-/*"Rust",*/
-/*"Rust",*/
-/*"Rust",*/
-/*"Rust",*/
-/*"Z80 Assembly",*/
-/*"SublimeLinter",*/
-/*"SublimeREPL",*/
-/*"SublimeSBT",*/
-/*"Rust",*/
-/*"Rust",*/
-/*"SCSS",*/
-/*"Rust",*/
-/*"Rust",*/
-/*"SublimeREPL",*/
-/*"SublimeSBT",*/
-/*"SublimeLinter",*/
-/*"SublimeLinter",*/
-/*"SublimeLinter",*/
-/*"SublimeLinter",*/
-],
+   ],
  "vintage_start_in_command_mode": true,
  "vintage_use_clipboard": true,
  "dark_theme": "Default Dark.sublime-theme",
  "light_theme": "Adaptive.sublime-theme",
- "ui_scale": 1.0,
+ "ui_scale": 0.0,
+"dictionary": "Dictionaries/lv_LV.dic",
+"added_words":
+[
+		"nopauzēt",
+    "etc",
+    "ftp",
+    "Chimera",
+    "videscentra",
+    "himēras",
+        "izparsē",
+        "tāsks",
+        "parsētos",
+        "tāskam",
+        "palaišanos",
+        "postgres",
+        "piem",
+   ],
+  "ignored_words":
+  [
+		"Smartmet",
+        "tāski",
+   ],
 }

@@ -1,3 +1,11 @@
 {
+	"php_bin": "/usr/bin/php",
 	"version": 4,
+	"enable_auto_align": true,
+	"psr2": true,
+	"passes":
+	[
+		"ShortArray",
+		"SpaceBetweenMethods"
+	],
 }

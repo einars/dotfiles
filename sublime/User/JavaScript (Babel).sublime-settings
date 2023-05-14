@@ -3,5 +3,6 @@
 	[
 		"js"
 	],
-	"color_scheme": "Alabaster.sublime-color-scheme"
+	"color_scheme": "Alabaster.sublime-color-scheme",
+	"save_on_focus_lost": false,
 }

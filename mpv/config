@@ -14,7 +14,7 @@ pause=no                                 # do not save pause
             # at the end on subsequent plays, thx to save-position-on-quit
 audio-device=pulse
 audio-display=no
-volume=40
+volume=80
 volume-max=100
 
 audio-channels=stereo
