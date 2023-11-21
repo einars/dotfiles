@@ -4,6 +4,6 @@ options head indent
 
     set -o pipefail -o errexit -o nounset
 
-    cd "$(dirname "\$0")"
+    cd "$(dirname "\$0")/.."
 
-    $0
+    ${1}

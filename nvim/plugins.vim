@@ -47,8 +47,8 @@ let g:DiffUnit="Word2"
 
 let g:neosnippet#disable_runtime_snippets = { '_': 1 }
 let g:neosnippet#snippets_directory = EditorRoot() . "/snippets"
-" Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neosnippet.vim'
+" Plug 'Shougo/neosnippet-snippets'
 
 
 "Plug 'RishabhRD/popfix'

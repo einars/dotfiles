@@ -1,0 +1,9 @@
+// These settings override both User and Default settings for the Pug syntax
+{
+  "color_scheme": "Alabaster.sublime-color-scheme",
+  
+  "extensions":
+  [
+		"jade"
+	],
+}

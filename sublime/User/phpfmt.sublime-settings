@@ -1,11 +1,24 @@
 {
 	"php_bin": "/usr/bin/php",
-	"version": 4,
-	"enable_auto_align": true,
-	"psr2": true,
-	"passes":
-	[
-		"ShortArray",
-		"SpaceBetweenMethods"
-	],
+	// "enable_auto_align": true,
+	"passes": [
+    /// PSR2:
+    "PSR2KeywordsLowerCase",
+    "PSR2IndentWithSpace",
+    //// "PSR2LnAfterNamespace",
+     "PSR2CurlyOpenNextLine",
+    // "PSR2ModifierVisibilityStaticOrder",
+    //// "PSR2SingleEmptyLineAndStripClosingTag",
+    //// "ReindentSwitchBlocks",
+    //// "ReindentEnumBlocks",
+    // "ReindentComments",
+    "StripNewlineWithinClassBody",
+
+    /// extra:
+    "AlignEquals",
+
+    "ShortArray",
+    "SpaceBetweenMethods",
+    // "EchoToPrint",
+  ],
 }

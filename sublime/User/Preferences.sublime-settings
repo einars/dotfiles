@@ -9,7 +9,7 @@
  "caret_extra_bottom": 2,
  "color_scheme": "Alabaster BG.sublime-color-scheme",
  "control_character_style": "names",
- "dark_color_scheme": "Breakers.sublime-color-scheme",
+ "dark_color_scheme": "Mariana.sublime-color-scheme",
  "default_line_encoding": "unix",
  "detect_indentation": false,
  "drag_text": false,
@@ -18,10 +18,10 @@
  "find_selected_text": false,
  "fold_buttons": false,
  "folder_exclude_patterns": [".svn", ".git", ".hg", "CVS", ".Trash", ".Trash-*", ".cpcache", "target", "classes"],
- // "font_face": "Fira Code",
+ // "font_face": "Fira Code Light",
 // "font_face": "IOSevka Type Light",
  "font_face": "IOSevka Light",
- "font_size": 10,
+ "font_size": 11,
  "font_options": ["gray_antialias", "dlig"],
  "git_diff_target": "head",
  "hardware_acceleration": "opengl",
@@ -52,7 +52,7 @@
  "word_wrap": false,
  "ignored_packages":
  [
-   ],
+  ],
  "vintage_start_in_command_mode": true,
  "vintage_use_clipboard": true,
  "dark_theme": "Default Dark.sublime-theme",
@@ -74,10 +74,10 @@
         "palaišanos",
         "postgres",
         "piem",
-   ],
+  ],
   "ignored_words":
   [
 		"Smartmet",
         "tāski",
-   ],
+  ],
 }

@@ -37,6 +37,7 @@ try_path ~/.yarn/bin         # yarn
 #try_path ~/.local/bin
 try_path ~/.emacs.d/bin      # doom emacs
 try_path ~/.local/bin        # pip --user
+try_path ~/.local/share/coursier/bin
 
 cdpath=(. ~)
 

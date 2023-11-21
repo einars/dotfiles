@@ -1,3 +1,4 @@
+" ctrl-f comma
 let g:user_emmet_settings = {
       \  'javascript': { 'extends': 'jsx' },
       \  'html': {
@@ -5,5 +6,5 @@ let g:user_emmet_settings = {
       \      '!': join(readfile(EditorRoot() . '/snippets/html.s'), "\r"),
       \      'test': 'this works',
       \    }
-      \  },
+      \  }
       \}

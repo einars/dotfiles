@@ -1,8 +1,9 @@
 # mostly taken from https://github.com/Argon-/mpv-config/blob/master/mpv.conf
 
-target-prim=bt.2020
-target-trc=srgb
-tone-mapping=bt.2390
+icc-profile-auto
+## ## target-prim=bt.2020
+## ## target-trc=srgb
+## tone-mapping=bt.2390
 
 #no-border                               # no window title bar
 msg-module                               # prepend module name to log messages
@@ -67,5 +68,6 @@ alang=en,eng,ru,rus     # automatically select these audio tracks (decreasing pr
 video-sync=audio
 
 vo=gpu-next
+gpu-context=wayland
 ## wayland-disable-vsync=yes
 ## video-sync=display-desync

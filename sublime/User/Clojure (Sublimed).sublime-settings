@@ -4,4 +4,5 @@
 		"clj",
 		"cljs",
 	],
+  "save_on_focus_lost": false
 }

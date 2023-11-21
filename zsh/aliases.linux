@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 alias restart='sudo systemctl restart'
-alias mysql='mysql --pager=less'
+alias mysql='mariadb --pager=less'
 
 alias less='less --RAW-CONTROL-CHARS '
 
@@ -180,6 +180,8 @@ alias tarpig="tar --use-compress-program='pigz --fast | pv' -cf "
 alias pigtar="tar --use-compress-program='pigz --fast' -cvf "
 
 alias load_nvm='fnm use v16'
+
+alias mpv='mpv --no-resume-playback'
 
 # interactive jq repl
 jqa() { echo '' | fzf --print-query --preview "cat $1 | jq {q}" }

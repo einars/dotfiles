@@ -12,14 +12,16 @@ set $files thunar
 
 focus_wrapping no
 
-
 smart_borders on
 smart_gaps on
 
+#workspace_auto_back_and_forth yes
 
 set $menu rofi -show run | xargs swaymsg exec
 font pango:Fira Code Semibold 10
-output * bg /home/e/wallpapers/uw.lake.png fill
+#output * bg /home/e/wallpapers/uw.lake.png fill
+#output * bg "/home/e/wallpapers/john singer sargent - white ships.jpg" fill
+output * bg "/home/e/wallpapers/uw.ships.jpg" fill
 
 exec way-displays
 
@@ -68,7 +70,8 @@ bindsym --to-code {
     $mod+Ctrl+q        exec swaynag -t warning -m 'Exit sway?' -b 'Yes, exit sway' 'swaymsg exit'
 
     Alt+Tab            exec ~/bin/sway/window-list
-    $mod+Tab            exec ~/bin/sway/window-list
+    #$mod+Tab           exec ~/bin/sway/window-list
+    $mod+Tab           workspace back_and_forth
 
     $mod+w             exec ~/bin/refresh-firefox
     #$mod+w             exec $files ~/focus
@@ -89,11 +92,10 @@ bindsym --to-code {
     Shift+Menu exec "tt screenshot"
     Ctrl+Menu exec "tt screenshot.window"
 
-    XF86Calculator exec "tt wa.flow +25"
-    Shift+XF86Calculator exec "tt wa.flow +45"
-    $mod+XF86Calculator exec "tt wa.flow +45"
-    Ctrl+XF86Calculator exec "tt wa.flow +50"
-    Ctrl+Shift+XF86Calculator exec "tt wa.flow +50"
+    XF86Calculator exec "tt wa.flow"
+    Shift+XF86Calculator exec "tt wa.restart"
+    $mod+XF86Calculator exec "tt wa.restart"
+    Ctrl+XF86Calculator exec "tt wa.restart"
 
     $mod+Left  focus left
     $mod+Down  focus down
@@ -123,6 +125,7 @@ bindsym --to-code {
     $mod+Ctrl+space  exec /home/e/bin/sway/next-keyboard-layout
     $mod+Ctrl+Shift+space  exec /home/e/bin/sway/default-keyboard-layout
     Alt+F4           kill
+    #F1               exec "wtype -k Escape"
 
     #F1  seat '*' cursor press button1
     #Shift+F1 seat '*' cursor release button1

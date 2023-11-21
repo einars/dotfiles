@@ -2,10 +2,12 @@
 {
   // "color_scheme": "Packages/Monokai Extended/Monokai Extended Light.tmTheme",
   "color_scheme": "Breakers.sublime-color-scheme",
-  // "font_face": "Shantell Sans Informal",
-  "font_face": "iA Writer Duo V",
+  // "font_face": "Go Mono",
+  "font_face": "Monospace",
   "font_size": 10,
+  "font_options": ["no_italic"],
   "line_numbers": false,
   "spell_check": false,
   "font_options": [],
+  "word_wrap": true,
 }
