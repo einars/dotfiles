@@ -8,6 +8,9 @@ function cleanup {
   rm ${image}
 }
 
-grim - | gm convert - -scale 25% -blur 0x2 -fill '#013d48' -colorize 70% -scale 400% -quality 50 ${image}
+#tint='#013d48'
+tint='#2e3436'
+#grim - | gm convert - -scale 50% -blur 0x4 -fill $tint -colorize 70% -scale 200% -quality 50 ${image}
+grim - | gm convert - -scale 50% -fill $tint -colorize 70% -blur 0x06 -scale 200% -quality 50 ${image}
 
-swaylock --show-keyboard-layout --scaling fill --image ${image}
+swaylock --ignore-empty-password --show-keyboard-layout --scaling fill --image ${image}

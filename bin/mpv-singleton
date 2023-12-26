@@ -1,4 +1,9 @@
 #!/bin/sh
 
 pkill -f sparta-smp
-mpv --no-resume-playback --x11-name=sparta-smp "$@"
+mpv \
+  --volume=40 \
+  --no-resume-playback \
+  --wayland-app-id=sparta-smp \
+  --x11-name=sparta-smp \
+  "$@"

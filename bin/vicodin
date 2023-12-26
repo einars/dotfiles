@@ -4,42 +4,58 @@
 // run in background, monitor watson (https://github.com/TailorDev/Watson)
 // and notify every X min 
 
-define('DEFAULT_BREAKPOINTS', [
-    // time, min => sound
-    25 => 'sound_pomodoro_complete.ogg',
-    50 => 'sound_rank_earned.ogg',
-    75 => 'sound_rank_earned.ogg',
-    100 => 'sound_rank_earned.ogg',
-]);
+define('TOTAL_SILENCE', false);
 
-monitor_watson([
-    'break-time' => 7,
-    'state-file' => getenv('HOME') . '/.config/watson/state',
-    'history-file' => getenv('HOME') . '/.config/watson/frames',
-    'breakpoints' => DEFAULT_BREAKPOINTS,
-    'aggregate-tags' => [],
-]);
+define('PATH_SOUND', '/home/e/bin/sound/');
+//define('SOUND_TEST', 'sound_pomodoro_almost_complete.ogg');
+// define('SOUND_25', 'sound_pomodoro_complete.ogg');
+#define('SOUND_SUCCESS', 'sound_rank_earned.ogg');
+define('SOUND_START', 'windup.ogg');
+define('SOUND_PRE', 'chime-twice.ogg');
+define('SOUND_SUCCESS', 'success-short.mp3');
+define('SOUND_GLORY', 'sound_rank_earned.ogg');
+#define('SOUND_ENOUGH', 'totally-enough.ogg');
+define('SOUND_ENOUGH', 'totally-enough-2.ogg');
+//
+define('SOUND_TEST', SOUND_SUCCESS);
 
+function get_success_sound($elapsed = 0)
+{
+    if ($elapsed < 40) {
+        return 'sound_pomodoro_complete.ogg';
+    }
+    return 'sound_achievement_earned.ogg';
 
-function watson_state($state_file, $opts)
+}
+
+define('SOUND_NAG', 'chime.ogg');
+// define('SOUND_NAG', null);
+
+monitor_watson(getenv('HOME') . '/.config/watson/state');
+
+function run_background($cmd)
+{
+    echo($cmd . ' > /dev/null &');
+    exec($cmd . ' > /dev/null &');
+}
+
+function watson_state($state_file)
 {
     $s = json_decode(file_get_contents($state_file), true);
 
     if ( ! isset($s['project']) ) {
         return [
             'is_running' => false,
+            'nudge' => false,
             'project' => null,
             'tags' => [],
             'elapsed' => null,
-            'opts' => $opts,
         ];
     }
 
-    $tags = '';
+    $tags = [];
     if (isset($s['tags'])) {
         $tags = $s['tags'];
-    } else {
-        $tags = [];
     }
 
 
@@ -47,29 +63,13 @@ function watson_state($state_file, $opts)
         'is_running' => true,
         'project' => $s['project'],
         'tags' => $tags,
-        // 'elapsed' => (int)(() / 60),
-        'opts' => $opts,
     ];
 
-    $aggregate_tag = get_aggregate_tag($st);
+    $elapsed = time() - $s['start'];
+    $elapsed_min = (int)($elapsed / 60);
 
-    $elapsed = 0;
+    $st['elapsed'] = $elapsed_min;
 
-    if ($aggregate_tag) {
-        $frames = json_decode(file_get_contents($opts['history-file']), true);
-        $ts_min = strtotime("today 00:00");
-        $ts_max = strtotime("tomorrow 00:00");
-        foreach($frames as $f) {
-            list($ts_from, $ts_to, $project, $id, $tags) = $f;
-            if ((in_array($aggregate_tag, $tags) || $project === $aggregate_tag) and $ts_from >= $ts_min && $ts_to < $ts_max ) {
-                $elapsed += ($ts_to - $ts_from);
-            }
-        }
-    }
-
-    $elapsed += time() - $s['start'];
-
-    $st['elapsed'] = (int)($elapsed / 60);
     return $st;
 
 }
@@ -112,28 +112,32 @@ function format_time_s($s)
     $m = (int)($s / 60);
     $s = $s % 60;
     return sprintf('%dm %02ds', $m, $s);
-
 }
 
+$the_unlock_grace_time = null;
 
-
-function get_aggregate_tag($state)
+function should_nudge($slack_time_min, $dow, $hour)
 {
-    $aggregate_tag = null;
-    if (in_array($state['project'], $state['opts']['aggregate-tags'])) {
-        return $state['project'];
-    }
-    foreach($state['tags'] as $t) {
-        if (in_array($t, $state['opts']['aggregate-tags'])) {
-            $aggregate_tag = $t;
-            break;
-        }
-    }
-    return $aggregate_tag;
+    // print("should-nudge $slack_time_min\n");
+
+    // $nudges = [5, 15, 17, 29];
+    $nudges = [5, 15];
+
+    return in_array($slack_time_min, $nudges);
 }
 
 
-function tell_about($state)
+function maybe_nudge($slack_time_min)
+{
+    if (should_nudge($slack_time_min, +date('N'), +date('G'))) {
+        say_and_notify('Let\'s make something wonderful');
+        make_notification_sound(SOUND_NAG);
+    }
+}
+
+
+
+function to_string($state)
 {
     $project = $state['project'];
     $time_elapsed = $state['elapsed'];
@@ -146,13 +150,25 @@ function tell_about($state)
     } else {
         $message = 'Doing nothing, just chill.';
     }
-    say($message);
+    return $message;
 }
 
 
 function make_notification_sound($sound)
 {
-    system('tt play.global.sound ~/bin/sound/' . $sound);
+    say("Playing sound $sound");
+    if ( ! $sound) return;
+    if (TOTAL_SILENCE) return;
+
+    $hour = +date('H');
+    $silent_hours = [22, 23, 0, 1, 2, 3, 4, 5, 6, 7];
+
+    if (in_array($hour, $silent_hours)) {
+        run_background('tt play-default ' . PATH_SOUND . $sound);
+    } else {
+        run_background('tt play-all ' . PATH_SOUND . $sound); // monitor
+    }
+
 }
 
 function watson_notify($state, $sound = false)
@@ -160,97 +176,104 @@ function watson_notify($state, $sound = false)
     if ($sound) {
         make_notification_sound($sound);
     }
-    if ($state['is_running'])  {
-        say_and_notify( sprintf('Working on %s for %s.', $state['project'], format_time($state['elapsed'])), 
-            $category='chime',
-            // $urgency=($sound ? 'critical' : 'normal')
-            $urgency='normal'
-        );
-    } else {
-        say_and_notify('Doing nothing, just chill.');
+    say_and_notify(to_string($state));
+}
+
+
+function kill_watson () {
+    say("Stopping watson");
+    system('watson stop');
+    /// run_background('tt wa.flow');
+}
+
+function maybe_notify_success($state) 
+{
+    $min_elapsed = $state['elapsed'];
+    say("considering $min_elapsed");
+
+    $sounds = [
+        0 => SOUND_START,
+        24 => SOUND_PRE,
+        25 => SOUND_SUCCESS,
+        52 => SOUND_PRE,
+        55 => SOUND_GLORY,
+    ];
+
+    if (isset($sounds[$min_elapsed])) {
+        make_notification_sound($sounds[$min_elapsed]);
+    } else if ($min_elapsed >= 60) {
+        system('watson stop');
+        make_notification_sound(SOUND_ENOUGH);
     }
+
 }
 
-function tag_match($state, $test_against)
+
+function monitor_watson($state_file)
 {
-    foreach($state['tags'] as $t) {
-        if (in_array($t, $test_against)) return true;
-    }
-    return false;
-}
-
-function proj_match($state, $test_against)
-{
-    if (in_array($state['project'], $test_against)) return true;
-    return false;
-}
-
-function monitor_watson($opts)
-{
-
-    $state_file   = opt('state-file', $opts, 'state');
-    $breakpoints  = opt('breakpoints', $opts, DEFAULT_BREAKPOINTS);
-    $break_time   = opt('break-time', $opts, 7);
-
-    if ( ! file_exists($state_file  ) ) {
+    if ( ! file_exists($state_file) ) {
         die("No watson state file $state_file   found.\n");
     }
 
+    // touch($state_file);
+    // rewrite file completely to trigger my watchers
+    file_put_contents($state_file, file_get_contents($state_file));
 
-    make_notification_sound('sound_pomodoro_almost_complete.ogg');
+
+    // when booting up, play a sound to check the volume etc
+    make_notification_sound(SOUND_TEST);
 
     say("Watson now takes some vicodin.");
 
-    $current = watson_state($state_file, $opts);
+    $current = watson_state($state_file);
     watson_notify($current);
 
     $last_seen_working = filemtime(getenv('HOME') . '/.config/watson/frames');
-    $slacking_notified = false;
+
+    $last_nudge = 0;
 
     while (true) {
 
-        $s = watson_state($state_file, $opts);
+        $s = watson_state($state_file);
 
         if ($s['project'] !== $current['project']) {
-            tell_about($s);
+            // project changed in the background
+            say(to_string($s));
+            $last_nudge = 0;
         }
 
         if ($s['is_running']) {
             $last_seen_working = time();
-            $slacking_notified = false;
+            $last_nudge = 0;
+
+            if ($current['elapsed'] !== $s['elapsed'])  {
+                maybe_notify_success($s);
+                // if ($n && $s['terminate-at-end']) {
+                    // kill_watson(); // sic, avoid forever-long intervals
+                // }
+            }
         } else {
 
-            $slacking_for = (time() - $last_seen_working) / 60;
-            if ($slacking_for > $break_time && ! $slacking_notified) {
-                say(sprintf("Slacking for %.1d mins", $slacking_for));
-                $slacking_notified = true;
-                say_and_notify('Enough slacking, back to work!', $category='whatever', $urgency='critical');
-                make_notification_sound('sound_break_complete.ogg');
+            if ($s['elapsed'] && $s['elapsed'] > $last_nudge) {
+                $last_nudge = $s['elapsed'];
+                maybe_nudge($s['elapsed']);
             }
 
-
-        }
-
-
-        if ($s['is_running'] ) {
-            if (($current['elapsed'] !== $s['elapsed']) and ($s['elapsed'] !== 0) and (isset($breakpoints[$s['elapsed']]))) {
-                printf("!!! %d %d %s\n",$current['elapsed'], $s['elapsed'], $breakpoints[$s['elapsed']] );
-                watson_notify($s, $sound = $breakpoints[$s['elapsed']]);
+            /*
+            $slacking_for = floor((time() - $last_seen_working) / 60);
+            if ($slacking_for > $last_nudge) {
+                $last_nudge = $slacking_for;
+                if ($slacking_for % 5 === 0) {
+                    say(sprintf("Slacking for %s", format_time($slacking_for)));
+                }
+                maybe_nudge($slacking_for, $s);
             }
+            */
         }
 
         $current = $s;
 
-        sleep(30);
-        // sleep(5);
+        // sleep(30);
+        sleep(10);
     }
 }
-
-function opt($opt, $opts, $default = null)
-{
-    if (array_key_exists($opt, $opts)) {
-        return $opts[$opt];
-    }
-    return $default;
-}
-

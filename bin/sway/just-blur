@@ -1,3 +1,6 @@
 #!/bin/sh
 
-grim - | gm convert - -scale 25% -blur 0x3 -fill '#013d48' -colorize 50% -quality 50 -
+image="/tmp/test.jpg"
+grim - | gm convert - -scale 25% -blur 0x2 -fill '#2e3436' -colorize 70% -scale 400% -quality 50 ${image}
+
+eog $image

@@ -1,6 +1,8 @@
 #!/bin/sh
 
 swaymsg mark retret
-swaymsg '[app_id=firefox workspace=__focused__] focus'
-sudo ydotool key 'f5'
+swaymsg '[app_id=firefoxdeveloperedition tiling workspace=__focused__] focus'
+wtype -k F5
+#wtype -M ctrl d
+#wtype Hei
 swaymsg '[con_mark="retret"] focus'

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+keybd="${1:-K860}"
+entry=$(swaymsg -t get_inputs --raw | jq '.[] | select((.identifier | contains("'$keybd'")) and.type == "keyboard")')
+identifier=$(echo $entry | jq '.identifier')
+notify-send "Switching to default layout"
+swaymsg input $identifier xkb_switch_layout 0
+
+
+

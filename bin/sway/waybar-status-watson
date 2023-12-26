@@ -7,17 +7,29 @@ import json
 import time
 from pathlib import Path
 
+import sh
+
 from threading import Timer
 
+Lightning = '\uf0e7\uf0e7\uf0e7'
 
 state_path = Path.home() / '.config' / 'watson' / 'state'
+frames_path = Path.home() / '.config' / 'watson' / 'frames'
 
 def get_watson_state():
+
+  vicodin = False
+  lines = [l for l in sh.ps('ax').split('\n')]
+  lines = [l for l in lines if 'bin/vicodin' in l]
+
+  vicodin = len(lines) > 0
 
   o = {
     "state": "idle",
     "elapsed": None,
     "project": None,
+    "vicodin-running": vicodin,
+    "tags": [],
   }
 
   if state_path.exists():
@@ -28,60 +40,133 @@ def get_watson_state():
 
         proj = [state["project"]] + [ "+{}".format(t) for t in state["tags"] ]
 
+        o["tags"] = state['tags']
         o["state"] = 'running'
         o["project"] = ' '.join(proj)
         o["elapsed"] = (time.time() - state["start"]) * 1.0 / 60
 
+  if o['state'] == 'idle' and frames_path.exists():
+    with frames_path.open() as f:
+      frames = json.load(f)
+      o['elapsed'] = (time.time() - max([t[1] for t in frames])) * 1.0 / 60
 
   return o
 
 
+def pips(cur, max, pipses):
+  out = []
+  cur = int(cur)
+  if cur == 0:
+    cur = 1
+  if max == None:
+    for i in range(0, int(cur / 30 + 1)):
+      out.append(pipses['fire'])
+      out.append(" ")
+  else:
+
+    if cur > max: cur = max
+    for i in range(0, max):
+      if i >= cur:
+        out.append(pipses[False])
+      else:
+        out.append(pipses[True])
+      if (i + 1) % 10 == 0:
+        out.append(pipses[" "])
+  return "".join(out)
+  
+def fmt_duration(dur):
+  h = int(dur / 60)
+  m = dur % 60
+  if h > 4:
+    return ''
+  if h < 2:
+    return '{}m'.format(dur)
+
+  return '{}h {}m'.format(h, m)
+
 
 def on_change():
   state = get_watson_state()
-  if state["state"] == "idle":
-    sys.stdout.write('{ "text": "chill", "alt": "", "class": ["task", "task--idle"] }')
+  if state["state"] == "idle" and state["elapsed"] == None:
+    #text = 'chill ' + '\uf0e7'
+    text = Lightning
+    if not state["vicodin-running"]:
+      text += ' (no vicodin)'
+    sys.stdout.write('{ "text": "' + text + '", "alt": "", "class": ["task", "task--idle"] }')
+  elif state["state"] == "idle" and state["elapsed"] != None:
+    color = '#a3be8c'
+    elapsed = state["elapsed"]
+    duration = fmt_duration(round(elapsed))
+
+    text = '<span color="{color}">{duration}  </span>'.format(
+      duration=duration,
+      color=color,
+    )
+
+    if not state["vicodin-running"]:
+      text += ' (no vicodin)'
+
+    sys.stdout.write('{ "text": %s, "class": ["task", "task--active"] }' % json.dumps(text))
+
   else:
     progress = ''
     elapsed = state["elapsed"]
 
     elt = {
       True: "━",
-      False: "┄",
+      False: "-",
+      " ": "\u2009",
+      "fire": '\uf0e7',
     }
 
     color = 'red'
 
-    e = elapsed
-    if e > 25:
+    len = None
+    if '45' in state['tags']:
+      len = 45
+    if '25' in state['tags']:
+      len = 25
+
+    if len == None or elapsed > len:
       color = '#c1f40f'
-      e -= 25
 
-    hearts = ''
-    if elapsed > 40:
-      hearts += '❤️'
+    progress = pips(elapsed, len, elt)
 
-    tick = True
+    if False:
+      tick = True
+      minutes_in_bar = len
 
-    ppm = 10
-    ppm_frac = 1.0 / ppm
-    for f in range(0, 25):
-      for sub in range(0, ppm):
-        cutoff = f + ((sub + 1) * 1.0) / ppm
-        if e < cutoff:
-          tick = False
-        progress += elt[tick]
-      progress += '\u2009'
+      ppm = 280 // minutes_in_bar
+
+      e = elapsed % minutes_in_bar
+      ppm_frac = 1.0 / ppm
+      for f in range(0, minutes_in_bar):
+        for sub in range(1, ppm + 1):
+          cutoff = f + ((sub + 1) * 1.0) / ppm
+          if e < cutoff:
+            tick = False
+          progress += elt[tick]
+        progress += '\u2009'
 
 
     duration = '{}m'.format(int(elapsed))
     #duration = '{:.4} m'.format(elapsed)
-    sys.stdout.write('{{ "text": "{hearts} <span color=\\"{color}\\">{progress}</span>  {project}, {duration}", "alt": "", "class": ["task", "task--active"] }}'.format(
+
+    #progress = ''
+
+    text = '<span color="{color}">{progress}</span>  {project}, {duration}  <span color="{ltcolor}">{lightning}</span>'.format(
       progress=progress,
       project=state["project"],
       duration=duration,
       color=color,
-      hearts=hearts))
+      ltcolor='#ffcc33',
+      lightning = Lightning,
+    )
+
+    if not state["vicodin-running"]:
+      text += ' (no vicodin)'
+
+    sys.stdout.write('{ "text": %s, "class": ["task", "task--active"] }' % json.dumps(text))
 
   sys.stdout.write("\n")
   sys.stdout.flush()
@@ -96,10 +181,15 @@ def on_timer():
 
 def setup_timer(state):
   global have_timer
-  if not have_timer and state["state"] == "running":
-    have_timer = True
-    t = Timer(6, on_timer)
-    t.start()
+  if not have_timer:
+    if state["state"] == "running":
+      have_timer = True
+      t = Timer(6, on_timer)
+      t.start()
+    else:
+      have_timer = True
+      t = Timer(30, on_timer)
+      t.start()
 
 
 def setup_watch():

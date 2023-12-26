@@ -5,9 +5,21 @@ import subprocess
 
 radios = {}
 radios["7"] = "https://listen.radio7.lv:2053/Radio7"
-radios["hu"] = "http://93.189.113.165:8000/stream"
 radios["psy"] = "http://79.111.14.76:8002/psybient"
 radios["tauta"] = "https://s3.radio.co/sd4ed5e478/listen"
+
+radios["t"] = "http://tantroniqradio.is-found.org:8000/tantroniq"
+radios["x"] = "http://108.59.11.81/stream/lntxpofy.pls?mp=/stream"
+
+#radios["modsnap"] = "https://stream.radio.co/sd37698701/listen#.mp3"
+#radios["oldskool"] = "http://185.4.176.124:9302/listen.pls"
+
+radios["chillstep"] = "https://live.radiospinner.com/chillstep-64"
+radios["lr1"] = "https://60766ff53d5e6.streamlock.net/liveALR1/mp4:LR1/playlist.m3u8"
+
+radios["waup"] = "https://streaming.live365.com/a01445"
+
+radios["wayo"] = 'http://streaming.wayofm.org:8000/wayo-mobile.m3u'
 
 play = None
 
@@ -16,13 +28,17 @@ if len(sys.argv) > 1:
     if r in radios:
         play = radios[r]
 
+args = ['--term-status-msg="${time-pos}',
+        '--no-term-osd-bar']
+
+if sys.argv[0].endswith("wadio"):
+    args.insert(0, "--audio-device=pulse/alsa_output.pci-0000_01_00.1.hdmi-stereo")
+
 if play == None:
     for k in radios:
-        print("{:6}{}".format(k, radios[k]))
+        print("{:12}{}".format(k, radios[k]))
 else:
-    subprocess.run(["mpv-singleton",
-        '--term-status-msg="${time-pos}',
-        '--no-term-osd-bar',
-        radios[r]
-    ])
+    args.insert(0, "mpv-singleton")
+    args.append(radios[r])
+    subprocess.run(args)
 

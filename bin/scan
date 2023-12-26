@@ -23,15 +23,11 @@ end
 set basename
 set scan_params
 set crop_params
-set color_matrix
 set mode             Color
 set resolution       300
-set hires_resolution 1200
-set raw              no
 set preview          yes
-set format           jpg
-set scale '1600x'
-set shave '10x10'
+set format           png
+set jpeg_q           85
 
 # work around some race issues
 # http://lists.alioth.debian.org/pipermail/sane-devel/2015-July/033606.html
@@ -42,70 +38,59 @@ if test -z $scan_viewer
 end
 
 if test (count $argv) = 0
-    echo scan [a5 dark hires raw grey] file_name
+    echo scan [a5 good hq png grey] file_name
     exit -1
 end
 
 set paramidx 1
 while test -n $argv[$paramidx]
-    if [ $argv[$paramidx] = 'a5' ]
+
+    set a $argv[$paramidx]
+
+    if [ $a = 'a5' ]
         set scan_params $scan_params -x 215 -y 153
         set crop_params $crop_params -rotate 90
-        set shave '10x15'
     end
-    if [ $argv[$paramidx] = 'a6' ]
+    if [ $a = 'a6' ]
         set scan_params $scan_params -x 107 -y 153
         set crop_params $crop_params -rotate 90
-        set scale '512x'
-        set shave '10x15'
     end
 
-    if [ $argv[$paramidx] = 'nocrop' ]
-        set shave '1x1'
+    if [ $a = 'doc' ]
+        set crop_params $crop_params -resize '1200x1200>'
     end
 
 
-    # white = whitening
-    if [ $argv[$paramidx] = 'white' ]
-        set color_matrix     -level "40%,80%"
-    end
-
-    # dark = no whitening
-    if [ $argv[$paramidx] = 'dark' ]
-        set color_matrix
-    end
-
-    if [ $argv[$paramidx] = 'png' ]
+    if [ $a = 'png' ]
         set format "png"
     end
 
 
-    if [ $argv[$paramidx] = 'nopreview' ]
+    if [ $a = 'nopreview' ]
         set preview no
     end
 
-    if [ $argv[$paramidx] = 'hires' ]
-        set resolution $hires_resolution
-        set raw yes
+    if [ $a = 'good' ]
+        set format "png"
     end
 
-    if [ $argv[$paramidx] = 'raw' ]
-        set raw yes
-        set color_matrix
+    if [ $a = 'hq' ]
+        set format "png"
+        set resolution 600
     end
 
-    if [ $argv[$paramidx] = 'color' ]
+    if [ $a = 'color' ]
         set mode "Color"
     end
 
-    if [ $argv[$paramidx] = 'grey' ]
+    if [ $a = 'grey' ]
         set mode "Gray"
     end
-    if [ $argv[$paramidx] = 'gray' ]
+    if [ $a = 'gray' ]
         set mode "Gray"
     end
 
-    set filename $argv[$paramidx]
+    set filename $a
     if [ $paramidx = (count $argv) ]
         break
     end
@@ -121,17 +106,13 @@ else
     end
 
     set basename (basename $filename .$format)
-    if [ $raw = 'yes' ]
-        set tiffname (printf_filename "$basename.tiff")
-        echo $tiffname
-    else
-        set jpgname (printf_filename "$basename.$format")
-        set tiffname (basename $jpgname .$format).tiff
-        echo $jpgname
-    end
+    set jpgname (printf_filename "$basename.$format")
+    set tiffname (basename $jpgname .$format).tiff
+    echo $jpgname
 
 
     # --buffer-size=1M
+    sleep 2s
     scanimage \
         --resolution $resolution \
         --mode $mode \
@@ -139,25 +120,25 @@ else
         $scan_params \
         > $tiffname
 
-    if [ $raw = 'yes' ]
-        echo "Raw mode, not processing"
-    else
-
+    if [ $format = 'png' ]
         gm convert \
-            -shave $shave \
-            -quality 85 \
-            -scale $scale \
             $crop_params \
-            $color_matrix \
             $tiffname $jpgname
 
         rm $tiffname
-        if [ $preview = "yes" ]
-            eval $scan_viewer $jpgname &
-        end
+    else
+
+        gm convert \
+            -quality $jpeg_q \
+            $crop_params \
+            $tiffname $jpgname
+
+        rm $tiffname
+    end
+    if [ $preview = "yes" ]
+        eval $scan_viewer $jpgname &
     end
 
-    echo
-
+  echo
 end
 
