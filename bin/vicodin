@@ -14,7 +14,6 @@ define('SOUND_START', 'windup.ogg');
 define('SOUND_PRE', 'chime-twice.ogg');
 define('SOUND_SUCCESS', 'success-short.mp3');
 define('SOUND_GLORY', 'sound_rank_earned.ogg');
-#define('SOUND_ENOUGH', 'totally-enough.ogg');
 define('SOUND_ENOUGH', 'totally-enough-2.ogg');
 //
 define('SOUND_TEST', SOUND_SUCCESS);
@@ -35,7 +34,6 @@ monitor_watson(getenv('HOME') . '/.config/watson/state');
 
 function run_background($cmd)
 {
-    echo($cmd . ' > /dev/null &');
     exec($cmd . ' > /dev/null &');
 }
 
@@ -195,13 +193,13 @@ function maybe_notify_success($state)
         0 => SOUND_START,
         24 => SOUND_PRE,
         25 => SOUND_SUCCESS,
-        52 => SOUND_PRE,
-        55 => SOUND_GLORY,
+        54 => SOUND_PRE,
+        55 => SOUND_SUCCESS . ' ' . SOUND_GLORY,
     ];
 
     if (isset($sounds[$min_elapsed])) {
         make_notification_sound($sounds[$min_elapsed]);
-    } else if ($min_elapsed >= 60) {
+    } else if ($min_elapsed == 59) {
         system('watson stop');
         make_notification_sound(SOUND_ENOUGH);
     }

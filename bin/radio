@@ -20,6 +20,7 @@ radios["lr1"] = "https://60766ff53d5e6.streamlock.net/liveALR1/mp4:LR1/playlist.
 radios["waup"] = "https://streaming.live365.com/a01445"
 
 radios["wayo"] = 'http://streaming.wayofm.org:8000/wayo-mobile.m3u'
+radios["flux"] = 'https://fluxmusic.api.radiosphere.io/channels/FluxFM/stream.aac?quality=4&aw_0_req.userConsentV2=CP4HGPAP4HGPAAfLoBDEAiEgAAAAAAAAAAigAAAAAAAA'
 
 play = None
 
