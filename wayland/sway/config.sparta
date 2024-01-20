@@ -7,7 +7,7 @@ set $down t
 set $up n
 set $right s
 
-set $term termite
+set $term foot
 set $files thunar
 
 focus_wrapping no
@@ -23,7 +23,7 @@ font pango:Fira Code Semibold 10
 #output * bg "/home/e/wallpapers/john singer sargent - white ships.jpg" fill
 output * bg "/home/e/wallpapers/uw.ships.jpg" fill
 
-exec way-displays
+exec way-displays >> /home/e/way-displays.stdout.log
 
 output * max_render_time 4
 #output DP-4 max_render_time off
@@ -33,7 +33,6 @@ set $volume_dn pamixer --unmute --decrease 5 && sleep 0.01 && pamixer --get-volu
 set $volume_toggle pactl set-sink-mute @DEFAULT_SINK@ toggle; sleep 0.01 && pamixer --get-mute && echo 0 > $SWAYSOCK.wob
 
 exec swayidle -w \
-    timeout 300 "t kill.watson" \
     timeout 10 'if pgrep swaylock; then swaymsg "output * power off"; fi' \
     resume 'swaymsg "output * power on"'
 
@@ -74,7 +73,7 @@ bindsym --to-code {
     $mod+Tab           workspace back_and_forth
 
     $mod+w             exec ~/bin/refresh-firefox
-    #$mod+w             exec $files ~/focus
+    Print              exec "swaymsg 'output * power on'"; exec "t blrp"
 
     $mod+Return exec $term
     $mod+r      exec $menu
@@ -93,9 +92,9 @@ bindsym --to-code {
     Ctrl+Menu exec "tt screenshot.window"
 
     XF86Calculator exec "tt wa.flow"
-    Shift+XF86Calculator exec "tt wa.restart"
-    $mod+XF86Calculator exec "tt wa.restart"
-    Ctrl+XF86Calculator exec "tt wa.restart"
+    Shift+XF86Calculator exec "tt wa.flow"
+    $mod+XF86Calculator exec "tt wa.flow"
+    Ctrl+XF86Calculator exec "tt wa.flow"
 
     $mod+Left  focus left
     $mod+Down  focus down
