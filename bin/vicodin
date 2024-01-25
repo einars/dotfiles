@@ -7,28 +7,16 @@
 define('TOTAL_SILENCE', false);
 
 define('PATH_SOUND', '/home/e/bin/sound/');
-//define('SOUND_TEST', 'sound_pomodoro_almost_complete.ogg');
-// define('SOUND_25', 'sound_pomodoro_complete.ogg');
-#define('SOUND_SUCCESS', 'sound_rank_earned.ogg');
-define('SOUND_START', 'windup.ogg');
-define('SOUND_PRE', 'chime-twice.ogg');
-define('SOUND_SUCCESS', 'success-short.mp3');
-define('SOUND_GLORY', 'sound_rank_earned.ogg');
-define('SOUND_ENOUGH', 'totally-enough-2.ogg');
+#define('SOUND_START', 'heroes/Good luck.ogg');
+define('SOUND_START', 'heroes/picking-4.ogg');
+define('SOUND_PRE', 'heroes/picking-1.ogg');
+define('SOUND_SUCCESS', 'heroes/new-hero-level.ogg');
+define('SOUND_GLORY', 'heroes/new-week.ogg');
+#define('SOUND_ENOUGH', 'totally-enough-2.ogg');
+define('SOUND_ENOUGH', 'dirty-siren-40635.mp3');
 //
-define('SOUND_TEST', SOUND_SUCCESS);
-
-function get_success_sound($elapsed = 0)
-{
-    if ($elapsed < 40) {
-        return 'sound_pomodoro_complete.ogg';
-    }
-    return 'sound_achievement_earned.ogg';
-
-}
-
-define('SOUND_NAG', 'chime.ogg');
-// define('SOUND_NAG', null);
+define('SOUND_TEST', SOUND_PRE);
+define('SOUND_NAG', 'heroes/new-week.ogg');
 
 monitor_watson(getenv('HOME') . '/.config/watson/state');
 
@@ -119,7 +107,7 @@ function should_nudge($slack_time_min, $dow, $hour)
     // print("should-nudge $slack_time_min\n");
 
     // $nudges = [5, 15, 17, 29];
-    $nudges = [5, 15];
+    $nudges = [5, 6];
 
     return in_array($slack_time_min, $nudges);
 }
@@ -161,10 +149,11 @@ function make_notification_sound($sound)
     $hour = +date('H');
     $silent_hours = [22, 23, 0, 1, 2, 3, 4, 5, 6, 7];
 
+    $file = PATH_SOUND . $sound;
     if (in_array($hour, $silent_hours)) {
-        run_background('tt play-default ' . PATH_SOUND . $sound);
+        run_background("tt play-default \"$file\"");
     } else {
-        run_background('tt play-all ' . PATH_SOUND . $sound); // monitor
+        run_background("tt play-all \"$file\"");
     }
 
 }
@@ -191,15 +180,21 @@ function maybe_notify_success($state)
 
     $sounds = [
         0 => SOUND_START,
-        24 => SOUND_PRE,
+        // 24 => SOUND_PRE,
         25 => SOUND_SUCCESS,
-        54 => SOUND_PRE,
-        55 => SOUND_SUCCESS . ' ' . SOUND_GLORY,
+        // 54 => SOUND_PRE,
+        55 => SOUND_GLORY,
+        59 => SOUND_ENOUGH,
+        60 => SOUND_ENOUGH,
+        61 => SOUND_ENOUGH,
+        62 => SOUND_ENOUGH,
+        63 => SOUND_ENOUGH,
+        64 => SOUND_ENOUGH,
     ];
 
     if (isset($sounds[$min_elapsed])) {
         make_notification_sound($sounds[$min_elapsed]);
-    } else if ($min_elapsed == 59) {
+    } else if ($min_elapsed == 65) {
         system('watson stop');
         make_notification_sound(SOUND_ENOUGH);
     }

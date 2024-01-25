@@ -3,9 +3,21 @@
 setopt nohup
 
 export HISTFILE=~/.zsh_history
-export HISTSIZE=1000
-export SAVEHIST=1000
+export HISTSIZE=50000
+export SAVEHIST=50000
 export LESS=eFX
+
+# https://registerspill.thorstenball.com/p/which-command-did-you-run-1731-days
+setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_SPACE
+
 
 export PGUSER=postgres
 
@@ -60,12 +72,6 @@ compinit
 # Somehow breaks completions if done before compinit
 export IFS=$'\n\t'
 
-
-setopt INC_APPEND_HISTORY
-setopt EXTENDED_HISTORY
-#setopt SHARE_HISTORY
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
 
 setopt autocd
 setopt extended_glob
