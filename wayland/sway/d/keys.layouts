@@ -1,0 +1,17 @@
+bindsym --to-code {
+
+    # switch current split mode
+    $mod+Ctrl+h splith
+    $mod+Ctrl+v splitv
+
+    # switch layout styles
+    $mod+Ctrl+s layout stacking
+    $mod+Ctrl+t layout tabbed
+    $mod+Ctrl+e layout toggle split
+    $mod+Ctrl+l layout toggle all
+
+    # move focus to the parent container
+    $mod+a focus parent
+}
+
+

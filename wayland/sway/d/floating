@@ -6,25 +6,35 @@ for_window [app_id="Thunar"] floating enable
 for_window [app_id="thunar"] floating enable
 for_window [app_id="zenity"] floating enable
 for_window [app_id="firefoxdeveloperedition" title="Picture-in-Picture"] floating enable
+for_window [app_id="firefoxdeveloperedition" title="Firefox Developer Edition — Sharing Indicator"] floating enable
+for_window [class="lv.euso.signanywhere.SignAnywhere" title="Signing"] floating enable
 for_window [class="Caja"] floating enable
-for_window [class="Gimp"] floating enable
+#for_window [class="Gimp"] floating enable
 #for_window [class="Gimp" window_type="utility"] sticky enable
 for_window [class="VirtualBox Machine"] floating enable
 for_window [class="VirtualBox Manager"] floating enable
+for_window [class="VirtualBox"] floating enable
 for_window [class="Audacious"] floating enable
 for_window [app_id="gnumeric"] floating enable
 for_window [app_id="eog"] floating enable
 for_window [app_id="qimgv"] floating enable
 for_window [app_id="zoom"] floating enable
 for_window [app_id="anki"] floating enable
+for_window [app_id="cap32"] floating enable
+for_window [app_id="org.gnome.clocks"] floating enable
 for_window [class="Fuse"] floating enable
 for_window [class="jetbrains-idea-ce"] floating enable
+for_window [app_id="gnurobbo"] floating enable
 for_window [app_id="org.zealdocs.zeal"] floating enable, move scratchpad, scratchpad show
+for_window [app_id="mpv-double"] sticky enable, border none
+for_window [app_id="firefoxdeveloperedition"] sticky enable
 
-for_window [class="slide in the woods.exe"] floating enable
+for_window [class="ghidra-Ghidra"] floating enable
+for_window [class="ZEsarUX"] floating enable
+for_window [class="file-png"] floating enable
 
 for_window [shell="xwayland"] title_format "%title [XWayland]"
 
 # telegram "save image" gets buggy w/o floating
-for_window [app_id="telegramdesktop" title="^Media viewer$"] fullscreen disable
+for_window [app_id="telegramdesktop" title="^Media viewer$"] fullscreen disable floating enable
 

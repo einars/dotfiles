@@ -10,27 +10,21 @@ set $right s
 set $term foot
 set $files thunar
 
+set $mon_primary DP-1
+set $mon_secondary DP-2
+
 focus_wrapping no
 
 smart_borders on
 smart_gaps on
 
-#workspace_auto_back_and_forth yes
-
 set $menu rofi -show run | xargs swaymsg exec
 font pango:Fira Code Semibold 10
 #output * bg /home/e/wallpapers/uw.lake.png fill
 #output * bg "/home/e/wallpapers/john singer sargent - white ships.jpg" fill
-output * bg "/home/e/wallpapers/uw.ships.jpg" fill
+output $primary_monitor bg "/home/e/wallpapers/uw.ships.jpg" fill
 
-exec way-displays >> /home/e/way-displays.stdout.log
-
-output * max_render_time 4
-#output DP-4 max_render_time off
-
-set $volume_up pamixer --unmute --increase 5 && sleep 0.01 && pamixer --get-volume > $SWAYSOCK.wob
-set $volume_dn pamixer --unmute --decrease 5 && sleep 0.01 && pamixer --get-volume > $SWAYSOCK.wob
-set $volume_toggle pactl set-sink-mute @DEFAULT_SINK@ toggle; sleep 0.01 && pamixer --get-mute && echo 0 > $SWAYSOCK.wob
+### exec way-displays >> /home/e/way-displays.stdout.log
 
 exec swayidle -w \
     timeout 10 'if pgrep swaylock; then swaymsg "output * power off"; fi' \
@@ -86,7 +80,6 @@ bindsym --to-code {
 
     #$mod+Menu       exec "tt screenshot"
     #$mod+Menu       exec "true"
-    $mod+Menu       exec $volume_up
     Menu            exec "tt screenshot.trimmed"
     Shift+Menu exec "tt screenshot"
     Ctrl+Menu exec "tt screenshot.window"
@@ -132,7 +125,6 @@ bindsym --to-code {
     $mod+apostrophe exec swaymsg [app_id="org.zealdocs.zeal"] scratchpad show || exec zeal
 }
 
-## mod-lsgt
 bindcode $mod+94 exec swaymsg [app_id="org.zealdocs.zeal"] scratchpad show || exec zeal
 
 # Drag floating windows by holding down $mod and left mouse button.
@@ -143,136 +135,21 @@ bindcode $mod+94 exec swaymsg [app_id="org.zealdocs.zeal"] scratchpad show || ex
 floating_modifier $mod normal
 
 
-exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
 bindsym --to-code {
-    XF86AudioLowerVolume exec $volume_dn
-    XF86AudioRaiseVolume exec $volume_up
-    XF86AudioMute        exec $volume_toggle
-
-    $mod+F11 exec pamixer --unmute --decrease 5 && sleep 0.01 && pamixer --get-volume > $SWAYSOCK.wob
-    $mod+F12 exec pamixer --unmute --increase 5 && sleep 0.01 && pamixer --get-volume > $SWAYSOCK.wob
-    $mod+F10 exec pactl set-sink-mute @DEFAULT_SINK@ toggle && sleep 0.01 && pamixer --get-mute && echo 0 > $SWAYSOCK.wob
-}
-
-bindcode {
-    # KP_0
-    $mod+90 workspace 1
-    #bindcode $mod+"LS-90"         = view-pin-to-sheet-0
-    # KP_1..3
-    $mod+87 workspace 1
-    $mod+88 workspace 2
-    $mod+89 workspace 3
-    $mod+Shift+87 move container to workspace 1
-    $mod+Shift+88 move container to workspace 2
-    $mod+Shift+89 move container to workspace 3
-
-    # KP_4..6
-    $mod+83 workspace 4
-    $mod+84 workspace 5
-    $mod+85 workspace 6
-    $mod+Shift+83 move container to workspace 4
-    $mod+Shift+84 move container to workspace 5
-    $mod+Shift+85 move container to workspace 6
-
-    # KP_7..9
-    $mod+79 workspace 7
-    $mod+80 workspace 8
-    $mod+81 workspace 9
-    $mod+Shift+79 move container to workspace 7
-    $mod+Shift+80 move container to workspace 8
-    $mod+Shift+81 move container to workspace 9
-
-}
-
-
-bindsym --to-code {
-
-    # switch current split mode
-    $mod+Ctrl+h splith
-    $mod+Ctrl+v splitv
-
-    # switch layout styles
-    $mod+Ctrl+s layout stacking
-    $mod+Ctrl+t layout tabbed
-    $mod+Ctrl+e layout toggle split
-    $mod+Ctrl+l layout toggle all
-
-    # move focus to the parent container
-    $mod+a focus parent
-}
-
-bindsym --to-code {
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
-
-    # If there are multiple scratchpad windows, this command cycles through them.
     $mod+c scratchpad show
     $mod+shift+c move scratchpad
-    # mod + tilde/dollar
 
 }
 bindcode $mod+49 [app_id="^((?!org.zealdocs.zeal).)*$"] scratchpad show
-#bindcode $mod+49 scratchpad show
-
-
-bindsym --to-code $mod+Shift+r mode "resize"
-mode "resize" {
-    bindsym --to-code Left   resize shrink width 10px
-    bindsym --to-code Down   resize grow height 10px
-    bindsym --to-code Up     resize shrink height 10px
-    bindsym --to-code Right  resize grow width 10px
-    bindsym --to-code Return mode "default"
-    bindsym --to-code Escape mode "default"
-}
-
-# exec wl-paste -t text --watch clipman store
-# bindsym --to-code {
-#   Ctrl+Alt+h exec clipman pick -t rofi
-# }
 
 bar {
+  output $primary_monitor
   swaybar_command waybar
 }
 
-for_window [window_role="pop-up"] floating enable
-for_window [class="vlc"] floating enable
-for_window [app_id="org.gnome.Nautilus"] floating enable; sticky enable
-for_window [app_id="mpv"] floating enable
-for_window [app_id="Thunar"] floating enable
-for_window [app_id="thunar"] floating enable
-for_window [app_id="zenity"] floating enable
-for_window [app_id="firefoxdeveloperedition" title="Picture-in-Picture"] floating enable
-for_window [app_id="firefoxdeveloperedition" title="Firefox Developer Edition — Sharing Indicator"] floating enable
-for_window [class="lv.euso.signanywhere.SignAnywhere" title="Signing"] floating enable
-for_window [class="Caja"] floating enable
-#for_window [class="Gimp"] floating enable
-#for_window [class="Gimp" window_type="utility"] sticky enable
-for_window [class="VirtualBox Machine"] floating enable
-for_window [class="VirtualBox Manager"] floating enable
-for_window [class="VirtualBox"] floating enable
-for_window [class="Audacious"] floating enable
-for_window [app_id="gnumeric"] floating enable
-for_window [app_id="eog"] floating enable
-for_window [app_id="qimgv"] floating enable
-for_window [app_id="zoom"] floating enable
-for_window [app_id="anki"] floating enable
-for_window [app_id="cap32"] floating enable
-for_window [app_id="org.gnome.clocks"] floating enable
-for_window [class="Fuse"] floating enable
-for_window [class="jetbrains-idea-ce"] floating enable
-for_window [app_id="gnurobbo"] floating enable
-for_window [app_id="org.zealdocs.zeal"] floating enable, move scratchpad, scratchpad show
-for_window [app_id="mpv-double"] sticky enable, border none
-for_window [app_id="firefoxdeveloperedition"] sticky enable
-
-for_window [class="ghidra-Ghidra"] floating enable
-for_window [class="ZEsarUX"] floating enable
-for_window [class="file-png"] floating enable
-
-for_window [shell="xwayland"] title_format "%title [XWayland]"
-
-# telegram "save image" gets buggy w/o floating
-for_window [app_id="telegramdesktop" title="^Media viewer$"] fullscreen disable floating enable
-
 include /etc/sway/config.d/*
-include ~/.config/sway/$(hostname)/*
+include ~/.config/sway/d/floating
+include ~/.config/sway/d/workspaces.twomon
+include ~/.config/sway/d/keys.resize-mode
+include ~/.config/sway/d/keys.layouts
+include ~/.config/sway/d/pulseaudio.wob

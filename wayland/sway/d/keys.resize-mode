@@ -1,0 +1,11 @@
+bindsym --to-code $mod+Shift+r mode "resize"
+mode "resize" {
+    bindsym --to-code Left   resize shrink width 10px
+    bindsym --to-code Down   resize grow height 10px
+    bindsym --to-code Up     resize shrink height 10px
+    bindsym --to-code Right  resize grow width 10px
+    bindsym --to-code Return mode "default"
+    bindsym --to-code Escape mode "default"
+}
+
+

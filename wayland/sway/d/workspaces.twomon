@@ -1,0 +1,44 @@
+workspace 1 output $mon_primary
+workspace 2 output $mon_primary
+workspace 3 output $mon_secondary
+workspace 4 output $mon_primary
+workspace 5 output $mon_primary
+workspace 6 output $mon_secondary
+workspace 7 output $mon_primary
+workspace 8 output $mon_primary
+workspace 9 output $mon_primary
+
+output $mon_primary max_render_time 4
+output $mon_secondary transform 270
+
+bindcode {
+    # KP_0
+    $mod+90 workspace 1
+    #bindcode $mod+"LS-90"         = view-pin-to-sheet-0
+    # KP_1..3
+    $mod+87 workspace 1
+    $mod+88 workspace 2
+    $mod+89 workspace 3
+    $mod+Shift+87 move container to workspace 1
+    $mod+Shift+88 move container to workspace 2
+    $mod+Shift+89 move container to workspace 3
+
+    # KP_4..6
+    $mod+83 workspace 4
+    $mod+84 workspace 5
+    $mod+85 workspace 6
+    $mod+Shift+83 move container to workspace 4
+    $mod+Shift+84 move container to workspace 5
+    $mod+Shift+85 move container to workspace 6
+
+    # KP_7..9
+    $mod+79 workspace 7
+    $mod+80 workspace 8
+    $mod+81 workspace 9
+    $mod+Shift+79 move container to workspace 7
+    $mod+Shift+80 move container to workspace 8
+    $mod+Shift+81 move container to workspace 9
+
+}
+
+

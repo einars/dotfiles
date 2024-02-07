@@ -9,6 +9,7 @@
 		"Babel",
 		"JsPrettier",
 		"LSP",
+		"LSP-clangd",
 		"LSP-metals",
 		"LSP-svelte",
 		"Markdown Extended",
@@ -27,5 +28,6 @@
 		"SublimeLinter-pug-lint",
 		"Svelte",
 		"Z80 Assembly",
+		"Zig Language",
 	],
 }
