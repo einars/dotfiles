@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -o pipefail -o errexit -o nounset
+
+cameractrls -c \
+exposure_dynamic_framerate=0,\
+zoom_absolute=120,\
+pan_absolute=7200,\
+tilt_absolute=3600,\
+focus_automatic_continuous=1,\
+backlight_compensation=0,\
+color_preset=film,\
+brightness=128,\
+contrast=77,\
+saturation=179,\
+sharpness=255,\
+power_line_frequency=disabled\

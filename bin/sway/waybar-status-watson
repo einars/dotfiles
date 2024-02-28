@@ -94,11 +94,14 @@ def on_change():
       text += ' (no vicodin)'
     sys.stdout.write('{ "text": "' + text + '", "alt": "", "class": ["task", "task--idle"] }')
   elif state["state"] == "idle" and state["elapsed"] != None:
-    color = '#a3be8c'
+    ## color = '#a3be8c'
+    color = '#c3c36c'
     elapsed = state["elapsed"]
     duration = fmt_duration(round(elapsed))
 
-    text = '<span color="{color}">{duration}  </span>'.format(
+    text = '<span color="{color}">{duration}  {ico}</span>'.format(
+      xico='   ',
+      ico='Zzz...',
       duration=duration,
       color=color,
     )

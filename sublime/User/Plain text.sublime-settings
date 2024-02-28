@@ -1,0 +1,8 @@
+// These settings override both User and Default settings for the Plain text syntax
+{
+  "font_face": "iA Writer Duo V",
+  "font_size": 14,
+  "line_numbers": false,
+  "color_scheme": "Packages/Monokai Extended/Monokai Extended Light.tmTheme",
+  "word_wrap": true,
+}

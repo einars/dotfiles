@@ -13,6 +13,7 @@ export SDL_VIDEODRIVER=wayland
 ### eval $(/usr/sbin/dbus-launch --sh-syntax 2>&1 | tee -a /tmp/dbus-launch.log)
 ### dbus-update-activation-environment --systemd --all
 
-exec ssh-agent /usr/bin/sway 2> ~/sway.stderr.log | tee ~/sway.stdout.log
+### exec ssh-agent /usr/bin/sway 2> ~/sway.stderr.log | tee ~/sway.stdout.log
+exec ssh-agent /usr/bin/sway
 ## exec ssh-agent /usr/bin/sway
-tail -n 20 ~/sway.stderr.log
+### tail -n 20 ~/sway.stderr.log

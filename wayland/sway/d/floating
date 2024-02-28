@@ -9,8 +9,6 @@ for_window [app_id="firefoxdeveloperedition" title="Picture-in-Picture"] floatin
 for_window [app_id="firefoxdeveloperedition" title="Firefox Developer Edition — Sharing Indicator"] floating enable
 for_window [class="lv.euso.signanywhere.SignAnywhere" title="Signing"] floating enable
 for_window [class="Caja"] floating enable
-#for_window [class="Gimp"] floating enable
-#for_window [class="Gimp" window_type="utility"] sticky enable
 for_window [class="VirtualBox Machine"] floating enable
 for_window [class="VirtualBox Manager"] floating enable
 for_window [class="VirtualBox"] floating enable

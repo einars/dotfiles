@@ -10,8 +10,8 @@ set $right s
 set $term foot
 set $files thunar
 
-set $mon_primary DP-1
-set $mon_secondary DP-2
+set $mon_primary 'Dell Inc. DELL U3415W F1T1W93I0LTL'
+set $mon_secondary 'Dell Inc. DELL P2423DE HJ1GXR3'
 
 focus_wrapping no
 
@@ -22,9 +22,9 @@ set $menu rofi -show run | xargs swaymsg exec
 font pango:Fira Code Semibold 10
 #output * bg /home/e/wallpapers/uw.lake.png fill
 #output * bg "/home/e/wallpapers/john singer sargent - white ships.jpg" fill
-output $primary_monitor bg "/home/e/wallpapers/uw.ships.jpg" fill
+output $mon_primary bg "/home/e/wallpapers/uw.ships.jpg" fill
 
-### exec way-displays >> /home/e/way-displays.stdout.log
+exec way-displays >> /home/e/way-displays.stdout.log
 
 exec swayidle -w \
     timeout 10 'if pgrep swaylock; then swaymsg "output * power off"; fi' \
@@ -136,14 +136,14 @@ floating_modifier $mod normal
 
 
 bindsym --to-code {
-    $mod+c scratchpad show
     $mod+shift+c move scratchpad
-
 }
-bindcode $mod+49 [app_id="^((?!org.zealdocs.zeal).)*$"] scratchpad show
+
+#bindcode $mod+49 [app_id="^((?!org.zealdocs.zeal).)*$"] scratchpad show, resize set 1400 1024
+bindcode $mod+49 [app_id="foot"] focus output $mon_primary, scratchpad show, resize set 1400 1024
 
 bar {
-  output $primary_monitor
+  output $mon_primary
   swaybar_command waybar
 }
 

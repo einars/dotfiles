@@ -1,16 +1,15 @@
 #!/bin/sh
 
-trap cleanup 0 1 2 3 6
+set -o pipefail -o errexit -o nounset
 
-image="/tmp/lock_sway_image-$$.jpg"
+image="/tmp/lock_sway_image.jpg"
 
-function cleanup {
-  rm ${image}
-}
+pkill -f mpv || true
 
 #tint='#013d48'
 tint='#2e3436'
 #grim - | gm convert - -scale 50% -blur 0x4 -fill $tint -colorize 70% -scale 200% -quality 50 ${image}
 grim - | gm convert - -scale 50% -fill $tint -colorize 70% -blur 0x06 -scale 200% -quality 50 ${image}
+
 
 swaylock --ignore-empty-password --show-keyboard-layout --scaling fill --image ${image}

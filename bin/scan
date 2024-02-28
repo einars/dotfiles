@@ -58,6 +58,7 @@ while test -n $argv[$paramidx]
 
     if [ $a = 'doc' ]
         set crop_params $crop_params -resize '1200x1200>'
+        set format "jpg"
     end
 
 

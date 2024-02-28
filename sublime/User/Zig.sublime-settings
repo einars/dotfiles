@@ -1,5 +1,6 @@
 // These settings override both User and Default settings for the Zig syntax
 {
   "save_on_focus_lost": false,
+  "tab_size": 4,
   
 }

@@ -7,7 +7,6 @@
  "caret_extra_width": 1,
  "caret_extra_top": 2,
  "caret_extra_bottom": 2,
- "color_scheme": "Alabaster BG.sublime-color-scheme",
  "control_character_style": "names",
  "dark_color_scheme": "Mariana.sublime-color-scheme",
  "default_line_encoding": "unix",
@@ -21,7 +20,7 @@
  // "font_face": "Fira Code Light",
 // "font_face": "IOSevka Type Light",
  "font_face": "IOSevka Light",
- "font_size": 11,
+ "font_size": 14,
  "font_options": ["gray_antialias", "dlig"],
  "git_diff_target": "head",
  "hardware_acceleration": "opengl",
@@ -50,10 +49,11 @@
  "ensure_newline_at_eof_on_save": true,
 
  "translate_tabs_to_spaces": true,
+ "use_tab_stops": true,
  "word_wrap": false,
  "ignored_packages":
  [
-   ],
+  ],
  "vintage_start_in_command_mode": true,
  "vintage_use_clipboard": true,
  "dark_theme": "Default Dark.sublime-theme",
@@ -75,11 +75,13 @@
         "palaišanos",
         "postgres",
         "piem",
-   ],
+  ],
   "ignored_words":
   [
 		"Smartmet",
         "tāski",
-   ],
+  ],
   "index_files": true,
+   "color_scheme": "Alabaster BG.sublime-color-scheme",
+  "mini_diff": "auto",
 }

@@ -6,15 +6,17 @@ workspace 5 output $mon_primary
 workspace 6 output $mon_secondary
 workspace 7 output $mon_primary
 workspace 8 output $mon_primary
-workspace 9 output $mon_primary
+workspace 9 output $mon_secondary
 
 output $mon_primary max_render_time 4
 output $mon_secondary transform 270
 
 bindcode {
     # KP_0
-    $mod+90 workspace 1
-    #bindcode $mod+"LS-90"         = view-pin-to-sheet-0
+    #$mod+90 workspace 1
+    # todo workspace
+    $mod+90 workspace 6 
+
     # KP_1..3
     $mod+87 workspace 1
     $mod+88 workspace 2
