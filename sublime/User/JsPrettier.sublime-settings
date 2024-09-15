@@ -4,7 +4,9 @@
   "auto_format_on_save": true,
   "auto_format_on_save_excludes": ["*.css", "*.scss"],
   "auto_format_on_save_requires_prettier_config": true,
-  "allow_inline_formatting": true,
-  // "custom_file_extensions": ["svelte"],
-  
+  // "allow_inline_formatting": true,
+  "custom_file_extensions": ["svelte"],
+  "disable_tab_width_auto_detection": true,
+  "disable_prettier_cursor_offset": true,
+  "additional_cli_args": { "--config-precedence": "file-override" }
 }

@@ -2,10 +2,14 @@
 
 set -o pipefail -o errexit -o nounset
 
-cameractrls -c \
+#zoom_absolute=120,\
+#pan_absolute=7200,\
+#
+cameractrls \
+  -d /dev/video1 \
+  -c \
 exposure_dynamic_framerate=0,\
-zoom_absolute=120,\
-pan_absolute=7200,\
+zoom_absolute=110,\
 tilt_absolute=3600,\
 focus_automatic_continuous=1,\
 backlight_compensation=0,\

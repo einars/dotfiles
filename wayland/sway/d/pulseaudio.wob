@@ -10,7 +10,7 @@ bindsym --to-code {
     XF86AudioRaiseVolume exec $volume_up
     XF86AudioMute        exec $volume_toggle
 
-    $mod+Menu exec $volume_up
+    # $mod+Menu exec $volume_up
     $mod+F11 exec $volume_down
     $mod+F12 exec $volume_up
     $mod+F10 exec $volume_toggle

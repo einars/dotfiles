@@ -2,8 +2,10 @@
 
 set -o pipefail -o errexit -o nounset
 
+
 image="/tmp/lock_sway_image.jpg"
 
+watson stop || true
 pkill -f mpv || true
 
 #tint='#013d48'

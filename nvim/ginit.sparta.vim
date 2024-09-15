@@ -2,16 +2,17 @@ function! Dark()
   GuiLinespace 0
   set background=dark
   """ I need dark font to be bolder and larger
-  Guifont! Iosevka Term Medium:h11
+  colors nord
+  Guifont! Iosevka Term Medium:h12
 endfunction
 
 function! Light()
   GuiLinespace 0
   set background=light
-  Guifont! Iosevka Term:h10
+  colors PaperColor
+  Guifont! Iosevka Term:h11
 endfunction
 
-colors nord
 Dark
 
 

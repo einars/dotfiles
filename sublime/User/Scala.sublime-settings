@@ -1,8 +1,4 @@
 // These settings override both User and Default settings for the Scala syntax
 {
-  // "color_scheme": "Breakers.sublime-color-scheme",
-  "color_scheme": "Alabaster BG.sublime-color-scheme",
-  "font_face": "Iosevka Type Light",
-  "font_size": 10,
-  "font_options": ["no_italic"],
+  //"color_scheme": "Breakers.sublime-color-scheme",
 }

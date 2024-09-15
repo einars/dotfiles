@@ -50,15 +50,7 @@ alias gitdc="git diff --cached"
 alias gits="git status -sb"
 alias gitc="git commit -v"
 alias amend="git commit -v --amend"
-alias gitsc="test -d .git/svn && git svn dcommit"
 alias b="git checkout"
-
-alias offlineimap='offlineimap -u basic'
-#alias o="offlineimap -u Noninteractive.Basic 2>/dev/null | grep --line-buffered 'message\|account'| grep --line-buffered -v 'Copy message -\|Delet\|Adding flag'"
-
-alias xsel='xsel -b'
-
-alias xc='xcalib ~/Samsung*.icm'
 
 alias rsynx='rsync -vax --no-owner --no-group --no-perms'
 
@@ -111,7 +103,7 @@ alias sensors='sensors | \grep -E "CPU FAN|CPU Tem|MB Tem|Core"'
 # show sizes of subfolders in current direcory
 #alias dirsizes='\du --max-depth=1 | sort -nr | head -n 20'
 function dirsizes {
-    \du --max-depth=1 | \sort -nr | \head -n 30 | \sed 's/^.*\t//' | \xargs --delimiter=\\n -n 1 \du -sh --si
+    \du --max-depth=1 | \sort -nr | \head -n 30 | \sed 's/^.*\t//' | \xargs --delimiter=\\n -n 1 \du -sbh --si
 }
 
 # mkdir + cd
@@ -153,8 +145,8 @@ alias h2j='=html2jade --noemptypipe --noattrcomma --donotencode --bodyless --dou
 alias coffee2js='coffee --bare --compile --no-header --'
 alias html2jade='echo Use h2j alias'
 
-alias curl='curl --location '
-alias xurl='curl --location --header "X-Requested-By: XMLHttpRequest"'
+alias curl='curl --location --remote-header-name '
+alias xurl='curl --location --remote-header-name --header "X-Requested-By: XMLHttpRequest"'
 
 alias wip='git add --all && git commit -am WIP'
 

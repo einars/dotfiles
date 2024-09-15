@@ -1,0 +1,142 @@
+#!/usr/bin/bb
+
+; vim: set syn=clojure :
+
+(def dry-run false)
+
+(import (java.time LocalDate)
+  (java.time.format DateTimeFormatter))
+
+(def todos-file "/home/e/dokumenti/todo.md")
+
+(defn str-empty? [s]
+  (= 0 (-> s str/trim count)))
+
+(defn header-line? [s]
+  (not (re-matches #"^[ \[\-].*" s)))
+
+(defn complete-task? [s]
+  (or
+    (str/starts-with? (str/trim s) "[x]")
+    (str/starts-with? (str/trim s) "[X]")))
+
+(defn incomplete-task? [s]
+  (and
+    (str/starts-with? (str/trim s) "[")
+    (not (complete-task? s))))
+
+
+(defn info-line? [s]
+  (or
+    (str/starts-with? s "  ")
+    (str/starts-with? (str/trim s) "-")))
+
+(defn continuation-line? [s]
+  (str/starts-with? s "  "))
+
+(defn split-today [s]
+  (let [[today tomorrow] (split-with (fn [s] (not (str/starts-with? s "---"))) s )
+        cut-tomorrow (drop-while str-empty? (drop 1 tomorrow))]
+    (when (empty? today) (throw (Exception. "Empty today, something off with separator ---")))
+    (when (empty? tomorrow) (throw (Exception. "Empty tomorrow, something off with separator ---")))
+    [today cut-tomorrow]))
+
+
+(defn group-tasks 
+  ([lines] (group-tasks lines []))
+  ([[line & rest] tasks]
+
+   (if (str-empty? line)
+     (if (empty? rest)
+       tasks
+       (recur rest tasks))
+
+     (cond
+
+       ; darbi ar hēderi saglabā hēderi un sadalās komplītos un inkomplītos
+       (header-line? line) 
+       (let [header line
+             next-lines (take-while (complement empty?) rest)
+             rest (drop-while (complement empty?) rest)
+             n-completes (count (filter complete-task? next-lines))
+             n-incompletes (count (filter incomplete-task? next-lines))
+             n-random (count (filter #(not (or (incomplete-task? %) (complete-task? %))) next-lines))
+
+             incompletes (filterv (complement complete-task?) next-lines)
+             completes (filterv (complement incomplete-task?) next-lines)
+             _ (when dry-run (prn :n-completes n-completes :n-incompletes n-incompletes))
+             _ (when dry-run (prn :completes completes :incompletes incompletes))
+             ]
+         (recur rest
+           (let [tasks (if (< 0 n-completes) (cons (concat [:complete header] completes) tasks) tasks)
+                 tasks (if (< 0 n-incompletes) (cons (concat [:incomplete header] incompletes) tasks) tasks)
+                 tasks (if (and (= 0 n-incompletes)
+                             (= 0 n-completes)
+                             (< 0 n-random)) (cons (concat [:info header] incompletes) tasks) tasks)]
+             tasks)))
+
+       ; pabeigts darbs?
+       ; zem viņa var iet vai nu indentēti teksti, vai teksti, kuri sākas ar strīpiņu
+       (complete-task? line) 
+       (let [next-task-lines (take-while info-line? rest)
+             rest (drop-while info-line? rest)]
+         (recur rest (cons (concat [:complete line] next-task-lines) tasks)))
+
+       ; nepabeigts darbs?
+       ; zem viņa var iet vai nu indentēti teksti, vai teksti, kuri sākas ar strīpiņu
+       (incomplete-task? line) 
+       (let [next-task-lines (take-while info-line? rest)
+             rest (drop-while info-line? rest)]
+         (recur rest (cons (concat [:incomplete line] next-task-lines) tasks)))
+
+       (info-line? line) 
+       (recur rest (cons [:info line] tasks))
+
+       :else (do
+               (prn :UNHANDLED line)
+               (recur rest tasks))))))
+
+(defn cleanup-keyword [lines]
+  (filter (complement keyword?) lines))
+
+(defn as-string-list [xxs]
+  (str/join "\n\n" (mapv #(str/join "\n" %) xxs)))
+
+(defn run-main [offset]
+  (let [[today rest] (split-today (-> todos-file slurp (str/split #"\n")))
+        grouped (group-by first (reverse (group-tasks today)))
+
+        stuff-to-do (conj []
+                      (->> grouped :incomplete (mapv cleanup-keyword) as-string-list)
+                      "-----" 
+                      (str/join "\n" rest)
+                      (->> grouped :info (mapv cleanup-keyword) as-string-list))
+
+        done-s (->> grouped :complete (mapv cleanup-keyword) as-string-list)
+
+        todo-s (str/join "\n\n" stuff-to-do)
+
+        fmt (DateTimeFormatter/ofPattern "yyyy-MM-dd")
+        yesterday  (.format fmt (.minusDays (LocalDate/now) offset))
+
+        archive-file (format "/home/e/dokumenti/archive/todo/done-%s.md" yesterday)
+        backup-file (format "/home/e/dokumenti/archive/todo/backup-%s.md" yesterday)]
+
+    
+
+    (when-not dry-run (spit backup-file (slurp todos-file)))
+    (when-not dry-run (spit archive-file done-s))
+    (when-not dry-run (spit todos-file todo-s))
+    
+    (printf  "Backed up to: %s\n" backup-file)
+    (printf  "Archived todo: %s\n" archive-file)
+    (println done-s)
+    (println  "\nToday:")
+    (println todo-s)))
+
+(condp = (first *command-line-args*)
+  "today" (run-main 0)
+  "yesterday" (run-main 1)
+  (println "archivario [today|yesterday]"))
+
+

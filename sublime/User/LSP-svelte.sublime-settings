@@ -1,0 +1,8 @@
+// Settings in here override those in "LSP-svelte/LSP-svelte.sublime-settings"
+
+{
+  "file_watcher": {
+    "patterns": ["{**/*.svelte,**/*.js}"],
+    "events": ["create", "change", "delete"]
+  }, 
+}

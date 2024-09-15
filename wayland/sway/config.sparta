@@ -1,13 +1,12 @@
 set $mod Mod4
 
-
-# Home row direction keys (dvorak)
 set $left h
 set $down t
 set $up n
 set $right s
 
-set $term foot
+#set $term foot
+set $term sakura
 set $files thunar
 
 set $mon_primary 'Dell Inc. DELL U3415W F1T1W93I0LTL'
@@ -19,7 +18,8 @@ smart_borders on
 smart_gaps on
 
 set $menu rofi -show run | xargs swaymsg exec
-font pango:Fira Code Semibold 10
+#font pango:Fira Code Semibold 10
+font pango:Atkinson Hyperlegible Bold 10
 #output * bg /home/e/wallpapers/uw.lake.png fill
 #output * bg "/home/e/wallpapers/john singer sargent - white ships.jpg" fill
 output $mon_primary bg "/home/e/wallpapers/uw.ships.jpg" fill
@@ -31,8 +31,14 @@ exec swayidle -w \
     resume 'swaymsg "output * power on"'
 
 input * {
+      ##xkb_layout "lv_custom,gr"
+      ##xkb_variant "dvp,"
+
       xkb_layout "lv_custom,lv"
       xkb_variant "dvp,"
+
+      ## xkb_layout "lv,lv_custom"
+      ## xkb_variant ",dvp"
 
       #xkb_layout "lv"
       #xkb_variant "
@@ -54,93 +60,16 @@ input type:pointer {
 
 bindsym --to-code {
 
-    #$mod+Alt+BackSpace exec "swaylock --daemonize --image ~/wallpapers/h.grzegorz-rutkowski-dragons-breath.jpg"
-    #Ctrl+Alt+Delete    exec "swaylock --daemonize --image ~/wallpapers/h.grzegorz-rutkowski-dragons-breath.jpg"
-
-    $mod+Alt+BackSpace exec ~/bin/sway/lock-blur
-    Ctrl+Alt+Delete    exec ~/bin/sway/lock-blur
-
-    $mod+Ctrl+q        exec swaynag -t warning -m 'Exit sway?' -b 'Yes, exit sway' 'swaymsg exit'
-
-    Alt+Tab            exec ~/bin/sway/window-list
-    #$mod+Tab           exec ~/bin/sway/window-list
-    $mod+Tab           workspace back_and_forth
-
     $mod+w             exec ~/bin/refresh-firefox
     Print              exec "swaymsg 'output * power on'"; exec "t blrp"
-
-    $mod+Return exec $term
-    $mod+r      exec $menu
 
     $mod+q exec "$files /home/e/draza"
     # $mod+t exec "$files /home/e/torrents"
     $mod+o exec "$files /storage/torrents"
     $mod+d exec "$files /home/e/dokumenti"
     $mod+b exec "$files /storage/books"
-
-    #$mod+Menu       exec "tt screenshot"
-    #$mod+Menu       exec "true"
-    Menu            exec "tt screenshot.trimmed"
-    Shift+Menu exec "tt screenshot"
-    Ctrl+Menu exec "tt screenshot.window"
-
-    XF86Calculator exec "tt wa.flow"
-    Shift+XF86Calculator exec "tt wa.flow"
-    $mod+XF86Calculator exec "tt wa.flow"
-    Ctrl+XF86Calculator exec "tt wa.flow"
-
-    $mod+Left  focus left
-    $mod+Down  focus down
-    $mod+Up    focus up
-    $mod+Right focus right
-
-    $mod+Shift+Left  move left
-    $mod+Shift+Down  move down
-    $mod+Shift+Up    move up
-    $mod+Shift+Right move right
-
-    $mod+$left  focus left
-    $mod+$down  focus down
-    $mod+$up    focus up
-    $mod+$right focus right
-    $mod+shift+$left  move left
-    $mod+shift+$down  move down
-    $mod+shift+$up    move up
-    $mod+shift+$right move right
-
-    $mod+Ctrl+r      reload
-    $mod+Shift+a     sticky toggle
-    $mod+Shift+m     minimize
-    $mod+f           fullscreen
-    $mod+space       focus mode_toggle
-    $mod+Shift+space floating toggle
-    $mod+Ctrl+space  exec /home/e/bin/sway/next-keyboard-layout
-    $mod+Ctrl+Shift+space  exec /home/e/bin/sway/default-keyboard-layout
-    Alt+F4           kill
-    #F1               exec "wtype -k Escape"
-
-    #F1  seat '*' cursor press button1
-    #Shift+F1 seat '*' cursor release button1
-
-    $mod+apostrophe exec swaymsg [app_id="org.zealdocs.zeal"] scratchpad show || exec zeal
 }
 
-bindcode $mod+94 exec swaymsg [app_id="org.zealdocs.zeal"] scratchpad show || exec zeal
-
-# Drag floating windows by holding down $mod and left mouse button.
-# Resize them with right mouse button + $mod.
-# Despite the name, also works for non-floating windows.
-# Change normal to inverse to use left mouse button for resizing and right
-# mouse button for dragging.
-floating_modifier $mod normal
-
-
-bindsym --to-code {
-    $mod+shift+c move scratchpad
-}
-
-#bindcode $mod+49 [app_id="^((?!org.zealdocs.zeal).)*$"] scratchpad show, resize set 1400 1024
-bindcode $mod+49 [app_id="foot"] focus output $mon_primary, scratchpad show, resize set 1400 1024
 
 bar {
   output $mon_primary
@@ -150,6 +79,8 @@ bar {
 include /etc/sway/config.d/*
 include ~/.config/sway/d/floating
 include ~/.config/sway/d/workspaces.twomon
+include ~/.config/sway/d/keys
 include ~/.config/sway/d/keys.resize-mode
 include ~/.config/sway/d/keys.layouts
+include ~/.config/sway/d/keys.zeal
 include ~/.config/sway/d/pulseaudio.wob

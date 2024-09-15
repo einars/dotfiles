@@ -7,9 +7,8 @@
 define('TOTAL_SILENCE', false);
 
 define('PATH_SOUND', '/home/e/bin/sound/');
-#define('SOUND_START', 'heroes/Good luck.ogg');
 define('SOUND_START', 'heroes/picking-4.ogg');
-define('SOUND_PRE', 'heroes/picking-1.ogg');
+define('SOUND_PRE', 'heroes/picking-5.ogg');
 define('SOUND_SUCCESS', 'heroes/new-hero-level.ogg');
 define('SOUND_GLORY', 'heroes/new-week.ogg');
 #define('SOUND_ENOUGH', 'totally-enough-2.ogg');
@@ -179,22 +178,19 @@ function maybe_notify_success($state)
     say("considering $min_elapsed");
 
     $sounds = [
-        0 => SOUND_START,
-        // 24 => SOUND_PRE,
-        25 => SOUND_SUCCESS,
-        // 54 => SOUND_PRE,
-        55 => SOUND_GLORY,
-        59 => SOUND_ENOUGH,
-        60 => SOUND_ENOUGH,
-        61 => SOUND_ENOUGH,
-        62 => SOUND_ENOUGH,
-        63 => SOUND_ENOUGH,
-        64 => SOUND_ENOUGH,
+                   0 => SOUND_START,
+                  #14 => SOUND_PRE,
+                  24 => SOUND_PRE,
+                  50 => SOUND_GLORY,
+             60 + 24 => SOUND_SUCCESS,
+             60 + 50 => SOUND_GLORY,
+        60 + 60 + 24 => SOUND_SUCCESS,
+        60 + 60 + 50 => SOUND_GLORY,
     ];
 
     if (isset($sounds[$min_elapsed])) {
         make_notification_sound($sounds[$min_elapsed]);
-    } else if ($min_elapsed == 65) {
+    } else if ($min_elapsed == 180) {
         system('watson stop');
         make_notification_sound(SOUND_ENOUGH);
     }

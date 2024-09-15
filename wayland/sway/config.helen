@@ -17,7 +17,7 @@ smart_gaps on
 
 set $menu rofi -show run | xargs swaymsg exec
 font pango:Fira Code Semibold 10
-output * bg /home/e/wallpapers/h.led-shrooms2.jpg fill
+# output * bg /home/e/wallpapers/h.led-shrooms2.jpg fill
 
 output eDP-1 scale 1.5
 

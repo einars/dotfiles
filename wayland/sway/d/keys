@@ -1,9 +1,11 @@
-set $mod Mod4
-
-set $left h
-set $down t
-set $up n
-set $right s
+### define in main config:
+##
+## set $mod Mod4
+## 
+## set $left h
+## set $down t
+## set $up n
+## set $right s
 
 bindsym --to-code {
 
@@ -14,17 +16,22 @@ bindsym --to-code {
 
     Alt+Tab            exec ~/bin/sway/window-list
     $mod+Tab            exec ~/bin/sway/window-list
+    # $mod+Tab           workspace back_and_forth
 
     $mod+Return exec $term
+    $mod+Shift+Return exec foot
     $mod+r      exec $menu
 
     Menu            exec "tt screenshot.trimmed"
     Shift+Menu exec "tt screenshot"
-    Ctrl+Menu exec "tt screenshot.window"
+    Ctrl+Menu exec  "tt screenshot"
+    #Ctrl+Shift+Menu exec "tt screenshot.window"
+    Ctrl+Shift+Menu exec "tt screenshot.delayed"
+    $mod+Menu exec "tt screenshot.window"
 
     $mod+XF86Calculator exec "tt wa.flow"
     Shift+XF86Calculator exec "tt wa.flow"
-    XF86Calculator exec "tt wa.restart"
+    XF86Calculator exec "tt wa.stop"
 
     $mod+Left  focus left
     $mod+Down  focus down
@@ -51,17 +58,14 @@ bindsym --to-code {
     $mod+f           fullscreen
     $mod+space       focus mode_toggle
     $mod+Shift+space floating toggle
-    $mod+Ctrl+space  exec /home/e/bin/sway/next-keyboard-layout "Translated"
+    $mod+Ctrl+space        exec /home/e/bin/sway/next-keyboard-layout
+    $mod+Ctrl+Shift+space  exec /home/e/bin/sway/default-keyboard-layout
     Alt+F4           kill
 
     #F1  seat '*' cursor press button1
     #Shift+F1 seat '*' cursor release button1
-
-    $mod+apostrophe exec swaymsg [app_id="org.zealdocs.zeal"] scratchpad show || exec zeal
 }
 
-## mod-lsgt
-bindcode $mod+94 exec swaymsg [app_id="org.zealdocs.zeal"] scratchpad show || exec zeal
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -69,22 +73,6 @@ bindcode $mod+94 exec swaymsg [app_id="org.zealdocs.zeal"] scratchpad show || ex
 # Change normal to inverse to use left mouse button for resizing and right
 # mouse button for dragging.
 floating_modifier $mod normal
-
-bindsym --to-code {
-
-    # switch current split mode
-    $mod+Ctrl+h splith
-    $mod+Ctrl+v splitv
-
-    # switch layout styles
-    $mod+Ctrl+s layout stacking
-    $mod+Ctrl+t layout tabbed
-    $mod+Ctrl+e layout toggle split
-    $mod+Ctrl+l layout toggle all
-
-    # move focus to the parent container
-    $mod+a focus parent
-}
 
 bindsym --to-code {
     # Sway has a "scratchpad", which is a bag of holding for windows.
@@ -96,15 +84,7 @@ bindsym --to-code {
 
 }
 
-bindcode $mod+49 [app_id="^((?!org.zealdocs.zeal).)*$"] scratchpad show
-
-bindsym --to-code $mod+Shift+r mode "resize"
-mode "resize" {
-    bindsym --to-code Left   resize shrink width 10px
-    bindsym --to-code Down   resize grow height 10px
-    bindsym --to-code Up     resize shrink height 10px
-    bindsym --to-code Right  resize grow width 10px
-    bindsym --to-code Return mode "default"
-    bindsym --to-code Escape mode "default"
-}
+## bindcode $mod+49 [app_id="^((?!org.zealdocs.zeal).)*$"] scratchpad show
+#bindcode $mod+49 [app_id="foot"] focus output $mon_primary, scratchpad show, resize set 1397 1014
+bindcode $mod+49 [app_id="sakura"] focus output $mon_primary, scratchpad show, resize set 1397 1014
 

@@ -15,6 +15,8 @@ mkdir -p "/home/e/dokumenti/Gramatvediba/accounting/$year-$month"
 mkdir -p "/home/e/dokumenti/Gramatvediba/rekini-out/$year-$month"
 mkdir -p "/storage/torrents/$year-$month"
 
+mkdir -p "/storage/fotogrāfijas/$year/$month"
+
 cd /storage/draza
 rm -f current
 ln -sf "$drazapath" current
@@ -23,9 +25,12 @@ cd /storage/draza/current
 rm -f Blender
 ln /storage/nobackup/Blender -s
 
-cd /storage/draza
+cd /storage/draza/current
 rm -f prev
 ln -sf "$drazapath_prev" prev
+
+cd /storage/draza/current
+ln "/storage/fotogrāfijas/$year/$month" DCIM -s
 
 cd /storage/torrents
 rm current

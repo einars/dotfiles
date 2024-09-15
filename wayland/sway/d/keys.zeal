@@ -1,0 +1,7 @@
+bindsym --to-code {
+    $mod+apostrophe exec swaymsg [app_id="org.zealdocs.zeal"] scratchpad show || exec zeal
+}
+
+# mod-lsgt:w
+bindcode $mod+94 exec swaymsg [app_id="org.zealdocs.zeal"] scratchpad show || exec zeal
+

@@ -1,21 +1,20 @@
 workspace 1 output $mon_primary
 workspace 2 output $mon_primary
-workspace 3 output $mon_secondary
+workspace 3 output $mon_secondary # main todo
 workspace 4 output $mon_primary
 workspace 5 output $mon_primary
 workspace 6 output $mon_secondary
 workspace 7 output $mon_primary
 workspace 8 output $mon_primary
-workspace 9 output $mon_secondary
+workspace 9 output $mon_primary # sic: primary!
 
 output $mon_primary max_render_time 4
 output $mon_secondary transform 270
 
 bindcode {
     # KP_0
-    #$mod+90 workspace 1
-    # todo workspace
-    $mod+90 workspace 6 
+    $mod+90 workspace 3
+    $mod+Shift+90 move container to workspace 3
 
     # KP_1..3
     $mod+87 workspace 1
@@ -40,7 +39,6 @@ bindcode {
     $mod+Shift+79 move container to workspace 7
     $mod+Shift+80 move container to workspace 8
     $mod+Shift+81 move container to workspace 9
-
 }
 
 

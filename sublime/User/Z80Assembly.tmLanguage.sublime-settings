@@ -5,5 +5,5 @@
 		"inc",
 	],
   "detect_indentation": false,
-  "tab_size": 4,
+  "tab_size": 16,
 }

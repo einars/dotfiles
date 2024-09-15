@@ -1,0 +1,8 @@
+// These settings override both User and Default settings for the LaTeX syntax
+{
+  "font_face": "iA Writer Duo V",
+  "font_options": ["no_italic"],
+
+  "line_numbers": false,
+  "word_wrap": true,
+}

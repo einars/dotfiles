@@ -1,0 +1,5 @@
+// These settings override both User and Default settings for the Svelte syntax
+{
+  "save_on_focus_lost": false,
+  
+}

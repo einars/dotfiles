@@ -1,0 +1,50 @@
+{
+  // autoformat on save
+  "autoformat": false,
+
+  // array of extensions for autoformat
+  "extensions": ["js",
+    "jsx",
+    "sublime-settings"
+  ],
+
+  // options for jsfmt
+  "options": {
+    "preset": "jquery",
+    "indent": {
+      "value": "  "
+    },
+    // plugins included
+    "plugins": [
+      "esformatter-jsx",
+      // "esformatter-jsx-ignore",
+      // "esformatter-braces",
+      // "esformatter-dot-notation",
+      // "esformatter-collapse-objects"
+    ],
+    "jsx": {
+      "formatJSX": true,
+      // change these to your preferred values
+      // refer to https://github.com/royriojas/esformatter-jsx#best-configuration for more options
+      // "attrsOnSameLineAsTag": true, // move each attribute to its own line
+      // "maxAttrsOnTag": 1, // if lower or equal than 3 attributes, they will be kept on a single line
+      // "firstAttributeOnSameLine": true, // keep the first attribute in the same line as the tag
+      // "alignWithFirstAttribute": true, // do not align attributes with the first tag
+      // "spaceInJSXExpressionContainers": " ", // default to one space. Make it empty if you don't like spaces between JSXExpressionContainers
+      "htmlOptions": {
+        // put here the options for js-beautify.html
+      }
+    }
+  },
+  "options-JSON": {
+    "plugins": [
+      "esformatter-quotes"
+    ],
+    "quotes": {
+      "type": "double"
+    }
+  },
+  "node-path": "node",
+  "alert-errors": true,
+  "ignore-selection": false
+}

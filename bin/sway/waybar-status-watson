@@ -2,7 +2,7 @@
 
 import sys
 import argparse
-import inotify.adapters
+from inotify_simple import INotify, flags
 import json
 import time
 from pathlib import Path
@@ -187,11 +187,11 @@ def setup_timer(state):
   if not have_timer:
     if state["state"] == "running":
       have_timer = True
-      t = Timer(6, on_timer)
+      t = Timer(10, on_timer)
       t.start()
     else:
       have_timer = True
-      t = Timer(30, on_timer)
+      t = Timer(10, on_timer)
       t.start()
 
 
@@ -200,14 +200,14 @@ def setup_watch():
   # sys.stderr.write("Setting up file watches on {}\n".format(state_path))
   # sys.stderr.flush()
 
-  i = inotify.adapters.Inotify()
-  i.add_watch(str(state_path.parent))
+  i = INotify()
+  i.add_watch(str(state_path.parent), flags.CREATE | flags.MODIFY)
 
 
   setup_timer(on_change())
 
   ignore_events = ['IN_ACCESS', 'IN_OPEN', 'IN_CLOSE_NOWRITE', 'IN_IGNORED', 'IN_ATTRIB']
-  for evt in i.event_gen(yield_nones = False):
+  for evt in i.read():
     (x, type_names, path, filename) = evt
     if filename == 'state':
       use_this_event = False
