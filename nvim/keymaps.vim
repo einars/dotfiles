@@ -53,13 +53,6 @@ nnoremap <leader>em :e ~/.config/mpv/config<Cr>
 nnoremap <leader>ei :e ~/.config/mpv/input.conf<Cr>
 
 
-" ncm2
-inoremap <expr> <Cr> (pumvisible() ? "\<c-y>\<Cr>" : "\<Cr>")
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-
 " neosnippet
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -67,14 +60,10 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 
 " Arrow key remapping: Left/Right = indent/unindent
-nmap <silent> <Left> <<
-nmap <silent> <Right> >>
 vmap <silent> <Left> <gv
 vmap <silent> <Right> >gv
 vmap <silent> < <gv
 vmap <silent> > >gv
-imap <silent> <Left> <C-d>
-imap <silent> <Right> <C-t>
 
 
 function! StripTrailingWhitespace()
@@ -101,22 +90,5 @@ function! CleanDeleteBuffer()
 endfunction
 
 
-
-" auto-expanding
-inoremap (; (<CR>);<C-c>O
-inoremap ({ ({  })<C-c>hhi
-inoremap (<CR> (<CR>)<C-c>O
-inoremap (, (<CR>),<C-c>O
-inoremap {; {<CR>};<C-c>O
-inoremap {<CR> {<CR>}<C-c>O
-inoremap {, {<CR>},<C-c>O
-inoremap [; [<CR>];<C-c>O
-inoremap [, [<CR>],<C-c>O
-
-" move through wrapped lines
-noremap <silent> k gk
-noremap <silent> j gj
-noremap <silent> 0 g0
-"noremap <silent> $ g$
 
 nnoremap <F10> :TSHighlightCapturesUnderCursor<cr>

@@ -3,6 +3,10 @@
 	[
 		"clj",
 		"cljs",
+		"edn",
 	],
-  "save_on_focus_lost": false
+  "font_face": "iA Writer Duo V",
+  "save_on_focus_lost": false,
+  "line_padding_top": 1,
+  "line_padding_bottom": 1,
 }

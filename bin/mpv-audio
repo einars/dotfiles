@@ -1,3 +1,3 @@
 #!/bin/sh
 
-mpv --profile=pseudo-gui --script-opts=osc-visibility=always "$@"
+mpv --audio-display=no --script-opts=osc-visibility=always --no-video "$@"

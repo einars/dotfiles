@@ -61,7 +61,7 @@ input type:pointer {
 bindsym --to-code {
 
     $mod+w             exec ~/bin/refresh-firefox
-    Print              exec "swaymsg 'output * power on'"; exec "t blrp"
+    #Print              exec "swaymsg 'output * power on'"; exec "t blrp"
 
     $mod+q exec "$files /home/e/draza"
     # $mod+t exec "$files /home/e/torrents"

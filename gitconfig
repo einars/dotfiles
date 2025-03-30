@@ -56,7 +56,8 @@
         spellingdictionary = none
 	tabsize = 4
 [core]
-        pager = less -r
+        #pager = less -r
+        pager = less -rS
 	quotepath = false
 	excludesFile = ~/.gitignore
 [merge]

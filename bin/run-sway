@@ -4,17 +4,11 @@
 
 export MOZ_ENABLE_WAYLAND=1
 export MOZ_DBUS_REMOTE=1
-export XDG_CURRENT_DESKTOP=Unity
+export XDG_CURRENT_DESKTOP=sway
 export QT_QPA_PLATFORM=wayland
 export QT_QPA_PLATFORMTHEME=qt5ct
 export CLUTTER_BACKEND=wayland
 export SDL_VIDEODRIVER=wayland
 
-### pkill -u $USER dbus
-### eval $(/usr/sbin/dbus-launch --sh-syntax 2>&1 | tee -a /tmp/dbus-launch.log)
-### dbus-update-activation-environment --systemd --all
-
-### exec ssh-agent /usr/bin/sway 2> ~/sway.stderr.log | tee ~/sway.stdout.log
+#exec ssh-agent dbus-run-session /usr/bin/sway
 exec ssh-agent /usr/bin/sway
-## exec ssh-agent /usr/bin/sway
-### tail -n 20 ~/sway.stderr.log

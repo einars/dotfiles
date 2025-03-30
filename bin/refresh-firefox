@@ -1,7 +1,8 @@
 #!/bin/sh
 
 swaymsg mark retret
-swaymsg '[app_id=firefox-developer-edition tiling workspace=__focused__] focus'
+#swaymsg '[app_id=firefox-developer-edition tiling workspace=__focused__] focus'
+swaymsg '[app_id=librewolf tiling workspace=__focused__] focus'
 wtype -k F5
 #wtype -M ctrl d
 #wtype Hei

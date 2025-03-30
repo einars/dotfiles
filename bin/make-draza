@@ -12,6 +12,9 @@ drazapath_prev=/storage/draza/$(prev-month '%Y/%m')
 
 mkdir -p "$drazapath"
 mkdir -p "/home/e/dokumenti/Gramatvediba/accounting/$year-$month"
+mkdir -p "/home/e/dokumenti/Gramatvediba/accounting/$year-$month/banka"
+mkdir -p "/home/e/dokumenti/Gramatvediba/accounting/$year-$month/rekini-in"
+mkdir -p "/home/e/dokumenti/Gramatvediba/accounting/$year-$month/rekini-out"
 mkdir -p "/home/e/dokumenti/Gramatvediba/rekini-out/$year-$month"
 mkdir -p "/storage/torrents/$year-$month"
 

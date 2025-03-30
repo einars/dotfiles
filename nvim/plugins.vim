@@ -13,10 +13,6 @@ let g:surround_no_insert_mappings = 1
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
-"Plug 'tpope/vim-sleuth'
-
-"Plug 'evanleck/vim-svelte', { 'branch': 'main' }
-"Plug 'leafOfTree/vim-svelte-plugin'
 
 Plug 'sirtaj/vim-openscad'
 
@@ -36,12 +32,6 @@ autocmd FileType css,scss EmmetInstall
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
 
-Plug 'equalsraf/neovim-gui-shim'
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-
 Plug 'rickhowe/diffchar.vim'
 let g:DiffUnit="Word2"
 
@@ -49,12 +39,6 @@ let g:neosnippet#disable_runtime_snippets = { '_': 1 }
 let g:neosnippet#snippets_directory = EditorRoot() . "/snippets"
 Plug 'Shougo/neosnippet.vim'
 " Plug 'Shougo/neosnippet-snippets'
-
-
-"Plug 'RishabhRD/popfix'
-"Plug 'RishabhRD/nvim-lsputils'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/playground'
 
 Plug 'arcticicestudio/nord-vim'
 
@@ -80,64 +64,6 @@ let g:vlime_enable_autodoc = v:true
 let g:vlime_window_settings = {'sldb': {'pos': 'belowright', 'vertical': v:true}, 'inspector': {'pos': 'belowright', 'vertical': v:true}, 'preview': {'pos': 'belowright', 'size': v:null, 'vertical': v:true}}
 
 call plug#end()
-
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "c", "clojure", "php", "javascript", "scala", "svelte", "python", "rust", "scss", "css", "zig" },
-  highlight = { enable = true },
-  indent = { enable = true },
-}
-EOF
-
-"lua <<EOF
-"require'nvim-treesitter.highlight'.set_custom_captures {
-"  -- kill all the rainbow
-"  ["boolean"] = "normal",
-"  ["conditional"] = "normal",
-"  ["constructor"] = "normal",
-"  ["float"] = "normal",
-"  ["function"] = "normal",
-"  ["function.builtin"] = "normal",
-"  ["function.macro"] = "normal",
-"  ["keyword.function"] = "normal",
-"  ["keyword"] = "normal",
-"  ["keyword.operator"] = "normal",
-"  ["keyword.return"] = "normal",
-"  ["method"] = "normal",
-"  ["number"] = "normal",
-"  ["operator"] = "normal",
-"  ["property"] = "normal",
-"  ["punctuation.special"] = "normal",
-"  ["punctuation.bracket"] = "normal",
-"  ["punctuation.delimiter"] = "normal",
-"  ["repeat"] = "normal",
-"  ["type.builtin"] = "normal",
-"  ["type"] = "normal",
-"  ["variable"] = "normal",
-"
-"  -- svelte, js
-"  ["tag"] = "normal",
-"  ["include"] = "normal",
-"  ["namespace"] = "normal",
-"  ["tag.delimiter"] = "normal",
-"
-"  -- choose something contrasty enough, even if not that semantic
-"  ["def_function_name"] = "Constant",
-"  ["def_method_name"] = "Constant",
-"  ["def_class_name"] = "Constant",
-"  ["def_object_name"] = "Constant",
-"  ["def_trait_name"] = "Constant",
-"
-"  ["def_variable_name"] = "Exception",
-"  ["def_val_name"] = "Exception",
-"  ["none"] = "Exception",
-"
-"}
-"EOF
-
-
-"set foldmethod=expr
-"set foldexpr=nvim_treesitter#foldexpr()
 
 lua <<EOF
 require('telescope').setup{ defaults = { file_ignore_patterns = {
@@ -169,6 +95,4 @@ au User Ncm2Plugin call ncm2#register_source({
         \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
         \ })
 
-
-au User Ncm2Plugin call  ncm2#override_source('async_clj_omni', { 'complete_length': 3 })
 

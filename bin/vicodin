@@ -146,7 +146,7 @@ function make_notification_sound($sound)
     if (TOTAL_SILENCE) return;
 
     $hour = +date('H');
-    $silent_hours = [22, 23, 0, 1, 2, 3, 4, 5, 6, 7];
+    $silent_hours = [21, 22, 23, 0, 1, 2, 3, 4, 5, 6, 7, 8];
 
     $file = PATH_SOUND . $sound;
     if (in_array($hour, $silent_hours)) {

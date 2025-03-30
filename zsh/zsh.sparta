@@ -13,7 +13,8 @@ export EGROOT=/proj/go/src/github.com/ziutek/emgo/egroot
 export EGPATH=/proj/go/src/github.com/ziutek/emgo/egpath
 
 export WINEARCH=win64
-export BROWSER=firefox
+#export BROWSER=firefox
+export BROWSER=librewolf
 
 
 try_cdpath /proj

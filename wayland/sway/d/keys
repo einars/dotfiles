@@ -22,15 +22,16 @@ bindsym --to-code {
     $mod+Shift+Return exec foot
     $mod+r      exec $menu
 
-    Menu            exec "tt screenshot.trimmed"
+    Menu            exec "tt screenshot"
+    #Shift+Menu exec "tt screenshot.trimmed"
     Shift+Menu exec "tt screenshot"
-    Ctrl+Menu exec  "tt screenshot"
+    Ctrl+Menu exec  "tt screenshot.window"
     #Ctrl+Shift+Menu exec "tt screenshot.window"
     Ctrl+Shift+Menu exec "tt screenshot.delayed"
-    $mod+Menu exec "tt screenshot.window"
+    $mod+Menu exec "tt screenshot.trimmed"
 
-    $mod+XF86Calculator exec "tt wa.flow"
-    Shift+XF86Calculator exec "tt wa.flow"
+    ## $mod+XF86Calculator exec "tt wa.flow"
+    ## Shift+XF86Calculator exec "tt wa.flow"
     XF86Calculator exec "tt wa.stop"
 
     $mod+Left  focus left

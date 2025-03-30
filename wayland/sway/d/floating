@@ -5,8 +5,8 @@ for_window [app_id="mpv"] floating enable
 for_window [app_id="Thunar"] floating enable
 for_window [app_id="thunar"] floating enable
 for_window [app_id="zenity"] floating enable
-for_window [app_id="firefoxdeveloperedition" title="Picture-in-Picture"] floating enable
-for_window [app_id="firefoxdeveloperedition" title="Firefox Developer Edition — Sharing Indicator"] floating enable
+for_window [app_id="firefox-developer-edition" title="Picture-in-Picture"] floating enable
+for_window [app_id="firefox-developer-edition" title="Firefox Developer Edition — Sharing Indicator"] floating enable
 for_window [class="lv.euso.signanywhere.SignAnywhere" title="Signing"] floating enable
 for_window [class="Caja"] floating enable
 for_window [class="VirtualBox Machine"] floating enable
@@ -31,8 +31,11 @@ for_window [class="ghidra-Ghidra"] floating enable
 for_window [class="ZEsarUX"] floating enable
 for_window [class="file-png"] floating enable
 
+for_window [class="^MATLAB.*$"] floating enable
+for_window [class="MATLABWindow"] floating enable
+for_window [app_id="org.freecad.FreeCAD"] floating enable
+
 for_window [shell="xwayland"] title_format "%title [XWayland]"
 
 # telegram "save image" gets buggy w/o floating
 for_window [app_id="telegramdesktop" title="^Media viewer$"] fullscreen disable floating enable
-

@@ -1,4 +1,5 @@
 // These settings override both User and Default settings for the Scala syntax
 {
   //"color_scheme": "Breakers.sublime-color-scheme",
+  "save_on_focus_lost": false,
 }

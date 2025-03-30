@@ -5,4 +5,5 @@
 
   "line_numbers": false,
   "word_wrap": true,
+  "save_on_focus_lost": false,
 }
