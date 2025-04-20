@@ -113,7 +113,10 @@
 /*"phpfmt",*/
 /*"SublimeLinter",*/
 /*"SublimeLinter",*/
-    ],
+/*"Clang Format",*/
+/*"Emmet",*/
+/*"Clang Format",*/
+  ],
  "vintage_start_in_command_mode": true,
  "vintage_use_clipboard": true,
  "dark_theme": "Default Dark.sublime-theme",
@@ -135,12 +138,12 @@
         "palaišanos",
         "postgres",
         "piem",
-    ],
+  ],
   "ignored_words":
   [
 		"Smartmet",
         "tāski",
-    ],
+  ],
   "index_files": true,
    "color_scheme": "Alabaster BG.sublime-color-scheme",
   "mini_diff": "auto",
