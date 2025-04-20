@@ -13,13 +13,12 @@ pause=no                                 # do not save pause
 #keep-open  # keep the player open when a file's end is reached
             # good in theory, but audio files that play till the end remain 
             # at the end on subsequent plays, thx to save-position-on-quit
-audio-device=pulse
+#audio-device=pulse
+audio-device=pipewire
 audio-display=no
-volume=80
-volume-max=100
-
-audio-channels=stereo
-
+#volume=80
+#volume-max=100
+#audio-channels=stereo
 audio-file-auto=fuzzy
 
 osd-level=1                             # enable osd and display --osd-status-msg on interaction
@@ -71,3 +70,6 @@ vo=gpu-next
 gpu-context=wayland
 ## wayland-disable-vsync=yes
 ## video-sync=display-desync
+
+autofit-larger=100%x100%
+## hwdec

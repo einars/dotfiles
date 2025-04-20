@@ -6,7 +6,7 @@ set $down t
 set $up n
 set $right s
 
-set $term termite
+set $term foot
 set $files thunar
 
 focus_wrapping no

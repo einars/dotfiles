@@ -1,0 +1,9 @@
+// These settings override both User and Default settings for the C++ syntax
+{
+  "tab_size": 2,
+  "extensions":
+  [
+		"h",
+		"ino"
+	],
+}

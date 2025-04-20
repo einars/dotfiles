@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -o pipefail -o errexit -o nounset
+
+echo Restarting the touchpad...
+
+set -x
+
+sudo rmmod psmouse || true
+sudo rmmod rmi_smbus || true
+sudo rmmod rmi_core || true
+sudo udevadm trigger
+sleep 2
+sudo modprobe rmi_core
+sudo modprobe rmi_smbus
+sudo modprobe psmouse
+sudo udevadm trigger
