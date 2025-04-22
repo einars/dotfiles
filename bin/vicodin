@@ -179,13 +179,12 @@ function maybe_notify_success($state)
 
     $sounds = [
                    0 => SOUND_START,
-                  #14 => SOUND_PRE,
-                  24 => SOUND_PRE,
-                  50 => SOUND_GLORY,
-             60 + 24 => SOUND_SUCCESS,
-             60 + 50 => SOUND_GLORY,
-        60 + 60 + 24 => SOUND_SUCCESS,
-        60 + 60 + 50 => SOUND_GLORY,
+                  40 => SOUND_PRE,
+                  45 => SOUND_SUCCESS,
+             (45*2 - 5) => SOUND_PRE,
+             (45*2) => SOUND_GLORY,
+             (45*3) => SOUND_GLORY,
+             (45*4) => SOUND_GLORY,
     ];
 
     if (isset($sounds[$min_elapsed])) {

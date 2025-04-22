@@ -1,0 +1,8 @@
+// Settings in here override those in "LSP-json/LSP-json.sublime-settings"
+
+{
+  "initializationOptions": {
+    "licenceKey": "/home/e/dokumenti/intelephense-license.txt",
+  }
+  
+}

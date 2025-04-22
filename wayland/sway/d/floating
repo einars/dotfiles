@@ -31,8 +31,8 @@ for_window [class="ghidra-Ghidra"] floating enable
 for_window [class="ZEsarUX"] floating enable
 for_window [class="file-png"] floating enable
 
-for_window [class="^MATLAB.*$"] floating enable
-for_window [class="MATLABWindow"] floating enable
+#for_window [class="^MATLAB.*$"] floating enable
+#for_window [class="MATLABWindow"] floating enable
 for_window [app_id="org.freecad.FreeCAD"] floating enable
 
 for_window [shell="xwayland"] title_format "%title [XWayland]"

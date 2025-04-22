@@ -23,6 +23,9 @@ radios["wayo"] = 'http://streaming.wayofm.org:8000/wayo-mobile.m3u'
 radios["flux"] = 'https://fluxmusic.api.radiosphere.io/channels/FluxFM/stream.aac?quality=4&aw_0_req.userConsentV2=CP4HGPAP4HGPAAfLoBDEAiEgAAAAAAAAAAigAAAAAAAA'
 radios["nemiers"] = 'https://stream.radionemiers.lv/nmrs/playlist.m3u8'
 
+radios["deephouse"] = 'https://altair.streamerr.co:8124/stream'
+
+radios['wjli'] = 'http://207.162.185.111:8000/kastor' # no youtube, pie Bill McClintoc mixiem
 
 play = None
 
