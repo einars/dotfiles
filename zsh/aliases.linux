@@ -12,7 +12,7 @@ alias tmux='LC_CTYPE=en_US.UTF-8 tmux'
 
 alias jad='jad -b -ff -s java'
 alias ack='clear; ack'
-alias grep="grep --directories=recurse --ignore-case --line-buffered"
+alias grep="grep --ignore-case --line-buffered"
 
 alias edzsh='vim ~/.zsh/zshrc; . ~/.zsh/zshrc'
 alias edalias='vim ~/.zsh/aliases.linux; . ~/.zsh/aliases.linux'

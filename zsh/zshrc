@@ -189,6 +189,8 @@ function setup_keyboard()
     bindkey '\e[4~' end-of-line
 
     bindkey '\e[H' beginning-of-line
+    bindkey '\e[F' end-of-line
+
     bindkey '\e[3~' delete-char
     bindkey '\e[5~' up-line-or-history # pgup
     bindkey '\e[6~' down-line-or-history # pgdn

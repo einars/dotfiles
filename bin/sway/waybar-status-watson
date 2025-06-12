@@ -59,7 +59,7 @@ def pips(cur, max, pipses):
   if cur == 0:
     cur = 1
   if max == None:
-    for i in range(0, int(cur / 30 + 1)):
+    for i in range(0, int(cur / 45 + 1)):
       out.append(pipses['fire'])
       out.append(" ")
   else:

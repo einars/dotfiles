@@ -23,8 +23,7 @@ bindsym --to-code {
     $mod+r      exec $menu
 
     Menu            exec "tt screenshot"
-    #Shift+Menu exec "tt screenshot.trimmed"
-    Shift+Menu exec "tt screenshot"
+    Shift+Menu exec "tt screenshot.alt"
     Ctrl+Menu exec  "tt screenshot.window"
     #Ctrl+Shift+Menu exec "tt screenshot.window"
     Ctrl+Shift+Menu exec "tt screenshot.delayed"
@@ -87,5 +86,5 @@ bindsym --to-code {
 
 ## bindcode $mod+49 [app_id="^((?!org.zealdocs.zeal).)*$"] scratchpad show
 #bindcode $mod+49 [app_id="foot"] focus output $mon_primary, scratchpad show, resize set 1397 1014
-bindcode $mod+49 [app_id="sakura"] focus output $mon_primary, scratchpad show, resize set 1397 1014
+bindcode $mod+49 [app_id="sakura" floating="true"] focus output $mon_primary, scratchpad show, resize set 1397 1014
 

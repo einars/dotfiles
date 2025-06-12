@@ -10,12 +10,20 @@ define('PATH_SOUND', '/home/e/bin/sound/');
 define('SOUND_START', 'heroes/picking-4.ogg');
 define('SOUND_PRE', 'heroes/picking-5.ogg');
 define('SOUND_SUCCESS', 'heroes/new-hero-level.ogg');
-define('SOUND_GLORY', 'heroes/new-week.ogg');
-#define('SOUND_ENOUGH', 'totally-enough-2.ogg');
-define('SOUND_ENOUGH', 'dirty-siren-40635.mp3');
+define('SOUND_ENOUGH', 'new-week.ogg');
 //
 define('SOUND_TEST', SOUND_PRE);
 define('SOUND_NAG', 'heroes/new-week.ogg');
+
+$sounds = [
+            0 => SOUND_START,
+            45 => SOUND_PRE,
+            (45*2) => SOUND_PRE,
+            (45*3) => SOUND_PRE,
+            (45*4) => SOUND_PRE,
+            (45*5) => SOUND_PRE,
+            360 => SOUND_ENOUGH, // auto-stop
+];
 
 monitor_watson(getenv('HOME') . '/.config/watson/state');
 
@@ -177,21 +185,14 @@ function maybe_notify_success($state)
     $min_elapsed = $state['elapsed'];
     say("considering $min_elapsed");
 
-    $sounds = [
-                   0 => SOUND_START,
-                  40 => SOUND_PRE,
-                  45 => SOUND_SUCCESS,
-             (45*2 - 5) => SOUND_PRE,
-             (45*2) => SOUND_GLORY,
-             (45*3) => SOUND_GLORY,
-             (45*4) => SOUND_GLORY,
-    ];
+
+    global $sounds;
 
     if (isset($sounds[$min_elapsed])) {
         make_notification_sound($sounds[$min_elapsed]);
-    } else if ($min_elapsed == 180) {
-        system('watson stop');
-        make_notification_sound(SOUND_ENOUGH);
+        if ($sounds[$min_elapsed] === SOUND_ENOUGH) {
+            system('watson stop');
+        }
     }
 
 }
