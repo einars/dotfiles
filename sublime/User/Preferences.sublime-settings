@@ -29,7 +29,7 @@
  "font_face": "IOSevka Term Light",
  // "font_face": "Ubuntu Mono",
  // "font_face": "Fira Code",
- "font_size": 11,
+ "font_size": 10,
  "font_options": ["gray_antialias"],
  // "font_options": ["gray_antialias", "dlig"],
  // "font_options": ["dlig"],
@@ -121,6 +121,18 @@
 /*"Clojure Sublimed",*/
 /*"LSP-twiggy",*/
 /*"LSP-twiggy",*/
+/*"Clojure Sublimed",*/
+/*"Package Control",*/
+/*"LSP-biome",*/
+/*"LSP-metals",*/
+/*"Package Control",*/
+/*"Clojure Sublimed",*/
+/*"HighlightWords",*/
+/*"LSP",*/
+/*"HighlightWords",*/
+/*"BetterFindBuffer",*/
+/*"LSP",*/
+/*"LSP-file-watcher-chokidar",*/
     ],
  "vintage_start_in_command_mode": true,
  "vintage_use_clipboard": true,

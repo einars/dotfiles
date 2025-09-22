@@ -1,0 +1,7 @@
+{
+
+  "permanent_highlight_keyword_color_mappings": [
+    {"keyword": "-[^\\w]*$", "color": "support.function", "flag": 2},
+    //{"keyword": "FIXIT .*", "color": "support.function", "flag": 2},
+  ]
+}

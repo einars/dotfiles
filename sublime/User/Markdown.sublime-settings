@@ -12,4 +12,5 @@
   "spell_check": false,
   "font_options": [],
   "word_wrap": true,
+  "wrap_width": 80,
 }

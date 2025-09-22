@@ -13,7 +13,10 @@ for_window [class="VirtualBox Machine"] floating enable
 for_window [class="VirtualBox Manager"] floating enable
 for_window [class="VirtualBox"] floating enable
 for_window [class="Audacious"] floating enable
-#for_window [app_id="gnumeric"] floating enable
+
+## can't target only floating helper windows :(
+for_window [app_id="gnumeric"] floating enable
+
 for_window [app_id="eog"] floating enable
 for_window [app_id="qimgv"] floating enable
 for_window [app_id="zoom"] floating enable

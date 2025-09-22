@@ -106,6 +106,10 @@ def on_change():
       color=color,
     )
 
+    text = '<span color="{color}">{ico}</span>'.format(
+      ico='  ',
+      color=color,
+    )
     if not state["vicodin-running"]:
       text += ' (no vicodin)'
 

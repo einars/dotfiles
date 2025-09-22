@@ -10,11 +10,14 @@ month=$(date +%m)
 drazapath="/storage/draza/$year/$month"
 drazapath_prev=/storage/draza/$(prev-month '%Y/%m')
 
+
 mkdir -p "$drazapath"
-mkdir -p "/home/e/dokumenti/Gramatvediba/accounting/$year-$month"
-mkdir -p "/home/e/dokumenti/Gramatvediba/accounting/$year-$month/banka"
-mkdir -p "/home/e/dokumenti/Gramatvediba/accounting/$year-$month/rekini-in"
-mkdir -p "/home/e/dokumenti/Gramatvediba/accounting/$year-$month/rekini-out"
+
+prev_accounting=$(prev-month '%Y-%m')
+mkdir -p "/home/e/dokumenti/Gramatvediba/accounting/$prev_accounting/banka"
+mkdir -p "/home/e/dokumenti/Gramatvediba/accounting/$prev_accounting/rekini-in"
+mkdir -p "/home/e/dokumenti/Gramatvediba/accounting/$prev_accounting/rekini-out"
+
 mkdir -p "/home/e/dokumenti/Gramatvediba/rekini-out/$year-$month"
 mkdir -p "/storage/torrents/$year-$month"
 

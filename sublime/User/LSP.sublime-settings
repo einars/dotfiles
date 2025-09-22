@@ -1,6 +1,6 @@
 // Settings in here override those in "LSP/LSP.sublime-settings"
 {
-  "log_debug": true,
+  "log_debug": false,
   "lsp_format_on_save": true,
   "lsp_code_actions_on_save": {
     // "quickfix.biome": true

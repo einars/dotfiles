@@ -1,7 +1,7 @@
 // Settings in here override those in "LSP-biome/LSP-biome.sublime-settings"
 
 {
-    "selector": "text.html.svelte | source.js | source.ts | source.jsx | source.tsx | source.js.jsx | source.js.react | source.ts.react",
+    // "selector": "text.html.svelte | source.js | source.ts | source.jsx | source.tsx | source.js.jsx | source.js.react | source.ts.react",
     // no svelte
     "selector": "source.js | source.ts | source.jsx | source.tsx | source.js.jsx | source.js.react | source.ts.react",
 }

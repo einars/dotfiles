@@ -11,12 +11,15 @@ define('SOUND_START', 'heroes/picking-4.ogg');
 define('SOUND_PRE', 'heroes/picking-5.ogg');
 define('SOUND_SUCCESS', 'heroes/new-hero-level.ogg');
 define('SOUND_ENOUGH', 'new-week.ogg');
+define('SOUND_TINY', 'ding-small-bell.mp3');
 //
+
 define('SOUND_TEST', SOUND_PRE);
 define('SOUND_NAG', 'heroes/new-week.ogg');
 
 $sounds = [
             0 => SOUND_START,
+            25 => SOUND_TINY,
             45 => SOUND_PRE,
             (45*2) => SOUND_PRE,
             (45*3) => SOUND_PRE,

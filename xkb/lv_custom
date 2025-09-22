@@ -64,6 +64,7 @@ xkb_symbols "dvp" {
  key <AD05> {[ y, Y, oe, OE ]};
  key <AB03> {[ j, J, aring, Aring ]};
  key <AB05> {[ x, X, oslash, Oslash ]};
+ key <AD06> {[ f, F, Greek_omega, Greek_OMEGA ]};
 
 
  include "level3(ralt_switch)"
