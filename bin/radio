@@ -1,50 +1,35 @@
-#!/usr/bin/env python
+#!/usr/bin/env bb
 
-import sys
-import subprocess
+(require '[babashka.process :refer [process]])
 
-radios = {}
-radios["7"] = "https://listen.radio7.lv:2053/Radio7"
-radios["psy"] = "http://79.111.14.76:8002/psybient"
-radios["tauta"] = "https://s3.radio.co/sd4ed5e478/listen"
+(def radios
+  {"7"         "https://listen.radio7.lv:2053/Radio7"
+   "psy"       "http://79.111.14.76:8002/psybient"
+   "psa"       "http://65.109.32.21:8010/stream"
+   "psb"       "http://65.109.32.21:8020/stream"
+   "lr1"       "https://60766ff53d5e6.streamlock.net/liveALR1/mp4:LR1/playlist.m3u8"
+   "waup"      "https://streaming.live365.com/a01445"
+   "wayo"      "http://streaming.wayofm.org:8000/wayo-mobile.m3u"
+   "deephouse" "https://altair.streamerr.co:8124/stream"
+   "wjli"      "http://207.162.185.111:8000/kastor"})
 
-radios["t"] = "http://tantroniqradio.is-found.org:8000/tantroniq"
-radios["x"] = "http://108.59.11.81/stream/lntxpofy.pls?mp=/stream"
+(def station (first *command-line-args*))
 
-#radios["modsnap"] = "https://stream.radio.co/sd37698701/listen#.mp3"
-#radios["oldskool"] = "http://185.4.176.124:9302/listen.pls"
+(defn play [url]
+  (prn :playing url)
+  (let [p @(process
+             {:out :inherit, :err :inherit}
+             "mpv"  
+             "--term-status-msg=${time-pos}"
+             "--no-term-osd-bar"
+             url)
+        exit-code (:exit p)]
+    (when-not (zero? exit-code)
+      (prn :exit-code exit-code)
+      (println "Restarting player, Q or Ctrl-C to quit.")
+      (recur url))))
 
-radios["chillstep"] = "https://live.radiospinner.com/chillstep-64"
-radios["lr1"] = "https://60766ff53d5e6.streamlock.net/liveALR1/mp4:LR1/playlist.m3u8"
-
-radios["waup"] = "https://streaming.live365.com/a01445"
-
-radios["wayo"] = 'http://streaming.wayofm.org:8000/wayo-mobile.m3u'
-radios["flux"] = 'https://fluxmusic.api.radiosphere.io/channels/FluxFM/stream.aac?quality=4&aw_0_req.userConsentV2=CP4HGPAP4HGPAAfLoBDEAiEgAAAAAAAAAAigAAAAAAAA'
-radios["nemiers"] = 'https://stream.radionemiers.lv/nmrs/playlist.m3u8'
-
-radios["deephouse"] = 'https://altair.streamerr.co:8124/stream'
-
-radios['wjli'] = 'http://207.162.185.111:8000/kastor' # no youtube, pie Bill McClintoc mixiem
-
-play = None
-
-if len(sys.argv) > 1:
-    r = sys.argv[1]
-    if r in radios:
-        play = radios[r]
-
-args = ['--term-status-msg="${time-pos}',
-        '--no-term-osd-bar']
-
-if sys.argv[0].endswith("wadio"):
-    args.insert(0, "--audio-device=pulse/alsa_output.pci-0000_01_00.1.hdmi-stereo")
-
-if play == None:
-    for k in radios:
-        print("{:12}{}".format(k, radios[k]))
-else:
-    args.insert(0, "mpv-singleton")
-    args.append(radios[r])
-    subprocess.run(args)
-
+(if-let [radio (get radios station)]
+  (play radio)
+  (doseq [[k v] radios]
+    (println (format "%-12s%s" k v))))

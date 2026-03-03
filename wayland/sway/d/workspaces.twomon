@@ -1,20 +1,64 @@
+# KP-workspaces
+
+# left:
+# 6 8 9 (sic!)
+# 4 5
+# 1 2
+# 0
+
+# right:
+# . . .
+# . . 8
+# . . 7
+# . . [.] [dot, obsidian]
+
+workspace 0 output $mon_primary
 workspace 1 output $mon_primary
 workspace 2 output $mon_primary
-workspace 3 output $mon_secondary # main todo
+workspace 3 output $mon_primary
 workspace 4 output $mon_primary
 workspace 5 output $mon_primary
-workspace 6 output $mon_secondary
+workspace 6 output $mon_primary
 workspace 7 output $mon_primary
 workspace 8 output $mon_primary
-workspace 9 output $mon_primary # sic: primary!
+workspace 9 output $mon_primary
+workspace a output $mon_primary
+workspace oa output $mon_secondary
+workspace ob output $mon_secondary
+workspace oc output $mon_secondary
+workspace od output $mon_secondary
+workspace oe output $mon_secondary
 
-output $mon_primary max_render_time 4
 output $mon_secondary transform 270
 
 bindcode {
     # KP_0
-    $mod+90 workspace 3
-    $mod+Shift+90 move container to workspace 3
+    $mod+90 workspace 0
+    $mod+Shift+90 move container to workspace 0
+
+    # KP_dot
+    $mod+91 workspace a
+    $mod+Shift+91 move container to workspace a
+    
+    # KP_enter
+    $mod+104 workspace oa
+    $mod+Shift+104 move container to workspace oa
+
+    # KP_plus
+    $mod+86 workspace ob
+    $mod+Shift+86 move container to workspace ob
+
+    # KP_minus
+    $mod+82 workspace oc
+    $mod+Shift+82 move container to workspace oc
+    
+    # KP_mult
+    $mod+63 workspace od
+    $mod+Shift+63 move container to workspace od
+
+    # KP_div
+    $mod+106 workspace oe
+    $mod+Shift+106 move container to workspace oe
 
     # KP_1..3
     $mod+87 workspace 1

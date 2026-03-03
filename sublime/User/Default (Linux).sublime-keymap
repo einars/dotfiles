@@ -101,15 +101,6 @@
 
  // Clojure Sublimed
 
- {"keys": ["ctrl+t"],
-   "command": "clojure_sublimed_eval_code",
-   "args": {"code":  "(let [{:keys [fail error] :as res} (clojure.test/run-tests)] (str (when (or (pos? fail) (pos? error)) \"🚨🚨🚨🚨🚨🚨🚨🚨 \") res))"},
-   "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
-
-   {"keys": ["ctrl+alt+t"],
-     "command": "clojure_sublimed_eval_code",
-     "args": {"code":  "(let [{:keys [fail error] :as res} (clojure.test/run-tests)] (str (when (or (pos? fail) (pos? error)) \"🚨🚨🚨🚨🚨🚨🚨🚨 \") res))"},
-     "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
 
      {"keys": ["ctrl+alt+enter"],        "command": "clojure_sublimed_eval",       "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
      {"keys": ["ctrl+alt+keypad_enter"], "command": "clojure_sublimed_eval",       "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
@@ -123,6 +114,11 @@
      {"keys": ["ctrl+alt+f"],       "command": "clojure_sublimed_reindent_lines",  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
      {"keys": ["ctrl+alt+shift+f"], "command": "clojure_sublimed_reindent_buffer", "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
 
+     {"keys": ["ctrl+alt+t"],
+       "command": "clojure_sublimed_eval_code",
+       "args": {"code":  "(let [{:keys [fail error] :as res} (clojure.test/run-tests)] (str (when (or (pos? fail) (pos? error)) \"🚨🚨🚨🚨🚨🚨🚨🚨 \") res))"},
+       "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
+       
      {"keys": ["ctrl+alt+r"],
        "command": "clojure_sublimed_eval_code",
        "args": {"code":  "(clj-reload.core/reload)"},

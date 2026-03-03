@@ -4,5 +4,23 @@
   "lsp_format_on_save": true,
   "lsp_code_actions_on_save": {
     // "quickfix.biome": true
-  }
+  },
+     "clients": {
+        "clojure-lsp": {
+            "enabled": false,
+            "command": ["/usr/bin/clojure-lsp"],
+            "selector": "source.clojure",
+            "initializationOptions": {
+              "document-formatting?": false,
+              "document-range-formatting?": false,
+              "hover": {
+                "clojuredocs": false,
+                ":clojuredocs": false,
+                "hide-signature-call?": true,
+                "hide-file-location": true,
+              },
+
+            }
+        }
+    }
 }

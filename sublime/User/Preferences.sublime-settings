@@ -29,7 +29,7 @@
  "font_face": "IOSevka Term Light",
  // "font_face": "Ubuntu Mono",
  // "font_face": "Fira Code",
- "font_size": 10,
+ "font_size": 11,
  "font_options": ["gray_antialias"],
  // "font_options": ["gray_antialias", "dlig"],
  // "font_options": ["dlig"],
@@ -65,75 +65,8 @@
  "translate_tabs_to_spaces": true,
  "use_tab_stops": true,
  "word_wrap": false,
- "ignored_packages":
- [
-    // "Vintage"
-/*"LSP",*/
-/*"LSP-clangd",*/
-/*"LSP-metals",*/
-/*"LSP-svelte",*/
-/*"LSP",*/
-/*"LSP-metals",*/
-/*"JsPrettier",*/
-/*"SublimeLinter",*/
-/*"JsPrettier",*/
-/*"LSP-svelte",*/
-/*"LSP-biome",*/
-/*"JsPrettier",*/
-/*"LSP-file-watcher-chokidar",*/
-/*"Clojure Sublimed",*/
-/*"SublimeLinter",*/
-/*"Package Control",*/
-/*"Clojure Sublimed",*/
-/*"Emmet",*/
-/*"Emmet",*/
-/*"Clojure Sublimed",*/
-/*"phpfmt",*/
-/*"phpfmt",*/
-/*"Clojure Sublimed",*/
-/*"Clojure Sublimed",*/
-/*"LSP-svelte",*/
-/*"LSP-svelte",*/
-/*"LSP-svelte",*/
-/*"Pug",*/
-/*"LSP-svelte",*/
-/*"SublimeLinter-pug-lint",*/
-/*"LSP-twiggy",*/
-/*"LSP-biome",*/
-/*"Twig",*/
-/*"Pug",*/
-/*"LSP",*/
-/*"Clojure Sublimed",*/
-/*"Clojure Sublimed",*/
-/*"Emmet",*/
-/*"phpfmt",*/
-/*"Emmet",*/
-/*"phpfmt",*/
-/*"LSP-intelephense",*/
-/*"phpfmt",*/
-/*"SublimeLinter",*/
-/*"SublimeLinter",*/
-/*"Clang Format",*/
-/*"Emmet",*/
-/*"Clang Format",*/
-/*"Clang Format",*/
-/*"Clojure Sublimed",*/
-/*"Clojure Sublimed",*/
-/*"LSP-twiggy",*/
-/*"LSP-twiggy",*/
-/*"Clojure Sublimed",*/
-/*"Package Control",*/
-/*"LSP-biome",*/
-/*"LSP-metals",*/
-/*"Package Control",*/
-/*"Clojure Sublimed",*/
-/*"HighlightWords",*/
-/*"LSP",*/
-/*"HighlightWords",*/
-/*"BetterFindBuffer",*/
-/*"LSP",*/
-/*"LSP-file-watcher-chokidar",*/
-    ],
+ "ignored_packages": [
+  ],
  "vintage_start_in_command_mode": true,
  "vintage_use_clipboard": true,
  "dark_theme": "Default Dark.sublime-theme",
@@ -155,14 +88,17 @@
         "palaišanos",
         "postgres",
         "piem",
-    ],
+  ],
   "ignored_words":
   [
 		"Smartmet",
         "tāski",
-    ],
+  ],
   "index_files": true,
-   "color_scheme": "Alabaster BG.sublime-color-scheme",
+   "color_scheme": "Clojure Sublimed Light.sublime-color-scheme",
   "mini_diff": "auto",
    "update_check": false,
+
+   "executor_show_panel_on_output": true,
+   "executor_output_view": true,
 }

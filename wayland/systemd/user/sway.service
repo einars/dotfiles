@@ -1,0 +1,14 @@
+[Unit]
+Description=Sway - Wayland window manager
+Documentation=man:sway(5)
+
+[Service]
+ExecStart=/usr/bin/sway
+Restart=on-failure
+Environment=MOZ_ENABLE_WAYLAND=1
+Environment=MOZ_DBUS_REMOTE=1
+Environment=QT_QPA_PLATFORM=wayland
+Environment=QT_QPA_PLATFORMTHEME=qt5ct
+Environment=CLUTTER_BACKEND=wayland
+Environment=SDL_VIDEODRIVER=wayland
+Environment=XDG_CURRENT_DESKTOP=sway

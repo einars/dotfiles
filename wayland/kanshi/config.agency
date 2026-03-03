@@ -1,0 +1,25 @@
+output "Dell Inc. DELL U3415W F1T1W93I0LTL" {
+  alias $left
+  mode 3440x1440
+  position 0,0
+}
+output "Dell Inc. DELL P2423DE HJ1GXR3" {
+  alias $right
+  mode 2560x1440
+  position 3440,0
+}
+
+profile main {
+  output $left enable
+  output $right enable transform 90
+}
+
+profile zoom {
+  output $left enable
+  output $right enable transform normal mode 1920x1080
+}
+
+
+profile single {
+  output $left enable
+}

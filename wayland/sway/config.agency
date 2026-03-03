@@ -1,0 +1,97 @@
+set $mod Mod4
+
+set $left h
+set $down t
+set $up n
+set $right s
+
+#set $term foot
+set $term sakura
+set $files thunar
+
+set $mon_secondary 'Dell Inc. DELL P2423DE HJ1GXR3'
+set $mon_primary 'Dell Inc. DELL U3415W F1T1W93I0LTL'
+
+focus_wrapping no
+
+smart_borders on
+smart_gaps on
+
+set $menu rofi -show run | xargs swaymsg exec
+#font pango:Fira Code Semibold 10
+font pango:Atkinson Hyperlegible Bold 10
+#output * bg /home/e/wallpapers/uw.lake.png fill
+#output * bg "/home/e/wallpapers/john singer sargent - white ships.jpg" fill
+output $mon_primary bg "/home/e/wallpapers/uw.ships.jpg" fill
+#output $mon_secondary bg "/home/e/wallpapers/h.mexico.jpg" fill
+output $mon_secondary bg "/home/e/wallpapers/wallpaper.subtle.03.png" tile
+
+# client.<state> <title-border> <background> <text> <indicator?> <child_border>
+client.focused          #ce5c00 #ce5c00 #ffffff #ce5cff #000000
+
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec systemctl --user restart xdg-desktop-portal xdg-desktop-portal-wlr
+
+## exec way-displays >> /home/e/way-displays.stdout.log
+exec kanshi
+exec mako
+
+exec swayidle -w \
+    timeout 10 'if pgrep swaylock; then swaymsg "output * dpms off"; fi' \
+    resume 'swaymsg "output * dpms on"'
+
+input * {
+      ##xkb_layout "lv_custom,gr"
+      ##xkb_variant "dvp,"
+
+      xkb_layout "lv_custom,lv"
+      xkb_variant "dvp,"
+
+      ## xkb_layout "lv,lv_custom"
+      ## xkb_variant ",dvp"
+
+      #xkb_layout "lv"
+      #xkb_variant "
+
+      # numpad:mac disables numpad, yes yes yes yes
+      #xkb_options "caps:escape,numpad:mac"
+      xkb_options "caps:escape,numpad:mac"
+      xkb_numlock enabled
+      scroll_method "on_button_down"
+      scroll_button BTN_EXTRA
+      middle_emulation enabled
+}
+
+input type:pointer {
+      accel_profile adaptive
+      #pointer_accel -0.9
+      pointer_accel 0.0
+}
+
+
+bindsym --to-code {
+
+    $mod+w             exec ~/bin/refresh-firefox
+    #Print              exec "swaymsg 'output * power on'"; exec "t blrp"
+
+    $mod+q exec "$files /home/e/draza"
+    # $mod+t exec "$files /home/e/torrents"
+    $mod+o exec "$files /storage/torrents"
+    $mod+d exec "$files /home/e/dokumenti"
+    $mod+b exec "$files /storage/books"
+}
+
+
+bar {
+  output $mon_primary
+  swaybar_command waybar
+}
+
+include /etc/sway/config.d/*
+include ~/.config/sway/d/floating
+include ~/.config/sway/d/workspaces.twomon
+include ~/.config/sway/d/keys
+include ~/.config/sway/d/keys.resize-mode
+include ~/.config/sway/d/keys.layouts
+include ~/.config/sway/d/keys.zeal
+include ~/.config/sway/d/pulseaudio.wob

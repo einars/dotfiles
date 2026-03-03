@@ -19,7 +19,7 @@ mkdir -p "/home/e/dokumenti/Gramatvediba/accounting/$prev_accounting/rekini-in"
 mkdir -p "/home/e/dokumenti/Gramatvediba/accounting/$prev_accounting/rekini-out"
 
 mkdir -p "/home/e/dokumenti/Gramatvediba/rekini-out/$year-$month"
-mkdir -p "/storage/torrents/$year-$month"
+mkdir -p "/home/e/torrents/$year-$month"
 
 mkdir -p "/storage/fotogrāfijas/$year/$month"
 
@@ -38,7 +38,7 @@ ln -sf "$drazapath_prev" prev
 cd /storage/draza/current
 ln "/storage/fotogrāfijas/$year/$month" DCIM -s
 
-cd /storage/torrents
+cd /home/e/torrents
 rm current
 ln -sf "$year-$month" current
 
@@ -49,8 +49,8 @@ git add .
 git commit -am "$year-$month"
 
 echo Created "$drazapath"
-echo Restarting smb...
-sudo systemctl restart smb
-echo Service restared
+## echo Restarting smb...
+## sudo systemctl restart smb
+## echo Service restared
 
 

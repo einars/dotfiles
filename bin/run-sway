@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# systemctl --user start sway
+
 #set -e
 
 export MOZ_ENABLE_WAYLAND=1
@@ -10,5 +12,5 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export CLUTTER_BACKEND=wayland
 export SDL_VIDEODRIVER=wayland
 
-#exec ssh-agent dbus-run-session /usr/bin/sway
+# exec ssh-agent dbus-run-session /usr/bin/sway
 exec ssh-agent /usr/bin/sway

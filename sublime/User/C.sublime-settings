@@ -1,4 +1,4 @@
 // These settings override both User and Default settings for the C syntax
 {
-  "tab_size": 8,
+  "tab_size": 4,
 }

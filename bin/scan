@@ -34,7 +34,8 @@ set jpeg_q           85
 # set -x SANE_DEBUG_GENESYS_LOW 7
 
 if test -z $scan_viewer
-    set scan_viewer viewnior
+  #set scan_viewer viewnior
+  set scan_viewer loupe
 end
 
 if test (count $argv) = 0
@@ -81,6 +82,11 @@ while test -n $argv[$paramidx]
         set resolution 600
     end
 
+    if [ $a = 'vhq' ]
+        set format "png"
+        set resolution 1200
+    end
+
     if [ $a = 'color' ]
         set mode "Color"
     end
@@ -108,37 +114,28 @@ else
     end
 
     set basename (basename $filename .$format)
-    set jpgname (printf_filename "$basename.$format")
-    set tiffname (basename $jpgname .$format).tiff
-    echo $jpgname
+    set outname (printf_filename "$basename.$format")
+    set pngname (basename $outname .$format).png
+    echo $outname
 
-
-    # --buffer-size=1M
-    sleep 2s
     scanimage \
+        --buffer-size 1M \
         --resolution $resolution \
         --mode $mode \
-        --format=tiff \
-        $scan_params \
-        > $tiffname
+        --format png \
+        --output-file $pngname \
+        $scan_params
 
-    if [ $format = 'png' ]
-        gm convert \
-            $crop_params \
-            $tiffname $jpgname
-
-        rm $tiffname
-    else
-
+    if [ $format = 'jpg' ]
         gm convert \
             -quality $jpeg_q \
             $crop_params \
-            $tiffname $jpgname
+            $pngname $outname
 
-        rm $tiffname
+        rm $pngname
     end
     if [ $preview = "yes" ]
-        eval $scan_viewer $jpgname &
+        eval $scan_viewer $outname &
     end
 
   echo

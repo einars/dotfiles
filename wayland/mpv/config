@@ -1,0 +1,78 @@
+# mostly taken from https://github.com/Argon-/mpv-config/blob/master/mpv.conf
+
+icc-profile-auto
+## ## target-prim=bt.2020
+## ## target-trc=srgb
+## tone-mapping=bt.2390
+
+#no-border                               # no window title bar
+msg-module                               # prepend module name to log messages
+msg-color                                # color log messages on terminal
+no-term-osd-bar                          # display a progress bar on the terminal
+pause=no                                 # do not save pause
+#keep-open  # keep the player open when a file's end is reached
+            # good in theory, but audio files that play till the end remain 
+            # at the end on subsequent plays, thx to save-position-on-quit
+#audio-device=pulse
+audio-device=pipewire
+audio-display=no
+#volume=80
+#volume-max=100
+
+audio-channels=stereo
+ad-lavc-downmix=yes
+# Default center weight is 0.707 (≈ -3dB). Raise to 1.0 for louder dialog.
+#af=lavfi=[pan=stereo|FL<0.7*FL+0.7*FC+0.7*SL+0.5*LFE|FR<0.7*FR+0.7*FC+0.7*SR+0.5*LFE]
+af=lavfi=[pan=stereo|FL<0.7*FL+0.9*FC+0.7*SL+0.5*LFE|FR<0.7*FR+0.9*FC+0.7*SR+0.5*LFE]
+audio-file-auto=fuzzy
+
+osd-level=1                             # enable osd and display --osd-status-msg on interaction
+osd-duration=2500                       # hide the osd after x ms
+
+osd-font='Roboto Medium'
+osd-bold=no
+osd-font-size=26
+osd-color='#ffffffff'                   # ARGB format
+#osd-border-color='#DD322640'            # ARGB format
+#osd-shadow-offset=1                    # pixel width for osd text and progress bar
+osd-bar-align-y=0                       # progress bar y alignment (-1 top, 0 centered, 1 bottom)
+osd-border-size=1                       # size for osd text and progress bar
+osd-bar-h=2                             # height of osd bar as a fractional percentage of your screen height
+osd-bar-w=60                            # width of osd bar
+
+sub-auto=all
+
+# no yellow dvd/vobsubs
+sub-gray=yes
+
+# sub-use-margins
+# sub-ass-force-margins
+# demuxer-mkv-subtitle-preroll    # try to correctly show embedded subs when seeking
+sub-file-paths=sub:subs   # search for external subs in the listed subdirectories
+
+# the following options only apply to subtitles without own styling (i.e. not ASS but e.g. SRT)
+### sub-font="Roboto"
+### sub-font-size=36
+### sub-color="#FFFFFFFF"
+### sub-border-color="#FF262626"
+### sub-border-size=3.2
+### sub-shadow-offset=1
+### sub-shadow-color="#33000000"
+### sub-spacing=0.5
+
+
+slang=enm,en,eng,ru,rus # automatically select these subtitles (decreasing priority)
+alang=en,eng,ru,rus     # automatically select these audio tracks (decreasing priority)
+
+### save-position-on-quit
+
+#video-sync=display-resample
+video-sync=audio
+
+vo=gpu-next
+gpu-context=wayland
+## wayland-disable-vsync=yes
+## video-sync=display-desync
+
+autofit-larger=100%x100%
+## hwdec

@@ -5,5 +5,7 @@
 		"inc",
 	],
   "detect_indentation": false,
-  "tab_size": 16,
+  // "translate_tabs_to_spaces": false,
+  "draw_white_space": ["selection"],
+  "tab_size": 8,
 }
