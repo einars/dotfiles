@@ -7,5 +7,5 @@
   "detect_indentation": false,
   // "translate_tabs_to_spaces": false,
   "draw_white_space": ["selection"],
-  "tab_size": 8,
+  "tab_size": 4,
 }

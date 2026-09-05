@@ -3,6 +3,15 @@
 {
   "initializationOptions": {
     "licenceKey": "/home/e/dokumenti/intelephense-license.txt",
+  },
+  "settings": {
+    "intelephense.completion.parameterCase": "snake",
+    "intelephense.environment.shortOpenTag": false,
+    "intelephense.diagnostics.exclude": {
+      "*.php": [
+         // Parameter $sitedef has no type information available. (intelephense[P1132])
+         "P1132"
+       ]
+    }
   }
-  
 }

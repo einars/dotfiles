@@ -14,6 +14,7 @@
 		"LSP",
 		"LSP-biome",
 		"LSP-clangd",
+		"LSP-eslint",
 		"LSP-file-watcher-chokidar",
 		"LSP-intelephense",
 		"LSP-some-sass",
@@ -35,6 +36,7 @@
 		"Writer Color Scheme",
 		"Z80 Assembly",
 		"Zig Language",
+		"ZigUnofficial",
 	],
 	"debug": true,
 }

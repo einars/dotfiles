@@ -1,0 +1,5 @@
+// Settings in here override those in "LSP-eslint/LSP-eslint.sublime-settings"
+
+{
+  "selector": "source.js | source.ts | source.jsx | source.tsx | source.js.jsx | source.js.react | source.ts.react | text.html.ngx | text.html.vue | text.html.basic | text.html.svelte | source.svelte",
+}

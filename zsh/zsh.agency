@@ -21,6 +21,7 @@ try_cdpath /proj
 #try_cdpath /services/web
 try_cdpath /home/e/dokumenti
 try_cdpath /services/web/dev.spicausis.lv
+try_cdpath /proj
 
 function c() {
     CDPATH= cd $1
@@ -46,9 +47,8 @@ export EDITOR=nvim
 export VISUAL=nvim
 alias vim=nvim
 
-. /home/e/.opam/opam-init/init.zsh &> /dev/null || true
-eval $(opam config env)
-
+## . /home/e/.opam/opam-init/init.zsh &> /dev/null || true
+## eval $(opam config env)
 
 unset _JAVA_OPTIONS
 ## export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dsun.java2d.opengl=true"

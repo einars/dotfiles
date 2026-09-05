@@ -19,7 +19,8 @@ smart_gaps on
 
 set $menu rofi -show run | xargs swaymsg exec
 #font pango:Fira Code Semibold 10
-font pango:Atkinson Hyperlegible Bold 10
+#font pango:Atkinson Hyperlegible Bold 10
+font pango:Roboto Condensed Medium 10
 #output * bg /home/e/wallpapers/uw.lake.png fill
 #output * bg "/home/e/wallpapers/john singer sargent - white ships.jpg" fill
 output $mon_primary bg "/home/e/wallpapers/uw.ships.jpg" fill
@@ -95,3 +96,16 @@ include ~/.config/sway/d/keys.resize-mode
 include ~/.config/sway/d/keys.layouts
 include ~/.config/sway/d/keys.zeal
 include ~/.config/sway/d/pulseaudio.wob
+
+#seat seat0 xcursor_theme ater-yellow 32
+#seat seat0 xcursor_theme Vanilla-DMZ 32
+seat seat0 xcursor_theme Vanilla-DMZ-AA 32
+
+#seat seat0 xcursor_theme breeze_cursors 32
+
+# resize-nw nav firefoxā:
+#seat seat0 xcursor_theme Vimix-cursors 32
+
+#seat seat0 xcursor_theme plan9 32
+#seat seat0 xcursor_theme Breeze_Light 32
+#seat seat0 xcursor_theme Vimix-white-cursors 32

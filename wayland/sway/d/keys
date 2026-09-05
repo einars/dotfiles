@@ -22,8 +22,9 @@ bindsym --to-code {
     $mod+Shift+Return exec foot
     $mod+r      exec $menu
 
-    Menu            exec "tt screenshot"
-    Shift+Menu exec "tt screenshot.alt"
+    Menu       exec "tt screenshot.jpg"
+    Shift+Menu exec "tt screenshot.png"
+    #Shift+Menu exec "tt screenshot.alt"
     Ctrl+Menu exec  "tt screenshot.window"
     #Ctrl+Shift+Menu exec "tt screenshot.window"
     Ctrl+Shift+Menu exec "tt screenshot.delayed"
@@ -87,4 +88,6 @@ bindsym --to-code {
 ## bindcode $mod+49 [app_id="^((?!org.zealdocs.zeal).)*$"] scratchpad show
 #bindcode $mod+49 [app_id="foot"] focus output $mon_primary, scratchpad show, resize set 1397 1014
 bindcode $mod+49 [app_id="sakura" floating="true"] focus output $mon_primary, scratchpad show, resize set 1397 1014
+
+### swaymsg [app_id='org.telegram.desktop.*'] move to workspace 9, floating on, move output 'DP-2', resize set 800 900, move absolute position 2580 525, focus
 

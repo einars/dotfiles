@@ -1,6 +1,7 @@
 // These settings override both User and Default settings for the Plain text syntax
 {
-  "font_face": "iA Writer Duo V",
+  // "font_face": "iA Writer Duo V",
+  "font_face": "IOSevka Term",
   //"font_size": 14,
   "line_numbers": false,
   "word_wrap": true,
