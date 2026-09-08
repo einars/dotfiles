@@ -59,8 +59,8 @@ bindsym --to-code {
     $mod+f           fullscreen
     $mod+space       focus mode_toggle
     $mod+Shift+space floating toggle
-    $mod+Ctrl+space        exec /home/e/bin/sway/next-keyboard-layout
-    $mod+Ctrl+Shift+space  exec /home/e/bin/sway/default-keyboard-layout
+    $mod+Ctrl+space        exec /home/e/bin/sway/next-keyboard-layout $keyboard
+    $mod+Ctrl+Shift+space  exec /home/e/bin/sway/default-keyboard-layout $keyboard
     Alt+F4           kill
 
     #F1  seat '*' cursor press button1
