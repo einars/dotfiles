@@ -7,6 +7,7 @@
   // "font_size": 18,
   "font_options": ["no_italic"],
   "color_scheme": "Celeste.sublime-color-scheme",
+  "save_on_focus_lost": true,
 
   "line_numbers": false,
   "spell_check": false,

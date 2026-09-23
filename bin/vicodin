@@ -20,11 +20,11 @@ define('SOUND_NAG', 'heroes/new-week.ogg');
 $sounds = [
             0 => SOUND_START,
             25 => SOUND_TINY,
-            45 => SOUND_PRE,
-            (45*2) => SOUND_PRE,
-            (45*3) => SOUND_PRE,
-            (45*4) => SOUND_PRE,
-            (45*5) => SOUND_PRE,
+            50 => SOUND_PRE,
+            (50*2) => SOUND_PRE,
+            (50*3) => SOUND_PRE,
+            (50*4) => SOUND_PRE,
+            (50*5) => SOUND_PRE,
             360 => SOUND_ENOUGH, // auto-stop
 ];
 

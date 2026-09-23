@@ -1,0 +1,4 @@
+// These settings override both User and Default settings for the SQL syntax
+{
+  "save_on_focus_lost": true,
+}

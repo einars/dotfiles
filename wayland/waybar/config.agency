@@ -145,6 +145,7 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
+        // "on-click": "pwvucontrol"
     },
     "custom/watson": {
         "return-type": "json",
