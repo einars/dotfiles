@@ -1,0 +1,97 @@
+set $mod Mod4
+
+# Home row direction keys (dvorak)
+set $left h
+set $down t
+set $up n
+set $right s
+
+set $term sakura
+set $files thunar
+set $mon_primary "eDP-1"
+set $keyboard AT_Translated
+
+focus_wrapping no
+
+
+smart_borders on
+smart_gaps on
+
+set $menu rofi -show run | xargs swaymsg exec
+font pango:Fira Code Semibold 10
+# output * bg /home/e/wallpapers/h.led-shrooms2.jpg fill
+
+output $mon_primary scale 1.0
+
+set $volume_up pamixer --unmute --increase 5 && sleep 0.01 && pamixer --get-volume > $SWAYSOCK.wob
+set $volume_dn pamixer --unmute --decrease 5 && sleep 0.01 && pamixer --get-volume > $SWAYSOCK.wob
+set $volume_toggle pactl set-sink-mute @DEFAULT_SINK@ toggle; sleep 0.01 && pamixer --get-mute && echo 0 > $SWAYSOCK.wob
+
+#exec swayidle -w \
+#    timeout 300 "t kill.watson" \
+#    timeout 10 'if pgrep swaylock; then swaymsg "output * dpms off"; fi' \
+#    resume 'swaymsg "output * dpms on"'
+
+input * {
+      # xkb_layout "lv_custom,lv,ru"
+      # xkb_variant "dvp,,phonetic_dvorak"
+      xkb_layout "lv_custom,us"
+      xkb_variant "dvp,dvorak"
+      xkb_options "caps:ctrl_modifier"
+      xkb_numlock enabled
+      scroll_method "on_button_down"
+      scroll_button BTN_EXTRA
+      middle_emulation enabled
+}
+
+input type:pointer {
+      accel_profile adaptive
+      #pointer_accel -0.9
+      pointer_accel 0.0
+}
+
+bindsym --to-code {
+    $mod+w             exec ~/bin/refresh-firefox
+    $mod+q exec "$files /home/e"
+    $mod+o exec "$files /home/e"
+    $mod+d exec "$files /home/e"
+}
+
+
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+
+bindsym --to-code {
+    $mod+x workspace 1
+    $mod+b workspace 2
+    $mod+m workspace 3
+    $mod+Shift+x move container to workspace 1
+    $mod+Shift+b move container to workspace 2
+    $mod+Shift+m move container to workspace 3
+}
+
+input type:pointer {
+      accel_profile adaptive
+      #pointer_accel -0.9
+      pointer_accel 0.0
+}
+
+bar {
+  output $mon_primary
+  swaybar_command waybar
+}
+
+include /etc/sway/config.d/*
+include ~/.config/sway/d/floating
+#include ~/.config/sway/d/workspaces.twomon
+include ~/.config/sway/d/keys
+include ~/.config/sway/d/keys.resize-mode
+include ~/.config/sway/d/keys.layouts
+include ~/.config/sway/d/keys.zeal
+#include ~/.config/sway/d/pulseaudio.wob
