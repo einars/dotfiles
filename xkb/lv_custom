@@ -43,7 +43,8 @@ xkb_symbols "dvp" {
  key <LSGT> {[ U21e7, U2325, U2303, U2318 ]};
 
  key <AD01> {[ semicolon, colon,  U2610,  U2611  ]};
- key <AD02> {[ comma, less, leftdoublequotemark, leftsinglequotemark]};
+ // key <AD02> {[ comma, less, leftdoublequotemark, leftsinglequotemark]};
+ key <AD02> {[ comma, less, doublelowquotemark, leftsinglequotemark]};
  key <AD03> {[ period, greater, rightdoublequotemark, rightsinglequotemark]};
 
  key <AD11> {[ slash,  question, rightarrow,  leftarrow  ]};
