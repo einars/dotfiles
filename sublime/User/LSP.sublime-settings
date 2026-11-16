@@ -6,6 +6,9 @@
     // "quickfix.biome": true
   },
      "clients": {
+      "lsp-metals": {
+            "enabled": false,
+      },
         "clojure-lsp": {
             "enabled": false,
             "command": ["/usr/bin/clojure-lsp"],

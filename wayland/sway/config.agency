@@ -11,6 +11,7 @@ set $files thunar
 
 set $mon_secondary 'Dell Inc. DELL P2423DE HJ1GXR3'
 set $mon_primary 'Dell Inc. DELL U3415W F1T1W93I0LTL'
+set $mon_lab 'GWD ARZOPA 0000002074135'
 
 focus_wrapping no
 
@@ -26,6 +27,7 @@ font pango:Roboto Condensed Medium 10
 output $mon_primary bg "/home/e/wallpapers/uw.ships.jpg" fill
 #output $mon_secondary bg "/home/e/wallpapers/h.mexico.jpg" fill
 output $mon_secondary bg "/home/e/wallpapers/wallpaper.subtle.03.png" tile
+output $mon_lab bg "/home/e/wallpapers/h.geom.jpg" tile
 
 # client.<state> <title-border> <background> <text> <indicator?> <child_border>
 client.focused          #ce5c00 #ce5c00 #ffffff #ce5cff #000000

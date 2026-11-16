@@ -1,4 +1,0 @@
-#!/bin/sh
-
-sudo modprobe vboxdrv
-sudo modprobe vboxnetflt

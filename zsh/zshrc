@@ -164,7 +164,8 @@ function setup_prompt() #{{{
     }
 
     setopt PROMPT_SUBST
-    export PROMPT="`prefix_user_host`\`prefix_pwd\` \`prefix_sc_branch\`%(?,$prompt_green,$prompt_red)%#$prompt_reset "
+    #export PROMPT="`prefix_user_host`\`prefix_pwd\` \`prefix_sc_branch\`%(?,$prompt_green,$prompt_red)%#$prompt_reset "
+    export PROMPT="`prefix_user_host`\`prefix_pwd\` %(?,$prompt_green,$prompt_red)%#$prompt_reset "
     export RPROMPT="%(?,,$prompt_red( %? %)$prompt_reset"
 } #}}}
 
@@ -250,3 +251,9 @@ try_source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 try_source /usr/share/fzf/completion.zsh
 try_source /usr/share/fzf/key-bindings.zsh
 
+# >>> Photon CLI >>>
+case ":$PATH:" in
+  *:'/home/e/.photon/bin':*) ;;
+  *) export PATH="$PATH":'/home/e/.photon/bin' ;;
+esac
+# <<< Photon CLI <<<

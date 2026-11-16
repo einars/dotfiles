@@ -29,7 +29,7 @@
  "font_face": "IOSevka Term Light",
  // "font_face": "Ubuntu Mono",
  // "font_face": "Fira Code",
- "font_size": 12,
+ "font_size": 11,
  "font_options": ["gray_antialias"],
  // "font_options": ["gray_antialias", "dlig"],
  // "font_options": ["dlig"],
@@ -55,7 +55,7 @@
  "show_sidebar_button": false,
  "tab_completion": true,
  "tab_size": 2,
- "theme": "auto",
+ "theme": "Default.sublime-theme",
  "update_system_recent_files": false,
 
   "rulers": [[120, "dotted"]],
@@ -95,10 +95,10 @@
         "tāski",
   ],
   "index_files": true,
-   "color_scheme": "Clojure Sublimed Light.sublime-color-scheme",
   "mini_diff": "auto",
    "update_check": false,
 
    "executor_show_panel_on_output": true,
    "executor_output_view": true,
+  "color_scheme": "Alabaster.sublime-color-scheme",
 }

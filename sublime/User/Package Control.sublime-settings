@@ -5,12 +5,14 @@
 	],
 	"installed_packages":
 	[
+		"Alabaster Color Scheme",
 		"Babel",
 		"BetterFindBuffer",
 		"Clojure Sublimed",
 		"Emmet",
 		"Executor",
 		"gcode",
+		"INI",
 		"LSP",
 		"LSP-biome",
 		"LSP-clangd",

@@ -7,11 +7,9 @@
    "psy"       "http://79.111.14.76:8002/psybient"
    "psa"       "http://65.109.32.21:8010/stream"
    "psb"       "http://65.109.32.21:8020/stream"
-   "lr1"       "https://60766ff53d5e6.streamlock.net/liveALR1/mp4:LR1/playlist.m3u8"
    "waup"      "https://streaming.live365.com/a01445"
    "wayo"      "http://streaming.wayofm.org:8000/wayo-mobile.m3u"
-   "deephouse" "https://altair.streamerr.co:8124/stream"
-   "wjli"      "http://207.162.185.111:8000/kastor"})
+   })
 
 (def station (first *command-line-args*))
 
@@ -31,5 +29,5 @@
 
 (if-let [radio (get radios station)]
   (play radio)
-  (doseq [[k v] radios]
+  (doseq [[k v] (sort radios)]
     (println (format "%-12s%s" k v))))
