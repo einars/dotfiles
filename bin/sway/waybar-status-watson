@@ -9,8 +9,6 @@ from pathlib import Path
 
 import sh
 
-from threading import Timer
-
 Lightning = '\uf0e7\uf0e7\uf0e7'
 
 state_path = Path.home() / '.config' / 'watson' / 'state'
@@ -140,43 +138,20 @@ def on_change():
   sys.stdout.write("\n")
   sys.stdout.flush()
 
-have_timer = False
-
-def on_timer():
-  global have_timer
-  have_timer = False
-  on_change()
-  setup_timer()
-
-def setup_timer():
-  global have_timer
-  if not have_timer:
-    have_timer = True
-    t = Timer(10, on_timer)
-    t.start()
-
-
 def setup_watch():
+  with INotify() as watcher:
+    watcher.add_watch(
+      str(state_path.parent),
+      flags.CLOSE_WRITE | flags.MOVED_TO | flags.DELETE,
+    )
 
-  i = INotify()
-  i.add_watch(str(state_path.parent), flags.CREATE | flags.MODIFY)
-
-
-  on_change()
-  setup_timer()
-
-  ignore_events = ['IN_ACCESS', 'IN_OPEN', 'IN_CLOSE_NOWRITE', 'IN_IGNORED', 'IN_ATTRIB']
-  for evt in i.read():
-    (x, type_names, path, filename) = evt
-    if filename == 'state':
-      use_this_event = False
-      for t in type_names:
-        if t not in ignore_events:
-          use_this_event = True
-
-      if use_this_event:
+    on_change()
+    while True:
+      events = watcher.read(timeout=10_000)
+      if not events or any(
+        event.name in {'state', 'frames'} for event in events
+      ):
         on_change()
-        setup_timer()
 
 
 
