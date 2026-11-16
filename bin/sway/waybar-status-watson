@@ -5,9 +5,8 @@ import argparse
 from inotify_simple import INotify, flags
 import json
 import time
+import subprocess
 from pathlib import Path
-
-import sh
 
 Lightning = '\uf0e7\uf0e7\uf0e7'
 
@@ -16,7 +15,7 @@ frames_path = Path.home() / '.config' / 'watson' / 'frames'
 
 def get_watson_state():
 
-  lines = [l for l in sh.ps('ax').split('\n')]
+  lines = subprocess.check_output(['ps', 'ax'], text=True).splitlines()
   lines = [l for l in lines if 'bin/vicodin' in l]
 
   vicodin = len(lines) > 0
@@ -45,7 +44,8 @@ def get_watson_state():
   if o['state'] == 'idle' and frames_path.exists():
     with frames_path.open() as f:
       frames = json.load(f)
-      o['elapsed'] = (time.time() - max([t[1] for t in frames])) * 1.0 / 60
+      if frames:
+        o['elapsed'] = (time.time() - max([t[1] for t in frames])) * 1.0 / 60
 
   return o
 
