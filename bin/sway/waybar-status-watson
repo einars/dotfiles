@@ -18,7 +18,6 @@ frames_path = Path.home() / '.config' / 'watson' / 'frames'
 
 def get_watson_state():
 
-  vicodin = False
   lines = [l for l in sh.ps('ax').split('\n')]
   lines = [l for l in lines if 'bin/vicodin' in l]
 
@@ -74,38 +73,15 @@ def pips(cur, max, pipses):
         out.append(pipses[" "])
   return "".join(out)
   
-def fmt_duration(dur):
-  h = int(dur / 60)
-  m = dur % 60
-  if h > 4:
-    return ''
-  if h < 2:
-    return '{}m'.format(dur)
-
-  return '{}h {}m'.format(h, m)
-
-
 def on_change():
   state = get_watson_state()
   if state["state"] == "idle" and state["elapsed"] == None:
-    #text = 'chill ' + '\uf0e7'
     text = Lightning
     if not state["vicodin-running"]:
       text += ' (no vicodin)'
     sys.stdout.write('{ "text": "' + text + '", "alt": "", "class": ["task", "task--idle"] }')
   elif state["state"] == "idle" and state["elapsed"] != None:
-    ## color = '#a3be8c'
     color = '#c3c36c'
-    elapsed = state["elapsed"]
-    duration = fmt_duration(round(elapsed))
-
-    text = '<span color="{color}">{duration}  {ico}</span>'.format(
-      xico='   ',
-      ico='Zzz...',
-      duration=duration,
-      color=color,
-    )
-
     text = '<span color="{color}">{ico}</span>'.format(
       ico='  ',
       color=color,
@@ -116,7 +92,6 @@ def on_change():
     sys.stdout.write('{ "text": %s, "class": ["task", "task--active"] }' % json.dumps(text))
 
   else:
-    progress = ''
     elapsed = state["elapsed"]
 
     elt = {
@@ -139,27 +114,7 @@ def on_change():
 
     progress = pips(elapsed, len, elt)
 
-    if False:
-      tick = True
-      minutes_in_bar = len
-
-      ppm = 280 // minutes_in_bar
-
-      e = elapsed % minutes_in_bar
-      ppm_frac = 1.0 / ppm
-      for f in range(0, minutes_in_bar):
-        for sub in range(1, ppm + 1):
-          cutoff = f + ((sub + 1) * 1.0) / ppm
-          if e < cutoff:
-            tick = False
-          progress += elt[tick]
-        progress += '\u2009'
-
-
     duration = '{}m'.format(int(elapsed))
-    #duration = '{:.4} m'.format(elapsed)
-
-    #progress = ''
 
     text = '<span color="{color}">{progress}</span>  {project}, {duration}  <span color="{ltcolor}">{lightning}</span>'.format(
       progress=progress,
@@ -177,38 +132,31 @@ def on_change():
 
   sys.stdout.write("\n")
   sys.stdout.flush()
-  return state
 
 have_timer = False
 
 def on_timer():
   global have_timer
   have_timer = False
-  setup_timer(on_change())
+  on_change()
+  setup_timer()
 
-def setup_timer(state):
+def setup_timer():
   global have_timer
   if not have_timer:
-    if state["state"] == "running":
-      have_timer = True
-      t = Timer(10, on_timer)
-      t.start()
-    else:
-      have_timer = True
-      t = Timer(10, on_timer)
-      t.start()
+    have_timer = True
+    t = Timer(10, on_timer)
+    t.start()
 
 
 def setup_watch():
-
-  # sys.stderr.write("Setting up file watches on {}\n".format(state_path))
-  # sys.stderr.flush()
 
   i = INotify()
   i.add_watch(str(state_path.parent), flags.CREATE | flags.MODIFY)
 
 
-  setup_timer(on_change())
+  on_change()
+  setup_timer()
 
   ignore_events = ['IN_ACCESS', 'IN_OPEN', 'IN_CLOSE_NOWRITE', 'IN_IGNORED', 'IN_ATTRIB']
   for evt in i.read():
@@ -220,7 +168,8 @@ def setup_watch():
           use_this_event = True
 
       if use_this_event:
-        setup_timer(on_change())
+        on_change()
+        setup_timer()
 
 
 
