@@ -73,6 +73,13 @@ def pips(cur, max, pipses):
         out.append(pipses[" "])
   return "".join(out)
   
+def fmt_duration(minutes):
+  minutes = int(minutes)
+  if minutes < 90:
+    return f"{minutes}m"
+  hours, minutes = divmod(minutes, 60)
+  return f"{hours}:{minutes:02d}"
+
 def on_change():
   state = get_watson_state()
   if state["state"] == "idle" and state["elapsed"] == None:
@@ -114,7 +121,7 @@ def on_change():
 
     progress = pips(elapsed, len, elt)
 
-    duration = '{}m'.format(int(elapsed))
+    duration = fmt_duration(elapsed)
 
     text = '<span color="{color}">{progress}</span>  {project}, {duration}  <span color="{ltcolor}">{lightning}</span>'.format(
       progress=progress,
